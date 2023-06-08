@@ -29,8 +29,7 @@ export default class Homepage extends BaseComponent<IHomeProperties> {
   
   return (
     <Layout>
-      {/* Print data for Hero */}
-      
+      {/* Print data for Hero */}      
       {heroSection && (
         <ContainerBox className='c-section--hero'>
           <div className="c-hero">
@@ -57,17 +56,28 @@ export default class Homepage extends BaseComponent<IHomeProperties> {
 
       {/* Print data for Capabilities */}
       {capabilitiesSection && (
-        <div>
-          <h2>{capabilitiesSection.title}</h2>
-          <p>{capabilitiesSection.description}</p>
-          {/* Print the items within Capabilities */}
-          {capabilitiesSection.items.map((item, index) => (
-            <div key={index}>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))}
-        </div>
+        <ContainerBox className='c-section--capabilites pb-small'>
+          <div className="c-capabilites">
+            {capabilitiesSection.title && (
+              <h3 className="c-section__title">{capabilitiesSection.title}</h3>
+            )}
+            {capabilitiesSection.description && (
+              <div className="c-capabilites__description">{capabilitiesSection.description}</div>
+            )}
+            {/* Print the items within Capabilities */}
+            {capabilitiesSection.items && (
+              <div className="row c-capabilites__items">
+                {capabilitiesSection.items.map((item, index) => (
+                  <div className="col-md-6 c-capabilites__item"  key={index}>
+                    <div className="c-capabilites__number">0{index+1}</div>
+                    <div className="c-capabilites__title">{item.title}</div>
+                    <div className="c-capabilites__text">{item.text}</div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </ContainerBox>
       )}
 
       {/* Print data for Projects */}
@@ -96,6 +106,7 @@ export function Head() {
     <>
       <title>Refact | Technology Partner for Audience&#x2d;First Media</title>
       <meta name="description" content="We work with independent media and news organizations to design, build and scale publishing platforms and digital experiences." />
+      <body className="home" />
     </>
   )
 }
