@@ -1,0 +1,444 @@
+.c-section--pagehead{
+  padding: 3em 0;
+  background-color: #003233;
+  @include mq(lg){
+    padding: 6em 0;
+  }
+}
+.c-pagehead__title{
+  color: #fff;
+  margin: 0;
+}
+.c-pagehead__headline{
+  display: flex;
+  align-items: center;
+  margin: 0 0 24px;
+  font-family: $inter;
+  font-weight: 600;
+  @include font-size(13px, 1.85);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  svg{
+    margin-right: 9px;
+  }
+}
+h1{
+  font-family: $sentient;
+  font-weight: 400;
+  @include font-size(36px, 1.22);
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  font-family: $sentient;
+  font-weight: 400;
+  @include font-size(32px, 1.19);
+}
+
+h3 {
+  font-family: $sentient;
+  font-weight: 400;
+  @include font-size(28px, 1.5);
+}
+
+h4 {
+  font-family: $inter;
+  font-weight: 600;
+  @include font-size(22px, 1.5);
+}
+
+h5 {
+  font-family: $inter;
+  font-weight: 600;
+  @include font-size(18px, 1.5);
+}
+
+h6 {
+  font-family: $inter;
+  font-weight: 600;
+  @include font-size(16px, 1.38);
+}
+@media (min-width: 992px){
+  h1{
+    @include font-size(68px, 1.19);
+  }
+  h2{
+    @include font-size(48px, 1.21);
+  }
+  h3{
+    @include font-size(40px, 1.20);
+  }
+  h4{
+    @include font-size(28px, 1.50);
+  }
+  h5{
+    @include font-size(23px, 1.48);
+  }
+  h6{
+    @include font-size(21px, 1.24);
+  }
+}
+
+.s-content {
+  font-family: $inter;
+  @include font-size(14px, 1.5714);
+  font-weight: 400;
+  word-break: break-word;
+  color: var(--color-text);
+
+  @include mq(md){
+    @include font-size(18px, 1.5);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    margin: 40px 0 28px;
+
+    &:first-child {
+      margin-top: 0;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    @include mq(lg) {
+      margin: 72px 0 28px;
+    }
+  }
+
+  h4{
+    @include font-size(28px, 1.5);
+
+    @include mq(lg) {
+      @include font-size(32px, 1.5);
+    }
+  }
+
+  p {
+    margin: 0;
+
+    &:not(:last-child){
+      margin-bottom: 24px;
+    }
+  }
+
+  .has-drop-cap:not(:focus):first-letter{
+    font-family: $inter;
+    font-weight: 700;
+    @include font-size(56px, 1);
+    color: var(--color-text);
+
+    @include mq(lg) {
+      @include font-size(160px, 0.94);
+    }
+  }
+
+  u,
+  a{
+    position: relative;
+    color: inherit;
+    text-decoration: underline;
+  }
+
+  a {
+    color: var(--color-primary-sh);
+    transition: all 0.25s ease-in-out;
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-primary-l);
+    }
+  }
+
+  strong,
+  b {
+    font-weight: 700;
+  }
+
+  ol,
+  ul {
+    padding: 0;
+    margin: 0 0 0 1em;
+
+    &:not(:last-child) {
+      margin-bottom: 24px;
+    }
+
+    li {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  img {
+    width: 100% !important;
+  }
+}
+
+
+.wp-block-image {
+  margin: 40px 0;
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include mq(lg) {
+    margin: 40px 0 72px;
+  }
+
+  @include mq($until: 40.625em) {
+    .aligncenter,
+    .alignleft,
+    .alignright {
+      width: 100%;
+      float: none;
+      margin: 0;
+    }
+  }
+}
+.wp-element-caption {
+  text-align: center;
+  font-family: $inter;
+  font-weight: normal;
+  color: #003233;
+  @include font-size(16px, 1.38);
+
+}
+
+.wp-block-quote{
+  margin: 50px 0;
+  border-left: 4px solid var(--color-gray-3);
+  padding-left: 18px;
+  display: flex;
+  flex-direction: column;
+  @include mq(lg){
+    margin: 60px 0;
+  }
+  p{
+    @include font-size(24px, 1.5);
+    color: #003233;
+    &:not(:last-child){
+      margin-bottom: 20px;
+    }
+  }
+  cite{
+    @include font-size(20px, 1.10);
+    font-style: italic;
+    color: #003233;
+  }
+}
+.wp-block-pullquote{
+  margin: 50px 0;
+  padding: 40px 0;
+  border-top: 4px solid var(--color-gray-3);
+  border-bottom: 4px solid var(--color-gray-3);
+  blockquote{
+    margin: 0 24px;
+    display: flex;
+    flex-direction: column;
+    p{
+      @include font-size(24px, 1.5);
+      color: #003233;
+      text-align: left;
+      &:not(:last-child){
+        margin-bottom: 20px;
+      }
+    }
+    cite{
+      font-family: $inter;
+      @include font-size(18px, 1.22);
+      font-weight: 600;
+      font-style: normal;
+      color: #003233;
+      text-transform: uppercase;
+    }
+  }
+  @include mq(lg){
+    margin: 60px 0;
+    padding: 50px 0;
+    blockquote{
+      margin: 0 48px;
+    }
+  }
+}
+.wp-block-gallery{
+  margin-bottom: 20px;
+  @include mq(lg){
+    margin-bottom: 30px;
+  }
+}
+.wp-block-table{
+  margin-bottom: 20px;
+  overflow-x: auto;
+  table{
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    &:not(:last-child){
+      margin-bottom: 10px;
+    }
+  }
+  thead{
+    border-bottom: 4px solid #003233;
+    th{
+      border: none;
+      font-family: $inter;
+      @include font-size(16px, 1.22);
+      font-weight: 600;
+      text-align: left;
+      text-transform: uppercase;
+      white-space: nowrap;
+      @include mq(md){
+        @include font-size(18px, 1.22);
+      }
+    }
+  }
+  tfoot{
+    border-top: 4px solid #003233;
+    td{
+      border: none;
+      font-family: $inter;
+      @include font-size(16px, 1.22);
+      font-weight: 600;
+      text-align: left;
+      text-transform: uppercase;
+      white-space: nowrap;
+      @include mq(md){
+        @include font-size(18px, 1.22);
+      }
+    }
+  }
+  tbody{
+    tr{
+      &:nth-child(2n){
+        background-color: var(--color-gray-2);
+      }
+      &:nth-child(2n+1){
+        td{
+          padding: 0.6em 0.5em;
+          @include mq(md){
+            padding: 0.875em 0.5em;
+          }
+        }
+      }
+    }
+    td{
+      border: none;
+      font-family: $inter;
+      @include font-size(16px, 1.22);
+      font-weight: 400;
+      color: #003233;
+      white-space: nowrap;
+      @include mq(md){
+        @include font-size(18px, 1.33);
+      }
+    }
+  }
+  @include mq(lg){
+    margin-bottom: 30px;
+  }
+}
+
+.wp-block-media-text{
+  margin: 40px 0;
+  @include mq(lg){
+    margin: 30px 0;
+  }
+  .wp-block-media-text__media{
+    @media (max-width: 600px){
+      margin-bottom: 10px;
+    }
+  }
+  .wp-block-media-text__content{
+    font-family: $inter;
+    text-align: left;
+    @include font-size(18px, 1.22);
+    @media (max-width: 600px){
+      text-align: center;
+      padding: 0 16px;
+    }
+    @include mq(lg){
+      padding: 0 0 0 30px;
+      @include font-size(24px, 1.58);
+    }
+  }
+}
+
+.wp-block-cover{
+  margin: 40px 0;
+  @include mq(lg){
+    margin: 30px 0;
+  }
+  .wp-block-cover__inner-container{
+    p{
+      font-family: $inter;
+      font-weight: 700;
+      @include font-size(21px, 1.24, !important);
+      color: var(--color-gray-1);
+      letter-spacing: -0.5px;
+      @include mq(md){
+        font-family: $inter;
+        letter-spacing: normal;
+        font-weight: 400;
+        @include font-size(36px, 1.22, !important);
+      }
+    }
+  }
+}
+.wp-block-embed{
+  iframe{
+    width: 100%;
+  }
+  .wp-block-embed__wrapper{
+    display: flex;
+  }
+  &.is-type-video{
+    margin: 40px auto;
+    @include mq(lg){
+      margin: 30px auto;
+    }
+  }
+  &.is-type-wp-embed{
+    max-width: 623px;
+    margin: 40px auto;
+    @include mq(lg){
+      margin: 30px auto;
+    }
+  }
+  &.is-provider-twitter{
+    max-width: 623px;
+    margin: 40px auto;
+    @include mq(lg){
+      margin: 30px auto;
+    }
+  }
+}
+
+.wp-block-group {
+  margin: 40px 0;
+
+  @include mq(lg){
+    margin: 30px 0;
+  }
+
+  &.is-layout-flex {
+    gap: 2rem;
+  }
+
+  > * {
+    margin: 0;
+    flex-grow: 1;
+  }
+}
