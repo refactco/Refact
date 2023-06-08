@@ -4,6 +4,7 @@ import BaseComponent from '../components/base/base-component';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import CompanyLogo from '../components/company-logo/company-logo';
+import { PopupButton } from "react-calendly";
 interface IHomeProperties {
   readonly data?: any;
 }
@@ -39,6 +40,16 @@ export default class Homepage extends BaseComponent<IHomeProperties> {
             {heroSection.text && (
               <div className="c-hero__text">{heroSection.text}</div>
             )}
+            <PopupButton
+              url="https://calendly.com/saeedreza/30min"
+              /*
+              * react-calendly uses React's Portal feature (https://reactjs.org/docs/portals.html) to render the popup modal. As a result, you'll need to
+              * specify the rootElement property to ensure that the modal is inserted into the correct domNode.
+              */
+              rootElement={document.getElementById("___gatsby")}
+              text="Work with Us"
+              className='c-btn'
+            />
             <CompanyLogo />
           </div>
         </ContainerBox>
