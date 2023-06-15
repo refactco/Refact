@@ -51,13 +51,6 @@
     position: relative;
     width: 100%;
     padding-top: 40px;
-    &::after {
-        content: 'flickity';
-        display: none; /* hide :after */
-        @include mq(md){
-            content: '';
-        }
-    }
     @include mq(md) {
         display: flex;
         flex-flow: row wrap;
@@ -72,8 +65,6 @@
 }
 
 .c-hero-logo__items{
-    display: flex;
-    align-items: center;
     margin-right: 40px;
     svg{
         path{
@@ -95,6 +86,21 @@
     }
     @include mq(md){
         margin: 0 32px 52px;
+        display: flex;
+        align-items: center;
     }
     
 }
+.slick-slide {
+    height: auto; // ← that must not be ignored
+  }
+  .slick-track {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: stretch;
+  }
+  .slick-initialized .slick-slide{
+    display: flex;
+    align-items: center;
+  }
