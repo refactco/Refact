@@ -3,6 +3,7 @@ import Footer from '../footer/footer';
 import Header from '../header/header';
 import BaseComponent from '../base/base-component';
 
+
 export default class Layout extends BaseComponent {
   declareTranslateCollection() {
     return 'layout';
@@ -13,6 +14,7 @@ export default class Layout extends BaseComponent {
 
     return (
       <Fragment>
+        <Header />
         {children}
       </Fragment>
     );
