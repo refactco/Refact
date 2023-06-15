@@ -87,12 +87,18 @@ export default class Homepage extends BaseComponent {
                 <div className="c-project__items">
                   {projectsSection.projectList.map((project, index) => (
                     <div className='c-project__item' key={index}>
-                      <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer"></a>
-                      <h3>{project.title}</h3>
-                      <p>{project.description}</p>
+                      <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className="c-project__img">
+                      <img src={project.cover.sourceUrl} alt={project.cover.altText} width={project.cover.width} height={project.cover.height} loading="lazy" />
+                      </a>
+                      <h5 className='c-project__title'>{project.title}</h5>
+                      <div className='c-project__text'>{project.description}</div>
                       {/* Print the CTA for each project */}
-                      <a href={project.cta.url} target={project.cta.target}>
+                      <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-btn--secondary'>
                         {project.cta.title}
+                        <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="12" cy="12" r="12" fill="#59CC51"/>
+                        <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                        </svg>
                       </a>
                     </div>
                   ))}
