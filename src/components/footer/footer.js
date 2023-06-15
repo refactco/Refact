@@ -1,23 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import BaseComponent from '../base/base-component';
 import CtaSection from '../cta/cta';
 import { PopupModal } from 'react-calendly';
 
-
-class Footer extends BaseComponent {
-  constructor(properties) {
-    super(properties);
-
-    this.pathname = '';
-    this.state = {
-      isOpen: false,
-    };
-  }
-  render() {
-    const { footerNav } = this.props;
-    return (
-      <>
+const Footer = () => {
+  const data = useStaticQuery(graphql`
+    query FooterQuery {
+      footerNav: wpMenuItem(menu: {node: {locations: {eq: MENU_FOOTER}}}) {
+        menu {
+          node {
+            slug
+            nodeType
+            name
+            menuItems {
+              nodes {
+                label
+                cssClasses
+                url
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+  const footerNav = data.footerNav.menu.node;
+  const [isOpen, setIsOpen] = useState(false);
+  const handleLinkClick = () => {
+    setIsOpen(true);
+  };
+  return (
+    <>
       <CtaSection />
       <footer className="o-section c-section--footer">
         <div className="o-section__wrapper">
@@ -40,10 +53,11 @@ class Footer extends BaseComponent {
               </div>
               <div className="c-footer__col">
                 <div className="c-footer__menu">
+                {typeof window !== 'undefined' && (
                   <ul className='c-footer__links' id='footer_menu'>
                   {footerNav.menuItems.nodes.map((item, index) => {
                     const { label, url, cssClasses } = item;
-                    const isActive = this.pathname === url;
+                    const isActive = window.location.pathname === url;
                     const className = [
                       'menu-item',
                       isActive ? 'current-menu-item' : '',
@@ -54,17 +68,14 @@ class Footer extends BaseComponent {
                         {className.includes('js-calendly-popup') ? (
                           <>
                             <button className='c-btn-link' style={{ display: "block", margin: "0 auto" }}
-                            onClick={() => this.setState({ isOpen: true })}>
+                            onClick={handleLinkClick}>
                               {label}
                             </button>
                             <PopupModal
-                            url="https://calendly.com/saeedreza/30min"
-                    
-                            rootElement={document.getElementById("___gatsby")}
-                              utm={this.props.utm}
-                              prefill={this.props.prefill}
-                              onModalClose={() => this.setState({ isOpen: false })}
-                              open={this.state.isOpen}
+                              url="https://calendly.com/saeedreza/30min"
+                              rootElement={document.body}
+                              onModalClose={() => setIsOpen(false)}
+                              open={isOpen}
                             />
                           </>
                         ) : (
@@ -77,6 +88,7 @@ class Footer extends BaseComponent {
                     );
                   })}
                 </ul>
+                )}
                 </div>
               </div>
             </div>
@@ -99,36 +111,7 @@ class Footer extends BaseComponent {
           </div>
         </div>
       </footer>
-      </>
-    );
-  }
+    </>
+  );
 }
-
-const FooterWrapper = () => {
-  const data = useStaticQuery(graphql`
-    query FooterQuery {
-      footerNav: wpMenuItem(menu: {node: {locations: {eq: MENU_FOOTER}}}) {
-        menu {
-          node {
-            slug
-            nodeType
-            name
-            menuItems {
-              nodes {
-                label
-                cssClasses
-                url
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  const footerNav = data.footerNav.menu.node;
-
-  return <Footer footerNav={footerNav} />;
-};
-
-export default FooterWrapper;
+export default Footer

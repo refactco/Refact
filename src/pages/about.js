@@ -1,63 +1,63 @@
 import React from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { useStaticQuery, graphql } from 'gatsby';
 import Layout from "../components/layout/layout";
 import ContainerBox from '../components/container-box/container-box';
 import AboutLogo from '../components/about-logo/about-logo';
 
 const AboutPage = () => {
   const data = useStaticQuery(graphql`
-  query AboutPageQuery {
-    aboutPage: wpPage(slug: {eq: "about"}) {
-      id
-      template {
-        ... on WpTemplate_PageBuilder {
-          templateName
-          pageBuilder {
+    query AboutPageQuery {
+      aboutPage: wpPage(slug: {eq: "about"}) {
+        id
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
             pageBuilder {
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
-                fieldGroupName
-                subtitle
-                text
-                title
-              }
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
-                description
-                fieldGroupName
-                items {
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
                   fieldGroupName
+                  subtitle
                   text
                   title
                 }
-                title
-              }
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Team {
-                description
-                fieldGroupName
-                title
-              }
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_WeWork {
-                description
-                fieldGroupName
-                items {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
+                  description
                   fieldGroupName
-                  text
+                  items {
+                    fieldGroupName
+                    text
+                    title
+                  }
                   title
                 }
-                title
-              }
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Clients {
-                description
-                fieldGroupName
-                showClientLogos
-                title
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Team {
+                  description
+                  fieldGroupName
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_WeWork {
+                  description
+                  fieldGroupName
+                  items {
+                    fieldGroupName
+                    text
+                    title
+                  }
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Clients {
+                  description
+                  fieldGroupName
+                  showClientLogos
+                  title
+                }
               }
             }
           }
         }
       }
     }
-  }
-`);
+  `);
 const aboutItems = data.aboutPage.template.pageBuilder.pageBuilder;
 console.log(aboutItems);
  const pageHeader = aboutItems.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader');
