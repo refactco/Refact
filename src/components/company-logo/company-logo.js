@@ -25,7 +25,7 @@ export default class CompanyLogo extends BaseComponent {
           }
         }
       ]
-  };
+    };
   
     return (
       <Slider {...settings} className="c-hero__logos js-client-logos">

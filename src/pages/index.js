@@ -5,6 +5,7 @@ import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import CompanyLogo from '../components/company-logo/company-logo';
 import { PopupButton } from "react-calendly";
+import Slider from "react-slick";
 
 export default class Homepage extends BaseComponent {
   render() {
@@ -18,13 +19,23 @@ export default class Homepage extends BaseComponent {
         }
       }
     } = homePage;
-   // console.log('pageBuilder', pageBuilder);
+   console.log('pageBuilder', pageBuilder);
     // Filter the pageBuilder array to get each section
     const heroSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero');
     const capabilitiesSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites');
     const projectsSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Project');
     const testimonialsSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Testimonials');
   
+    const settings = {
+      speed: 500,
+      infinite: true,
+      arrows: false,
+      dots: true,
+      autoplay: true,
+      autoplaySpeed: 5000,
+      slidesToShow: 1,
+      slidesToScroll: 1
+    };
     return (
       <Layout>
         {/* Print data for Hero */}      
@@ -107,6 +118,44 @@ export default class Homepage extends BaseComponent {
             </div>
           </ContainerBox>
         )}
+        {/* Print data for Testimonials */}
+        {testimonialsSection && (
+            <ContainerBox className='c-section--testimonials'>
+              <div className="c-testimonials">
+                {testimonialsSection.title && (
+                  <h3 className="c-section__title">{testimonialsSection.title}</h3>
+                )}
+                {/* Print the items within Testimonials */}
+                {testimonialsSection.testimonialsList && (
+                  <Slider {...settings} className="c-testimonials__items">
+                    {testimonialsSection.testimonialsList.map((item, index) => (
+                      <div className="c-testimonials__item" key={index}>
+                        <div className="c-testimonials__text">
+                          <svg width="80" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m25 10 5-10H20C8.95 0 0 13.95 0 25v35h35V25H15c0-15 10-15 10-15Zm35 15c0-15 10-15 10-15l5-10H65C53.95 0 45 13.95 45 25v35h35V25H60Z" fill="#C6F0C2"/></svg>
+                          <div>{item.text}</div>
+                        </div>
+                        <div className="c-testimonials__customers">
+                          {item.logo && (
+                            <div className="c-customers__logo" dangerouslySetInnerHTML={{__html:item.logo}}></div>
+                          )}
+                          {item.name && (
+                            <div className="c-customers__name">
+                              {item.name}
+                            </div>
+                          )}
+                          {item.position && (
+                            <div className="c-customers__name c-customers__name--position">
+                              {item.position}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </Slider>
+                )}
+              </div>
+            </ContainerBox>
+          )}
       </Layout>
     );
   }

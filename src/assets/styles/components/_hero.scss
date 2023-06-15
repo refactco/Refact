@@ -58,10 +58,19 @@
         justify-content: center;
         padding-top: 96px;
     }
-    .flickity-slider{
+    .slick-initialized .slick-slide{
         display: flex;
         align-items: center;
-    }
+      }
+      .slick-slide {
+        height: auto; // ← that must not be ignored
+      }
+      .slick-track {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: stretch;
+      }
 }
 
 .c-hero-logo__items{
@@ -91,16 +100,4 @@
     }
     
 }
-.slick-slide {
-    height: auto; // ← that must not be ignored
-  }
-  .slick-track {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    align-items: stretch;
-  }
-  .slick-initialized .slick-slide{
-    display: flex;
-    align-items: center;
-  }
+

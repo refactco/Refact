@@ -25,9 +25,8 @@ class Header extends BaseComponent {
 
   render() {
     const { headerNav } = this.props;
-
     const { isMobileNavOpen } = this.state;
-    console.log('headerNav', headerNav);
+    // console.log('headerNav', headerNav);
     const mobileClassName = [
       'c-header__wrap js-nav',
       isMobileNavOpen ? 'is-open' : '',
@@ -84,12 +83,12 @@ class Header extends BaseComponent {
                 })}
               </ul>
 						</nav>        
-						<div className="c-hamburger"
-              onClick={() => {
-                this.onHamburgerClick();
-              }}            
-            >
-							<input className="c-hamburger__checkbox js-hamburger" type="checkbox" aria-label="Menu" />
+						<div className="c-hamburger">
+							<input className="c-hamburger__checkbox js-hamburger" type="checkbox" aria-label="Menu" 
+                onClick={() => {
+                  this.onHamburgerClick();
+                }}   
+              />
 							<span className="c-hamburger__icon"></span>
 							<span className="c-hamburger__icon"></span>
 							<span className="c-hamburger__icon"></span>
