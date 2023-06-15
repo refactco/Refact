@@ -1,6 +1,6 @@
 <p align="center">
   <a href="https://refact.co">
-    <img alt="Refact" src="https://lh3.googleusercontent.com/d/1Mu-qwTm65_8dK3805d3263_ko3zPWmtz" width="120" />
+    <img alt="Refact" src="https://lh3.googleusercontent.com/d/1Mu-qwTm65_8dK3805d3263_ko3zPWmtz" width="60" />
   </a>
 </p>
 <h1 align="center">
