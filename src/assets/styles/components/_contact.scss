@@ -1,0 +1,81 @@
+.c-section--contact {
+    padding: 3em 0;
+
+    @include mq(md) {
+        padding: 8em 0;
+    }
+}
+
+.c-contact__title {
+    margin: 0;
+    font-family: $sentient;
+    font-weight: 400;
+    @include font-size(28px, 1.5);
+    color: var(--color-text);
+    margin-bottom: 0.571428571428571em;
+
+    @include mq(md) {
+        @include font-size(68px, 1.19);
+        letter-spacing: -0.02em;
+        margin-bottom: 0.352941176470588em;
+    }
+}
+
+.c-contact__text {
+    font-family: $inter;
+    font-weight: 400;
+    @include font-size(16px, 1.5);
+    color: var(--color-text);
+    margin-bottom: 2em;
+
+    @include mq(md) {
+        @include font-size(19px, 1.47);
+        margin-bottom: 2.526315789473684em;
+    }
+}
+
+.c-contact__title-secondary {
+    font-family: $inter;
+    font-weight: 600;
+    font-style: normal;
+    @include font-size(18px, 1.5);
+    margin: 0 0 0.666666666666667em;
+    color: var(--color-text);
+
+    @include mq(md) {
+        @include font-size(23px, 1.48);
+        margin: 0 0 0.521739130434783em;
+    }
+}
+
+.c-contact__social {
+    padding: 0;
+    margin: 0 0 5.625em;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    // gap: 1.625em;
+
+    path {
+        transition: fill .25s linear;
+    }
+
+    li {
+        margin: 0 1.625em 0 0;
+        
+        &:hover {
+            path {
+                fill: var(--color-primary-l);
+            }
+        }
+    }
+}
+
+.c-contact__calendly {
+    border: 1px solid var(--color-gains);
+
+    .calendly-inline-widget {
+        height: 1136px;
+        overflow: hidden !important;
+    }
+}

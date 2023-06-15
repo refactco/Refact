@@ -1,0 +1,21 @@
+.c-section{
+    display: flex;
+    flex-direction: column;
+}
+
+.c-section__title {
+    font-family: $sentient;
+    font-weight: 400;
+    font-style: normal;
+    @include font-size(28px, 1.5);
+    color: var(--color-text);
+    margin: 0;
+
+    @include mq(md) {
+        @include font-size(40px, 1.2);
+    }
+
+    .home & {
+        text-align: center;
+    }
+}
