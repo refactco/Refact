@@ -143,7 +143,7 @@
             margin: 0;
         }
 
-        a {
+        a, .c-btn-link {
             display: flex;
             align-items: center;
             // gap: 0.75em;
@@ -153,7 +153,6 @@
             color: var(--color-white);
             text-decoration: none;
             transition: color .25s linear 0s;
-
             &:hover {
                 color: var(--color-primary-l);
                 path {
@@ -173,6 +172,12 @@
             path {
                 transition: fill .25s linear 0s;
             }
+        }
+        .c-btn-link{
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0;
         }
     }
 }

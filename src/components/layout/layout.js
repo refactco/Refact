@@ -16,6 +16,7 @@ export default class Layout extends BaseComponent {
       <Fragment>
         <Header />
         {children}
+        <Footer />
       </Fragment>
     );
   }

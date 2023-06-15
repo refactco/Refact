@@ -19,7 +19,7 @@ export default class Homepage extends BaseComponent {
         }
       }
     } = homePage;
-   console.log('pageBuilder', pageBuilder);
+  //  console.log('pageBuilder', pageBuilder);
     // Filter the pageBuilder array to get each section
     const heroSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero');
     const capabilitiesSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites');
