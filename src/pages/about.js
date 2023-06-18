@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Layout from "../components/layout/layout";
 import ContainerBox from '../components/container-box/container-box';
 import AboutLogo from '../components/about-logo/about-logo';
+import Seo from '../components/seo/seo';
 
 const AboutPage = () => {
   const data = useStaticQuery(graphql`
@@ -160,8 +161,7 @@ export default AboutPage
 export function Head() {
   return (
     <>
-      <title>About | Refact</title>
-      <meta name="description" content="We collaborate with news and media startups to increase growth by identifying new revenue streams, refining customer acquisition, optimizing conversions, and improving retention." />
+      <Seo title="About | Refact" />
     </>
   )
 }

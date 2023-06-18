@@ -3,8 +3,10 @@
  */
 module.exports = {
   siteMetadata: {
-    title: `Refact`,
-    siteUrl: `https://refact.co`
+    title: `Refact | Digital Partner for Creators & Audience-first Media`,
+    siteUrl: `https://refact.co`,
+    description: `We work with independent media and news organizations to design, build and scale publishing platforms and digital experiences.`,
+    image: `/opengragh.jpg`,
   },
   plugins: [{
     resolve: 'gatsby-source-wordpress',

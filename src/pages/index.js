@@ -5,6 +5,7 @@ import Layout from '../components/layout/layout';
 import CompanyLogo from '../components/company-logo/company-logo';
 import { PopupButton } from "react-calendly";
 import Slider from "react-slick";
+import Seo from '../components/seo/seo';
 
 const Homepage = () => {
   const data = useStaticQuery(graphql`
@@ -230,8 +231,7 @@ export default Homepage
 export function Head() {
   return (
     <>
-      <title>Refact | Digital Partner for Creators & Audience-first Media</title>
-      <meta name="description" content="We work with independent media and news organizations to design, build and scale publishing platforms and digital experiences." />
+      <Seo />
       <body className="home" />
     </>
   )
