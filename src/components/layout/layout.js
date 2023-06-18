@@ -1,23 +1,18 @@
-import React, { Fragment } from 'react';
-import Footer from '../footer/footer';
+import React from 'react';
 import Header from '../header/header';
-import BaseComponent from '../base/base-component';
+import "normalize.css";
+import "slick-carousel/slick/slick.css";
+import "../../assets/styles/main.scss";
+import Footer from '../footer/footer';
 
-
-export default class Layout extends BaseComponent {
-  declareTranslateCollection() {
-    return 'layout';
-  }
-
-  render() {
-    const { children } = this.props;
-
-    return (
-      <Fragment>
-        <Header />
-        {children}
-        <Footer />
-      </Fragment>
-    );
-  }
+const Layout = ({ children }) => {
+  return (
+    <>
+      <Header />
+      {children}
+      <Footer />
+    </>
+  );
 }
+
+export default Layout;

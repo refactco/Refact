@@ -1,17 +1,15 @@
 import React from "react";
-import BaseComponent from "../base/base-component";
 
-export default class ContainerBox extends BaseComponent {
-  render() {
-    const { className, id } = this.props;
-    const consumedClassName = ["o-section", className].join(" ");
+const ContainerBox = ({ className, id, children }) => {
+  const consumedClassName = ["o-section", className].join(" ");
 
-    return (
-      <section className={consumedClassName} id={id}>
-        <div className="o-section__wrapper">
-          {this.props.children}
-        </div>
-      </section>
-    );
-  }
-}
+  return (
+    <section className={consumedClassName} id={id}>
+      <div className="o-section__wrapper">
+        {children}
+      </div>
+    </section>
+  );
+};
+
+export default ContainerBox;
