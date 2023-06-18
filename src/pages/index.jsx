@@ -6,6 +6,7 @@ import CompanyLogo from '../components/company-logo/company-logo';
 import { PopupButton } from "react-calendly";
 import Slider from "react-slick";
 import Seo from '../components/seo/seo';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const Homepage = () => {
   const data = useStaticQuery(graphql`
@@ -47,12 +48,11 @@ const Homepage = () => {
                   projectList {
                     cover {
                       altText
-                      id
-                      sizes
-                      srcSet
-                      sourceUrl
-                      width
-                      height
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
                     }
                     description
                     fieldGroupName
@@ -166,7 +166,7 @@ const Homepage = () => {
                 {projectsSection.projectList.map((project, index) => (
                   <div className='c-project__item' key={index}>
                     <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className="c-project__img">
-                    <img src={project.cover.sourceUrl} alt={project.cover.altText} width={project.cover.width} height={project.cover.height} loading="lazy" />
+                      <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
                     </a>
                     <h5 className='c-project__title'>{project.title}</h5>
                     <div className='c-project__text'>{project.description}</div>
