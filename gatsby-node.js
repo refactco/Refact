@@ -48,8 +48,6 @@ exports.createPages = async ({ graphql, actions }) => {
       path: `/insight/`,
       component: path.resolve(`./src/templates/insight.js`),
       ownerNodeId: node.id,
-      // The context is passed as props to the component as well
-      // as into the component's GraphQL query.
       context: {
         id: node.id,
       },
@@ -60,9 +58,8 @@ exports.createPages = async ({ graphql, actions }) => {
   posts.forEach(({ node }) => {
     createPage({
       path: `/${node.slug}/`,
-      component: path.resolve('./src/templates/blog-post.js'), // Path to your post template component
+      component: path.resolve('./src/templates/blog-post.js'),
       context: {
-        // Pass any additional data as context to the component if needed
         id: node.id,
         title: node.title,
         content: node.content,
