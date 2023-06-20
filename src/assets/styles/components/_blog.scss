@@ -48,11 +48,13 @@
     height: 14.75em;
     object-fit: cover;
     display: block;
-    transition: all 250ms ease-in-out;
+    transition: all 250ms ease-in-out !important;
     backface-visibility: hidden;
     transform: translate3d(0,0,0);
   }
-
+  .gatsby-image-wrapper{
+    width: 100%;
+  }
   &:hover {
     img {
       transform: translate3d(0,0,0) scale(1.05);
@@ -330,7 +332,7 @@
 
 
 
-.alm-btn-wrap {
+.c-blog__cta {
   margin-top: 2.5em;
   text-align: center;
 
