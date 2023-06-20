@@ -44,7 +44,6 @@ const BlogPostTemplate = ({ data }) => {
                 </div>
             </div>
           </header>
-
           <div className="c-article__content">
             <div className="c-article__content-wrapper s-content" dangerouslySetInnerHTML={{__html:post.content}}></div>
             <div className="c-article__share">

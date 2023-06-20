@@ -6,8 +6,8 @@ const Seo = ({ title, description, pathname, featuredImage, children }) => {
   const { title: defaultTitle, description: defaultDescription, image, siteUrl } = useSiteMetadata()
 
   const sanitizedDescription = sanitizeHtml(description || defaultDescription, {
-    allowedTags: [], // Remove all tags
-    allowedAttributes: {} // Remove all attributes
+    allowedTags: [],
+    allowedAttributes: {}
   });
 
   const seo = {

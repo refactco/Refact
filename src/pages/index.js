@@ -105,7 +105,6 @@ const Homepage = () => {
   };
   return (
     <Layout>
-      {/* Print data for Hero */}      
       {heroSection && (
         <ContainerBox className='c-section--hero'>
           <div className="c-hero">
@@ -129,8 +128,6 @@ const Homepage = () => {
           </div>
         </ContainerBox>
       )}
-
-      {/* Print data for Capabilities */}
       {capabilitiesSection && (
         <ContainerBox className='c-section--capabilites pb-small'>
           <div className="c-capabilites">
@@ -140,7 +137,6 @@ const Homepage = () => {
             {capabilitiesSection.description && (
               <div className="c-capabilites__description">{capabilitiesSection.description}</div>
             )}
-            {/* Print the items within Capabilities */}
             {capabilitiesSection.items && (
               <div className="row c-capabilites__items">
                 {capabilitiesSection.items.map((item, index) => (
@@ -155,12 +151,9 @@ const Homepage = () => {
           </div>
         </ContainerBox>
       )}
-
-      {/* Print data for Projects */}
       {projectsSection && (
         <ContainerBox className='c-section--project'>
           <div className="c-project">
-            {/* Print the project list */}
             {projectsSection.projectList && (
               <div className="c-project__items">
                 {projectsSection.projectList.map((project, index) => (
@@ -170,7 +163,6 @@ const Homepage = () => {
                     </a>
                     <h5 className='c-project__title'>{project.title}</h5>
                     <div className='c-project__text'>{project.description}</div>
-                    {/* Print the CTA for each project */}
                     <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-btn--secondary'>
                       {project.cta.title}
                       <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -185,14 +177,12 @@ const Homepage = () => {
           </div>
         </ContainerBox>
       )}
-      {/* Print data for Testimonials */}
       {testimonialsSection && (
           <ContainerBox className='c-section--testimonials'>
             <div className="c-testimonials">
               {testimonialsSection.title && (
                 <h3 className="c-section__title">{testimonialsSection.title}</h3>
               )}
-              {/* Print the items within Testimonials */}
               {testimonialsSection.testimonialsList && (
                 <Slider {...settings} className="c-testimonials__items">
                   {testimonialsSection.testimonialsList.map((item, index) => (

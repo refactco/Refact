@@ -6,22 +6,14 @@ import ContainerBox from "../components/container-box/container-box"
 import { GatsbyImage } from "gatsby-plugin-image"
 import LoadMoreButton from "../components/load-more-button/load-more-button"
 
-
-
 const InsightPage = ({data}) => {
-  const [postCount, setPostCount] = useState(2); // Initial number of posts to show
-  const totalPosts = data.allWpPost.edges.length; // Total number of posts
-
-  // Get the posts to display based on the postCount state
+  const [postCount, setPostCount] = useState(2);
+  const totalPosts = data.allWpPost.edges.length;
   const posts = data.allWpPost.edges.slice(1, postCount + 1);
-
-  // Function to handle the "Load More" button click
   const handleLoadMore = () => {
-    setPostCount(postCount + 2); // Increase the number of posts to show
+    setPostCount(postCount + 2);
   };
-
   const hasMorePosts = postCount < totalPosts - 1;
-  //console.log(posts)
   return (
     <Layout>
       <ContainerBox className="c-section--page-header t-light">
