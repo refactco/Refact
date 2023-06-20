@@ -54,6 +54,12 @@
   }
   .gatsby-image-wrapper{
     width: 100%;
+    img{
+      height: 14.75em;
+      @include mq(lg) {
+        height: 28em;
+      }
+    }
   }
   &:hover {
     img {
