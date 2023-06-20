@@ -55,10 +55,11 @@ const BlogPostTemplate = ({ data }) => {
 
 export default BlogPostTemplate
 
-export function Head() {
+export function Head({ data }) {
+  const post = data.wpPost;
   return (
     <>
-      <Seo  />
+      <Seo title={post.title} description={post.excerpt} featuredImage={post.featuredImage.node.localFile.url} />
     </>
   )
 }
@@ -80,6 +81,7 @@ export const pageQuery = graphql`
             childImageSharp {
               gatsbyImageData
             }
+            url
           }
           altText
         }

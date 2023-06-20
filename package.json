@@ -32,6 +32,7 @@
     "react-calendly": "^4.1.1",
     "react-dom": "^18.2.0",
     "react-slick": "^0.29.0",
+    "sanitize-html": "^2.10.0",
     "sass": "^1.63.4",
     "slick-carousel": "^1.8.1"
   }

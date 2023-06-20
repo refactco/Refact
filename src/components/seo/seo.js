@@ -1,13 +1,19 @@
 import React from "react";
 import { useSiteMetadata } from "../../hooks/use-site-metadata";
+import sanitizeHtml from "sanitize-html";
 
-const Seo = ({ title, description, pathname, children }) => {
+const Seo = ({ title, description, pathname, featuredImage, children }) => {
   const { title: defaultTitle, description: defaultDescription, image, siteUrl } = useSiteMetadata()
+
+  const sanitizedDescription = sanitizeHtml(description || defaultDescription, {
+    allowedTags: [], // Remove all tags
+    allowedAttributes: {} // Remove all attributes
+  });
 
   const seo = {
     title: title || defaultTitle,
-    description: description || defaultDescription,
-    image: `${siteUrl}${image}`,
+    description: sanitizedDescription,
+    image: featuredImage || `${siteUrl}${image}`,
     url: `${siteUrl}${pathname || ``}`,
   }
 
@@ -24,4 +30,4 @@ const Seo = ({ title, description, pathname, children }) => {
   )
 }
 
-export default Seo
+export default Seo;
