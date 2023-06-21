@@ -67,7 +67,6 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 2em;
-    // gap: 2.5em;
 
     &.c-capabilites__items--we-work {
         margin: 0;
@@ -84,7 +83,6 @@
     }
 
     @include mq(md) {
-        //max-width: 30.75em;
         margin-bottom: 4em;
 
         &:last-of-type {
@@ -154,11 +152,9 @@
     flex-wrap: wrap;
     justify-content: space-between;
     flex-direction: column;
-    // gap: 3em;
 
     @include mq(md) {
         flex-direction: row;
-        // gap: 8em 2em;
     }
 }
 
@@ -213,14 +209,12 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    // gap: 0.375em;
     list-style: none;
     margin-bottom: 2em;
 
     li {
         display: flex;
         align-items: center;
-        // gap: 13px;
         font-family: $inter;
         font-weight: 400;
         @include font-size(16px, 1.5);

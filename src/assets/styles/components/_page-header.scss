@@ -33,12 +33,10 @@
     color: var(--color-white);
     display: flex;
     align-items: center;
-    // gap: 12px;
     margin-bottom: 1.333333333333333em;
 
     @include mq(md) {
         @include font-size(13px, 1.85);
-        // gap: 9px;
         margin-bottom: 1.846153846153846em;
     }
 

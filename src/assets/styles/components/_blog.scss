@@ -2,8 +2,6 @@
   padding: 0;
 }
 
-
-
 .c-blog-post__category {
   margin-bottom: 0.25em;
 }
@@ -81,10 +79,6 @@
   font-weight: 600;
   @include font-size(23px, 1.4783);
 }
-
-.c-blog-post__cta {}
-
-
 
 .c-blog-featured {
   margin-bottom: 2.5em;
@@ -222,7 +216,6 @@
 
 .s-blog-nav {
   display: flex;
-  // justify-content: flex-end;
   margin-right: -1em;
   overflow: hidden;
   position: relative;

@@ -58,7 +58,6 @@
     color: var(--color-text);
     display: flex;
     align-items: center;
-    // gap: 12px;
     text-decoration: none;
     transition: color .25s linear 0s;
 
@@ -77,7 +76,6 @@
 
     &:hover {
         color: var(--color-primary-s);
-        // gap: 24px;
 
         svg {
             margin: 0 0 0 24px;

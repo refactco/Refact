@@ -11,9 +11,6 @@
   }
 }
 
-.c-article {}
-
-
 .c-article__header {
   background: var(--color-primary-r);
 }
@@ -61,10 +58,8 @@
 }
 
 .c-article__image {
-  // width: 100%;
   display: flex;
   margin: 0 -1em;
-
   img {
     width: 100%;
     max-width: 100%;
