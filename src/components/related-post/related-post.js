@@ -15,7 +15,7 @@ const RelatedPostsSection = ({ relatedPosts }) => (
               </Link>
             </div>
             <div className="c-blog-post__category">
-              <Link to="/" className="c-link c-link--category">Blog</Link>
+              <Link to={node.terms.nodes[0].link} className="c-link c-link--category">{node.terms.nodes[0].name}</Link>
             </div>
             <h3 className="c-blog-post__title">
               <Link to={node.uri} className="c-link c-link--blog">{node.title}</Link>

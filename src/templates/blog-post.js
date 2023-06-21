@@ -12,8 +12,6 @@ const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
   const recentPosts = data.recentPosts.edges;
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
-
-  console.log(post);
   return (
     <Layout>
       <ContainerBox className="c-section--article">
@@ -22,7 +20,7 @@ const BlogPostTemplate = ({ data }) => {
             <div className="c-article__header-wrapper">
               <div className="c-article__meta">
                 <div className="c-article__category">
-                  <Link to="/" className="c-link c-link--category">Blog</Link>
+                  <Link to={post.terms.nodes[0].link} className="c-link c-link--category">{post.terms.nodes[0].name}</Link>
                 </div>
                 <h1 className="c-article__title">{post.title}</h1>
                 <div className="c-article__author">
@@ -64,7 +62,7 @@ export function Head({ data }) {
   const post = data.singlePost;
   return (
     <>
-      <Seo title={post.title} description={post.excerpt} featuredImage={post.featuredImage.node.localFile.url} />
+      <Seo title={post.title + " | Refact"} description={post.excerpt} featuredImage={post.featuredImage.node.localFile.url} />
     </>
   )
 }
@@ -89,6 +87,12 @@ export const pageQuery = graphql`
             url
           }
           altText
+        }
+      }
+      terms {
+        nodes {
+          name
+          link
         }
       }
       author {
@@ -124,6 +128,12 @@ export const pageQuery = graphql`
                 }
               }
               altText
+            }
+          }
+          terms {
+            nodes {
+              name
+              link
             }
           }
         }

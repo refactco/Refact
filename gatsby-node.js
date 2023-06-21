@@ -25,6 +25,12 @@ exports.createPages = async ({ graphql, actions }) => {
                 altText
               }
             }
+            terms {
+              nodes {
+                name
+                link
+              }
+            }
             author {
               node {
                 id
@@ -38,6 +44,13 @@ exports.createPages = async ({ graphql, actions }) => {
               }
             }
           }
+        }
+      }
+      categoryList: allWpCategory(filter: {count: {gt: 0}}) {
+        nodes {
+          link
+          name
+          id
         }
       }
     }
@@ -63,6 +76,17 @@ exports.createPages = async ({ graphql, actions }) => {
         id: node.id,
         title: node.title,
         content: node.content,
+      },
+    });
+  });
+
+  const catItems = result.data.categoryList.nodes;
+  catItems.forEach((cat) => {
+    createPage({
+      path: `${cat.link}`,
+      component: path.resolve('./src/templates/category.js'),
+      context: {
+        catId: cat.id,
       },
     });
   });
