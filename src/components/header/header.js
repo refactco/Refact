@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
+import React, { useState } from 'react';
 import { PopupModal } from 'react-calendly';
 
 const Header  = () => {
