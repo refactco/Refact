@@ -46,7 +46,7 @@ const privacyContent = data.privacyPage.content;
         <div className="row c-page">
           <div className="col-lg-8 c-page__col">
             <article>
-              <div className="s-content" dangerouslySetInnerHTML={{__html:privacyContent}}></div>
+              <div className="s-content is-default-page" dangerouslySetInnerHTML={{__html:privacyContent}}></div>
             </article>
           </div>
         </div>

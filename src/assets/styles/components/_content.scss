@@ -90,6 +90,11 @@ h6 {
   @include mq(md){
     @include font-size(18px, 1.5);
   }
+  &.is-default-page{
+    @include mq(md){
+      @include font-size(19px, 1.5);
+    }
+  }
 
   h1,
   h2,
