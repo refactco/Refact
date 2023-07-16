@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Seo from "../components/seo/seo"
 import Layout from "../components/layout/layout"
@@ -15,6 +15,20 @@ const BlogPostTemplate = ({ data }) => {
   const handleCareerBackClick = () => {
     setFormVisible(false);
   };
+  useEffect(() => {
+    if (isFormVisible) {
+      // Scroll to the .js-career-main element when form becomes visible
+      const mainElement = document.querySelector('.js-career-main');
+      const offsetTop = mainElement.offsetTop - 50;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    }
+    else{
+      // Scroll to the .js-career-main element when form becomes visible
+      const mainElement = document.querySelector('.js-career-main');
+      const offsetTop = mainElement.offsetTop - 50;
+      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+    }
+  }, [isFormVisible]);
   return (
     <Layout>
       <ContainerBox className="c-section--article">
