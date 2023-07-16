@@ -23,10 +23,7 @@ const BlogPostTemplate = ({ data }) => {
       window.scrollTo({ top: offsetTop, behavior: 'smooth' });
     }
     else{
-      // Scroll to the .js-career-main element when form becomes visible
-      const mainElement = document.querySelector('.js-career-main');
-      const offsetTop = mainElement.offsetTop - 50;
-      window.scrollTo({ top: offsetTop, behavior: 'smooth' });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }, [isFormVisible]);
   return (
