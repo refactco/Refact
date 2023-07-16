@@ -26,14 +26,14 @@ const CareerPage = ({data}) => {
       {careersContent && (
         <ContainerBox className="o-section c-section--careers">
           <div className="c-careers">
-            {careersContent.careerCategories.map((category) => (
-              <div className="c-careers__category">
+            {careersContent.careerCategories.map((category, index) => (
+              <div className="c-careers__category" key={index}>
                 <div className="c-careers__category-headline">
                   <h3>{category.name}</h3>
                 </div>
                 <div className="c-careers__list">
                   {category.careers.nodes.map((career) => (
-                    <div className="c-careers__item">
+                    <div className="c-careers__item" key={career.slug}>
                       <div className="c-careers__item-wrap">
                         <div className="c-careers__item-name">
                           <Link to={career.uri} className="c-link c-link--career">
@@ -84,10 +84,11 @@ const CareerPage = ({data}) => {
 export default CareerPage
 
 
-export function Head() {
+export function Head({data}) {
+  const post = data.wpPage;
   return (
     <>
-      <Seo title="Careers | Refact" />
+      <Seo title="Careers | Refact" description={post.content} />
     </>
   )
 }
@@ -96,6 +97,7 @@ export const pageQuery = graphql`
   query {
     wpPage(slug: {eq: "careers"}) {
       id
+      content
       template {
         ... on WpTemplate_PageBuilder {
           templateName

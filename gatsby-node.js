@@ -55,6 +55,7 @@ exports.createPages = async ({ graphql, actions }) => {
       }
       careersPage: wpPage(slug: {eq: "careers"}) {
         id
+        content
         template {
           ... on WpTemplate_PageBuilder {
             templateName
@@ -109,6 +110,39 @@ exports.createPages = async ({ graphql, actions }) => {
             slug
             link
             date(formatString: "MMMM DD, YYYY")
+          }
+        }
+      }
+      servicesPage: wpPage(slug: {eq: "services"}) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  fullWidth
+                  subtitle
+                  text
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Services {
+                  fieldGroupName
+                  services {
+                    desc
+                    fieldGroupName
+                    subList {
+                      fieldGroupName
+                      title
+                    }
+                    title
+                  }
+                }
+              }
+            }
           }
         }
       }
@@ -168,6 +202,14 @@ exports.createPages = async ({ graphql, actions }) => {
         title: node.title,
         content: node.content,
       },
+    });
+  });
+
+  const services = result.data.careersPage.template.pageBuilder.pageBuilder;
+  services.forEach(({ node }) => {
+    createPage({
+      path: `/services/`,
+      component: path.resolve(`./src/templates/services.js`),
     });
   });
 }
