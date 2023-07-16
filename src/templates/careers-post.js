@@ -48,7 +48,7 @@ const BlogPostTemplate = ({ data }) => {
             <div className="c-career__content-wrapper s-content js-career-content" dangerouslySetInnerHTML={{__html:post.content}}></div>
             <div className="c-career__sidebar js-career-sidebar">
               <div className="c-career__sidebar-wrapper">
-                <a href={`mailto:hr@refact.co?subject=${post.title}`} className="js-career-change c-btn c-btn--primary">
+                <a href={`mailto:hr@refact.co?subject=${post.title}`} target="_blank" rel="noreferrer" className="js-career-change c-btn c-btn--primary">
                   Apply Now
                 </a>
               </div>
