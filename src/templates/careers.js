@@ -67,7 +67,7 @@ const CareerPage = ({data}) => {
                     </div>
                   ))}
                   {category.careers.nodes.length === 0 && (
-                    <div class="c-careers__no-result">
+                    <div className="c-careers__no-result">
                       <p>{careersContent.noResult}</p>
                     </div>
                   )}
