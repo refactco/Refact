@@ -27,7 +27,7 @@ const CareerPage = ({data}) => {
         <ContainerBox className="o-section c-section--careers">
           <div className="c-careers">
             {careersContent.careerCategories.map((category, index) => (
-              <div className="c-careers__category" key={index}>
+              <div className={`c-careers__category ${category.careers.nodes.length === 0 ? 'is-hidden' : ''}`} key={index}>
                 <div className="c-careers__category-headline">
                   <h3>{category.name}</h3>
                 </div>

@@ -13,6 +13,10 @@
     margin-bottom: 0;
   }
 
+  &.is-hidden {
+    display: none;
+  }
+
   @include mq(lg) {
     margin-bottom: 5rem;
   }
