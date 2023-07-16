@@ -1,0 +1,330 @@
+.c-section--careers {
+  padding: 3rem 0;
+
+  @include mq(lg) {
+    padding: 9.75rem 0;
+  }
+}
+
+.c-careers__category {
+  margin-bottom: 2rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  @include mq(lg) {
+    margin-bottom: 5rem;
+  }
+}
+
+.c-careers__category-headline {
+  margin-bottom: 1.25rem;
+
+  > * {
+    margin: 0;
+  }
+}
+
+.c-careers__item {
+  padding: 1.75rem 0;
+  border-bottom: 1px solid var(--color-primary-h);
+  transition: 0.25s ease-in-out;
+
+  @include mq(md) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    &:hover {
+      padding-left: 3.5rem;
+      padding-right: 3.5rem;
+      background: var(--color-primary-h);
+    }
+  }
+}
+
+.c-careers__item-name {
+  margin-bottom: 1rem;
+  @include font-size(18px, 1.5);
+  font-weight: 600;
+
+  @include mq(md) {
+    svg {
+      display: none;
+    }
+  }
+
+  @include mq(lg) {
+    @include font-size(23px, 1.4783);
+  }
+}
+
+.c-link--career {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-text);
+
+  &:hover {
+    color: var(--color-primary-s);
+  }
+
+  @include mq(md) {
+    display: block;
+  }
+}
+
+.c-careers__item-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.c-careers__meta {
+  display: flex;
+  align-items: center;
+  @include font-size(14px, 1.5714);
+
+  svg {
+    max-width: 1.25rem;
+    margin-right: 0.5rem;
+  }
+
+  @include mq(lg) {
+    @include font-size(16px, 1.5);
+
+    svg {
+      max-width: 1.5rem;
+      margin-right: 0.75rem;
+    }
+  }
+}
+
+.c-careers__item-cta {
+  display: none;
+
+  .c-btn--secondary {
+    svg {
+      margin-left: 12px;
+    }
+
+    &:hover {
+      svg {
+        transform: translateX(12px);
+      }
+    }
+  }
+
+  @include mq(md) {
+    display: block;
+  }
+}
+
+.c-careers__no-result {
+  text-align: center;
+  padding: 2.875rem 0;
+  border-bottom: 1px solid var(--color-primary-h);
+  font-weight: 600;
+  @include font-size(18px, 1.5);
+
+  p {
+    margin: 0;
+  }
+
+  @include mq(lg) {
+    @include font-size(23px, 1.4783);
+  }
+}
+
+
+.c-career {}
+
+.c-career__header {
+  padding: 3em 0;
+  background: var(--color-primary-r);
+
+  @include mq(lg) {
+    padding: 6em 0;
+  }
+}
+
+.c-career__header-wrapper {
+  max-width: calc(1189px - 2em);
+  margin: 0 auto;
+  padding: 0 1em;
+}
+
+.c-career__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  color: var(--color-white);
+
+  @include mq(sm) {
+    gap: 2rem;
+  }
+
+  @include mq(lg) {
+    gap: 4rem;
+  }
+}
+
+.c-career__meta-item {
+  min-width: calc(50% - 0.75rem);
+
+  @include mq(sm) {
+    min-width: auto;
+  }
+}
+
+.c-career__meta-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: var(--color-grey);
+  @include font-size(14px, 1.5714);
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.c-career__meta-value {
+  display: block;
+  @include font-size(16px, 1.5);
+}
+
+.c-career__content {
+  max-width: calc(1189px - 2em);
+  margin: 3em auto 0;
+  padding: 0 1em;
+  position: relative;
+
+  @include mq(lg) {
+    margin: 9.75em auto 0.25em;
+    display: flex;
+  }
+}
+
+.c-career__content-wrapper {
+  margin-bottom: 2rem;
+
+  &:only-child {
+    margin-bottom: 0;
+  }
+
+  &.is-hidden {
+    display: none;
+  }
+
+  @include mq(lg) {
+    max-width: 46.5rem;
+    margin-bottom: 0;
+
+    &:only-child {
+      max-width: none;
+    }
+  }
+}
+
+.c-career__form {
+  &.is-hidden {
+    display: none;
+  }
+
+  &:only-child {
+    width: 100%;
+  }
+}
+
+.c-career__form-back {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+  color: var(--color-text);
+  font-family: $inter;
+  @include font-size(16px, 1.5);
+  font-weight: 600;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.25s linear;
+
+  &:hover {
+    color: var(--color-primary-s);
+  }
+
+  svg {
+    margin-right: 0.75rem;
+  }
+
+  @include mq(lg) {
+    display: none;
+  }
+}
+
+.c-career__form-header {
+  margin-bottom: 2em;
+
+  @include mq(lg) {
+    margin-bottom: 2.5em;
+  }
+}
+
+.c-career__form-title {
+  margin: 0;
+
+  &:not(:last-child) {
+    margin-bottom: 1rem;
+  }
+}
+
+.c-career__form-description {
+  @include font-size(18px, 1.5556);
+
+  @include mq(lg) {
+    @include font-size(19px, 1.4737);
+  }
+}
+
+
+.c-career__sidebar {
+  display: flex;
+  justify-content: center;
+
+  .c-btn {
+    width: 100%;
+    @include font-size(16px, 1.5);
+    padding: 1.25em 2.5em;
+    justify-content: center;
+  }
+
+  @include mq($until: lg) {
+    .c-career__content-wrapper.is-hidden ~ & {
+      display: none;
+    }
+  }
+
+  @include mq(sm) {
+    .c-btn {
+      width: auto;
+    }
+  }
+
+  @include mq(lg) {
+    align-items: flex-start;
+    justify-content: flex-end;
+    width: 100%;
+    max-width: 22.5rem;
+  }
+}
+
+.c-career__sidebar-wrapper {
+  position: sticky;
+  top: 1rem;
+
+  .admin-bar & {
+    top: 2.5rem;
+  }
+}

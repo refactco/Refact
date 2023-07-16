@@ -53,6 +53,65 @@ exports.createPages = async ({ graphql, actions }) => {
           id
         }
       }
+      careersPage: wpPage(slug: {eq: "careers"}) {
+        id
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Careers {
+                  fieldGroupName
+                  noResult
+                  careerCategories {
+                    name
+                    taxonomyName
+                    careers {
+                      nodes {
+                        title
+                        uri
+                        slug
+                        careers {
+                          experience
+                          location
+                        }
+                      }
+                    }
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  fullWidth
+                  text
+                  title
+                  subtitle
+                }
+              }
+            }
+          }
+        }
+      }
+      careerPost: allWpCareer {
+        edges {
+          node {
+            id
+            title
+            careers {
+              applyFormDescription
+              applyFormTitle
+              fieldGroupName
+              location
+              experience
+              type
+            }
+            content
+            id
+            slug
+            link
+            date(formatString: "MMMM DD, YYYY")
+          }
+        }
+      }
     }
   `)
   
@@ -87,6 +146,27 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve('./src/templates/category.js'),
       context: {
         catId: cat.id,
+      },
+    });
+  });
+
+  const careers = result.data.careersPage.template.pageBuilder.pageBuilder;
+  careers.forEach(({ node }) => {
+    createPage({
+      path: `/careers/`,
+      component: path.resolve(`./src/templates/careers.js`),
+    });
+  });
+
+  const careerPosts = result.data.careerPost.edges;
+  careerPosts.forEach(({ node }) => {
+    createPage({
+      path: `/careers/${node.slug}/`,
+      component: path.resolve('./src/templates/careers-post.js'),
+      context: {
+        id: node.id,
+        title: node.title,
+        content: node.content,
       },
     });
   });
