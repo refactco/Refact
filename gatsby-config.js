@@ -13,6 +13,12 @@ module.exports = {
     options: {
       url: process.env.WPGRAPHQL_URL ||  "https://refact.co/graphql",
     }
+  }, 
+  {
+    resolve: `gatsby-plugin-canonical-urls`,
+    options: {
+      siteUrl: `https://refact.co`,
+    },
   }, "gatsby-plugin-image", 
   {
     resolve: `gatsby-plugin-sharp`,
