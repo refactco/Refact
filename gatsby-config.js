@@ -13,6 +13,12 @@ module.exports = {
     options: {
       url: process.env.WPGRAPHQL_URL ||  "https://refact.co/graphql",
     }
+  },
+  {
+    resolve: "gatsby-plugin-google-tagmanager",
+    options: {
+      id: "GTM-T2WVS9L",
+    },
   }, 
   {
     resolve: `gatsby-plugin-canonical-urls`,
