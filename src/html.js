@@ -5,23 +5,6 @@ export default function HTML(props) {
   return (
     <html {...props.htmlAttributes}>
       <head>
-      <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
-      <link rel="dns-prefetch" href="https://www.google-analytics.com" />
-      <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G1F92L8DB"></script>
-      <script
-          dangerouslySetInnerHTML={{
-            __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-
-            document.addEventListener('DOMContentLoaded', function() {
-              gtag('config', 'G-7G1F92L8DB');
-              // Additional gtag configurations or other code that should run after the DOM has loaded can be added here.
-            });
-            `,
-          }}
-        />
         <meta charSet="utf-8" />
         <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         <meta
