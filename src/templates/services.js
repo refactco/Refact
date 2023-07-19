@@ -51,7 +51,6 @@ const ServicesPage = ({data}) => {
 
 export default ServicesPage
 
-
 export function Head({ data }) {
   const post = data.wpPage;
   return (
