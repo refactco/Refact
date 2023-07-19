@@ -10,10 +10,13 @@ export default function HTML(props) {
           dangerouslySetInnerHTML={{
             __html: `
             window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-            
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            window.addEventListener('load', function() {
               gtag('config', 'G-7G1F92L8DB');
+              // Additional gtag configurations or other code that should run after the window has loaded can be added here.
+            });
             `,
           }}
         />
