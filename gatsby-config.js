@@ -8,12 +8,7 @@ module.exports = {
     description: `We work with independent media and news organizations to design, build and scale publishing platforms and digital experiences.`,
     image: `/opengragh.jpg`,
   },
-  plugins: [{
-    resolve: 'gatsby-source-wordpress',
-    options: {
-      url: process.env.WPGRAPHQL_URL ||  "https://refact.co/graphql",
-    }
-  },
+  plugins: [
   {
     resolve: "gatsby-plugin-google-tagmanager",
     options: {
@@ -21,6 +16,12 @@ module.exports = {
       includeInDevelopment: false,
     },
   }, 
+  {
+    resolve: 'gatsby-source-wordpress',
+    options: {
+      url: process.env.WPGRAPHQL_URL ||  "https://refact.co/graphql",
+    }
+  },
   {
     resolve: `gatsby-plugin-canonical-urls`,
     options: {
