@@ -15,15 +15,6 @@ module.exports = {
     }
   },
   {
-    resolve: "gatsby-plugin-google-tagmanager",
-    options: {
-      id: "GTM-T2WVS9L",
-      includeInDevelopment: false,
-      defaultDataLayer: { platform: "gatsby" },
-      enableWebVitalsTracking: true,
-    },
-  }, 
-  {
     resolve: `gatsby-plugin-canonical-urls`,
     options: {
       siteUrl: `https://refact.co`,
