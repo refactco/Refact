@@ -5,6 +5,8 @@ export default function HTML(props) {
   return (
     <html {...props.htmlAttributes}>
       <head>
+      <link rel="preconnect" href="https://www.google-analytics.com" crossorigin />
+      <link rel="dns-prefetch" href="https://www.google-analytics.com" />
       <script async src="https://www.googletagmanager.com/gtag/js?id=G-7G1F92L8DB"></script>
       <script
           dangerouslySetInnerHTML={{
