@@ -15,24 +15,16 @@ module.exports = {
     }
   },
   {
-    resolve: `gatsby-plugin-canonical-urls`,
+    resolve: "gatsby-plugin-google-tagmanager",
     options: {
-      siteUrl: `https://refact.co`,
+      id: "GTM-T2WVS9L",
+      includeInDevelopment: false,
     },
   }, 
   {
-    resolve: `gatsby-plugin-google-gtag`,
+    resolve: `gatsby-plugin-canonical-urls`,
     options: {
-      // You can add multiple tracking ids and a pageview event will be fired for all of them.
-      trackingIds: [
-        "G-7G1F92L8DB", // Google Analytics / GA
-      ],
-      // This object is used for configuration specific to this plugin
-      pluginConfig: {
-        // Puts tracking script in the head instead of the body
-        head: false,
-        delayOnRouteUpdate: 0,
-      },
+      siteUrl: `https://refact.co`,
     },
   }, "gatsby-plugin-image", 
   {
