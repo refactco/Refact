@@ -4,7 +4,7 @@
 module.exports = {
   siteMetadata: {
     title: `Refact | Digital Partner for Creators & Audience-first Media`,
-    siteUrl: `https://refact.co`,
+    siteUrl: `http://refact.co`,
     description: `We work with independent media and news organizations to design, build and scale publishing platforms and digital experiences.`,
     image: `/opengragh.jpg`,
   },
@@ -19,13 +19,13 @@ module.exports = {
   {
     resolve: 'gatsby-source-wordpress',
     options: {
-      url: process.env.WPGRAPHQL_URL ||  "https://refact.co/graphql",
+      url: process.env.WPGRAPHQL_URL ||  "http://refact.co/graphql",
     }
   },
   {
     resolve: `gatsby-plugin-canonical-urls`,
     options: {
-      siteUrl: `https://refact.co`,
+      siteUrl: `http://refact.co`,
     },
   }, "gatsby-plugin-image", 
   {
