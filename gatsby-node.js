@@ -151,8 +151,8 @@ exports.createPages = async ({ graphql, actions }) => {
   
   result.data.allWpPost.edges.forEach((node) => {
     createPage({
-      path: `/insight/`,
-      component: path.resolve(`./src/templates/insight.js`),
+      path: `/insights/`,
+      component: path.resolve(`./src/templates/insights.js`),
       ownerNodeId: node.id,
       context: {
         id: node.id,
