@@ -1,7 +1,8 @@
 const path = require(`path`)
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createPage } = actions
+  const { createRedirect, createPage } = actions
+  createRedirect({ fromPath: '/wp-admin/', toPath: 'https://refact.wpengine.com/wp-admin', isPermanent: true })
 
   const result = await graphql(`
     query {
