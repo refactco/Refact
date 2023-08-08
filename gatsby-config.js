@@ -19,7 +19,7 @@ module.exports = {
   {
     resolve: 'gatsby-source-wordpress',
     options: {
-      url: process.env.WPGRAPHQL_URL ||  "http://refact.co/graphql",
+      url: process.env.WPGRAPHQL_URL ||  "https://refact.wpengine.com/graphql",
     }
   },
   {
