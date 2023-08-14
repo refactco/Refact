@@ -1,6 +1,8 @@
 /**
  * @type {import('gatsby').GatsbyConfig}
  */
+const siteUrl = process.env.URL || `https://refact.co`
+
 module.exports = {
   siteMetadata: {
     title: `Refact | Digital Partner for Creators & Audience-first Media`,
@@ -40,7 +42,7 @@ module.exports = {
         }
       }
     `,
-      resolveSiteUrl: () => `https://refact.co`,
+      resolveSiteUrl: () => siteUrl,
       resolvePages: ({
         allSitePage: { nodes: allPages },
         allWpContentNode: { nodes: allWpNodes },
@@ -63,7 +65,7 @@ module.exports = {
         }
       },
     },
-  }, 
+  },
   {
     resolve: 'gatsby-source-wordpress',
     options: {
