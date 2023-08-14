@@ -37,9 +37,9 @@ const Footer = () => {
           <div className="c-footer">
             <div className="c-footer__main">
               <div className="c-footer__col">
-                <div className="c-footer__text">
+                {/* <div className="c-footer__text">
                   <span>Office:</span> 13636 Ventura Blvd, Los Angeles, CA
-                </div>
+                </div> */}
                 <div className="c-footer__logos">
                   <a href="https://clutch.co/profile/refact" className="c-link" target='_blank' aria-label="Refact Client Reviews" rel="noreferrer">
                     <svg className="c-footer__logos--clu" width="90" height="51" viewBox="0 0 90 51" fill="none" xmlns="http://www.w3.org/2000/svg">
