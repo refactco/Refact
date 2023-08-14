@@ -7,10 +7,12 @@ import ShareButton from "../components/share-btn/share-btn"
 import CtaPost from "../components/cta-post/cta-post"
 import RelatedPostsSection from "../components/related-post/related-post"
 import ContainerBox from "../components/container-box/container-box"
+import CaseStudyPosts from "../components/case-study/case-study"
 
 const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
   const recentPosts = data.recentPosts.edges;
+  const caseStudy = data.singlePost.caseStudyPosts.project;
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <Layout>
@@ -51,7 +53,11 @@ const BlogPostTemplate = ({ data }) => {
           <CtaPost />
         </article>
       </ContainerBox>
+      {post.categories?.nodes[0].slug === "case-studies" ? (
+        <CaseStudyPosts caseStudies={caseStudy} />
+      ): 
       <RelatedPostsSection relatedPosts={recentPosts} />
+      }
     </Layout>
   )
 }
@@ -63,6 +69,7 @@ export function Head({ data }) {
   return (
     <>
       <Seo title={post.title + " | Refact"} description={post.excerpt} featuredImage={post.featuredImage.node.localFile.url} />
+      <body className="single" />
     </>
   )
 }
@@ -107,10 +114,39 @@ export const pageQuery = graphql`
           lastName
         }
       }
+      categories {
+        nodes {
+          slug
+        }
+      }
+      caseStudyPosts {
+        fieldGroupName
+        project {
+          cover {
+            altText
+            localFile {
+              childImageSharp {
+                gatsbyImageData
+              }
+            }
+          }
+          cta {
+            target
+            title
+            url
+          }
+          description
+          fieldGroupName
+          title
+        }
+      }
     }
     recentPosts: allWpPost(
       limit: 2
-      filter: { id: { ne: $id } }
+      filter: { 
+        id: { ne: $id },
+        terms: {nodes: {elemMatch: {slug: {ne: "case-studies"}}}} 
+      }
     ) {
       edges {
         node {

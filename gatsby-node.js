@@ -44,6 +44,32 @@ exports.createPages = async ({ graphql, actions }) => {
                 lastName
               }
             }
+            categories {
+              nodes {
+                slug
+              }
+            }
+            caseStudyPosts {
+              fieldGroupName
+              project {
+                cover {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                cta {
+                  target
+                  title
+                  url
+                }
+                description
+                fieldGroupName
+                title
+              }
+            }
           }
         }
       }
