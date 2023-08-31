@@ -8,12 +8,12 @@ const CtaSection = () => {
       <div className="c-cta">
         <div className="c-cta__col">
           <h4 className="c-cta__title">
-            Looking for a growth partner for media startup?
+            Looking to build something new?
           </h4>
         </div>
         <div className="c-cta__col">
           <div className="c-cta__text">
-            Get in touch and tell us about your project! We’d love to hear from you.
+            Whatever stage you are in your next project, we want to help you make it a big success.
           </div>
           {typeof window !== 'undefined' && (
             <>
