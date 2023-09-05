@@ -20,7 +20,7 @@ const InsightPage = ({data}) => {
       <ContainerBox className="c-section--page-header t-light">
         <div className="c-page-header">
           <h1 className="c-page-header__title">
-            Insight
+            Insights
           </h1>
         </div>
       </ContainerBox>
