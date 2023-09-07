@@ -22,6 +22,12 @@
     .post-type-archive-works & {
         max-width: 842px;
     }
+    &.is-full{
+        max-width: 100%;
+        .c-page-header__text{
+            max-width: 768px;
+        }
+    }
 }
 
 .c-page-header__sub-title {

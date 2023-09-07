@@ -12,7 +12,7 @@ const ServicesPage = ({data}) => {
     <Layout>
       {heroSection && (
         <ContainerBox className="o-section c-section--page-header">
-        <div className="c-page-header">
+        <div className="c-page-header is-full">
           <div className="c-page-header__sub-title">
             {heroSection.subtitle}
           </div>
