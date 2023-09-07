@@ -5,7 +5,7 @@ const siteUrl = process.env.URL || `https://refact.co`
 
 module.exports = {
   siteMetadata: {
-    title: `Refact | Digital Partner for Creators & Audience-first Media`,
+    title: `Refact | Creative & Digital Product Design Studio for News & Media`,
     siteUrl: `http://refact.co`,
     description: `We work with independent media and news organizations to design, build and scale publishing platforms and digital experiences.`,
     image: `/opengragh.jpg`,
