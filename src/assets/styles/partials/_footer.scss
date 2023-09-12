@@ -5,7 +5,7 @@
     margin: -1px 0;
 
     @include mq(md) {
-        padding: 6em 0 7.8125em;
+        padding: 4em 0 7.8125em;
     }
 }
 
@@ -17,17 +17,19 @@
 .c-footer__main {
     display: flex;
     justify-content: space-between;
-    flex-direction: column-reverse;
+    align-items: flex-start;
+    flex-direction: column;
     margin: 0 0 1.5em;
 
     @include mq(md) {
         flex-direction: row;
-        margin: 0 0 2.5em;
+        margin: 0 0 2em;
+        align-items: flex-end;
     }
 }
 
 .c-footer__col {
-    margin: 0 0 1.5em;
+    margin: 0 0 0.5em;
 
     &:first-of-type {
         margin: 0;
@@ -62,9 +64,10 @@
 
 .c-footer__logos {
     display: flex;
-    margin-top: 22px;
+    margin-bottom: 22px;
 
     @include mq(md) {
+        margin-bottom: 0;
         margin-top: 40px;
     }
 
@@ -106,17 +109,18 @@
     
     @include mq(md) {
         justify-content: flex-end;
-        min-width: 20.9375em;
+        // min-width: 20.9375em;
     }
 }
 
 .c-footer__links {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    flex-flow: row wrap;
     list-style: none;
     margin: 0 4.625em 0 0;
     padding: 0;
-
+    gap: 16px;
     @include mq(md) {
         margin: 0;
     }
@@ -126,7 +130,7 @@
     }
 
     li {
-        margin: 0 0 1em;
+        margin: 0;
 
         &:last-of-type {
             margin: 0;
