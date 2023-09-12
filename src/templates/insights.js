@@ -9,12 +9,12 @@ import LoadMoreButton from "../components/load-more-button/load-more-button"
 const InsightPage = ({data}) => {
   const [postCount, setPostCount] = useState(2);
   const totalPosts = data.allWpPost.edges.length;
-  const posts = data.allWpPost.edges.slice(1, postCount + 1);
+  const posts = data.allWpPost.edges.slice(1, postCount + 3);
   const catItems = data.categoryList.nodes;
   const handleLoadMore = () => {
     setPostCount(postCount + 2);
   };
-  const hasMorePosts = postCount < totalPosts - 1;
+  const hasMorePosts = postCount < totalPosts - 3;
   return (
     <Layout>
       <ContainerBox className="c-section--page-header t-light">
