@@ -7,6 +7,8 @@
   Refact Website - Gatsby
 </h1>
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/b2553462-c32f-40b4-980d-b4433328919b/deploy-status)](https://app.netlify.com/sites/stellular-axolotl-0a4322/deploys?branch=main)
+
 ## 🚀 Quick start
 
 1.  **Install**
