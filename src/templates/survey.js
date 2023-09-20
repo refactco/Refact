@@ -88,7 +88,7 @@ export function Head({ data }) {
   const post = data.wpPage;
   return (
     <>
-      <Seo title="Services | Refact" description={post.content} />
+      <Seo title="Survey | Refact" description={post.content} />
     </>
   )
 }
