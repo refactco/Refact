@@ -12,5 +12,19 @@
     justify-content: center;
     color: var(--color-text);
     text-decoration: none;
+    cursor: pointer;
   }
+}
+.c-share-text{
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--color-primary-sh);
+  margin: 0;
+}
+.c-link-copy{
+  background: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 0;
 }

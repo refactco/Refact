@@ -173,6 +173,46 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      surveyPage: wpPage(slug: {eq: "survey"}) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  fullWidth
+                  subtitle
+                  text
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
+                  fieldGroupName
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
+                  fieldGroupName
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `)
   
@@ -237,6 +277,14 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/services/`,
       component: path.resolve(`./src/templates/services.js`),
+    });
+  });
+
+  const survey = result.data.surveyPage.template.pageBuilder.pageBuilder;
+  survey.forEach(({ node }) => {
+    createPage({
+      path: `/survey/`,
+      component: path.resolve(`./src/templates/survey.js`),
     });
   });
 }

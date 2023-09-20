@@ -8,10 +8,10 @@
 
 .c-team {
     .c-section__title {
-        margin-bottom: 0.571428571428571em;
+        margin-bottom: 16px;
 
         @include mq(md) {
-            margin-bottom: 0.8em;
+            margin-bottom: 64px;
         }
     }
 }
@@ -27,6 +27,15 @@
         @include font-size(23px, 1.48);
         margin-bottom: 3.478260869565217em;
         max-width: 34.260869565217391em;
+    }
+    a{
+        color: var(--color-primary-s);
+        transition: all 0.25s ease-in-out;
+        text-decoration: none;
+    
+        &:hover {
+          color: var(--color-primary-l);
+        }
     }
 }
 

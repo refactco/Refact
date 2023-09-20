@@ -89,3 +89,44 @@
     }
   }
 }
+
+
+// Text button section
+.c-section--textbutton{
+  padding: 48px 0;
+  background-color: var(--color-primary-h);
+  @include mq(md){
+    padding: 156px 0;
+  }
+  .c-section__title{
+    max-width: 934px;
+  }
+}
+
+.c-textbutton__cta{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+  @include mq(md){
+    flex-direction: row;
+    align-items: center;
+    gap: 40px;
+  }
+}
+.c-textbutton-cta__share-title{
+  @include font-size(16px, 1.5);
+  color: var(--color-text);
+  font-family: $inter;
+  font-weight: 400;
+}
+.c-textbutton-cta__share{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  @include mq(md){
+    flex-direction: row;
+    align-items: center;
+  }
+}
