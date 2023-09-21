@@ -89,10 +89,10 @@
 
 .c-article__title {
   margin: 0 0 3.5rem;
-  font-weight: 400;
+  font-weight: 600;
   @include font-size(28px, 1.5);
   color: var(--color-white);
-
+  font-family: $inter;
   @include mq(lg) {
     @include font-size(48px, 1.2083);
   }
@@ -117,7 +117,7 @@
   }
 
   @include mq(lg) {
-    width: 4.5em;
+    width: 56px;
   }
 }
 
@@ -126,14 +126,15 @@
 }
 
 .c-article__author-name {
-  margin: 0 0 0.1818em;
-  @include font-size(22px, 1.48);
+  font-family: $inter;
+  margin: 0 0 4px;
+  @include font-size(16px, 1.35);
   color: var(--color-white);
   font-weight: 600;
 }
 
 .c-article__author-date {
-  @include font-size(14px, 1);
+  @include font-size(13px, 1);
   color: var(--color-primary-t);
 }
 

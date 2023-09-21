@@ -9,11 +9,12 @@
 .c-link--category {
   font-family: $inter;
   font-weight: 400;
-  @include font-size(15px, 1.8667);
+  @include font-size(14px, 1.35);
   color: var(--color-grey);
   text-transform: uppercase;
   display: inline-flex;
   align-items: center;
+  letter-spacing: 1.68px;
 
   &::after {
     content: '';
