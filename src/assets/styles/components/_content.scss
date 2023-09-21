@@ -102,8 +102,8 @@ h6 {
   h4,
   h5,
   h6 {
-    margin: 40px 0 28px;
-
+    margin: 0 0 16px;
+    padding-top: 24px;
     &:first-child {
       margin-top: 0;
     }
@@ -112,19 +112,63 @@ h6 {
       margin-bottom: 0;
     }
 
-    @include mq(lg) {
-      margin: 72px 0 28px;
-    }
   }
 
-  h4{
+  h1{
+    font-family: $inter;
+    font-weight: 600;
+    @include font-size(36px, 1.22);
+    letter-spacing: -0.72px;
+    @include mq(md){
+      @include font-size(48px, 1.2);
+      letter-spacing: normal;
+    }
+  }
+  
+  h2 {
+    font-family: $inter;
+    font-weight: 600;
+    @include font-size(32px, 1.19);
+    @include mq(md){
+      @include font-size(40px, 1.2);
+    }
+  }
+  
+  h3 {
+    font-family: $inter;
+    font-weight: 600;
     @include font-size(28px, 1.5);
-
-    @include mq(lg) {
-      @include font-size(32px, 1.5);
+    @include mq(md){
+      @include font-size(32px, 1.19);
     }
   }
-
+  
+  h4 {
+    font-family: $inter;
+    font-weight: 600;
+    @include font-size(22px, 1.19);
+    @include mq(md){
+      @include font-size(28px, 1.18);
+    }
+  }
+  
+  h5 {
+    font-family: $inter;
+    font-weight: 600;
+    @include font-size(18px, 1.22);
+    @include mq(md){
+      @include font-size(24px, 1.17);
+    }
+  }
+  
+  h6 {
+    font-family: $inter;
+    font-weight: 600;
+    @include font-size(16px, 1.5);
+    @include mq(md){
+      @include font-size(20px, 1.5);
+    }
+  }
   p {
     margin: 0;
 
@@ -224,31 +268,38 @@ h6 {
 
 .wp-block-quote{
   margin: 50px 0;
-  border-left: 4px solid var(--color-gray-3);
-  padding-left: 18px;
+  border-left: 4px solid var(--color-primary-l);
+  padding-left: 20px;
   display: flex;
   flex-direction: column;
-  @include mq(lg){
-    margin: 60px 0;
+  @include mq(md){
+    margin: 56px 0;
+    padding-left: 24px;
   }
   p{
-    @include font-size(24px, 1.5);
+    font-family: $inter;
+    @include font-size(18px, 1.35);
     color: #003233;
+    font-weight: 600;
     &:not(:last-child){
-      margin-bottom: 20px;
+      margin-bottom: 32px;
+    }
+    @include mq(md){
+      @include font-size(24px, 1.35);
     }
   }
   cite{
-    @include font-size(20px, 1.10);
-    font-style: italic;
+    @include font-size(16px, 1.10);
+    font-weight: 600;
     color: #003233;
+    font-style: normal;
   }
 }
 .wp-block-pullquote{
   margin: 50px 0;
   padding: 40px 0;
-  border-top: 4px solid var(--color-gray-3);
-  border-bottom: 4px solid var(--color-gray-3);
+  border-top: 4px solid var(--color-primary-l);
+  border-bottom: 4px solid var(--color-primary-l);
   blockquote{
     margin: 0 24px;
     display: flex;
@@ -328,7 +379,7 @@ h6 {
   tbody{
     tr{
       &:nth-child(2n){
-        background-color: var(--color-gray-2);
+        background-color: var(--color-cultred);
       }
       &:nth-child(2n+1){
         td{
