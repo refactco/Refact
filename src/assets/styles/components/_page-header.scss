@@ -96,3 +96,12 @@
         @include font-size(28px, 1.5);
     }
 }
+.c-page-header__cta{
+    .c-btn{
+        justify-content: center;
+        width: 100%;
+        @include mq(md){
+            width: auto;
+        }
+    }
+}
