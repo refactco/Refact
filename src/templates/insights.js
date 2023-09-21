@@ -42,7 +42,12 @@ const InsightPage = ({data}) => {
           </div>
           <div className="c-blog-featured__image c-blog-post__image">
             <Link to={data.allWpPost.edges[0].node.uri} className="c-link">
-            <GatsbyImage image={data.allWpPost.edges[0].node.featuredImage.node.localFile.childImageSharp.gatsbyImageData} alt={data.allWpPost.edges[0].node.featuredImage.node.altText} />
+              {data.allWpPost.edges[0].node.featuredImage ? (
+               <GatsbyImage image={data.allWpPost.edges[0].node.featuredImage.node.localFile.childImageSharp.gatsbyImageData} alt={data.allWpPost.edges[0].node.featuredImage.node.altText} />
+              )
+              :
+              <svg xmlns="http://www.w3.org/2000/svg" width="711" height="447" fill="none" viewBox="0 0 711 447"><path fill="#E5F7E3" d="M0 0h711v447H0z"/></svg>
+              }
             </Link>
           </div>
         </div>

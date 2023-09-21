@@ -40,7 +40,12 @@ const BlogPostTemplate = ({ data }) => {
                 </div>
               </div>
                 <div className="c-article__image">
+                {post.featuredImage ? (
                   <GatsbyImage image={post.featuredImage.node.localFile.childImageSharp.gatsbyImageData} alt={post.featuredImage.node.altText} />
+                  )
+                  :
+                  <svg xmlns="http://www.w3.org/2000/svg" width="711" height="447" fill="none" viewBox="0 0 711 447"><path fill="#E5F7E3" d="M0 0h711v447H0z"/></svg>
+                  }
                 </div>
             </div>
           </header>
