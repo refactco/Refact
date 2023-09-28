@@ -4,10 +4,6 @@
     position: relative;
     z-index: 16;
     margin: 0.125em 0 0 1.375em;
-  
-    @include mq(md) {
-      display: none;
-    }
 }
   
 .c-hamburger__checkbox {

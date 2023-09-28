@@ -13,7 +13,7 @@ const CtaSection = () => {
         </div>
         <div className="c-cta__col">
           <div className="c-cta__text">
-            Whatever stage you are in your next project, we want to help you make it a big success.
+            Whatever stage your project is at, we want to help you make it a big success.
           </div>
           {typeof window !== 'undefined' && (
             <>

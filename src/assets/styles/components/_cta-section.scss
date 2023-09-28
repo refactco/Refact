@@ -38,7 +38,7 @@
     @include font-size(16px, 1.5);
     color: var(--color-primary-h);
     margin-bottom: 33px;
-    max-width: 387px;
+    max-width: 441px;
 
     @include mq(md) {
         @include font-size(23px, 1.48);

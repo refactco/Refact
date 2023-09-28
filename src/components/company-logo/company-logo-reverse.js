@@ -17,9 +17,9 @@ const CompanyLogoReverse = () => {
       autoplay-disable-on-interaction={false}
       breakpoints='{
         "380": {"slidesPerView": 1.8, "spaceBetween": 10},
-        "480": {"slidesPerView": 2.3, "spaceBetween": 20},
+        "480": {"slidesPerView": 2.3, "spaceBetween": 10},
         "768": {"slidesPerView": 3, "spaceBetween": 10},
-        "990": {"slidesPerView": 4, "spaceBetween": 20}
+        "990": {"slidesPerView": 4, "spaceBetween": 10}
       }'
       >
       <swiper-slide>
