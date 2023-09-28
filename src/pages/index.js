@@ -7,6 +7,7 @@ import { PopupButton } from "react-calendly";
 import Slider from "react-slick";
 import Seo from '../components/seo/seo';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import CompanyLogoReverse from '../components/company-logo/company-logo-reverse';
 
 const Homepage = () => {
   const data = useStaticQuery(graphql`
@@ -124,7 +125,10 @@ const Homepage = () => {
               />
               </>
             )}
-            <CompanyLogo />
+            <div className="c-hero-logo__wrapper">
+              <CompanyLogo />
+              <CompanyLogoReverse />
+            </div>
           </div>
         </ContainerBox>
       )}

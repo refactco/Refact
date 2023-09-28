@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1009px;
+    max-width: 1120px;
     margin: 0 auto;
 }
 
@@ -100,4 +100,70 @@
     }
     
 }
-
+.c-hero-logo__wrapper{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    margin-top: 96px;
+    &::after{
+        content: '';
+        width: 100px;
+        height: 100%;
+        position: absolute;
+        right: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(270deg, rgba(0, 50, 51, 0.90) 0%, rgba(0, 50, 51, 0.00) 92.11%);
+        z-index: 2;
+        @include mq(sm){
+            width: 184px;
+            right: 0;
+        }
+    }
+    &::before{
+        content: '';
+        width: 100px;
+        height: 100%;
+        position: absolute;
+        left: -1px;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(270deg, rgba(0, 50, 51, 0.00) 0%, rgba(0, 50, 51, 0.90) 92.11%);
+        z-index: 2;
+        @include mq(sm){
+            width: 184px;
+            left: 0;
+        }
+    }
+}
+swiper-container{
+    width: 100%;
+    -webkit-transition-timing-function: linear !important;
+    transition-timing-function: linear !important;
+    position: relative;
+}
+swiper-slide{
+    // width: auto !important;
+    // margin-right: 40px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    a{
+        display: flex;
+        &:hover{
+            svg{
+                path{
+                    fill: #59CC51;
+                    transition: fill 0.25s ease-in-out;
+                    &.is-stay{
+                        fill: #003233;
+                    }
+                }
+            }
+        }
+    }
+}
