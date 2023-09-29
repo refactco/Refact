@@ -1,6 +1,5 @@
 import React from 'react';
-import { register } from 'swiper/element/bundle';
-register();
+
 const CompanyLogo = () => {
   return (
     <swiper-container 
