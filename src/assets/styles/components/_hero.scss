@@ -140,6 +140,8 @@
     }
 }
 swiper-container{
+    display: flex;
+    align-items: center;
     width: 100%;
     -webkit-transition-timing-function: linear !important;
     transition-timing-function: linear !important;
