@@ -4,6 +4,7 @@ const CompanyLogoReverse = () => {
   return (
     <swiper-container 
       speed= {10000}
+      initial-slide= {5}
       space-between= {10}
       free-mode= {false}
       no-swiping= {true}

@@ -4,6 +4,7 @@ const CompanyLogo = () => {
   return (
     <swiper-container 
       speed= {10000}
+      initial-slide= {8}
       space-between= {10}
       free-mode= {false}
       no-swiping= {false}
