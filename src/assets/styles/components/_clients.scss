@@ -5,6 +5,20 @@
     @include mq(md) {
         padding: 9.75em 0 108px;
     }
+    &.is-work{
+        background-color: var(--color-primary-h);
+        .c-client__text{
+            font-family: $sentient;
+            font-weight: 400;
+            @include font-size(26px, 1.5);
+            margin: 0 0 24px;
+            @include mq(md) {
+                margin: 0 0 64px;
+                max-width: 830px;
+                @include font-size(40px, 1.2);
+            }
+        }
+    }
 }
 
 .c-client {

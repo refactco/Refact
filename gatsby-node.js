@@ -213,6 +213,99 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      workPage: wpPage(slug: {eq: "work"}) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  fullWidth
+                  subtitle
+                  text
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
+                  fieldGroupName
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                  description
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost {
+                  description
+                  fieldGroupName
+                  cover {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
+                  fieldGroupName
+                  logo
+                  name
+                  position
+                  text
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Project {
+                  fieldGroupName
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                  projectList {
+                    cover {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    cta {
+                      target
+                      title
+                      url
+                    }
+                    description
+                    fieldGroupName
+                    title
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Clients {
+                  description
+                  fieldGroupName
+                  showClientLogos
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `)
   
@@ -285,6 +378,13 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/survey/`,
       component: path.resolve(`./src/templates/survey.js`),
+    });
+  });
+  const ourWork = result.data.workPage.template.pageBuilder.pageBuilder;
+  ourWork.forEach(({ node }) => {
+    createPage({
+      path: `/work/`,
+      component: path.resolve(`./src/templates/work.js`),
     });
   });
 }
