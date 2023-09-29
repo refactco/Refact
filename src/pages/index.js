@@ -125,7 +125,7 @@ const Homepage = () => {
               />
               </>
             )}
-            <div className="c-hero-logo__wrapper">
+            <div className="c-hero-logo__wrapper" style={{overflow: 'hidden'}}>
               <CompanyLogo />
               <CompanyLogoReverse />
             </div>
