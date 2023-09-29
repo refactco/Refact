@@ -20,14 +20,15 @@
     font-family: $sentient;
     font-weight: 400;
     font-style: normal;
-    @include font-size(28px, 1.56);
+    @include font-size(36px, 1.22);
     text-align: center;
-    letter-spacing: -0.02em;
+    letter-spacing: -0.72px;
     color: var(--color-white);
     margin: 0 0 0.666666666666667em;
 
     @include mq(md) {
         @include font-size(68px, 1.19);
+        letter-spacing: -1.36px;
         margin: 0 0 0.705882352941176em;
     }
 }
