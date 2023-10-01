@@ -52,7 +52,7 @@ const WorkPage = ({data}) => {
           </div>
           )}
           <button className="c-page-header__scroll" onClick={() => scrollToSection("work-section")}>
-            Explore Our Cases
+            Explore Our Case Studies
             <div className="c-cta__arrow">
             <svg xmlns="http://www.w3.org/2000/svg" width="14" viewBox="0 0 14 13" fill="none">
               <path d="M6.42146 12.5785C6.74098 12.8981 7.25902 12.8981 7.57854 12.5785L12.7854 7.37166C13.1049 7.05214 13.1049 6.5341 12.7854 6.21458C12.4659 5.89506 11.9479 5.89506 11.6283 6.21458L7 10.8429L2.37166 6.21458C2.05214 5.89506 1.5341 5.89506 1.21458 6.21458C0.89506 6.5341 0.89506 7.05214 1.21458 7.37166L6.42146 12.5785ZM6.18182 -3.57639e-08L6.18182 12L7.81818 12L7.81818 3.57639e-08L6.18182 -3.57639e-08Z" fill="white"/>
