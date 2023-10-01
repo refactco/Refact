@@ -22,7 +22,9 @@ const BlogPostTemplate = ({ data }) => {
             <div className="c-article__header-wrapper">
               <div className="c-article__meta">
                 <div className="c-article__category">
-                  <Link to={post.terms.nodes[0].link} className="c-link c-link--category">{post.terms.nodes[0].name}</Link>
+                  {post.tags.nodes.map((tag) => (
+                    <Link to={tag.link} className="c-link c-link--category" key={tag.id}>{tag.name}</Link>
+                  ))}
                 </div>
                 <h1 className="c-article__title">{post.title}</h1>
                 <div className="c-article__author">
@@ -101,10 +103,11 @@ export const pageQuery = graphql`
           altText
         }
       }
-      terms {
+      tags {
         nodes {
           name
           link
+          id
         }
       }
       author {
@@ -171,10 +174,11 @@ export const pageQuery = graphql`
               altText
             }
           }
-          terms {
+          tags {
             nodes {
               name
               link
+              id
             }
           }
         }

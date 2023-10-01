@@ -6,11 +6,12 @@ import ContainerBox from "../components/container-box/container-box"
 import { GatsbyImage } from "gatsby-plugin-image"
 import LoadMoreButton from "../components/load-more-button/load-more-button"
 
-const CategoryPage = ({data}) => {
-  const { name } = data.wpCategory;
+const TagPage = ({data}) => {
+  const { name } = data.wpTag;
   const [postCount, setPostCount] = useState(4);
-  const totalPosts = data.wpCategory.posts.nodes.length;
-  const posts = data.wpCategory.posts.nodes.slice(0, postCount);
+  const totalPosts = data.wpTag.posts.nodes.length;
+  const posts = data.wpTag.posts.nodes.slice(0, postCount);
+  const topicItems = data.topicList.nodes;
   const handleLoadMore = () => {
     setPostCount(postCount + 4);
   };
@@ -22,6 +23,29 @@ const CategoryPage = ({data}) => {
           <h1 className="c-headline__title">
             {name}
           </h1>
+          <div className="c-blog-nav">
+            <div className="c-blog-nav__title">Topics</div>
+            <div className="c-blog-nav__wrap">
+              <swiper-container 
+                space-between= {8}
+                slides-per-view= {'auto'}
+                css-mode= {false}
+                navigation= {false}
+                allow-touch-move= {true}
+                >
+                {topicItems.map((topic) => (
+                <swiper-slide key={topic.id}>
+                <div className="item" >
+                  <Link to={topic.link}>
+                    {topic.name}
+                  </Link>
+                </div>
+                </swiper-slide>
+                )
+                )}
+              </swiper-container>
+            </div>
+          </div>
         </div>
       </ContainerBox>
       <ContainerBox className="c-section--blog is-tag-archive">
@@ -62,21 +86,21 @@ const CategoryPage = ({data}) => {
   )
 }
 
-export default CategoryPage
+export default TagPage
 
 export function Head({ data }) {
-  const cat = data.wpCategory;
+  const tag = data.wpTag;
   return (
     <>
-      <Seo title={"Category: " + cat.name + " | Refact"} description={cat.description} />
+      <Seo title={"Topic: " + tag.name + " | Refact"} description={tag.description} />
     </>
   )
 }
 
 
 export const pageQuery = graphql`
-  query($catId: String!) {
-    wpCategory(id: { eq: $catId }) {
+  query($tagId: String!) {
+    wpTag(id: { eq: $tagId }) {
       id
       name
       description
@@ -106,6 +130,13 @@ export const pageQuery = graphql`
             }
           }
         }
+      }
+    }
+    topicList: allWpTag(filter: {count: {gt: 0}}) {
+      nodes {
+        name
+        link
+        id
       }
     }
   }

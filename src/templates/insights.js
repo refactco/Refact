@@ -10,29 +10,38 @@ const InsightPage = ({data}) => {
   const [postCount, setPostCount] = useState(2);
   const totalPosts = data.allWpPost.edges.length;
   const posts = data.allWpPost.edges.slice(1, postCount + 3);
-  const catItems = data.categoryList.nodes;
+  const topicItems = data.topicList.nodes;
   const handleLoadMore = () => {
     setPostCount(postCount + 2);
   };
   const hasMorePosts = postCount < totalPosts - 3;
   return (
     <Layout>
-      <ContainerBox className="c-section--page-header t-light">
+      {/* <ContainerBox className="c-section--page-header t-light">
         <div className="c-page-header">
           <h1 className="c-page-header__title">
             Insights
           </h1>
         </div>
-      </ContainerBox>
+      </ContainerBox> */}
       <ContainerBox className="c-section--blog">
         <div className="c-blog-featured">
           <div className="c-blog-featured__wrap">
+            <div className="c-blog-post__badge">
+              Featured post
+            </div>
             <div className="c-blog-post__category">
-              <Link to={data.allWpPost.edges[0].node.terms.nodes[0].link} className="c-link c-link--category">{data.allWpPost.edges[0].node.terms.nodes[0].name}</Link>
+              {data.allWpPost.edges[0].node.tags.nodes.map((tag) => (
+                <Link to={tag.link} className="c-link c-link--category" key={tag.id}>{tag.name}</Link>
+              ))}
+              {/* <Link to={data.allWpPost.edges[0].node.tags.nodes[0].link} className="c-link c-link--category">{data.allWpPost.edges[0].node.tags.nodes[0].name}</Link> */}
             </div>
             <h2 className="c-blog-featured__title">
               <Link to={data.allWpPost.edges[0].node.uri} className="c-link c-link--blog">{data.allWpPost.edges[0].node.title}</Link>
             </h2>
+            {data.allWpPost.edges[0].node.excerpt && (
+              <div className="c-blog-featured__excerpt" dangerouslySetInnerHTML={{ __html: data.allWpPost.edges[0].node.excerpt }}></div>
+            )}
             <div className="c-blog-featured__cta">
               <Link to={data.allWpPost.edges[0].node.uri} className="c-btn--secondary">
                 Read More
@@ -54,16 +63,24 @@ const InsightPage = ({data}) => {
         <div className="c-blog-nav">
           <div className="c-blog-nav__title">Topics</div>
           <div className="c-blog-nav__wrap">
-            <div className="s-blog-nav js-tab-nav">
-              {catItems.map((cat) => (
-                <div className="item" key={cat.id}>
-                  <Link to={cat.link}>
-                    {cat.name}
-                  </Link>
-                </div>
+            <swiper-container 
+              space-between= {8}
+              slides-per-view= {'auto'}
+              css-mode= {false}
+              navigation= {false}
+              allow-touch-move= {true}
+              >
+              {topicItems.map((topic) => (
+              <swiper-slide key={topic.id}>
+              <div className="item">
+                <Link to={topic.link}>
+                  {topic.name}
+                </Link>
+              </div>
+              </swiper-slide>
               )
               )}
-            </div>
+            </swiper-container>
           </div>
         </div>
         <div className="c-blog-posts">
@@ -76,7 +93,9 @@ const InsightPage = ({data}) => {
                   </Link>
                 </div>
                 <div className="c-blog-post__category">
-                  <Link to={node.terms.nodes[0].link} className="c-link c-link--category">{node.terms.nodes[0].name}</Link>
+                  {node.tags.nodes.map((tag) => (
+                    <Link to={tag.link} className="c-link c-link--category" key={tag.id}>{tag.name}</Link>
+                  ))}
                 </div>
             
                 <h3 className="c-blog-post__title">
@@ -133,19 +152,20 @@ export const pageQuery = graphql`
               altText
             }
           }
-          terms {
+          tags {
             nodes {
               name
               link
+              id
             }
           }
         }
       }
     }
-    categoryList: allWpCategory(filter: {count: {gt: 0}}) {
+    topicList: allWpTag(filter: {count: {gt: 0}}) {
       nodes {
-        link
         name
+        link
         id
       }
     }

@@ -80,6 +80,13 @@ exports.createPages = async ({ graphql, actions }) => {
           id
         }
       }
+      topicList: allWpTag(filter: {count: {gt: 0}}) {
+        nodes {
+          name
+          link
+          id
+        }
+      }
       careersPage: wpPage(slug: {eq: "careers"}) {
         id
         content
@@ -340,6 +347,17 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve('./src/templates/category.js'),
       context: {
         catId: cat.id,
+      },
+    });
+  });
+
+  const tagItems = result.data.topicList.nodes;
+  tagItems.forEach((tag) => {
+    createPage({
+      path: `${tag.link}`,
+      component: path.resolve('./src/templates/tags.js'),
+      context: {
+        tagId: tag.id,
       },
     });
   });
