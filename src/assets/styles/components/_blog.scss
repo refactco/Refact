@@ -146,9 +146,10 @@
   margin: 0 0 24px;
   font-family: $inter;
   font-weight: 600;
-  @include font-size(23px, 1.4783);
+  @include font-size(18px, 1.22);
   @include mq(md){
     margin: 0 0 32px;
+    @include font-size(24px, 1.16);
   }
 }
 
@@ -185,7 +186,7 @@
   }
 
   @include mq(lg) {
-    max-width: 32%;
+    max-width: 37%;
   }
 }
 
@@ -208,7 +209,7 @@
   }
 
   @include mq(lg) {
-    max-width: 68%;
+    max-width: 63%;
   }
 }
 
@@ -221,7 +222,7 @@
     margin: 0 0 32px;
   }
   @include mq(lg) {
-    @include font-size(32px, 1.5);
+    @include font-size(40px, 1.45);
   }
 }
 
@@ -318,10 +319,10 @@
       padding: 0.3572em 1.7143em;
       white-space: nowrap;
       font-family: $inter;
-      @include font-size(14px, 2);
-      font-weight: 700;
+      @include font-size(14px, 1.57);
+      font-weight: 600;
       color: var(--color-text);
-      letter-spacing: 0.02em;
+      letter-spacing: 0.28px;
       text-decoration: none;
       text-transform: capitalize;
       border-radius: 2.375rem;
