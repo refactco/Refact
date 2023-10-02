@@ -86,6 +86,7 @@
   margin: 0 0 16px;
   @include mq(md){
     display: block;
+    margin: 0 0 32px;
   }
   p{
     font-family: $inter;
