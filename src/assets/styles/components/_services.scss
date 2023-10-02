@@ -32,25 +32,25 @@
 }
 
 .c-services__desc {
-  margin-bottom: 1rem;
-  color: var(--color-grey);
-  @include font-size(14px, 1.5714);
-
-  &:last-child {
-    margin-bottom: 0;
-  }
-
+  margin-bottom: 16px;
   p {
-    margin: 0 0 0.5em;
-
-    &:last-child {
-      margin-bottom: 0;
+    margin: 0;
+    @include font-size(14px, 1.5);
+    color: var(--color-grey);
+    @include mq(md){
+      margin-bottom: 16px;
+      @include font-size(16px, 1.5);
+    }
+    &:not(:last-child) {
+      margin-bottom: 8px;
+      @include mq(md){
+        margin-bottom: 16px;
+      }
     }
   }
-
-  @include mq(lg) {
-    margin-bottom: 2rem;
-    @include font-size(16px, 1.5);
+  @include mq(md) {
+    margin-bottom: 32px;
+    
   }
 }
 
@@ -62,35 +62,54 @@
 
 .c-services__sub-list-item {
   display: flex;
-  align-items: flex-start;
-  margin-bottom: 0.5rem;
-  padding-bottom: 0.5rem;
+  flex-direction: column;
+//  gap: 8px;
+  margin-bottom: 8px;
+  padding-bottom: 8px;
   border-bottom: 1px solid var(--color-gains);
-  @include font-size(15px, 1.5);
-
   &:last-child {
     margin-bottom: 0;
     padding-bottom: 0;
     border-bottom: 0;
   }
 
-  svg {
-    flex-shrink: 0;
-    margin: 0.3125rem 0.75rem 0 0;
-  }
 
-  @include mq(lg) {
-    margin-bottom: 0.75rem;
-    padding-bottom: 0.75rem;
-    @include font-size(19px, 1.4737);
 
-    svg {
-      margin-top: 0.5rem;
-    }
+  @include mq(md) {
+    margin-bottom: 12px;
+    padding-bottom: 12px;
   }
 }
-
-
+.c-services-sub-list__headline{
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  @include font-size(16px, 1.5);
+  font-weight: 600;
+  svg {
+    flex-shrink: 0;
+  }
+  @include mq(md) {
+    @include font-size(19px, 1.47);
+  }
+}
+.c-services__subitems-list{
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style-type: disc;
+  margin-top: 12px;
+}
+.c-services-subitems__item{
+  @include font-size(16px, 1.5);
+  font-weight: 400;
+  @include mq(md) {
+    @include font-size(19px, 1.47);
+  }
+}
+.c-services-sub-list__icon{
+  display: flex;
+}
 // Text button section
 .c-section--textbutton{
   padding: 48px 0;

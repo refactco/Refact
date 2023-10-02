@@ -34,8 +34,21 @@ const ServicesPage = ({data}) => {
                   <ul className="c-services__sub-list">
                     {service.subList.map((item, index) => (
                       <li className="c-services__sub-list-item" key={index}>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="none" viewBox="0 0 10 10"><path fill="#59CC51" d="M9 9.796c.44 0 .796-.356.796-.796V1.838a.796.796 0 1 0-1.591 0v6.366H1.838a.796.796 0 1 0 0 1.592H9ZM.437 1.562l8 8 1.126-1.125-8-8L.437 1.562Z"/></svg>
-                        {item.title}
+                        <div className="c-services-sub-list__headline">
+                          <div className="c-services-sub-list__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="9" fill="none" viewBox="0 0 9 2"><path stroke="#59CC51" d="M0 1h9"/></svg>
+                          </div>
+                          {item.title}
+                        </div>
+                        {item.activateSubitem && (
+                          <ul className="c-services__subitems-list">
+                            {item.subItem.map((subItem, index) => (
+                              <li className="c-services-subitems__item" key={index}>
+                                {subItem.title}
+                              </li>
+                            ))}
+                          </ul>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -83,11 +96,18 @@ export const pageQuery = graphql`
                 services {
                   desc
                   fieldGroupName
-                  subList {
-                    fieldGroupName
-                    title
-                  }
                   title
+                  subList {
+                    ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Services_services_SubList_Item {
+                      activateSubitem
+                      fieldGroupName
+                      subItem {
+                        fieldGroupName
+                        title
+                      }
+                      title
+                    }
+                  }
                 }
               }
             }

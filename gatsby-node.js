@@ -168,11 +168,18 @@ exports.createPages = async ({ graphql, actions }) => {
                   services {
                     desc
                     fieldGroupName
-                    subList {
-                      fieldGroupName
-                      title
-                    }
                     title
+                    subList {
+                      ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Services_services_SubList_Item {
+                        activateSubitem
+                        fieldGroupName
+                        subItem {
+                          fieldGroupName
+                          title
+                        }
+                        title
+                      }
+                    }
                   }
                 }
               }

@@ -77,9 +77,8 @@
 .c-page-header__title {
     margin: 0 0 24px;
     font-family: $sentient;
-    font-style: normal;
     font-weight: 400;
-    @include font-size(32px, 1.19);
+    @include font-size(32px, 1.18);
     color: var(--color-white);
 
     .t-light & {
@@ -89,7 +88,7 @@
     @include mq(md) {
         margin: 0 0 40px;
         @include font-size(68px, 1.19);
-        letter-spacing: -0.02em;
+        letter-spacing: -1.36px;
     }
 }
 
