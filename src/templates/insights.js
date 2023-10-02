@@ -62,7 +62,7 @@ const InsightPage = ({data}) => {
         </div>
         <div className="c-blog-nav">
           <div className="c-blog-nav__title">Topics</div>
-          <div className="c-blog-nav__wrap">
+          <div className="c-blog-nav__wrap is-insight">
             <swiper-container 
               space-between= {8}
               slides-per-view= {'auto'}
