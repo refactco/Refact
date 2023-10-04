@@ -514,3 +514,77 @@ h6 {
     flex-grow: 1;
   }
 }
+
+.wp-block-create-block-refact-blocks {
+	border-left: 4px solid #59CC51;
+	padding: 8px 16px;
+	margin: 16px 0;
+}
+.wp-block-create-block-refact-blocks.is-pull-quote{
+	padding: 16px 0;
+	border-left: none;
+	border-top: 4px solid #59CC51;
+	border-bottom: 4px solid #59CC51;
+}
+.refact-blocks__text{
+	color: #002729;
+	font-family: Inter;
+	font-size: 18px;
+	font-weight: 600;
+	line-height: 1.5;
+	margin: 0 !important;
+}
+.refact-block__wrapper{
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 8px;
+	margin-top: 16px;
+}
+.wp-block-create-block-refact-blocks.is-pull-quote .refact-block__wrapper{
+	margin-top: 20px;
+	align-items: center;
+	text-align: center;
+	justify-content: center;
+}
+@media (min-width: 768px){
+	.wp-block-create-block-refact-blocks{
+		padding: 16px 20px;
+		margin: 32px 0;
+	}
+	.wp-block-create-block-refact-blocks.is-pull-quote{
+		padding: 32px 0;
+	}
+	.refact-blocks__text{
+		font-size: 24px;
+		line-height: 1.35;
+	}
+	.refact-block__wrapper{
+		flex-direction: row;
+		align-items: center;
+		margin-top: 32px;
+	}
+	.wp-block-create-block-refact-blocks.is-pull-quote .refact-block__wrapper{
+		margin-top: 40px;
+		text-align: left;
+	}
+}
+.refact-block__image{
+	width: 48px;
+	height: 48px;
+	display: flex;
+	align-items: center;
+}
+.refact-block-quote-cover{
+	width: 100%;
+	height: auto;
+	object-fit: cover;
+	border-radius: 50%;
+}
+.refact-blocks-text--author{
+	font-size: 16px;
+}
+.refact-blocks-text--jobtitle{
+	font-size: 14px;
+	font-weight: 400;
+}
