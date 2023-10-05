@@ -50,8 +50,14 @@
         g{
             transition: fill 0.25s ease-in-out;
         }
+        .is-landing &{
+            width: 86px;
+        }
         @include mq(md) {
            width: 104px;
+           .is-landing &{
+                width: 104px;
+            }
         }
     }
 }

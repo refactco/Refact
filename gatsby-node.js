@@ -320,6 +320,44 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      toolsPage : wpPage(slug: {eq: "tools-resources"}) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_ToolsResources {
+                  description
+                  fieldGroupName
+                  title
+                  list {
+                    badge
+                    cta {
+                      target
+                      title
+                      url
+                    }
+                    description
+                    fieldGroupName
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    title
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `)
   
@@ -410,6 +448,13 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/work/`,
       component: path.resolve(`./src/templates/work.js`),
+    });
+  });
+  const toolsResources = result.data.toolsPage.template.pageBuilder.pageBuilder;
+  toolsResources.forEach(({ node }) => {
+    createPage({
+      path: `/tools-resources/`,
+      component: path.resolve(`./src/templates/tools-resources.js`),
     });
   });
 }

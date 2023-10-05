@@ -7,6 +7,12 @@
     @include mq(md) {
         padding: 4em 0 7.8125em;
     }
+    &.is-landing{
+        padding: 48px 0;
+        @include mq(lg){
+            padding: 80px 0;
+        }
+    }
 }
 
 .c-footer {
@@ -203,7 +209,7 @@
         }
 
         &:hover {
-            color: var(--color-white);
+            color: var(--color-primary-l);
         }
     }
 }
@@ -247,5 +253,70 @@
     margin: 0 0 8px;
     @include mq(md){
         margin: 0;
+    }
+}
+
+
+// Footer Landing
+.c-footer-landing__wrap{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    .c-logo{
+        margin: 0 0 24px;
+        svg{
+            width: 105px;
+            @include mq(md){
+                width: 122.5px;
+            }
+        }
+    }
+    span{
+        font-family: $inter;
+        @include font-size(16px, 1.5);
+        font-weight: 400;
+        color: var(--color-white-80);
+        margin: 0;
+    }
+}
+.c-footer-landing__text{
+    font-family: $inter;
+    @include font-size(12px, 2);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--color-white-80);
+    margin: 0 0 8px;
+    @include mq(md){
+        @include font-size(13px, 1.84);
+    }
+}
+.c-footer-landing__col{
+    &:not(:last-child){
+        margin-bottom: 30px;
+        @include mq(md){
+            margin-bottom: 0;
+        }
+    }
+    &:last-child{
+        display: flex;
+        justify-content: flex-start;
+        @include mq(md){
+            justify-content: flex-end;
+            align-items: flex-end;
+        }
+    }
+}
+.c-footer-landing__nav{
+    a{
+        font-family: $inter;
+        @include font-size(16px, 1.5);
+        font-weight: 400;
+        color: var(--color-white-80);
+        margin: 0;
+        transition: color 0.25s ease-in-out;
+        &:hover{
+            color: var(--color-primary-l);
+        }
     }
 }
