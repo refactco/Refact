@@ -1,5 +1,7 @@
 import * as React from "react"
 import { Link } from "gatsby"
+import "normalize.css";
+import "../assets/styles/main.scss";
 
 const pageStyles = {
   display: "flex",
@@ -13,7 +15,7 @@ const pageStyles = {
 
 const NotFoundPage = () => {
   return (
-    <section style={pageStyles}>
+    <section section style={pageStyles}>
       <div className="o-section__wrapper" style={{width: '100%'}}>
         <div className="c-notfound">
           <Link to="/" className="c-link c-link--logo" aria-label="Refact" rel="home">
