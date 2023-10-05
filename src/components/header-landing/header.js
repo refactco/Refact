@@ -30,7 +30,8 @@ const HeaderLanding  = () => {
                 </Link>
               </li>
               <li>
-                <>
+                {typeof window !== 'undefined' && (
+                  <>
                   <button style={{ display: "block", margin: "0 auto" }}
                     onClick={handleLinkClick}>
                     Contact
@@ -41,7 +42,8 @@ const HeaderLanding  = () => {
                     onModalClose={() => setIsOpen(false)}
                     open={isOpen}
                   />
-                </>
+                  </>
+                )}
               </li>
             </ul>
           </div>
