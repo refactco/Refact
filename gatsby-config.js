@@ -1,7 +1,4 @@
-/**
- * @type {import('gatsby').GatsbyConfig}
- */
-const siteUrl = process.env.URL || `https://refact.co`
+const siteUrl = process.env.URL || `https://refact.co`;
 
 module.exports = {
   siteMetadata: {
@@ -11,17 +8,17 @@ module.exports = {
     image: `/opengragh.jpg`,
   },
   plugins: [
-  {
-    resolve: "gatsby-plugin-google-tagmanager",
-    options: {
-      id: "GTM-T2WVS9L",
-      includeInDevelopment: false,
+    {
+      resolve: 'gatsby-plugin-google-tagmanager',
+      options: {
+        id: 'GTM-T2WVS9L',
+        includeInDevelopment: false,
+      },
     },
-  },
-  {
-    resolve: "gatsby-plugin-sitemap",
-    options: {
-      query: `
+    {
+      resolve: 'gatsby-plugin-sitemap',
+      options: {
+        query: `
       {
         allSitePage {
           nodes {
@@ -42,78 +39,85 @@ module.exports = {
         }
       }
     `,
-      resolveSiteUrl: () => siteUrl,
-      resolvePages: ({
-        allSitePage: { nodes: allPages },
-        allWpContentNode: { nodes: allWpNodes },
-      }) => {
-        const wpNodeMap = allWpNodes.reduce((acc, node) => {
-          const { uri } = node
-          acc[uri] = node
+        resolveSiteUrl: () => siteUrl,
+        resolvePages: ({
+          allSitePage: { nodes: allPages },
+          allWpContentNode: { nodes: allWpNodes },
+        }) => {
+          const wpNodeMap = allWpNodes.reduce((acc, node) => {
+            const { uri } = node;
+            acc[uri] = node;
 
-          return acc
-        }, {})
+            return acc;
+          }, {});
 
-        return allPages.map(page => {
-          return { ...page, ...wpNodeMap[page.path] }
-        })
+          return allPages.map((page) => {
+            return { ...page, ...wpNodeMap[page.path] };
+          });
+        },
+        serialize: ({ path, modifiedGmt }) => {
+          return {
+            url: path,
+            lastmod: modifiedGmt,
+          };
+        },
       },
-      serialize: ({ path, modifiedGmt }) => {
-        return {
-          url: path,
-          lastmod: modifiedGmt,
-        }
+    },
+    {
+      resolve: 'gatsby-source-wordpress',
+      options: {
+        url: process.env.WPGRAPHQL_URL || 'https://refact.wpengine.com/graphql',
       },
     },
-  },
-  {
-    resolve: 'gatsby-source-wordpress',
-    options: {
-      url: process.env.WPGRAPHQL_URL ||  "https://refact.wpengine.com/graphql",
-    }
-  },
-  {
-    resolve: `gatsby-plugin-canonical-urls`,
-    options: {
-      siteUrl: `http://refact.co`,
+    {
+      resolve: `gatsby-plugin-canonical-urls`,
+      options: {
+        siteUrl: `http://refact.co`,
+      },
     },
-  }, "gatsby-plugin-image", 
-  {
-    resolve: `gatsby-plugin-sharp`,
-    options: {
-      defaults: {
-        formats: [`auto`, `webp`],
-        placeholder: `dominantColor`,
-        quality: 50,
-        breakpoints: [750, 1080, 1366, 1920],
-        backgroundColor: `transparent`,
-        tracedSVGOptions: {},
-        blurredOptions: {},
-        jpgOptions: {},
-        pngOptions: {},
-        webpOptions: {},
-        avifOptions: {},
-      }
-    }
-  },
-  "gatsby-transformer-sharp", "gatsby-plugin-sass", {
-    resolve: 'gatsby-plugin-manifest',
-    options: {
-      "icon": "src/images/icon.png"
-    }
-  }, "gatsby-plugin-mdx", {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "images",
-      "path": "./src/images/"
+    'gatsby-plugin-image',
+    {
+      resolve: `gatsby-plugin-sharp`,
+      options: {
+        defaults: {
+          formats: [`auto`, `webp`],
+          placeholder: `dominantColor`,
+          quality: 50,
+          breakpoints: [750, 1080, 1366, 1920],
+          backgroundColor: `transparent`,
+          tracedSVGOptions: {},
+          blurredOptions: {},
+          jpgOptions: {},
+          pngOptions: {},
+          webpOptions: {},
+          avifOptions: {},
+        },
+      },
     },
-    __key: "images"
-  }, {
-    resolve: 'gatsby-source-filesystem',
-    options: {
-      "name": "pages",
-      "path": "./src/pages/"
+    'gatsby-transformer-sharp',
+    'gatsby-plugin-sass',
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        icon: 'src/images/icon.png',
+      },
     },
-    __key: "pages"
-  }]
+    'gatsby-plugin-mdx',
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'images',
+        path: './src/images/',
+      },
+      __key: 'images',
+    },
+    {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'pages',
+        path: './src/pages/',
+      },
+      __key: 'pages',
+    },
+  ],
 };
