@@ -1,9 +1,9 @@
 import axios from 'axios';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const EmailSubscriber = () => {
   const [email, setEmail] = useState('');
-  const [hideBox, setHideBox] = useState(false);
+  const [showBox, setShowBox] = useState(false);
   const [submitInProgress, setSubmitInProgress] = useState(false);
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
@@ -32,7 +32,7 @@ const EmailSubscriber = () => {
         setSuccessfulSubmit(true);
 
         setTimeout(() => {
-          setHideBox(true);
+          setShowBox(false);
         }, 5000);
       })
       .catch(() => {
@@ -43,43 +43,70 @@ const EmailSubscriber = () => {
       });
   };
 
-  if (hideBox) {
-    return null;
-  }
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const pageHeight = document.body.clientHeight;
+      const scrollPercentage = (scrollPosition / (pageHeight - windowHeight)) * 100;
+
+      if (!successfulSubmit && scrollPercentage >= 10) {
+        setShowBox(true);
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [successfulSubmit]);
+
+  // CSS class to add a fade-in transition
+  const emailSubscriberClass = showBox
+    ? 'c-email-subscriber c-email-subscriber--show'
+    : 'c-email-subscriber';
+
+  // if (!showBox) {
+  //   return null;
+  // }
 
   return (
-    <div className="c-email-subscriber">
+    <div className={emailSubscriberClass}>
       {successfulSubmit ? (
         <p className="c-email-subscriber__success-message">
-          Thanks for subscribing. You've received an email
+          Thank you for subscribing! An email is on its way to you.
         </p>
       ) : (
         <>
-          <div>
-            <h4>Enjoying this post?</h4>
-            <p>Subscribe and receive more along with updates from us.</p>
+          <div className='c-email-subscriber__info'>
+            <h4 className='c-email-subscriber__title'>Enjoying this post?</h4>
+            <p className='c-email-subscriber__text'>Subscribe and receive more along with updates from us.</p>
           </div>
-          <div>
-            <input
-              value={email}
-              placeholder="Enter email address"
-              onChange={(event) => {
-                setEmail(event.target.value);
-              }}
-            />
-            <button
-              className="c-btn"
-              disabled={submitInProgress}
-              onClick={() => {
-                subscribe();
-              }}
-            >
-              {submitInProgress ? 'Progressing...' : 'Subscribe'}
-            </button>
+          <div className='c-email-subscriber-form__wrap'>
+            <div className='c-email-subscriber__form'>
+              <input
+                value={email}
+                placeholder="Enter email address"
+                required
+                onChange={(event) => {
+                  setEmail(event.target.value);
+                }}
+              />
+              <button
+                className="c-btn c-btn--subscriber"
+                disabled={submitInProgress}
+                onClick={() => {
+                  subscribe();
+                }}
+              >
+                {submitInProgress ? 'Progressing...' : 'Subscribe'}
+              </button>
+            </div>
+            {errorSubmit ? (
+              <p>Oops! We encountered an error while processing your subscription.</p>
+            ) : null}
           </div>
-          {errorSubmit ? (
-            <p>An error occurred in subscription submitting</p>
-          ) : null}
         </>
       )}
     </div>
