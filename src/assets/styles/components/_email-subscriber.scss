@@ -1,0 +1,19 @@
+.c-email-subscriber {
+  background-color: var(--color-primary-r);
+  width: 46.75rem;
+  height: 7.75rem;
+  position: fixed;
+  bottom: 2.13rem;
+  left: calc(50% - 23.375rem);
+  z-index: 100;
+  border-radius: 0.25rem;
+  display: flex;
+
+  &__success-message {
+    color: var(--color-cultred);
+    line-height: 7.75rem;
+    margin: 0;
+    text-align: center;
+    width: 100%;
+  }
+}
