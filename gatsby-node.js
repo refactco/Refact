@@ -178,6 +178,7 @@ exports.createPages = async ({ graphql, actions }) => {
                           title
                         }
                         title
+                        description
                       }
                     }
                   }
