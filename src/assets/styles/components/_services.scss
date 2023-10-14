@@ -376,6 +376,7 @@
 .c-services-sidebar__title{
   font-family: $inter;
   @include font-size(13px, 1.84);
+  font-weight: 600;
   color: var(--color-grey);
   letter-spacing: 3px;
   text-transform: uppercase;
