@@ -2,7 +2,7 @@
   width: 100%;
   margin: 0 auto;
   padding: 16px;
-  position: sticky;
+  // position: sticky;
   bottom: 0;
   background-color: var(--color-primary-r);
   z-index: 2;
@@ -14,11 +14,17 @@
   border-radius: 0;
   opacity: 0;
   transition: opacity 0.3s ease-in-out;
-  &.c-email-subscriber--show{
+  &.c-email-subscriber--show {
     opacity: 1;
     margin: 4.5em auto 1em;
   }
-  @include mq(md){
+  &.c-email-subscriber--sticky {
+    position: sticky;
+  }
+  &.c-email-subscriber--static {
+    position: static;
+  }
+  @include mq(md) {
     flex-direction: row;
     align-items: center;
     bottom: 30px;
@@ -37,43 +43,43 @@
     margin: 0 auto;
   }
 }
-.c-email-subscriber__info{
+.c-email-subscriber__info {
   display: flex;
   flex-direction: column;
   gap: 8px;
-  @include mq(md){
+  @include mq(md) {
     max-width: 274px;
   }
 }
-.c-email-subscriber__title{
+.c-email-subscriber__title {
   font-family: $inter;
   @include font-size(19px, 1.47);
   font-weight: 600;
   color: var(--color-white);
   margin: 0;
   display: none;
-  @include mq(md){
+  @include mq(md) {
     display: block;
   }
 }
-.c-email-subscriber__text{
+.c-email-subscriber__text {
   font-family: $inter;
   @include font-size(16px, 1.5);
   margin: 0;
   font-weight: 600;
   color: var(--color-white);
-  @include mq(md){
+  @include mq(md) {
     @include font-size(14px, 1.42);
     font-weight: 400;
     color: var(--color-primary-t);
   }
 }
 
-.c-email-subscriber__form{
+.c-email-subscriber__form {
   display: flex;
   gap: 12px;
   width: 100%;
-  input{
+  input {
     border-radius: 4px;
     background-color: var(--color-white);
     @include font-size(16px, 1.3);
@@ -82,17 +88,17 @@
     width: 100%;
     border: none;
     outline: none;
-    @include mq(md){
+    @include mq(md) {
       max-width: 238px;
     }
-    &::placeholder{
+    &::placeholder {
       color: #798686;
       @include font-size(13px, 1);
     }
   }
 }
 
-.c-btn--subscriber{
+.c-btn--subscriber {
   border-radius: 4px;
   text-align: center;
   margin: 0 auto;
@@ -103,15 +109,15 @@
   height: 48px;
 }
 
-.c-email-subscriber-form__wrap{
+.c-email-subscriber-form__wrap {
   display: flex;
   flex-direction: column;
   gap: 12px;
   width: 100%;
-  @include mq(md){
+  @include mq(md) {
     width: calc(100% - 274px);
   }
-  p{
+  p {
     color: var(--color-white-80);
     font-size: 14px;
     margin: 0;

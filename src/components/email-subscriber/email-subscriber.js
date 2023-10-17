@@ -1,9 +1,11 @@
 import axios from 'axios';
-import React, { useState, useEffect } from 'react';
+import Cookie from 'js-cookie';
+import React, { useEffect, useState } from 'react';
 
 const EmailSubscriber = () => {
   const [email, setEmail] = useState('');
   const [showBox, setShowBox] = useState(false);
+  const [position, setPosition] = useState('sticky');
   const [submitInProgress, setSubmitInProgress] = useState(false);
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
@@ -31,6 +33,10 @@ const EmailSubscriber = () => {
       .then(() => {
         setSuccessfulSubmit(true);
 
+        Cookie.set('already-subscribed', 'Yes', {
+          expires: 7,
+        });
+
         setTimeout(() => {
           setShowBox(false);
         }, 5000);
@@ -44,14 +50,26 @@ const EmailSubscriber = () => {
   };
 
   useEffect(() => {
+    const alreadySubscribed = Cookie.get('already-subscribed');
+
+    if (alreadySubscribed === 'Yes') {
+      setShowBox(true);
+      setPosition('static');
+    }
+  }, []);
+
+  useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       const pageHeight = document.body.clientHeight;
-      const scrollPercentage = (scrollPosition / (pageHeight - windowHeight)) * 100;
+      const scrollPercentage =
+        (scrollPosition / (pageHeight - windowHeight)) * 100;
 
       if (!successfulSubmit && scrollPercentage >= 10) {
         setShowBox(true);
+      } else {
+        setShowBox(false);
       }
     };
 
@@ -63,13 +81,11 @@ const EmailSubscriber = () => {
   }, [successfulSubmit]);
 
   // CSS class to add a fade-in transition
-  const emailSubscriberClass = showBox
-    ? 'c-email-subscriber c-email-subscriber--show'
-    : 'c-email-subscriber';
-
-  // if (!showBox) {
-  //   return null;
-  // }
+  const emailSubscriberClass = [
+    'c-email-subscriber',
+    showBox ? 'c-email-subscriber--show' : '',
+    `c-email-subscriber--${position}`,
+  ].join(' ');
 
   return (
     <div className={emailSubscriberClass}>
@@ -79,12 +95,14 @@ const EmailSubscriber = () => {
         </p>
       ) : (
         <>
-          <div className='c-email-subscriber__info'>
-            <h4 className='c-email-subscriber__title'>Enjoying this post?</h4>
-            <p className='c-email-subscriber__text'>Subscribe and receive more along with updates from us.</p>
+          <div className="c-email-subscriber__info">
+            <h4 className="c-email-subscriber__title">Enjoying this post?</h4>
+            <p className="c-email-subscriber__text">
+              Subscribe and receive more along with updates from us.
+            </p>
           </div>
-          <div className='c-email-subscriber-form__wrap'>
-            <div className='c-email-subscriber__form'>
+          <div className="c-email-subscriber-form__wrap">
+            <div className="c-email-subscriber__form">
               <input
                 value={email}
                 placeholder="Enter email address"
@@ -104,7 +122,10 @@ const EmailSubscriber = () => {
               </button>
             </div>
             {errorSubmit ? (
-              <p>Oops! We encountered an error while processing your subscription.</p>
+              <p>
+                Oops! We encountered an error while processing your
+                subscription.
+              </p>
             ) : null}
           </div>
         </>
