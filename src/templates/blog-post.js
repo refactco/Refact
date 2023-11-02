@@ -18,7 +18,7 @@ const BlogPostTemplate = ({ data }) => {
   return (
     <Layout>
       <ContainerBox className="c-section--article">
-        <article className="c-article">
+        <article className="c-article"> 
           <header className="c-article__header">
             <div className="c-article__header-wrapper">
               <div className="c-article__meta">
