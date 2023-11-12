@@ -95,25 +95,6 @@ exports.createPages = async ({ graphql, actions }) => {
             templateName
             pageBuilder {
               pageBuilder {
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Careers {
-                  fieldGroupName
-                  noResult
-                  careerCategories {
-                    name
-                    taxonomyName
-                    careers {
-                      nodes {
-                        title
-                        uri
-                        slug
-                        careers {
-                          experience
-                          location
-                        }
-                      }
-                    }
-                  }
-                }
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
                   fieldGroupName
                   fullWidth
@@ -408,7 +389,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const careers = result.data.careersPage.template.pageBuilder.pageBuilder;
+  const careers = result.data.careersPage.template.pageBuilder.pageBuilder || result.data.careerPost.edges;
   careers.forEach(({ node }) => {
     createPage({
       path: `/careers/`,
@@ -429,7 +410,7 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const services = result.data.careersPage.template.pageBuilder.pageBuilder;
+  const services = result.data.servicesPage.template.pageBuilder.pageBuilder;
   services.forEach(({ node }) => {
     createPage({
       path: `/services/`,

@@ -1,5 +1,5 @@
 import React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
 import ContainerBox from "../components/container-box/container-box"
@@ -8,7 +8,7 @@ import CareerCategory from "../components/careers-item/careers-item"
 const CareerPage = ({data}) => {
   const careerContent = data.wpPage.template.pageBuilder.pageBuilder;
   const heroSection = careerContent.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader');
-  const careersPost = data.allWpCareer.nodes;
+  const careersPost = data.careerPost.nodes;
 
   return (
     <Layout>
@@ -32,7 +32,7 @@ const CareerPage = ({data}) => {
             <CareerCategory categorySlug="technology" categoryName="Technology" careersPost={careersPost} />
             <CareerCategory categorySlug="sales-marketing" categoryName="Sales & Marketing" careersPost={careersPost} />
             <CareerCategory categorySlug="product" categoryName="Product" careersPost={careersPost} />
-            <CareerCategory categorySlug="other" categoryName="Other" careersPost={careersPost} />
+            <CareerCategory categorySlug="others" categoryName="Others" careersPost={careersPost} />
           </div>
         </ContainerBox>
       )}
@@ -74,7 +74,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    allWpCareer {
+    careerPost: allWpCareer {
       nodes {
         id
         title
