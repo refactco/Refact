@@ -287,15 +287,12 @@
   position: relative;
   display: flex;
   flex-direction: column;
-  margin: 0 0 24px;
+  margin: 0;
   gap: 16px;
   @include mq(md){
     flex-direction: row;
     align-items: center;
 
-  }
-  @include mq(lg){
-    margin: 0 0 48px;
   }
   .c-utm-form__items {
     width: 100%;
@@ -364,5 +361,15 @@
   }
   &:last-child{
     font-weight: 400;
+  }
+}
+.c-utm-validator__results{
+  display: none;
+  margin-top: 24px;
+  @include mq(lg){
+    margin-top: 48px;
+  }
+  &.has-valid-url{
+    display: block;
   }
 }

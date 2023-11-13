@@ -11,7 +11,10 @@ const CampaignURLGenerator = () => {
     setValue,
     formState: { errors },
   } = useForm();
-  const { handleSubmit: handleSubmitUTMForm, register: registerUTMForm , formState: { errors: errorsUTMForm } } = useForm();
+  const { handleSubmit: handleSubmitUTMForm, register: registerUTMForm , formState: { errors: errorsUTMForm } } = useForm({
+    mode: "onSubmit",
+    reValidateMode: "onSubmit",
+  });
   const [state, setState] = useState({
     generatedURL: '',
     generatedChannel: '',
@@ -25,7 +28,6 @@ const CampaignURLGenerator = () => {
 
   const { generatedURL, generatedChannel, campaignSource, campaignID, campaignName, campaignMedium, campaignTerm, campaignContent } = state;
   const helper = CampaignURLGeneratorHelper(state, setState, setValue);
-
 
   const [copyStatus, setCopyStatus] = useState('Copy');
 
@@ -116,8 +118,13 @@ const CampaignURLGenerator = () => {
                     <input
                       type="text"
                       id="campaignMedium"
-                      placeholder='campaign medium'
-                      {...register('campaignMedium', { required: 'This field is required.' })}
+                      {...register('campaignMedium', {
+                        required: 'This field is required.',
+                        pattern: {
+                          value: /^[a-zA-Z0-9_]*$/,
+                          message: 'Please enter a valid Campaign Medium',
+                        },
+                      })}
                     />
                     {errors.campaignMedium && <span className="error">{errors.campaignMedium.message}</span>}
                     <span className='c-utm-field__text'>Your digital marketing medium. Google Analytics has some standard medium types (e.g. paid, email, banner, etc.)</span>
@@ -203,14 +210,14 @@ const CampaignURLGenerator = () => {
                 <button className='c-btn c-btn--utm' type="submit">Submit</button>
               </div>
             </form>
-            <div className="c-utm-validator__results">
+            <div className={`c-utm-validator__results ${!errorsUTMForm.utmURL && campaignSource && campaignMedium ? 'has-valid-url' : ''}`}>
               <div className="c-utm-validator__items">
                 <div className="c-utm-validator__col">Name</div>
                 <div className="c-utm-validator__col">Value</div>
               </div>
               <div className="c-utm-validator__items">
                 <div className="c-utm-validator__col">Default Channel</div>
-                <div className="c-utm-validator__col">{generatedChannel}</div>
+                <div className="c-utm-validator__col">{generatedChannel ? generatedChannel : '-'}</div>
               </div>
               <div className="c-utm-validator__items">
                 <div className="c-utm-validator__col">Campaign ID</div>
@@ -221,12 +228,12 @@ const CampaignURLGenerator = () => {
                 <div className="c-utm-validator__col">{campaignSource ? campaignSource : '-'}</div>
               </div>
               <div className="c-utm-validator__items">
-                <div className="c-utm-validator__col">Campaign Name</div>
-                <div className="c-utm-validator__col">{campaignName ? campaignName : '-'}</div>
-              </div>
-              <div className="c-utm-validator__items">
                 <div className="c-utm-validator__col">Campaign Medium</div>
                 <div className="c-utm-validator__col">{campaignMedium ? campaignMedium : '-'}</div>
+              </div>
+              <div className="c-utm-validator__items">
+                <div className="c-utm-validator__col">Campaign Name</div>
+                <div className="c-utm-validator__col">{campaignName ? campaignName : '-'}</div>
               </div>
               <div className="c-utm-validator__items">
                 <div className="c-utm-validator__col">Campaign Term</div>
@@ -236,7 +243,7 @@ const CampaignURLGenerator = () => {
                 <div className="c-utm-validator__col">Campaign Content</div>
                 <div className="c-utm-validator__col">{campaignContent ? campaignContent : '-'}</div>
               </div>
-            </div>
+            </div>            
           </div>
         </div>
       </div>    
