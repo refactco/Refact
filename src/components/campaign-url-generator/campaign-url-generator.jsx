@@ -122,25 +122,23 @@ const CampaignURLGenerator = () => {
                     {errors.campaignMedium && <span className="error">{errors.campaignMedium.message}</span>}
                     <span className='c-utm-field__text'>Your digital marketing medium. Google Analytics has some standard medium types (e.g. paid, email, banner, etc.)</span>
                   </div>
-                  <div className={`c-utm-form__items ${errors.campaignName ? 'is-error' : ''}`}>
-                    <label htmlFor="campaignName">Campaign Name *</label>
+                  <div className="c-utm-form__items">
+                    <label htmlFor="campaignName">Campaign Name</label>
                     <input type="text" placeholder='campaign name' id="campaignName" 
-                    {...register('campaignName', { required: 'This field is required.' })} />
-                    {errors.campaignName && <span className="error">{errors.campaignName.message}</span>}
+                    {...register('campaignName')} />
                     <span className='c-utm-field__text'>Use Campaign Name to identify this individual campaign (e.g. summer_promo, blackfriday23, etc.)</span>
                   </div>
-                  <div className={`c-utm-form__items ${errors.campaignTerm ? 'is-error' : ''}`}>
-                    <label htmlFor="campaignTerm">Campaign Term *</label>
+                  <div className="c-utm-form__items">
+                    <label htmlFor="campaignTerm">Campaign Term</label>
                     <input type="text" placeholder='campaign term' id="campaignTerm" 
-                    {...register('campaignTerm', { required: 'This field is required.' })} />
+                    {...register('campaignTerm')} />
                     {errors.campaignTerm && <span className="error">{errors.campaignTerm.message}</span>}
                     <span className='c-utm-field__text'>Use Campaign Term to identify the keywords you are using in your Google Ads campaign.</span>
                   </div>
-                  <div className={`c-utm-form__items ${errors.campaignContent ? 'is-error' : ''}`}>
-                    <label htmlFor="campaignContent">Campaign Content *</label>
+                  <div className="c-utm-form__items">
+                    <label htmlFor="campaignContent">Campaign Content</label>
                     <input type="text" placeholder='campaign content' id="campaignContent" 
-                    {...register('campaignContent', { required: 'This field is required.' })} />
-                    {errors.campaignContent && <span className="error">{errors.campaignContent.message}</span>}
+                    {...register('campaignContent')} />
                     <span className='c-utm-field__text'>Use Campaign Content to distinguish different CTAs or other elements in your campaign. Great for A/B testing.</span>
                   </div>
                   <div className="c-utm-form__items">
