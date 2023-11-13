@@ -355,6 +355,30 @@ exports.createPages = async ({ graphql, actions }) => {
                   text
                   subtitle
                 }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
+                  fieldGroupName
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                  fieldGroupName
+                  list {
+                    answer
+                    fieldGroupName
+                    question
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Table {
+                  description
+                  fieldGroupName
+                  title
+                  tableContent {
+                    description
+                    example
+                    fieldGroupName
+                    parameter
+                    required
+                  }
+                }
               }
             }
           }
