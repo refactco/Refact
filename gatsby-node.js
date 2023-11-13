@@ -340,6 +340,26 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      urlBuilderPage : wpPage(slug: {eq: "campaign-url-builder"}) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  title
+                  text
+                  subtitle
+                }
+              }
+            }
+          }
+        }
+      }
     }
   `)
   
@@ -437,6 +457,13 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/tools-resources/`,
       component: path.resolve(`./src/templates/tools-resources.js`),
+    });
+  });
+  const urlBuilder = result.data.urlBuilderPage.template.pageBuilder.pageBuilder;
+  urlBuilder.forEach(({ node }) => {
+    createPage({
+      path: `/campaign-url-builder/`,
+      component: path.resolve(`./src/templates/url-builder.js`),
     });
   });
 }
