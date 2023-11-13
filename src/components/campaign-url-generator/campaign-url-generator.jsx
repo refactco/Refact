@@ -198,11 +198,11 @@ const CampaignURLGenerator = () => {
                   {...registerUTMForm('utmURL', {
                     required: 'UTM URL is required',
                     pattern: {
-                      value: /^((https?:)?\/\/)?[\da-z.-]+\.[a-z.]{2,6}(\/[\w .-]*)*\/?\??((utm_source=[\w-]+&utm_medium=[\w-]+)|(utm_medium=[\w-]+&utm_source=[\w-]+))(&[\w-]+=[\w-]+)*$/,
+                      value: /^(https?:\/\/)?([\da-z.-]+)\.([a-z.]{2,6})([\w.-]*)*\/?(\\?.*utm_source=[\w%.-]+&utm_medium=[\w%.-]+(&[\w%.-]+=[\w%.-]+)*)?(#.*)?$/i,
                       message: 'Please enter a valid UTM URL',
                     },
                   })}
-                />
+                /> 
                 {errorsUTMForm.utmURL && <span className="error">{errorsUTMForm.utmURL.message}</span>}
                 <span className="c-utm-field__text">The full website URL (e.g. https://www.example.com).</span>
               </div>
