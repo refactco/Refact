@@ -243,8 +243,9 @@
     background-color: #fff;
     outline: none;
     width: 100%;
-    color: #002729;
+    color: #798686;
     border: 2px solid #002729;
+    cursor: not-allowed;
     @include mq(lg){
       height: 64px;
     }
@@ -253,20 +254,46 @@
 .c-btn__icon{
   display: flex;
 }
-
+.c-utm-validate__err{
+  display: none;
+  font-family: $inter;
+  font-weight: bold;
+  @include font-size(14px, 1.4);
+}
 .c-utm-validate-box{
+  position: sticky;
+  top: 50px;
   display: flex;
   flex-direction: column;
   gap: 8px;
   align-items: flex-start;
   padding: 16px;
-  border: 2px solid #C6F0C2;
-  background-color: #E5F7E3;
+  border: 2px solid #798686;
+  background-color: #F2F3F3;
+  &.is-valid{
+    border-color: #C6F0C2;
+    background-color: #E5F7E3;
+    .c-utm-validate__text{
+      display: block;
+    }
+  }
+  &.is-invalid{
+    background-color: #F0DEC2;
+    border-color: #664819;
+    .c-utm-validate__text{
+      display: none;
+    }
+    .c-utm-validate__err{
+      display: block;
+    }
+  }
   @include mq(md){
     padding: 24px;
+    min-height: 110px;
   }
 }
 .c-utm-validate__text{
+  display: none;
   @include font-size(14px, 1.4);
   color: #003233;
   font-weight: 400;

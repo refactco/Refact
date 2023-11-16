@@ -89,7 +89,7 @@ const CampaignURLGenerator = () => {
                       {...register('websiteUrl', {
                         required: 'This field is required.',
                         pattern: {
-                          value: /^(https?:\/\/)([\da-z.-]+)\.([a-z.]{2,6})([/\w .-]*)*(\?[\w&=.%-]*)?(#[\w-]*)?$/,
+                          value: /https?:\/\/(www\.[a-zA-Z0-9@:%._+~#=]{2,}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)|(?!www)[a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*))/,
                           message: 'Please enter a valid Website URL',
                         },
                       })}
@@ -99,7 +99,7 @@ const CampaignURLGenerator = () => {
                   </div>
                   <div className="c-utm-form__items">
                     <label htmlFor="campaignID">Campaign ID</label>
-                    <input type="text" placeholder='123' id="campaignID" {...register('campaignID')} />
+                    <input type="text" placeholder='abc.123' id="campaignID" {...register('campaignID')} />
                     <span className='c-utm-field__text'>You can enter the ID from your Google Ads campaign here to track it.</span>
                   </div>
                   <div className={`c-utm-form__items ${errors.campaignSource ? 'is-error' : ''}`}>
@@ -121,9 +121,9 @@ const CampaignURLGenerator = () => {
                       {...register('campaignMedium', {
                         required: 'This field is required.',
                         pattern: {
-                          value: /^[a-zA-Z0-9_]*$/,
+                          value: /^(\(not set\)|\(none\)|.*cp.*|ppc|retargeting|paid.*|display|banner|expandable|interstitial|cpm|social|social-network|social-media|sm|social network|social media|.*video.*|organic|referral|app|link|email|e-mail|e_mail|e mail|affiliate|audio|SMS|.*mobile.*|.*notification.*)$/i,
                           message: 'Please enter a valid Campaign Medium',
-                        },
+                        }
                       })}
                     />
                     {errors.campaignMedium && <span className="error">{errors.campaignMedium.message}</span>}
@@ -154,19 +154,17 @@ const CampaignURLGenerator = () => {
                 </form>
               </div>
               <div className="c-utm-builder__col">
-              {generatedURL && (
-                  <div className='c-utm-validate-box'>
-                    <div className="c-utm-validate__text">
-                      Valid UTM. Detected the following channel:
-                    </div>
-                    {/* <div className="c-utm-validate__err">
-                      Invalid UTM
-                    </div> */}
-                    <div className="c-utm-validate__channel">
-                      {generatedChannel}
-                    </div>
+                <div className={`c-utm-validate-box ${generatedChannel === 'Other' ? 'is-invalid' : generatedChannel ? 'is-valid' : ''}`}>
+                  <div className="c-utm-validate__text">
+                    Valid UTM. Detected the following channel:
                   </div>
-                )}
+                  <div className="c-utm-validate__err">
+                    Invalid UTM
+                  </div>
+                  <div className="c-utm-validate__channel">
+                    {generatedChannel === 'Other' ? 'Unknown' : generatedChannel}
+                  </div>
+                </div>
               </div>
             </div>
             <div className="c-utm-box">
@@ -204,7 +202,7 @@ const CampaignURLGenerator = () => {
                   })}
                 /> 
                 {errorsUTMForm.utmURL && <span className="error">{errorsUTMForm.utmURL.message}</span>}
-                <span className="c-utm-field__text">The full website URL (e.g. https://www.example.com).</span>
+                <span className="c-utm-field__text">The full UTM URL (e.g. https://www.example.com).</span>
               </div>
               <div className="c-utm-form__items">
                 <button className='c-btn c-btn--utm' type="submit">Submit</button>
