@@ -231,7 +231,7 @@ const CampaignURLGenerator = () => {
                   })}
                 /> 
                 {errorsUTMForm.utmURL && <span className="error">{errorsUTMForm.utmURL.message}</span>}
-                <span className="c-utm-field__text">The full UTM URL (e.g. https://www.example.com).</span>
+                <span className="c-utm-field__text">The full UTM URL (e.g. https://example.com/page?utm_source=facebook&utm_medium=paid&utm_campaign=summer-sale).</span>
               </div>
               <div className="c-utm-form__items">
                 <button className='c-btn c-btn--utm' type="submit">Submit</button>
