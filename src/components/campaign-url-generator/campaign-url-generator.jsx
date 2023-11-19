@@ -154,7 +154,7 @@ const CampaignURLGenerator = () => {
                 </form>
               </div>
               <div className="c-utm-builder__col">
-                <div className={`c-utm-validate-box ${generatedChannel === 'Other' ? 'is-invalid' : generatedChannel ? 'is-valid' : ''}`}>
+                <div className={`c-utm-validate-box ${generatedChannel === 'Other' ? 'is-invalid' : generatedChannel ? 'is-valid' : 'is-pending'}`}>
                   {generatedChannel === 'Other' ? 
                   <>
                     <div className="c-utm-validate__err">
@@ -168,6 +168,7 @@ const CampaignURLGenerator = () => {
                     </div>
                   </>
                   : 
+                  generatedChannel ?
                   <>
                     <div className="c-utm-validate__text">
                       Channel:
@@ -177,6 +178,18 @@ const CampaignURLGenerator = () => {
                     </div>
                     <div className="c-utm-validate__text is-text">
                       UTM parameters verified! The following GA4 default channel is assigned: {generatedChannel}. Your campaign tracking is on target.
+                    </div>
+                  </>
+                  :
+                  <>
+                    <div className="c-utm-validate__text">
+                      Channel:
+                    </div>
+                    <div className="c-utm-validate__channel">
+                      Pending
+                    </div>
+                    <div className="c-utm-validate__text is-text">
+                      Awaiting UTM submission. Enter details to validate against GA4 default channels.
                     </div>
                   </>
                   }

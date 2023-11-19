@@ -302,6 +302,13 @@
       color: #664819;
     }
   }
+  &.is-pending{
+    background-color: #F2F3F3;
+    border-color: #798686;
+    .c-utm-validate__text{
+      display: block;
+    }
+  }
   @include mq(md){
     padding: 24px;
     min-height: 110px;
