@@ -259,6 +259,13 @@
   font-family: $inter;
   font-weight: bold;
   @include font-size(14px, 1.4);
+  a{
+    color: #664819;
+    transition: color 0.25s ease-in-out;
+    &:hover{
+      color: darken(#664819, 10%);
+    }
+  }
   &.is-text{
     @include font-size(13px, 1.4);
     font-weight: 400;

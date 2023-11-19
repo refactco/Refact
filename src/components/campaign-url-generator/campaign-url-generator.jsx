@@ -164,7 +164,7 @@ const CampaignURLGenerator = () => {
                       {generatedChannel === 'Other' ? 'Unassigned' : generatedChannel}
                     </div>
                     <div className="c-utm-validate__err is-text">
-                      UTM parameters don’t align with GA4 default channels. Please review for accuracy or assign a custom channel.
+                      UTM parameters don’t align with GA4 default channels. Please review for accuracy or <a href='https://support.google.com/analytics/answer/13051316?hl=en' target='_blank' rel="noreferrer">assign a custom channel</a>.
                     </div>
                   </>
                   : 
