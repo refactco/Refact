@@ -285,6 +285,10 @@
     }
     .c-utm-validate__err{
       display: block;
+      color: #664819;
+    }
+    .c-utm-validate__channel{
+      color: #664819;
     }
   }
   @include mq(md){
@@ -364,11 +368,18 @@
       font-weight: 600;
     }
   }
-  &:nth-child(2){
+  &.is-valid{
     background-color: #E5F7E3;
     .c-utm-validator__col{
       font-weight: 600;
       color: #2E9E62;
+    }
+  }
+  &.is-invalid{
+    background-color: #F0DEC2;
+    .c-utm-validator__col{
+      font-weight: 600;
+      color: #664819;
     }
   }
   &:last-child{

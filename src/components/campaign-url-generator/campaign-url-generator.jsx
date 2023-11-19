@@ -121,7 +121,7 @@ const CampaignURLGenerator = () => {
                       {...register('campaignMedium', {
                         required: 'This field is required.',
                         pattern: {
-                          value: /^(\(not set\)|\(none\)|.*cp.*|ppc|retargeting|paid.*|display|banner|expandable|interstitial|cpm|social|social-network|social-media|sm|social network|social media|.*video.*|organic|referral|app|link|email|e-mail|e_mail|e mail|affiliate|audio|SMS|.*mobile.*|.*notification.*)$/i,
+                          value: /^[a-zA-Z0-9_]*$/,
                           message: 'Please enter a valid Campaign Medium',
                         }
                       })}
@@ -213,7 +213,7 @@ const CampaignURLGenerator = () => {
                 <div className="c-utm-validator__col">Name</div>
                 <div className="c-utm-validator__col">Value</div>
               </div>
-              <div className="c-utm-validator__items">
+              <div className={`c-utm-validator__items ${generatedChannel === 'Other' ? 'is-invalid' : generatedChannel ? 'is-valid' : ''}`}>
                 <div className="c-utm-validator__col">Default Channel</div>
                 <div className="c-utm-validator__col">{generatedChannel ? generatedChannel : '-'}</div>
               </div>
