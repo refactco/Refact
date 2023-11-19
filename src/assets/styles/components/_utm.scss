@@ -259,13 +259,17 @@
   font-family: $inter;
   font-weight: bold;
   @include font-size(14px, 1.4);
+  &.is-text{
+    @include font-size(13px, 1.4);
+    font-weight: 400;
+  }
 }
 .c-utm-validate-box{
   position: sticky;
   top: 50px;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 4px;
   align-items: flex-start;
   padding: 16px;
   border: 2px solid #798686;
@@ -300,15 +304,19 @@
   display: none;
   @include font-size(14px, 1.4);
   color: #003233;
-  font-weight: 400;
+  font-weight: 600;
   margin: 0;
+  &.is-text{
+    @include font-size(13px, 1.4);
+    font-weight: 400;
+  }
 }
 .c-utm-validate__channel{
   font-family: $inter;
   @include font-size(18px, 1.44);
   font-weight: 600;
   color: #002729;
-  margin: 0;
+  margin: 0 0 4px;
   @include mq(md){
     @include font-size(23px, 1.47);
   }

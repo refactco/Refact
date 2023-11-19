@@ -155,15 +155,31 @@ const CampaignURLGenerator = () => {
               </div>
               <div className="c-utm-builder__col">
                 <div className={`c-utm-validate-box ${generatedChannel === 'Other' ? 'is-invalid' : generatedChannel ? 'is-valid' : ''}`}>
-                  <div className="c-utm-validate__text">
-                    Valid UTM. Detected the following channel:
-                  </div>
-                  <div className="c-utm-validate__err">
-                    Invalid UTM
-                  </div>
-                  <div className="c-utm-validate__channel">
-                    {generatedChannel === 'Other' ? 'Unknown' : generatedChannel}
-                  </div>
+                  {generatedChannel === 'Other' ? 
+                  <>
+                    <div className="c-utm-validate__err">
+                      Channel:
+                    </div>
+                    <div className="c-utm-validate__channel">
+                      {generatedChannel === 'Other' ? 'Unassigned' : generatedChannel}
+                    </div>
+                    <div className="c-utm-validate__err is-text">
+                      UTM parameters don’t align with GA4 default channels. Please review for accuracy or assign a custom channel.
+                    </div>
+                  </>
+                  : 
+                  <>
+                    <div className="c-utm-validate__text">
+                      Channel:
+                    </div>
+                    <div className="c-utm-validate__channel">
+                      {generatedChannel === 'Other' ? 'Unassigned' : generatedChannel}
+                    </div>
+                    <div className="c-utm-validate__text is-text">
+                      UTM parameters verified! The following GA4 default channel is assigned: {generatedChannel}. Your campaign tracking is on target.
+                    </div>
+                  </>
+                  }
                 </div>
               </div>
             </div>
@@ -215,7 +231,7 @@ const CampaignURLGenerator = () => {
               </div>
               <div className={`c-utm-validator__items ${generatedChannel === 'Other' ? 'is-invalid' : generatedChannel ? 'is-valid' : ''}`}>
                 <div className="c-utm-validator__col">Default Channel</div>
-                <div className="c-utm-validator__col">{generatedChannel ? generatedChannel : '-'}</div>
+                <div className="c-utm-validator__col">{generatedChannel ? generatedChannel === 'Other' ? 'Unassigned' : generatedChannel : '-'}</div>
               </div>
               <div className="c-utm-validator__items">
                 <div className="c-utm-validator__col">Campaign ID</div>
