@@ -7,7 +7,7 @@ const CaseStudyPosts = ({ caseStudies }) => (
   <ContainerBox className="c-section--project">
     <div className="c-projects">
       <div className="c-project__items">
-        {caseStudies.map((node, index) => (
+          {caseStudies && caseStudies.map((node, index) => (
           <div className="c-project__item" key={index}>
             {node.cta.target === '_blank' ? 
             <a href={node.cta.url} className="c-project__img" target='_blank' rel="nofollow, noreferrer" >
