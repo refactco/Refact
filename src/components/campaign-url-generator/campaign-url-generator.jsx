@@ -108,7 +108,13 @@ const CampaignURLGenerator = () => {
                       type="text"
                       id="campaignSource"
                       placeholder='campaign source'
-                      {...register('campaignSource', { required: 'This field is required.' })}
+                      {...register('campaignSource', { 
+                        required: 'This field is required.',
+                        pattern: {
+                          value: /^[a-zA-Z0-9_().]*$/,
+                          message: 'Please enter a valid Campaign Source'
+                        }
+                      })}
                     />
                     {errors.campaignSource && <span className="error">{errors.campaignSource.message}</span>}
                     <span className='c-utm-field__text'>The website or platform that will drive traffic to your URL.</span>
