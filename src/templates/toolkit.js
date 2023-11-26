@@ -3,7 +3,7 @@ import { Link, graphql } from "gatsby"
 import Seo from "../components/seo/seo"
 import ContainerBox from "../components/container-box/container-box"
 import { GatsbyImage } from "gatsby-plugin-image"
-import LayoutLanding from "../components/layout-landing/layout"
+import Layout from "../components/layout/layout"
 
 const ToolsPage = ({data}) => {
   const toolsContent = data.wpPage.template.pageBuilder.pageBuilder;
@@ -11,7 +11,7 @@ const ToolsPage = ({data}) => {
 
 
   return (
-    <LayoutLanding>
+    <Layout>
       {toolsSection && (
         <ContainerBox className="c-section--tools">
           <div className="c-tools">
@@ -44,7 +44,17 @@ const ToolsPage = ({data}) => {
                       </div>
                     )}
                     <div className="c-tools-item__info">
-                      <h2 className="c-tools__item-title">{item.title}</h2>
+                      <h2 className="c-tools__item-title">
+                      {item.cta.target === '_blank' ?
+                        <a href={item.cta.url} target={item.cta.target} rel="noopener noreferrer">
+                          {item.title}
+                        </a>
+                        :
+                        <Link to={item.cta.url}>
+                          {item.title}
+                        </Link>
+                      }
+                      </h2>
                       {item.description && (
                         <div className="c-tools__item-desc" dangerouslySetInnerHTML={{__html:item.description}}></div>
                       )}
@@ -77,7 +87,7 @@ const ToolsPage = ({data}) => {
           </div>
         </ContainerBox>
       )}
-    </LayoutLanding>
+    </Layout>
   )
 }
 
@@ -88,13 +98,14 @@ export function Head({ data }) {
   return (
     <>
       <Seo title="Tools & Resources | Refact" description={post.content} />
+      <body className="is-toolkit-page" />
     </>
   )
 }
 
 export const pageQuery = graphql`
   query {
-    wpPage(slug: {eq: "tools-resources"}) {
+    wpPage(slug: {eq: "toolkit"}) {
       id
       content
       template {

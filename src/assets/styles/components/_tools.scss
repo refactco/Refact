@@ -98,6 +98,15 @@
   @include mq(lg){
     @include font-size(23px, 1.47);
   }
+  a{
+    color: var(--color-text);
+    text-decoration: none;
+    transition: color 0.25s ease-in-out;
+    &:hover{
+      color: var(--color-primary-s);
+    }
+  
+  }
 }
 .c-tools__item-desc{
   @include font-size(14px, 1.57);

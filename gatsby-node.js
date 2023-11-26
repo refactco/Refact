@@ -302,7 +302,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      toolsPage : wpPage(slug: {eq: "tools-resources"}) {
+      toolsPage : wpPage(slug: {eq: "toolkit"}) {
         id
         content
         template {
@@ -479,8 +479,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const toolsResources = result.data.toolsPage.template.pageBuilder.pageBuilder;
   toolsResources.forEach(({ node }) => {
     createPage({
-      path: `/tools-resources/`,
-      component: path.resolve(`./src/templates/tools-resources.js`),
+      path: `/toolkit/`,
+      component: path.resolve(`./src/templates/toolkit.js`),
     });
   });
   const urlBuilder = result.data.urlBuilderPage.template.pageBuilder.pageBuilder;
