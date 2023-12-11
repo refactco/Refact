@@ -4,9 +4,37 @@
     position: relative;
     margin: 0 0 -1px;
     transition: background-color 0.25s ease-in-out;
+    z-index: 9999;
+    &::before{
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        background-color: var(--color-white);
+        top: 0;
+        left: 0;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.25s ease-in-out;
+    }
+    &::after{
+        content: '';
+        position: absolute;
+        width: 50%;
+        height: 100%;
+        background-color: var(--color-cultred);
+        top: 0;
+        right: 0;
+        z-index: 1;
+        opacity: 0;
+        transition: opacity 0.25s ease-in-out;
+    }
     @media (max-width: 767px){
         z-index: 9999;
         transition: background-color 0.25s ease-in-out;
+        &::before, &::after{
+            display: none;
+        }
     }
     @include mq(md) {
         padding: 2em 0;
@@ -16,6 +44,10 @@
         max-width: calc(1440px - 2em);
     }
     &.is-active{
+        background-color: var(--color-white);
+        &::before, &::after{
+            opacity: 1;
+        }
         @media (max-width: 767px){
             background-color: var(--color-white);
         }
@@ -137,6 +169,10 @@
     margin: 0 auto;
     @include mq(md){
         max-width: 357px;
+        padding: 126px 0 0;
+    }
+    @include mq(xl){
+        margin-right: 204px;
         padding: 166px 0 0;
     }
 }
@@ -148,12 +184,12 @@
         margin-bottom: 24px;
     }
     @include mq(md){
-        padding: 166px 16px 161px 40px;
+        padding: 126px 16px 161px 40px;
         .c-header-wrap__text{
             margin-bottom: 32px;
         }
     }
-    @include mq(lg){
+    @include mq(xl){
         padding: 166px 16px 161px 90px;
     }
 }
@@ -173,7 +209,7 @@
     padding: 0 0 24px;
     list-style: none;
     border-bottom: 1px solid var(--color-gains);
-    @include mq(md){
+    @media (min-width: 1800px){
         gap: 32px;
         margin: 0 0 32px;
         padding: 0 0 32px;
@@ -190,7 +226,7 @@
             @include font-size(32px, 1.18);
             position: relative;
             transition: color 0.25s ease-in-out;
-            @include mq(md) {
+            @include mq(lg) {
                 @include font-size(48px, 1.2);
             }
         }
@@ -237,7 +273,7 @@
             font-family: $inter;
             @include font-size(18px, 1.5);
             font-weight: 600;
-            @include mq(md){
+            @include mq(lg){
                 @include font-size(23px, 1.47);
             }
         }
@@ -285,7 +321,7 @@
     letter-spacing: 3px;
     color: var(--color-grey);
     margin: 0 0 16px;
-    @include mq(md){
+    @include mq(xl){
         @include font-size(13px, 1.84);
         margin: 0 0 32px;
     }
