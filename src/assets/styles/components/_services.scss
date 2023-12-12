@@ -234,7 +234,6 @@
 }
 .c-work-testimonial__text{
   display: flex;
-  flex-direction: column;
   align-items: flex-start;
   gap: 16px;
   font-family: $sentient;
@@ -247,13 +246,14 @@
     @include font-size(30px, 1.33);
   }
   span{
+    width: calc(100% - 40px);
     @include mq(md){
       width: calc(100% - 80px);
     }
   }
 }
 .c-work-testimonial__quote{
-  width: 50px;
+  width: 40px;
   height: 30px;
   @include mq(md){
     width: 80px;
@@ -266,12 +266,9 @@
 .c-work-testimonial__info{
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   width: 100%;
-  @include mq(md){
-    align-items: center;
-  }
   &::before{
     content: '';
     width: 100%;
@@ -280,8 +277,8 @@
     background-color: var(--color-gains);
     display: flex;
     justify-content: center;
-    margin-top: 16px;
-    margin-bottom: 16px;
+    margin-top: 24px;
+    margin-bottom: 24px;
     @include mq(md){
       margin-top: 32px;
       margin-bottom: 32px;
@@ -416,5 +413,18 @@
     .c-services-sidebar__link{
       background-color: var(--color-cultred);
     }
+  }
+}
+
+.c-section--featured-testimonial{
+  padding: 48px 0;
+  &.is-testimonial-0{
+    padding-bottom: 0;
+  }
+  &.is-testimonial-1{
+    padding-top: 0;
+  }
+  @include mq(md){
+    padding: 156px 0;
   }
 }

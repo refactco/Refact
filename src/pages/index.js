@@ -1,10 +1,9 @@
-import { useStaticQuery, graphql } from 'gatsby';
+import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import CompanyLogo from '../components/company-logo/company-logo';
 import { PopupButton } from "react-calendly";
-import Slider from "react-slick";
 import Seo from '../components/seo/seo';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import CompanyLogoReverse from '../components/company-logo/company-logo-reverse';
@@ -70,16 +69,12 @@ const Homepage = () => {
                     url
                   }
                 }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Testimonials {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
                   fieldGroupName
-                  title
-                  testimonialsList {
-                    fieldGroupName
-                    logo
-                    name
-                    position
-                    text
-                  }
+                  logo
+                  name
+                  position
+                  text
                 }
               }
             }
@@ -92,18 +87,8 @@ const Homepage = () => {
   const heroSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero');
   const capabilitiesSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites');
   const projectsSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Project');
-  const testimonialsSection = pageBuilder.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Testimonials');
+  const testimonials = pageBuilder.filter(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial');
 
-  const settings = {
-    speed: 500,
-    infinite: true,
-    arrows: false,
-    dots: true,
-    autoplay: true,
-    autoplaySpeed: 5000,
-    slidesToShow: 1,
-    slidesToScroll: 1
-  };
   return (
     <Layout>
       {heroSection && (
@@ -155,68 +140,98 @@ const Homepage = () => {
           </div>
         </ContainerBox>
       )}
-      {projectsSection && (
-        <ContainerBox className='c-section--project'>
-          <div className="c-project">
-            {projectsSection.projectList && (
-              <div className="c-project__items">
-                {projectsSection.projectList.map((project, index) => (
-                  <div className='c-project__item' key={index}>
-                    <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className="c-project__img">
-                      <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
-                    </a>
-                    <h5 className='c-project__title'>{project.title}</h5>
-                    <div className='c-project__text'>{project.description}</div>
-                    <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-btn--secondary'>
-                      {project.cta.title}
-                      <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                      <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                      </svg>
-                    </a>
-                  </div>
-                ))}
+      {testimonials.map((testimonial, index) => (
+       <React.Fragment key={index}>
+        <ContainerBox className={`c-section--featured-testimonial is-testimonial-${index}`}>
+          <div className="c-work__testimonial">
+            <div className="c-work-testimonial__text">
+              <div className="c-work-testimonial__quote">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" fill="none" viewBox="0 0 80 60">
+                  <path fill="#C6F0C2" d="m25 10 5-10H20C8.95 0 0 13.95 0 25v35h35V25H15c0-15 10-15 10-15Zm35 15c0-15 10-15 10-15l5-10H65C53.95 0 45 13.95 45 25v35h35V25H60Z"/>
+                </svg>
               </div>
-            )}
+              <span>{testimonial.text}</span>
+            </div>
+            <div className="c-work-testimonial__info">
+              {testimonial.logo && (
+                <div className="c-work-testimonial__logo" dangerouslySetInnerHTML={{__html: testimonial.logo}}></div>
+              )}
+              {testimonial.name && (
+                <div className="c-work-testimonial__name">{testimonial.name}</div>
+              )}
+              {testimonial.position && (
+                <div className="c-work-testimonial__position">{testimonial.position}</div>
+              )}
+            </div>
           </div>
         </ContainerBox>
-      )}
-      {testimonialsSection && (
-          <ContainerBox className='c-section--testimonials'>
-            <div className="c-testimonials">
-              {testimonialsSection.title && (
-                <h3 className="c-section__title">{testimonialsSection.title}</h3>
-              )}
-              {testimonialsSection.testimonialsList && (
-                <Slider {...settings} className="c-testimonials__items">
-                  {testimonialsSection.testimonialsList.map((item, index) => (
-                    <div className="c-testimonials__item" key={index}>
-                      <div className="c-testimonials__text">
-                        <svg width="80" viewBox="0 0 80 60" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="m25 10 5-10H20C8.95 0 0 13.95 0 25v35h35V25H15c0-15 10-15 10-15Zm35 15c0-15 10-15 10-15l5-10H65C53.95 0 45 13.95 45 25v35h35V25H60Z" fill="#C6F0C2"/></svg>
-                        <div>{item.text}</div>
+        {index === 0 && projectsSection && (
+          <ContainerBox className='c-section--project'>
+            <div className="c-project">
+              {projectsSection.projectList && (
+                <div className="c-project__items">
+                  {projectsSection.projectList.map((project, index) => {
+                    let imgClasses = "c-project__img media media--hover-effect";
+
+                    // Add specific classes based on index
+                    if (index === 0 || index === 4) {
+                      imgClasses += " media--square";
+                    } else if (index === 2) {
+                      imgClasses += " media--landscape";
+                    } else {
+                      imgClasses += " media--box";
+                    }
+                    return(
+                      <div className={`c-project__item c-project__item-${index}`} key={index}>
+                        {project.cta.target === '_blank' ?
+                          <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className={imgClasses}>
+                            <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
+                          </a>
+                          :
+                          <Link to={project.cta.url} className={imgClasses}>
+                            <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
+                          </Link>
+                        }
+                        <h5 className='c-project__title'>
+                        {project.cta.target === '_blank' ?
+                          <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-link c-link--blog'>
+                          {project.title}
+                          </a>
+                          :
+                          <Link to={project.cta.url} className='c-link c-link--blog'>
+                          {project.title}
+                          </Link>
+                        }
+                        </h5>
+                        <div className='c-project__text'>{project.description}</div>
+                        {project.cta.target === '_blank' ?
+                          <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-btn--secondary'>
+                            {project.cta.title}
+                            <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="12" fill="#59CC51"/>
+                              <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                            </svg>
+                          </a>
+                          :
+                          <Link to={project.cta.url} className='c-btn--secondary'>
+                            {project.cta.title}
+                            <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="12" fill="#59CC51"/>
+                              <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                            </svg>
+                          </Link>
+                        }
+                        
                       </div>
-                      <div className="c-testimonials__customers">
-                        {item.logo && (
-                          <div className="c-customers__logo" dangerouslySetInnerHTML={{__html:item.logo}}></div>
-                        )}
-                        {item.name && (
-                          <div className="c-customers__name">
-                            {item.name}
-                          </div>
-                        )}
-                        {item.position && (
-                          <div className="c-customers__name c-customers__name--position">
-                            {item.position}
-                          </div>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </Slider>
+                    )
+                  })}
+                </div>
               )}
             </div>
           </ContainerBox>
         )}
+       </React.Fragment>
+    ))}
     </Layout>
   )
 }
