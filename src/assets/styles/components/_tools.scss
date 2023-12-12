@@ -46,9 +46,20 @@
   border-radius: 8px;
   padding: 16px;
   gap: 16px;
+  height: 100%;
+  justify-content: space-between;
   @include mq(lg){
     padding: 24px;
     border-radius: 16px;
+    gap: 32px;
+  }
+}
+.c-tools__details{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  @include mq(lg){
     gap: 32px;
   }
 }
@@ -121,7 +132,24 @@
 }
 .c-tools-item__cta{
   display: flex;
-  align-items: flex-start;
+  align-items: center;
+  gap: 32px;
+  .c-btn--secondary{
+    height: 48px;
+    @include mq(lg){
+      height: 64px;
+    }
+  }
+}
+.c-btn--github{
+  display: flex;
+  align-items: center;
+  height: 48px;
+  gap: 12px;
+  padding: 10px 24px;
+  @include mq(lg){
+    height: 64px;
+  }
 }
 .c-tools__item{
   margin-bottom: 16px;

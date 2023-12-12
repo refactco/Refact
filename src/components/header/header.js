@@ -228,10 +228,10 @@ const Header  = () => {
               <div className="c-header__col">
               {typeof window !== 'undefined' && (
                 <div className='c-header-cta'>
-                  <a href='#' style={{ display: "block", margin: "0 auto" }}
-                  onClick={handleLinkClick}>
-                    Work with Us
-                  </a>
+                  <button style={{ display: "block", margin: "0 auto" }}
+                    onClick={handleLinkClick}>
+                      Work with Us
+                    </button>
                   <PopupModal
                     url="https://calendly.com/saeedreza/30min"
                     rootElement={document.body}

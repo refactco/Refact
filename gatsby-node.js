@@ -322,6 +322,7 @@ exports.createPages = async ({ graphql, actions }) => {
                       title
                       url
                     }
+                    github
                     description
                     fieldGroupName
                     image {

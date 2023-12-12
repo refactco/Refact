@@ -377,12 +377,17 @@
     @include mq(md){
         display: flex;
     }
-    a{
+    button{
         @include font-size(16px, 1.5);
         color: var(--color-white);
         font-weight: 600;
         font-family: $inter;
         text-decoration: none;
+        background: transparent;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 0;
         transition: color .25s linear 0s;
         &:hover {
             color: var(--color-primary-l);
