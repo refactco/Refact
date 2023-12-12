@@ -326,9 +326,9 @@
 
 .c-career__sidebar-wrapper {
   position: sticky;
-  top: 1rem;
-
-  .admin-bar & {
-    top: 2.5rem;
+  top: 5rem;
+  transition: top 0.15s ease-out;
+  .has-sticky-header &{
+    top: 1em;
   }
 }

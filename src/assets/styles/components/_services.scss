@@ -364,11 +364,15 @@
 
 .c-services__sidebar{
   position: sticky;
-  top: 3em;
+  top: 6em;
   display: none;
   flex-direction: column;
   align-items: flex-start;
   gap: 24px;
+  transition: top 0.15s ease-out;
+  .has-sticky-header &{
+    top: 3em;
+  }
   @include mq(lg){
     display: flex;
   }
