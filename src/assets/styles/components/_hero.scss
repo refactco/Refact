@@ -150,6 +150,12 @@
         -webkit-transition-timing-function: linear !important;
         transition-timing-function: linear !important;
         position: relative;
+        &.c-clients-slider-reverse{
+            display: none;
+            @include mq(md){
+                display: flex;
+            }
+        }
     }
     swiper-slide{
         // width: auto !important;

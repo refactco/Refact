@@ -14,6 +14,7 @@ const CompanyLogoReverse = () => {
       autoplay-delay={-0}
       autoplay-reverse-direction={true}
       autoplay-disable-on-interaction={false}
+      class="c-clients-slider-reverse"
       breakpoints='{
         "380": {"slidesPerView": 1.8, "spaceBetween": 10},
         "480": {"slidesPerView": 2.3, "spaceBetween": 10},
