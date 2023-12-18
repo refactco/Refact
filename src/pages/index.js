@@ -171,7 +171,7 @@ const Homepage = () => {
               {projectsSection.projectList && (
                 <div className="c-project__items">
                   {projectsSection.projectList.map((project, index) => {
-                    let imgClasses = "c-project__img media media--hover-effect";
+                    let imgClasses = "c-project__imgs media media--hover-effect";
 
                     // Add specific classes based on index
                     if (index === 0 || index === 4) {
