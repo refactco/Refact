@@ -209,6 +209,44 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      beehiivPage: wpPage(slug: {eq: "re-beehiiv"}) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Hero {
+                  fieldGroupName
+                  svgLogo
+                  title
+                  text
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  githubUrl {
+                    target
+                    title
+                    url
+                  }
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       workPage: wpPage(slug: {eq: "work"}) {
         id
         content
@@ -468,6 +506,13 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/survey/`,
       component: path.resolve(`./src/templates/survey.js`),
+    });
+  });
+  const beehiiv = result.data.beehiivPage.template.pageBuilder.pageBuilder;
+  beehiiv.forEach(({ node }) => {
+    createPage({
+      path: `/re-beehiiv/`,
+      component: path.resolve(`./src/templates/re-beehiiv.js`),
     });
   });
   const ourWork = result.data.workPage.template.pageBuilder.pageBuilder;

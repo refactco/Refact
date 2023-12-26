@@ -37,6 +37,7 @@
     "react-dom": "^18.2.0",
     "react-hook-form": "^7.48.2",
     "react-slick": "^0.29.0",
+    "react-tooltip": "^5.25.0",
     "sanitize-html": "^2.10.0",
     "sass": "^1.63.4",
     "slick-carousel": "^1.8.1",
