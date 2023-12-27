@@ -595,6 +595,28 @@
       margin-bottom: 40px;
     }
   }
+  &.is-beehiiv{
+    padding: 1.5rem 0 3rem;
+    @include mq(lg){
+      padding: 5rem 0 10rem;
+    }
+    .c-section__title{
+      font-family: $inter;
+      font-weight: 600;
+    }
+    .c-section--center{
+      margin-bottom: 1.5rem;
+      @include mq(lg){
+        margin-bottom: 2.5rem;
+      }
+    }
+    .c-faq__items{
+      padding: 1rem;
+      &.is-active{
+        padding: 1rem;
+      }
+    }
+  }
 }
 
 .c-faqs{
@@ -677,5 +699,14 @@
   }
   @include mq(md){
     @include font-size(19px, 1.47);
+  }
+  a {
+    color: var(--color-primary-sh);
+    transition: all 0.25s ease-in-out;
+    text-decoration: underline;
+
+    &:hover {
+      color: var(--color-primary-l);
+    }
   }
 }

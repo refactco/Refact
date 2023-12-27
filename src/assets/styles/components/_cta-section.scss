@@ -16,6 +16,14 @@
         flex-direction: row;
         align-items: flex-start;
     }
+    &.c-cta--beehiiv{
+        justify-content: center;
+        align-items: center;
+        margin-top: 1.5rem;
+        @include mq(md){
+            margin-top: 3rem;
+        }
+    }
 }
 
 .c-cta__title {

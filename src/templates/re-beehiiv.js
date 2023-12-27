@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import { graphql } from "gatsby"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
@@ -6,6 +6,7 @@ import ContainerBox from "../components/container-box/container-box"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Tooltip } from 'react-tooltip'
 import Slider from "react-slick"
+import { PopupButton } from "react-calendly"
 
 
 const BeehiivPage = ({data}) => {
@@ -17,6 +18,9 @@ const BeehiivPage = ({data}) => {
       'Template_PageBuilder_Pagebuilder_PageBuilder_TextSection'
     );
   const featureSlides = beehiivContent.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_FeatureSlides');
+  const faqsSection = beehiivContent.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Faqs');
+  const textButton = beehiivContent.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_TextButton');
+  const testimonialsSection = beehiivContent.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Testimonials');
   const settings = {
     customPaging: function(i) {
       return (
@@ -33,6 +37,47 @@ const BeehiivPage = ({data}) => {
     slidesToScroll: 1,
     adaptiveHeight: true
   };
+
+  const settingTestimonials = {
+    speed: 500,
+    infinite: true,
+    arrows: false,
+    dots: true,
+    autoplay: true,
+    autoplaySpeed: 5000,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+  const [activeIndices, setActiveIndices] = useState([0]);
+
+  const handleFaqClick = (index) => {
+    setActiveIndices((prevIndices) =>
+      prevIndices.includes(index)
+        ? prevIndices.filter((item) => item !== index)
+        : [...prevIndices, index]
+    );
+  };
+  useEffect(() => {
+    const updateMaxHeight = () => {
+      activeIndices.forEach((index) => {
+        const answerElement = document.getElementById(`answer-${index}`);
+        if (answerElement) {
+          answerElement.style.maxHeight = `${answerElement.scrollHeight}px`;
+        }
+      });
+
+      faqsSection.list.forEach((faq, index) => {
+        if (!activeIndices.includes(index)) {
+          const answerElement = document.getElementById(`answer-${index}`);
+          if (answerElement) {
+            answerElement.style.maxHeight = "0";
+          }
+        }
+      });
+    };
+
+    updateMaxHeight();
+  }, [activeIndices, faqsSection.list]);
   return (
     <Layout>
       {heroSection && (
@@ -146,6 +191,111 @@ const BeehiivPage = ({data}) => {
         )}
         </React.Fragment>
       ))}
+      {testimonialsSection && (
+            <ContainerBox className='c-section--testimonials'>
+              <div className="c-testimonials">
+                {testimonialsSection.testimonialsList && (
+                  <Slider {...settingTestimonials} className="c-testimonials__items">
+                    {testimonialsSection.testimonialsList.map((item, index) => (
+                      <div className="c-testimonials__item" key={index}>
+                        <div className="c-testimonials__text">
+                          <div>
+                            <span>“</span>
+                            {item.text}
+                            <span>”</span>
+                          </div>
+                        </div>
+                        <div className="c-testimonials__customers">
+                          {item.name && (
+                            <div className="c-customers__name">
+                              <span>{item.name}</span> {item.position && ( 
+                                <>
+                                / {item.position}
+                                </>
+                               )}
+                            </div>
+                          )}
+                          {item.logo && (
+                            <div className="c-customers__logo" dangerouslySetInnerHTML={{__html:item.logo}}></div>
+                          )}
+                        </div>
+                      </div>
+                    ))}
+                  </Slider>
+                )}
+              </div>
+            </ContainerBox>
+          )}
+      {textButton && (
+        <ContainerBox className="o-section c-section--btnbox">
+          <div className="c-btnbox">
+            {textButton.title && (
+              <h2 className="c-btnbox__title">{textButton.title}</h2>
+            )}
+            {textButton.cta && (
+              <a href={textButton.cta.url} target='_blank' rel="nofollow, noreferrer" className="c-btn">
+                {textButton.cta.title}
+              </a>
+            )}
+          </div>
+        </ContainerBox>
+      )}
+      {faqsSection && (
+        <ContainerBox className="c-section--faqs is-beehiiv">
+          <div className="c-section c-section--center">
+            <h2 className="c-section__title">FAQs</h2>
+          </div>
+          <div className="c-faqs">
+          {faqsSection.list.map((faq, index) => (
+            <div
+              className={`c-faq__items ${activeIndices.includes(index) ? "is-active" : ""}`}
+              key={index}
+            >
+              <button
+                className={`c-faq__question js-faq-list ${
+                  activeIndices.includes(index) ? "is-active" : ""
+                }`}
+                onClick={() => handleFaqClick(index)}
+              >
+                <span>{faq.question}</span>
+                <div className="c-faq-icon">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    className="icon icon-more"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                  >
+                    <path
+                      d="M21 13H13V21H11V13H3V11H11V3H13V11H21V13Z"
+                      fill="#002729"
+                    />
+                    <path d="M3 11H21V13H3V11Z" fill="#002729" />
+                  </svg>
+                </div>
+              </button>
+              <div
+                id={`answer-${index}`}
+                className="c-faq__answer"
+                dangerouslySetInnerHTML={{ __html: faq.answer }}
+              ></div>
+            </div>
+          ))}
+          </div>
+          <div className="c-cta c-cta--beehiiv">
+          {typeof window !== 'undefined' && (
+              <>
+              <PopupButton
+                url="https://calendly.com/saeedreza/30min"
+                rootElement={document.body}
+                text="Have More Questions?"
+                className='c-btn'
+              />
+              </>
+            )}
+          </div>
+        </ContainerBox>
+      )}
     </Layout>
   )
 }
@@ -226,6 +376,34 @@ export const pageQuery = graphql`
                   }
                   subHeading
                   title
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                fieldGroupName
+                list {
+                  answer
+                  fieldGroupName
+                  question
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
+                fieldGroupName
+                title
+                cta {
+                  target
+                  title
+                  url
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Testimonials {
+                fieldGroupName
+                title
+                testimonialsList {
+                  fieldGroupName
+                  logo
+                  name
+                  text
+                  position
                 }
               }
             }

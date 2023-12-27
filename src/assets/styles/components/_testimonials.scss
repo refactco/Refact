@@ -1,94 +1,99 @@
-// .c-section--testimonials {
-//     padding: 2.25em 0 4.625em;
-//     background: var(--color-primary-h);
+.c-section--testimonials {
+    padding: 3rem 0;
+    background: var(--color-primary-h);
 
-//     @include mq(md) {
-//         padding: 9.75em 0 12.75em;
-//     }
-// }
+    @include mq(md) {
+        padding: 10rem 0 5rem;
+    }
+		.slick-dots{
+			bottom: -31px;
+			@include mq(md){
+				bottom: -47px;
+			}
+			li{
+				width: 22px;
+				height: 7px;
+				button{
+					width: 22px;
+					height: 7px;
+					border-radius: 4px;
+					padding: 0;
+					background: var(--color-grey);
+				}
+				&.slick-active{
+					button{
+						background: var(--color-primary-sh);
+					}
+				}
+			}
+		}
+}
 
-// .c-testimonials__items {
-//     max-width: 934px;
-//     margin: 0 auto;
-//     padding: 0 0 1px;
-// }
+.c-testimonials__items {
+    max-width: 934px;
+    margin: 0 auto;
+    padding: 0 0 1px;
+}
 
-// .c-testimonials__item {
-//     width: 100%;
-//     padding: 32px 0 0;
-//     margin-right: 1em;
-//     cursor: default;
-//     position: relative;
-//     &:active {
-//         cursor: grabbing;
-//     }
-//     div{
-//         position: relative;
-//         z-index: 1;
-//     }
-//     @include mq(md) {
-//         padding: 4em 0.375em 2em;
-//         border-bottom: 1px solid var(--color-primary-t);
-//         margin-bottom: .5em;
-//     }
-// }
+.c-testimonials__item {
+    width: 100%;
+    padding: 0;
+    margin-right: 1em;
+    cursor: default;
+    position: relative;
+    &:active {
+        cursor: grabbing;
+    }
+    div{
+        position: relative;
+        z-index: 1;
+    }
+}
 
-// .c-testimonials__text {
-//     font-family: $inter;
-//     font-weight: 400;
-//     @include font-size(18px, 1.56);
-//     color: var(--color-text);
-//     position: relative;
-//     margin: 0 0 32px;
-//     padding: 0 0 32px;
-//     border-bottom: 1px solid var(--color-primary-t);
-//     svg{
-//         position: absolute;
-//         left: 0;
-//         top: -24px;
-//         width: 49px;
-//         @include mq(md){
-//             width: 80px;
-//         }
-//     }
-//     @include mq(md) {
-//         @include font-size(23px, 1.57);
-//         margin: 0 0 96px;
-//         padding: 0;
-//         border-bottom: 0;
-//     }
-// }
+.c-testimonials__text {
+    font-family: $inter;
+    font-weight: 600;
+    @include font-size(28px, 1.14);
+		text-align: left;
+    color: var(--color-text);
+    position: relative;
+    margin: 0 0 1.5rem;
+		span{
+			color: var(--color-primary-sh);
+		}
+    @include mq(md) {
+        @include font-size(40px, 1.2);
+				text-align: center;
+        margin: 0 0 2.5rem;
+    }
+}
 
-// .c-testimonials__customers {
-//     display: flex;
-//     flex-direction: column;
-//     align-items: center;
-// }
+.c-testimonials__customers {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-// .c-customers__logo {
-//     margin-bottom: 12px;
-//     @include mq(md) {
-//         margin-bottom: 22px;
-//     }
-// }
+.c-customers__logo {
+  display: flex;
+	margin: 0;
+}
 
-// .c-customers__name {
-//     font-family: $inter;
-//     font-weight: 400;
-//     @include font-size(16px, 1.5);
-//     color: var(--color-text);
-//     margin-bottom: 4px;
+.c-customers__name {
+    font-family: $inter;
+    font-weight: 400;
+    @include font-size(16px, 1.5);
+    color: var(--color-grey);
+    margin-bottom: 0.5rem;
+		span{
+			font-weight: 600
+		}
+    @include mq(md) {
+			@include font-size(19px, 1.47);
+        margin-bottom: 1rem;
+    }
+}
 
-//     @include mq(md) {
-//         margin-bottom: 8px;
-//     }
-// }
-
-// .c-customers__name--position {
-//     color: var(--color-grey);
-//     @include font-size(14px, 1.5);
-//     margin-bottom: 0;
-// }
 
 .slick-dots {
     bottom: -2.375em;

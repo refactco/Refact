@@ -285,3 +285,56 @@
     }
   }
 }
+
+.c-section--btnbox{
+  padding: 1.5rem 0;
+  background-color: var(--color-primary-h);
+  @include mq(md){
+    padding: 2.5rem 0;
+  }
+  @include mq(lg){
+    padding: 5rem 0;
+  }
+  .c-btn{
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+    @include mq(sm){
+      width: auto;
+    }
+  }
+}
+.c-btnbox{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  gap: 1.5rem;
+  background-color: var(--color-primary-r);
+  padding: 1.5rem 1rem;
+  border-radius: 1.5rem;
+  @include mq(md){
+    gap: 2rem;
+    padding: 2.5rem 1rem;
+  }
+  @include mq(lg){
+    gap: 2.5rem;
+    padding: 5rem 1rem;
+  }
+}
+.c-btnbox__title{
+  @include font-size(22px, 1.27);
+  font-weight: 600;
+  font-family: $inter;
+  color: var(--color-white);
+  margin: 0 auto;
+  text-align: center;
+  max-width: 706px;
+  @include mq(md){
+    @include font-size(32px, 1.2);
+  }
+  @include mq(lg){
+    @include font-size(48px, 1.2);
+  }
+}

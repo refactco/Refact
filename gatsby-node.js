@@ -242,6 +242,66 @@ exports.createPages = async ({ graphql, actions }) => {
                     url
                   }
                 }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
+                  fieldGroupName
+                  images {
+                    altText
+                    localFile {
+                      childrenImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  moreFeatures
+                  subHeading
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeatureSlides {
+                  fieldGroupName
+                  list {
+                    description
+                    fieldGroupName
+                    image {
+                      altText
+                      localFile {
+                        childrenImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    subHeading
+                    title
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                  fieldGroupName
+                  list {
+                    answer
+                    fieldGroupName
+                    question
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
+                  fieldGroupName
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Testimonials {
+                  fieldGroupName
+                  title
+                  testimonialsList {
+                    fieldGroupName
+                    logo
+                    name
+                    text
+                    position
+                  }
+                }
               }
             }
           }
