@@ -112,6 +112,7 @@
   font-weight: 600;
   font-family: $inter;
   color: var(--color-text);
+  word-break: break-word;
   margin: 0 0 1.5rem;
   @include mq(md){
     @include font-size(48px, 1.2);
