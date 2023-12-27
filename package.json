@@ -41,6 +41,6 @@
     "sanitize-html": "^2.10.0",
     "sass": "^1.63.4",
     "slick-carousel": "^1.8.1",
-    "swiper": "^10.3.0"
+    "swiper": "^11.0.5"
   }
 }

@@ -5,10 +5,34 @@ import Seo from "../components/seo/seo"
 import ContainerBox from "../components/container-box/container-box"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Tooltip } from 'react-tooltip'
+import Slider from "react-slick"
+
 
 const BeehiivPage = ({data}) => {
   const beehiivContent = data.wpPage.template.pageBuilder.pageBuilder;
   const heroSection = beehiivContent.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero');
+  const textSection = beehiivContent.filter(
+    (section) =>
+      section.fieldGroupName ===
+      'Template_PageBuilder_Pagebuilder_PageBuilder_TextSection'
+    );
+  const featureSlides = beehiivContent.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_FeatureSlides');
+  const settings = {
+    customPaging: function(i) {
+      return (
+        <span className="c-slide-dots">
+          0{i + 1}
+        </span>
+      );
+    },
+    speed: 500,
+    arrows: false,
+    fade: true,
+    dots: true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    adaptiveHeight: true
+  };
   return (
     <Layout>
       {heroSection && (
@@ -74,6 +98,54 @@ const BeehiivPage = ({data}) => {
           </div>
       </ContainerBox>
       )}
+      {textSection.map((section, index) => (
+        <React.Fragment key={index}>
+          <ContainerBox className={`o-section c-section--textbox is-textbox-${index}`}>
+            <div className="c-textbox">
+              <div className="c-textbox__wrap">
+                {section.subHeading && (
+                  <h3 className="c-textbox__sub-title">/ {section.subHeading}</h3>
+                )}
+                {section.title && (
+                  <h2 className="c-textbox__title">{section.title}</h2>
+                )}
+                {section.description && (
+                  <div className="c-textbox__description s-content" dangerouslySetInnerHTML={{ __html: section.description }}></div>
+                )}
+                {section.images && (
+                  <div className="c-section__image">
+                    <div className="c-section__image-wrap">
+                      {section.images.map((image, index) => (
+                        <GatsbyImage key={index} image={image.localFile.childrenImageSharp[0].gatsbyImageData} alt={image.altText} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+        </ContainerBox>
+        {index === 0 && featureSlides && (
+          <ContainerBox className="o-section c-section--feature-slides">
+            <Slider {...settings} className="c-feature-slides">
+              {featureSlides.list.map((slide, index) => (
+                <div className="c-feature-slide-slick" key={index}>
+                <div className="c-feature-slides__items">
+                  <div className="c-feature-slides__wrap">
+                    <div className="c-textbox__sub-title c-feature-slides__sub-title">/ {slide.subHeading}</div>
+                    <h4 className="c-feature-slides__title">{slide.title}</h4>
+                    <div className="c-feature-slides__description s-content" dangerouslySetInnerHTML={{ __html: slide.description }}></div>
+                  </div>
+                  <div className="c-feature-slides__image">
+                    <GatsbyImage image={slide.image.localFile.childrenImageSharp[0].gatsbyImageData} alt={slide.image.altText} />
+                  </div>
+                </div>
+                </div>
+              ))}
+            </Slider>
+          </ContainerBox>
+        )}
+        </React.Fragment>
+      ))}
     </Layout>
   )
 }
@@ -84,7 +156,7 @@ export function Head({ data }) {
   const post = data.wpPage;
   return (
     <>
-      <Seo title="Re/Beehiiv | Refact" description={post.content} />
+      <Seo title="Re/beehiiv | Refact" description={post.content} />
     </>
   )
 }
@@ -122,6 +194,38 @@ export const pageQuery = graphql`
                   target
                   title
                   url
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                description
+                fieldGroupName
+                images {
+                  altText
+                  localFile {
+                    childrenImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                moreFeatures
+                subHeading
+                title
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeatureSlides {
+                fieldGroupName
+                list {
+                  description
+                  fieldGroupName
+                  image {
+                    altText
+                    localFile {
+                      childrenImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  subHeading
+                  title
                 }
               }
             }
