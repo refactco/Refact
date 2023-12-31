@@ -72,7 +72,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `http://refact.co`,
+        siteUrl: `https://refact.co`,
       },
     },
     'gatsby-plugin-image',
