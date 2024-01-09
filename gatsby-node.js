@@ -400,6 +400,26 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      contact: wpPage(slug: {eq: "contact"}) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  subtitle
+                  text
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
       toolsPage : wpPage(slug: {eq: "toolkit"}) {
         id
         content
@@ -594,6 +614,13 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/campaign-url-builder/`,
       component: path.resolve(`./src/templates/url-builder.js`),
+    });
+  });
+  const contactPage = result.data.contact.template.pageBuilder.pageBuilder;
+  contactPage.forEach(({ node }) => {
+    createPage({
+      path: `/contact/`,
+      component: path.resolve(`./src/templates/contact.js`),
     });
   });
 }
