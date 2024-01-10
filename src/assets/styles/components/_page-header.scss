@@ -14,6 +14,19 @@
             }
         }
     }
+    &.is-page-contact{
+        padding: 48px 0;
+        @include mq(md){
+            padding: 64px 0;
+        }
+        .c-page-header{
+            &.is-full{
+                .c-page-header__text{
+                    max-width: 870px;
+                }
+            }
+        }
+    }
     &.is-url-builder{
         padding: 48px 0;
         @include mq(md){
