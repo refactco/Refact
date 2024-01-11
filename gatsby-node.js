@@ -1,12 +1,16 @@
-const path = require(`path`)
+const path = require(`path`);
 
 exports.createPages = async ({ graphql, actions }) => {
-  const { createRedirect, createPage } = actions
-  createRedirect({ fromPath: '/wp-admin/', toPath: 'https://refact.wpengine.com/wp-admin', isPermanent: true })
+  const { createRedirect, createPage } = actions;
+  createRedirect({
+    fromPath: '/wp-admin/',
+    toPath: 'https://refact.wpengine.com/wp-admin',
+    isPermanent: true,
+  });
 
   const result = await graphql(`
     query {
-      allWpPost(sort: {date: DESC}) {
+      allWpPost(sort: { date: DESC }) {
         edges {
           node {
             id
@@ -73,21 +77,21 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      categoryList: allWpCategory(filter: {count: {gt: 0}}) {
+      categoryList: allWpCategory(filter: { count: { gt: 0 } }) {
         nodes {
           link
           name
           id
         }
       }
-      topicList: allWpTag(filter: {count: {gt: 0}}) {
+      topicList: allWpTag(filter: { count: { gt: 0 } }) {
         nodes {
           name
           link
           id
         }
       }
-      careersPage: wpPage(slug: {eq: "careers"}) {
+      careersPage: wpPage(slug: { eq: "careers" }) {
         id
         content
         template {
@@ -128,7 +132,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      servicesPage: wpPage(slug: {eq: "services"}) {
+      servicesPage: wpPage(slug: { eq: "services" }) {
         id
         content
         template {
@@ -169,7 +173,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      surveyPage: wpPage(slug: {eq: "survey"}) {
+      surveyPage: wpPage(slug: { eq: "survey" }) {
         id
         content
         template {
@@ -209,7 +213,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      beehiivPage: wpPage(slug: {eq: "re-beehiiv"}) {
+      beehiivPage: wpPage(slug: { eq: "re-beehiiv" }) {
         id
         content
         template {
@@ -307,7 +311,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      workPage: wpPage(slug: {eq: "work"}) {
+      workPage: wpPage(slug: { eq: "work" }) {
         id
         content
         template {
@@ -400,7 +404,27 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      toolsPage : wpPage(slug: {eq: "toolkit"}) {
+      contact: wpPage(slug: { eq: "contact" }) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  subtitle
+                  text
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
+      toolsPage: wpPage(slug: { eq: "toolkit" }) {
         id
         content
         template {
@@ -439,7 +463,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      urlBuilderPage : wpPage(slug: {eq: "campaign-url-builder"}) {
+      urlBuilderPage: wpPage(slug: { eq: "campaign-url-builder" }) {
         id
         content
         template {
@@ -484,8 +508,8 @@ exports.createPages = async ({ graphql, actions }) => {
         }
       }
     }
-  `)
-  
+  `);
+
   result.data.allWpPost.edges.forEach((node) => {
     createPage({
       path: `/insights/`,
@@ -494,8 +518,8 @@ exports.createPages = async ({ graphql, actions }) => {
       context: {
         id: node.id,
       },
-    })
-  })
+    });
+  });
 
   const posts = result.data.allWpPost.edges;
   posts.forEach(({ node }) => {
@@ -532,7 +556,9 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const careers = result.data.careersPage.template.pageBuilder.pageBuilder || result.data.careerPost.edges;
+  const careers =
+    result.data.careersPage.template.pageBuilder.pageBuilder ||
+    result.data.careerPost.edges;
   careers.forEach(({ node }) => {
     createPage({
       path: `/careers/`,
@@ -589,11 +615,19 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/toolkit.js`),
     });
   });
-  const urlBuilder = result.data.urlBuilderPage.template.pageBuilder.pageBuilder;
+  const urlBuilder =
+    result.data.urlBuilderPage.template.pageBuilder.pageBuilder;
   urlBuilder.forEach(({ node }) => {
     createPage({
       path: `/campaign-url-builder/`,
       component: path.resolve(`./src/templates/url-builder.js`),
     });
   });
-}
+  const contactPage = result.data.contact.template.pageBuilder.pageBuilder;
+  contactPage.forEach(({ node }) => {
+    createPage({
+      path: `/contact/`,
+      component: path.resolve(`./src/templates/contact.js`),
+    });
+  });
+};

@@ -1,3 +1,7 @@
+const { config } = require('dotenv');
+
+config();
+
 const siteUrl = process.env.URL || `https://refact.co`;
 
 module.exports = {
@@ -8,6 +12,12 @@ module.exports = {
     image: `/opengragh.jpg`,
   },
   plugins: [
+    {
+      resolve: 'gatsby-plugin-env-variables',
+      options: {
+        allowList: ['WPGRAPHQL_URL'],
+      },
+    },
     {
       resolve: 'gatsby-plugin-google-tagmanager',
       options: {

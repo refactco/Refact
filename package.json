@@ -15,10 +15,13 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@apollo/client": "^3.8.8",
     "@mdx-js/react": "^2.3.0",
     "axios": "^1.5.1",
+    "dotenv": "^16.3.1",
     "gatsby": "^5.10.0",
     "gatsby-plugin-canonical-urls": "^5.11.0",
+    "gatsby-plugin-env-variables": "^2.3.0",
     "gatsby-plugin-google-gtag": "^5.10.0",
     "gatsby-plugin-google-tagmanager": "^5.11.0",
     "gatsby-plugin-image": "^3.10.0",
