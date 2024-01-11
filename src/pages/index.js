@@ -3,7 +3,6 @@ import React from 'react';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import CompanyLogo from '../components/company-logo/company-logo';
-import { PopupButton } from "react-calendly";
 import Seo from '../components/seo/seo';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import CompanyLogoReverse from '../components/company-logo/company-logo-reverse';
@@ -100,16 +99,7 @@ const Homepage = () => {
             {heroSection.text && (
               <div className="c-hero__text">{heroSection.text}</div>
             )}
-            {typeof window !== 'undefined' && (
-              <>
-              <PopupButton
-                url="https://calendly.com/saeedreza/30min"
-                rootElement={document.body}
-                text="Work with Us"
-                className='c-btn'
-              />
-              </>
-            )}
+            <Link to="/contact" className='c-btn'>Work with Us</Link>
             <div className="c-hero-logo__wrapper" style={{overflow: 'hidden'}}>
               <CompanyLogo />
               <CompanyLogoReverse />

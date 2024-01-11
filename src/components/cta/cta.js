@@ -1,6 +1,6 @@
 import React from "react";
 import ContainerBox from "../container-box/container-box";
-import { PopupButton } from "react-calendly";
+import { Link } from "gatsby";
 
 const CtaSection = () => {
   return (
@@ -15,16 +15,7 @@ const CtaSection = () => {
           <div className="c-cta__text">
             Whatever stage your project is at, we want to help you make it a big success.
           </div>
-          {typeof window !== 'undefined' && (
-            <>
-            <PopupButton
-              url="https://calendly.com/saeedreza/30min"
-              rootElement={document.body}
-              text="Get in Touch"
-              className='c-btn'
-            />
-            </>
-          )}
+          <Link to="/contact" className='c-btn'>Get in Touch</Link>
         </div>
       </div>
     </ContainerBox>

@@ -1,5 +1,5 @@
+import { Link } from "gatsby";
 import React from "react";
-import { PopupButton } from "react-calendly";
 
 const CtaPost = () => {
   return (
@@ -9,16 +9,7 @@ const CtaPost = () => {
           <h5 className="c-git__title">Looking to grow your media business?</h5>
           <p className="c-git__text">Get in touch and tell us about your project!</p>
         </div>
-        {typeof window !== 'undefined' && (
-          <>
-          <PopupButton
-            url="https://calendly.com/saeedreza/30min"
-            rootElement={document.body}
-            text="Get in Touch"
-            className='c-btn'
-          />
-          </>
-        )}
+        <Link to="/contact" className='c-btn'>Get in Touch</Link>
       </div>
     </footer>
   );

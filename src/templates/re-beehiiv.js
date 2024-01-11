@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
 import ContainerBox from "../components/container-box/container-box"
 import { GatsbyImage } from "gatsby-plugin-image"
 import { Tooltip } from 'react-tooltip'
 import Slider from "react-slick"
-import { PopupButton } from "react-calendly"
 
 
 const BeehiivPage = ({data}) => {
@@ -283,16 +282,7 @@ const BeehiivPage = ({data}) => {
           ))}
           </div>
           <div className="c-cta c-cta--beehiiv">
-          {typeof window !== 'undefined' && (
-              <>
-              <PopupButton
-                url="https://calendly.com/saeedreza/30min"
-                rootElement={document.body}
-                text="Have More Questions?"
-                className='c-btn'
-              />
-              </>
-            )}
+            <Link to="/contact" className='c-btn'>Have More Questions?</Link>
           </div>
         </ContainerBox>
       )}

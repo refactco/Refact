@@ -226,20 +226,13 @@ const Header  = () => {
                 </div>
               </div>
               <div className="c-header__col">
-              {typeof window !== 'undefined' && (
-                <div className='c-header-cta'>
-                  <button style={{ display: "block", margin: "0 auto" }}
-                    onClick={handleLinkClick}>
-                      Work with Us
-                    </button>
-                  <PopupModal
-                    url="https://calendly.com/saeedreza/30min"
-                    rootElement={document.body}
-                    onModalClose={() => setIsOpen(false)}
-                    open={isOpen}
-                  />
-                </div>
-              )}
+                {window.location.pathname === '/contact/' ? (
+                  null
+                ) : (
+                  <div className='c-header-cta'>
+                    <Link to="/contact">Work with Us</Link>
+                  </div>
+                )}
                 <div className="c-hamburger">
                   <input className="c-hamburger__checkbox js-hamburger" type="checkbox" aria-label="Menu" 
                     onClick={onHamburgerClick}

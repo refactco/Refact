@@ -377,7 +377,7 @@
     @include mq(md){
         display: flex;
     }
-    button{
+    a{
         @include font-size(16px, 1.5);
         color: var(--color-white);
         font-weight: 600;
