@@ -109,3 +109,29 @@
         overflow: hidden !important;
     }
 }
+.c-contact-info__text{
+    margin-bottom: 2.5rem !important;
+    @include mq(md){
+        margin-bottom: 3rem !important;
+    }
+}
+.c-contact-info__social{
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem;
+}
+.c-contact-info__social-item{
+    display: flex;
+    align-items: center;
+    a{
+        display: flex;
+        align-items: center;
+        background-color: var(--color-cultred);
+        padding: 1.5rem 2rem;
+        border-radius: 0.5rem;
+        height: 70px;
+        &:hover{
+            background-color: var(--color-gains);
+        }
+    }
+}

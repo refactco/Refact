@@ -331,14 +331,19 @@
 .gform_confirmation_message {
   @include font-size(18px, 1.5556);
   text-align: center;
-
+  background: var(--color-cultred);
+  padding: 2rem 1.5rem;
   svg {
-    max-width: 5.5rem;
-    margin-bottom: 2rem;
+    max-width: 3rem;
+    margin-bottom: 1rem;
   }
 
-  h3 {
-    margin: 0 0 1rem;
+  h3,h4 {
+    margin: 0;
+    @include font-size(20px, 1.5);
+    @include mq(md){
+      @include font-size(25px, 1.5);
+    }
   }
 
   br {
@@ -347,13 +352,6 @@
 
   p {
     margin: 0;
-  }
-
-  @include mq(lg) {
-    svg {
-      max-width: 7rem;
-      margin-bottom: 4rem;
-    }
   }
 }
 
