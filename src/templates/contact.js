@@ -243,10 +243,26 @@ const ContactPage = ({ data }) => {
                               id={`input_${formId}_${databaseId}`}
                               aria-required={isRequired}
                               onChange={(event) => {
-                                setFieldValues({
-                                  ...fieldValues,
-                                  [databaseId]: event.target.value,
-                                });
+                                if (type === 'WEBSITE') {
+                                  let url = event.target.value;
+
+                                  const matchPattern = /^(https?:\/\/){2,}/;
+                                  const replacePattern = /^(https?:\/\/)/;
+
+                                  if (matchPattern.test(url)) {
+                                    url = url.replace(replacePattern, '');
+                                  }
+
+                                  setFieldValues({
+                                    ...fieldValues,
+                                    [databaseId]: url,
+                                  });
+                                } else {
+                                  setFieldValues({
+                                    ...fieldValues,
+                                    [databaseId]: event.target.value,
+                                  });
+                                }
                               }}
                             />
                           )}
