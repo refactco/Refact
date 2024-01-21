@@ -88,7 +88,7 @@ export function Head({ data }) {
   const post = data.wpPage;
   return (
     <>
-      <Seo title="Survey | Refact" description={post.content} />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} />
     </>
   )
 }
@@ -98,6 +98,10 @@ export const pageQuery = graphql`
     wpPage(slug: {eq: "survey"}) {
       id
       content
+      seo {
+        title
+        metaDesc
+      }
       template {
         ... on WpTemplate_PageBuilder {
           templateName

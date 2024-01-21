@@ -105,7 +105,7 @@ export function Head({ data }) {
   const post = data.wpPage;
   return (
     <>
-      <Seo title="Tools & Resources | Refact" description={post.content} />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} />
       <body className="is-toolkit-page" />
     </>
   )
@@ -116,6 +116,10 @@ export const pageQuery = graphql`
     wpPage(slug: {eq: "toolkit"}) {
       id
       content
+      seo {
+        title
+        metaDesc
+      }
       template {
         ... on WpTemplate_PageBuilder {
           templateName

@@ -66,7 +66,7 @@ export function Head({ data }) {
   const post = data.singlePost;
   return (
     <>
-      <Seo title={post.title + " | Refact"} />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} />
     </>
   )
 }
@@ -84,6 +84,10 @@ export const pageQuery = graphql`
         type
       }
       content
+      seo {
+        title
+        metaDesc
+      }
       id
       slug
       link

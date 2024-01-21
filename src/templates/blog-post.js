@@ -101,8 +101,8 @@ export function Head({ data }) {
   return (
     <>
       <Seo
-        title={post.title + ' | Refact'}
-        description={post.excerpt}
+        title={post.seo.title}
+        description={post.seo.metaDesc}
         featuredImage={post.featuredImage.node.localFile.url}
       />
       <body className="single" />
@@ -121,6 +121,10 @@ export const pageQuery = graphql`
       date(formatString: "MMMM DD, YYYY")
       content
       excerpt
+      seo {
+        title
+        metaDesc
+      }
       featuredImage {
         node {
           localFile {

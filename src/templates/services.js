@@ -133,7 +133,7 @@ export function Head({ data }) {
   const post = data.wpPage;
   return (
     <>
-      <Seo title="Services | Refact" description={post.content} />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} />
     </>
   )
 }
@@ -143,6 +143,10 @@ export const pageQuery = graphql`
     wpPage(slug: {eq: "services"}) {
       id
       content
+      seo {
+        title
+        metaDesc
+      }
       template {
         ... on WpTemplate_PageBuilder {
           templateName

@@ -92,7 +92,7 @@ export function Head({ data }) {
   const tag = data.wpTag;
   return (
     <>
-      <Seo title={"Topic: " + tag.name + " | Refact"} description={tag.description} />
+      <Seo title={"Topic: " + tag.name + " | Refact"} description={tag.seo.metaDesc} />
     </>
   )
 }
@@ -104,6 +104,10 @@ export const pageQuery = graphql`
       id
       name
       description
+      seo {
+        title
+        metaDesc
+      }
       posts {
         nodes {
           id

@@ -9,6 +9,10 @@ const PrivacyPage = () => {
     query PrivacyPageQuery {
       privacyPage: wpPage(slug: {eq: "privacy-policy"}) {
         id
+        seo {
+          title
+          metaDesc
+        }
         template {
           ... on WpDefaultTemplate {
             templateName
@@ -25,8 +29,10 @@ const PrivacyPage = () => {
   `);
 const privacyItem = data.privacyPage.template.defaultPages;
 const privacyContent = data.privacyPage.content;
+const seoData = data.privacyPage.seo;
   return (
     <Layout>
+      <Seo title={seoData.title} description={seoData.metaDesc} />
       <ContainerBox className="c-section--pagehead">
         <div className="c-pagehead">
           {privacyItem.headline && (
@@ -56,12 +62,3 @@ const privacyContent = data.privacyPage.content;
 }
 
 export default PrivacyPage
-
-
-export function Head() {
-  return (
-    <>
-      <Seo title="Privacy Policy | Refact" />
-    </>
-  )
-}

@@ -68,7 +68,7 @@ export function Head({ data }) {
   const cat = data.wpCategory;
   return (
     <>
-      <Seo title={"Category: " + cat.name + " | Refact"} description={cat.description} />
+      <Seo title={"Category: " + cat.name + " | Refact"} description={cat.seo.metaDesc} />
     </>
   )
 }
@@ -80,6 +80,10 @@ export const pageQuery = graphql`
       id
       name
       description
+      seo {
+        title
+        metaDesc
+      }
       posts {
         nodes {
           id

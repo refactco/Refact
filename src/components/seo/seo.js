@@ -22,6 +22,7 @@ const Seo = ({ title, description, pathname, featuredImage, children }) => {
       <html lang="en-US" />
       <title>{seo.title}</title>
       <meta name="description" content={seo.description} />
+      <meta name="robots" content="index, follow" />
       <meta property="og:image" content={seo.image} />
       <meta property="og:image:width" content="2400" />
       <meta property="og:image:height" content="1260" />
