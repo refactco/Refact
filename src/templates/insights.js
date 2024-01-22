@@ -126,7 +126,7 @@ export default InsightPage
 export function Head() {
   return (
     <>
-      <Seo title="Insight | Refact" />
+      <Seo title="Insight | Refact" description="Dive into Refact's Insights: product updates, case studies, and expert advice for news & media operators navigating the digital landscape." />
     </>
   )
 }
