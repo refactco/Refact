@@ -161,7 +161,7 @@ export default AboutPage
 export function Head() {
   return (
     <>
-      <Seo title="About | Refact" description="We collaborate with news and media startups to increase growth by identifying new revenue streams, refining customer acquisition, optimizing conversions, and improving retention." />
+      <Seo title="About | Refact" description="Refact: Empowering news and media with innovative design, development, and digital publishing solutions for sustainable success." />
     </>
   )
 }

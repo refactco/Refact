@@ -65,7 +65,7 @@ export default PrivacyPage
 export function Head() {
   return (
     <>
-      <Seo title="Privacy Policy | Refact" />
+      <Seo title="Privacy Policy | Refact" description="Refact's commitment to your privacy: Detailed information on how we protect, use, and manage your data responsibly." />
     </>
   )
 }
