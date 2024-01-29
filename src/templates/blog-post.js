@@ -40,6 +40,7 @@ const BlogPostTemplate = ({ data }) => {
                   <div className='c-article-author__wrapper'>
                   {authorPosts.map((author) => (
                       <div className='c-article-author__img' key={author.id}>
+                        {author.userMeta.profileImage && (
                         <img
                           src={author.userMeta.profileImage.localFile.url}
                           alt={author.name}
@@ -47,6 +48,7 @@ const BlogPostTemplate = ({ data }) => {
                           height="32"
                           loading='lazy'
                         />
+                        )}
                       </div>
                     ))}
                   </div>

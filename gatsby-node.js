@@ -71,6 +71,19 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      authorPosts: allWpUser {
+        nodes {
+          name
+          id
+          userMeta {
+            profileImage {
+              localFile {
+                url
+              }
+            }
+          }
+        }
+      }
       categoryList: allWpCategory(filter: { count: { gt: 0 } }) {
         nodes {
           link
