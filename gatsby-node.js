@@ -36,16 +36,10 @@ exports.createPages = async ({ graphql, actions }) => {
                 link
               }
             }
-            author {
-              node {
+            coAuthors {
+              nodes {
                 id
-                avatar {
-                  height
-                  url
-                  width
-                }
-                firstName
-                lastName
+                displayName
               }
             }
             categories {

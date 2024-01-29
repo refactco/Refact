@@ -13,6 +13,7 @@ import ShareButton from '../components/share-btn/share-btn';
 const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
   const recentPosts = data.recentPosts.edges;
+  const authorPosts = data.authorPosts.nodes;
   const caseStudy = data.singlePost.caseStudyPosts.project;
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
@@ -34,18 +35,28 @@ const BlogPostTemplate = ({ data }) => {
                   ))}
                 </div>
                 <h1 className="c-article__title">{post.title}</h1>
+                <div className="c-article__author-date">{post.date}</div>
                 <div className="c-article__author">
-                  <div className="c-article__author-avatar">
-                    <img
-                      src={post.author.node.avatar.url}
-                      alt={post.author.node.firstName}
-                    />
+                  <div className='c-article-author__wrapper'>
+                  {authorPosts.map((author) => (
+                      <div className='c-article-author__img' key={author.id}>
+                        <img
+                          src={author.userMeta.profileImage.localFile.url}
+                          alt={author.name}
+                          width="32"
+                          height="32"
+                          loading='lazy'
+                        />
+                      </div>
+                    ))}
                   </div>
-                  <div className="c-article__author-info">
-                    <div className="c-article__author-name">
-                      {post.author.node.firstName} {post.author.node.lastName}
-                    </div>
-                    <div className="c-article__author-date">{post.date}</div>
+                  <div className="c-article-author__name">
+                    {post.coAuthors.nodes.map((author, index) => (
+                      <span key={author.id}>
+                        {author.displayName}
+                        {index < post.coAuthors.nodes.length - 2 ? ", " : index === post.coAuthors.nodes.length - 2 ? " & " : ""}
+                      </span>
+                    ))}
                   </div>
                 </div>
               </div>
@@ -143,16 +154,10 @@ export const pageQuery = graphql`
           id
         }
       }
-      author {
-        node {
+      coAuthors {
+        nodes {
           id
-          avatar {
-            height
-            url
-            width
-          }
-          firstName
-          lastName
+          displayName
         }
       }
       categories {
@@ -179,6 +184,19 @@ export const pageQuery = graphql`
           description
           fieldGroupName
           title
+        }
+      }
+    }
+    authorPosts: allWpUser(filter: {posts: {nodes: {elemMatch: {id: {eq: $id}}}}}) {
+      nodes {
+        name
+        id
+        userMeta {
+          profileImage {
+            localFile {
+              url
+            }
+          }
         }
       }
     }
