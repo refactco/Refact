@@ -86,6 +86,22 @@ module.exports = {
         stripQueryString: true,
       },
     },
+    {
+      resolve: 'gatsby-transformer-remark',
+      options: {
+        plugins: [
+          {
+            resolve: 'gatsby-remark-prismjs',
+            options: {
+              classPrefix: 'language-', // adjust to match your WordPress class
+              inlineCodeMarker: null,
+              showLineNumbers: false,
+              noInlineHighlight: false,
+            },
+          },
+        ],
+      },
+    },
     'gatsby-plugin-image',
     {
       resolve: `gatsby-plugin-sharp`,
