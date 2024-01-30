@@ -130,6 +130,10 @@ exports.createPages = async ({ graphql, actions }) => {
               location
               experience
               type
+              url {
+                target
+                url
+              }
             }
             content
             id

@@ -48,9 +48,25 @@ const BlogPostTemplate = ({ data }) => {
             <div className="c-career__content-wrapper s-content js-career-content" dangerouslySetInnerHTML={{__html:post.content}}></div>
             <div className="c-career__sidebar js-career-sidebar">
               <div className="c-career__sidebar-wrapper">
-                <a href={`mailto:hr@refact.co?subject=${post.title}`} target="_blank" rel="noreferrer" className="js-career-change c-btn c-btn--primary">
+              {post.careers.url ? (
+                <a 
+                  href={post.careers.url.url} 
+                  target={post.careers.url.target === '_blank' ? '_blank' : '_self'} 
+                  rel={post.careers.url.target === '_blank' ? 'noreferrer' : ''}
+                  className="js-career-change c-btn c-btn--primary"
+                >
                   Apply Now
                 </a>
+              ) : (
+                <a 
+                  href={`mailto:hr@refact.co?subject=${post.title}`} 
+                  target="_blank" 
+                  rel="noreferrer" 
+                  className="js-career-change c-btn c-btn--primary"
+                >
+                  Apply Now
+                </a>
+              )}
               </div>
             </div>
           </div>
@@ -82,6 +98,10 @@ export const pageQuery = graphql`
         location
         experience
         type
+        url {
+          target
+          url
+        }
       }
       content
       seo {
