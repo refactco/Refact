@@ -28,10 +28,10 @@ const CareerPage = ({data}) => {
       {careersPost && (
         <ContainerBox className="o-section c-section--careers">
           <div className="c-careers">
+            <CareerCategory categorySlug="product" categoryName="Product" careersPost={careersPost} />
             <CareerCategory categorySlug="design" categoryName="Design" careersPost={careersPost} />
             <CareerCategory categorySlug="technology" categoryName="Technology" careersPost={careersPost} />
             <CareerCategory categorySlug="sales-marketing" categoryName="Sales & Marketing" careersPost={careersPost} />
-            <CareerCategory categorySlug="product" categoryName="Product" careersPost={careersPost} />
             <CareerCategory categorySlug="others" categoryName="Others" careersPost={careersPost} />
           </div>
         </ContainerBox>
