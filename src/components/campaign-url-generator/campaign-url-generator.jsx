@@ -89,7 +89,7 @@ const CampaignURLGenerator = () => {
                       {...register('websiteUrl', {
                         required: 'This field is required.',
                         pattern: {
-                          value: /https?:\/\/(www\.[a-zA-Z0-9@:%._+~#=]{2,}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)|(?!www)[a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*))/,
+                          value: /https?:\/\/(www\.[a-zA-Z0-9@:%._+~#=]{2,}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)|(?!www)[a-zA-Z0-9@:%._+~#=]{1,256}(\.[-a-zA-Z0-9()@:%_+.~#?&//=]*)*)/,
                           message: 'Please enter a valid Website URL',
                         },
                       })}
@@ -111,9 +111,9 @@ const CampaignURLGenerator = () => {
                       {...register('campaignSource', { 
                         required: 'This field is required.',
                         pattern: {
-                          value: /^[a-zA-Z0-9_().]*$/,
-                          message: 'Please enter a valid Campaign Source'
-                        }
+                          value: /^[a-zA-Z0-9_().-]*$/,
+                           message: 'Please enter a valid Campaign Source'
+                         }
                       })}
                     />
                     {errors.campaignSource && <span className="error">{errors.campaignSource.message}</span>}
@@ -127,7 +127,7 @@ const CampaignURLGenerator = () => {
                       {...register('campaignMedium', {
                         required: 'This field is required.',
                         pattern: {
-                          value: /^[a-zA-Z0-9_]*$/,
+                          value: /^[a-zA-Z0-9_-]*$/,
                           message: 'Please enter a valid Campaign Medium',
                         }
                       })}

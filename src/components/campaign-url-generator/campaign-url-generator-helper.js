@@ -159,7 +159,7 @@ export function CampaignURLGeneratorHelper(state, setState, setValue) {
     const { utmURL } = data;
       // Extract the UTM parameters from the UTM URL
       const parsedUrl = new URL(utmURL);
-      const websiteUrl = parsedUrl.origin;
+      const websiteUrl = `${parsedUrl.origin}${parsedUrl.pathname}`;
       const utmURLParams = parsedUrl.searchParams;
       const source = utmURLParams.get('utm_source') ?? '';
       const medium = utmURLParams.get('utm_medium') ?? '';
