@@ -65,104 +65,122 @@ const WorkPage = ({data}) => {
       <ContainerBox className="o-section c-section--works" id="work-section">
         <div className="c-work-page">
           {featuredPost && (
-            <div className="row c-work__featured">
-              <div className="col-md-7 c-work-featured__col">
-              {featuredPost.cta.target === '_blank' ?
-                <a href={featuredPost.cta.url} target={featuredPost.cta.target} rel="noopener noreferrer" className="c-project__img">
-                  <GatsbyImage image={featuredPost.cover.localFile.childImageSharp.gatsbyImageData} alt={featuredPost.cover.altText} />
-                </a>
-                :
-                <Link to={featuredPost.cta.url} className="c-project__img">
-                  <GatsbyImage image={featuredPost.cover.localFile.childImageSharp.gatsbyImageData} alt={featuredPost.cover.altText} />
-                </Link>
-              }
-              </div>
-              <div className="col-md-5 c-work-featured__col">
-                <div className="c-work-featured__info">
-                  <h5 className='c-project__title'>{featuredPost.title}</h5>
-                  <div className='c-project__text'>{featuredPost.description}</div>
-                  {featuredPost.cta.target === '_blank' ?
-                  <a href={featuredPost.cta.url} target={featuredPost.cta.target} rel="nofollow, noreferrer" className='c-btn--secondary'>
-                    {featuredPost.cta.title}
-                    <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                    <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                    </svg>
-                  </a>
-                  :
-                  <Link to={featuredPost.cta.url} className='c-btn--secondary'>
-                    {featuredPost.cta.title}
-                    <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                    <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                    </svg>
-                  </Link>
-                  }
-                </div>
-              </div>
-            </div>
+            
           )}
           {featuredTestimonial && (
-            <div className="c-work__testimonial">
-              <div className="c-work-testimonial__text">
-                <div className="c-work-testimonial__quote">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="80" fill="none" viewBox="0 0 80 60"><path fill="#C6F0C2" d="m25 10 5-10H20C8.95 0 0 13.95 0 25v35h35V25H15c0-15 10-15 10-15Zm35 15c0-15 10-15 10-15l5-10H65C53.95 0 45 13.95 45 25v35h35V25H60Z"/></svg>
-                </div>
-                <span>{featuredTestimonial.text}</span>
-              </div>
-              <div className="c-work-testimonial__info">
-                {featuredTestimonial.logo && (
-                  <div className="c-work-testimonial__logo" dangerouslySetInnerHTML={{__html:featuredTestimonial.logo}}></div>
-                )}
-                {featuredTestimonial.name && (
-                  <div className="c-work-testimonial__name">{featuredTestimonial.name}</div>
-                )}
-                {featuredTestimonial.position && (
-                  <div className="c-work-testimonial__position">{featuredTestimonial.position}</div>
-                )}
-              </div>
-            </div>
+            
           )}
           {projectSection && (
-            <div className="c-project">
-              {projectSection.projectList && (
-                <div className="c-project__items">
-                  {projectSection.projectList.map((project, index) => (
-                    <div className='c-project__item' key={index}>
-                      {project.cta.target === '_blank' ?
-                        <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className="c-project__img">
-                          <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
-                        </a>
-                        :
-                        <Link to={project.cta.url} className="c-project__img">
-                          <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
-                        </Link>
-                      }
-                      <h5 className='c-project__title'>{project.title}</h5>
-                      <div className='c-project__text'>{project.description}</div>
-                      {project.cta.target === '_blank' ?
-                      <a href={project.cta.url} target={project.cta.target} rel="nofollow, noreferrer" className='c-btn--secondary'>
-                        {project.cta.title}
-                        <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                        <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                        </svg>
+            
+          )}
+          {workContent.map(section => {
+            switch (section.fieldGroupName) {
+              case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost':
+                return (
+                  <div key={section.id} className="row c-work__featured">
+                    <div className="col-md-7 c-work-featured__col">
+                    {featuredPost.cta.target === '_blank' ?
+                      <a href={featuredPost.cta.url} target={featuredPost.cta.target} rel="noopener noreferrer" className="c-project__img">
+                        <GatsbyImage image={featuredPost.cover.localFile.childImageSharp.gatsbyImageData} alt={featuredPost.cover.altText} />
                       </a>
                       :
-                      <Link to={project.cta.url} className='c-btn--secondary'>
-                        {project.cta.title}
-                        <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                        <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                        </svg>
+                      <Link to={featuredPost.cta.url} className="c-project__img">
+                        <GatsbyImage image={featuredPost.cover.localFile.childImageSharp.gatsbyImageData} alt={featuredPost.cover.altText} />
                       </Link>
-                      }
+                    }
                     </div>
-                  ))}
-                </div>
-              )}
-            </div>
-          )}
+                    <div className="col-md-5 c-work-featured__col">
+                      <div className="c-work-featured__info">
+                        <h5 className='c-project__title'>{featuredPost.title}</h5>
+                        <div className='c-project__text'>{featuredPost.description}</div>
+                        {featuredPost.cta.target === '_blank' ?
+                        <a href={featuredPost.cta.url} target={featuredPost.cta.target} rel="nofollow, noreferrer" className='c-btn--secondary'>
+                          {featuredPost.cta.title}
+                          <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="12" fill="#59CC51"/>
+                          <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                          </svg>
+                        </a>
+                        :
+                        <Link to={featuredPost.cta.url} className='c-btn--secondary'>
+                          {featuredPost.cta.title}
+                          <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <circle cx="12" cy="12" r="12" fill="#59CC51"/>
+                          <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                          </svg>
+                        </Link>
+                        }
+                      </div>
+                    </div>
+                  </div>
+                );
+              case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial':
+                return (
+                  <div key={section.id} className="c-work__testimonial">
+                    <div className="c-work-testimonial__text">
+                      <div className="c-work-testimonial__quote">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="80" fill="none" viewBox="0 0 80 60"><path fill="#C6F0C2" d="m25 10 5-10H20C8.95 0 0 13.95 0 25v35h35V25H15c0-15 10-15 10-15Zm35 15c0-15 10-15 10-15l5-10H65C53.95 0 45 13.95 45 25v35h35V25H60Z"/></svg>
+                      </div>
+                      <span>{featuredTestimonial.text}</span>
+                    </div>
+                    <div className="c-work-testimonial__info">
+                      {featuredTestimonial.logo && (
+                        <div className="c-work-testimonial__logo" dangerouslySetInnerHTML={{__html:featuredTestimonial.logo}}></div>
+                      )}
+                      {featuredTestimonial.name && (
+                        <div className="c-work-testimonial__name">{featuredTestimonial.name}</div>
+                      )}
+                      {featuredTestimonial.position && (
+                        <div className="c-work-testimonial__position">{featuredTestimonial.position}</div>
+                      )}
+                    </div>
+                  </div>
+                );
+              case 'Template_PageBuilder_Pagebuilder_PageBuilder_Project':
+                return (
+                  <div key={section.id} className="c-project">
+                    {projectSection.projectList && (
+                      <div className="c-project__items">
+                        {projectSection.projectList.map((project, index) => (
+                          <div className='c-project__item' key={index}>
+                            {project.cta.target === '_blank' ?
+                              <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className="c-project__img">
+                                <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
+                              </a>
+                              :
+                              <Link to={project.cta.url} className="c-project__img">
+                                <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
+                              </Link>
+                            }
+                            <h5 className='c-project__title'>{project.title}</h5>
+                            <div className='c-project__text'>{project.description}</div>
+                            {project.cta.target === '_blank' ?
+                            <a href={project.cta.url} target={project.cta.target} rel="nofollow, noreferrer" className='c-btn--secondary'>
+                              {project.cta.title}
+                              <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="12" fill="#59CC51"/>
+                              <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                              </svg>
+                            </a>
+                            :
+                            <Link to={project.cta.url} className='c-btn--secondary'>
+                              {project.cta.title}
+                              <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <circle cx="12" cy="12" r="12" fill="#59CC51"/>
+                              <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                              </svg>
+                            </Link>
+                            }
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                );
+              default:
+                return null;
+            }
+          })}
         </div>
       </ContainerBox>
       {clientSection && (
