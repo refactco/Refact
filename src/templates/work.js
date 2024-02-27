@@ -64,15 +64,6 @@ const WorkPage = ({data}) => {
       )}
       <ContainerBox className="o-section c-section--works" id="work-section">
         <div className="c-work-page">
-          {featuredPost && (
-            
-          )}
-          {featuredTestimonial && (
-            
-          )}
-          {projectSection && (
-            
-          )}
           {workContent.map(section => {
             switch (section.fieldGroupName) {
               case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost':
