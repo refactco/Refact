@@ -34,12 +34,6 @@ const BlogPostTemplate = ({ data }) => {
                     <span className="c-career__meta-value">{post.careers.type[1]}</span>
                   </div>
                   )}
-                  {post.date && (
-                  <div className="c-career__meta-item">
-                    <span className="c-career__meta-label">Date Posted</span>
-                    <span className="c-career__meta-value">{post.date}</span>
-                  </div>
-                  )}
                 </div>
               </div>
             </div>
