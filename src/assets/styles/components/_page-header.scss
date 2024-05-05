@@ -7,12 +7,15 @@
         background: var(--color-white);
     }
     &.is-work{
-        .c-page-header__text{
-            margin-bottom: 24px;
-            @include mq(md){
-                margin-bottom: 40px;
-            }
+        .c-page-header__title{
+            max-width: 600px !important;
         }
+        // .c-page-header__text{
+        //     margin-bottom: 24px;
+        //     @include mq(md){
+        //         margin-bottom: 40px;
+        //     }
+        // }
     }
     &.is-page-contact{
         padding: 48px 0;
@@ -80,11 +83,10 @@
     color: var(--color-white);
     display: flex;
     align-items: center;
-    margin-bottom: 1.333333333333333em;
+    margin-bottom: 0.5rem;
 
     @include mq(md) {
         @include font-size(13px, 1.85);
-        margin-bottom: 1.846153846153846em;
     }
 
     &::before {
@@ -120,7 +122,7 @@
     }
 
     @include mq(md) {
-        margin: 0 0 40px;
+        margin: 0 0 1rem;
         @include font-size(68px, 1.19);
         letter-spacing: -1.36px;
     }
@@ -134,6 +136,12 @@
 
     @include mq(md) {
         @include font-size(28px, 1.5);
+    }
+    p{
+        margin: 0;
+        &:not(:last-child){
+            margin-bottom: 1rem;
+        }
     }
 }
 .c-page-header__cta{

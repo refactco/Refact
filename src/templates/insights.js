@@ -133,7 +133,10 @@ export function Head() {
 
 export const pageQuery = graphql`
   query {
-    allWpPost(sort: {date: DESC}) {
+    allWpPost(
+    sort: {date: DESC}
+    filter: {categories: {nodes: {elemMatch: {slug: {ne: "case-studies"}}}}}
+  ) {
       edges {
         node {
           id

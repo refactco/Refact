@@ -24,15 +24,15 @@ const WorkPage = ({ data }) => {
       'Template_PageBuilder_Pagebuilder_PageBuilder_TextButton'
   );
 
-  function scrollToSection(sectionId) {
-    const section = document.getElementById(sectionId);
+  // function scrollToSection(sectionId) {
+  //   const section = document.getElementById(sectionId);
 
-    if (section) {
-      section.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }
-  }
+  //   if (section) {
+  //     section.scrollIntoView({
+  //       behavior: 'smooth',
+  //     });
+  //   }
+  // }
   return (
     <Layout>
       {heroSection && (
@@ -69,7 +69,7 @@ const WorkPage = ({ data }) => {
                 )}
               </div>
             )}
-            <button
+            {/* <button
               className="c-page-header__scroll"
               onClick={() => scrollToSection('work-section')}
             >
@@ -87,7 +87,7 @@ const WorkPage = ({ data }) => {
                   />
                 </svg>
               </div>
-            </button>
+            </button> */}
           </div>
         </ContainerBox>
       )}

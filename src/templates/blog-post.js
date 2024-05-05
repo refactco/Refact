@@ -96,7 +96,9 @@ const BlogPostTemplate = ({ data }) => {
           </div>
           <CtaPost />
         </article>
-        <EmailSubscriber />
+        {post.categories?.nodes[0].slug === 'case-studies' ? '' : (
+          <EmailSubscriber />
+        )}
       </ContainerBox>
       {post.categories?.nodes[0].slug === 'case-studies' ? (
         <CaseStudyPosts caseStudies={caseStudy} />

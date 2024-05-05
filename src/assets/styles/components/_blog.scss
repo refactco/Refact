@@ -65,12 +65,11 @@
   letter-spacing: 1.68px;
   text-transform: uppercase;
   color: var(--color-grey);
-  margin-bottom: 16px;
+  margin-bottom: 1rem;
   display: inline-flex;
   align-items: center;
   gap: 8px;
   @include mq(md){
-    margin-bottom: 32px;
     @include font-size(14px, 1.35);
   }
   &::after{
@@ -144,12 +143,11 @@
 }
 
 .c-blog-post__title {
-  margin: 0 0 24px;
+  margin: 0 0 1rem;
   font-family: $inter;
   font-weight: 600;
   @include font-size(18px, 1.22);
   @include mq(md){
-    margin: 0 0 32px;
     @include font-size(24px, 1.16);
   }
 }
@@ -215,15 +213,12 @@
 }
 
 .c-blog-featured__title {
-  margin: 0 0 16px;
+  margin: 0 0 0.5rem;
   font-family: $inter;
   font-weight: 600;
   @include font-size(28px, 1.14);
-  @include mq(md){
-    margin: 0 0 32px;
-  }
   @include mq(lg) {
-    @include font-size(40px, 1.45);
+    @include font-size(40px, 1.2);
   }
 }
 

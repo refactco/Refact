@@ -15,7 +15,7 @@ const CtaSection = () => {
           <div className="c-cta__text">
             Whatever stage your project is at, we want to help you make it a big success.
           </div>
-          <Link to="/contact" className='c-btn'>Get in Touch</Link>
+          <Link to="/contact" className='c-btn'>Work with us</Link>
         </div>
       </div>
     </ContainerBox>

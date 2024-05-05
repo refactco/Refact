@@ -29,7 +29,7 @@
     @include mq(md) {
         @include font-size(68px, 1.19);
         letter-spacing: -1.36px;
-        margin: 0 0 0.705882352941176em;
+        margin: 0 0 1rem;
     }
 }
 
@@ -43,7 +43,7 @@
 
     @include mq(md) {
         @include font-size(28px, 1.5);
-        margin-bottom: 2.285714285714286em;
+        margin-bottom: 2.5rem;
     }
 }
 

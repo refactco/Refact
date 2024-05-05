@@ -4,13 +4,14 @@
     outline: none;
     border: none;
     background: var(--color-primary-l);
-    border-radius: 190px;
+    border-radius: 2px;
     padding: 0.858em 2.2857142857em;
     font-family: $inter;
     font-weight: 600;
     @include font-size(14px, 1.57);
     color: var(--color-text);
     text-decoration: none;
+    text-transform: uppercase;
     display: inline-flex;
     overflow: hidden;
     transition: color .25s linear 0s;
