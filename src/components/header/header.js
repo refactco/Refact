@@ -230,7 +230,7 @@ const Header  = () => {
                 null
               ) : (
                 <div className='c-header-cta'>
-                  <Link to="/contact">CONTACT</Link>
+                  <Link to="/contact">Contact</Link>
                 </div>
               )}
                 <div className="c-hamburger">
