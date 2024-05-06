@@ -378,7 +378,7 @@
         display: flex;
     }
     a{
-        @include font-size(16px, 1.5);
+        @include font-size(16px, 1);
         color: var(--color-white);
         font-weight: 600;
         font-family: $inter;
