@@ -10,6 +10,72 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     query {
+      allInsights: allWpPost(
+        sort: { date: DESC }
+        filter: {
+          categories: { nodes: { elemMatch: { slug: { ne: "case-studies" } } } }
+        }
+      ) {
+        edges {
+          node {
+            id
+            title
+            slug
+            uri
+            excerpt
+            date(formatString: "MMMM DD, YYYY")
+            featuredImage {
+              node {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                  url
+                }
+                altText
+              }
+            }
+            terms {
+              nodes {
+                name
+                link
+              }
+            }
+            coAuthors {
+              nodes {
+                id
+                displayName
+              }
+            }
+            categories {
+              nodes {
+                slug
+              }
+            }
+            caseStudyPosts {
+              fieldGroupName
+              project {
+                cover {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                cta {
+                  target
+                  title
+                  url
+                }
+                description
+                fieldGroupName
+                title
+              }
+            }
+          }
+        }
+      }
       allWpPost(sort: { date: DESC }) {
         edges {
           node {
@@ -521,18 +587,46 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  result.data.allWpPost.edges.forEach((node) => {
-    createPage({
-      path: `/insights/`,
-      component: path.resolve(`./src/templates/insights.js`),
-      ownerNodeId: node.id,
-      context: {
-        id: node.id,
-      },
-    });
+  const insights = result.data.allInsights.edges;
+  const postsPerPage = 4;
+  const totalPages = Math.ceil(insights.length / postsPerPage);
+
+  createPage({
+    path: `/insights/`,
+    component: path.resolve(`./src/templates/insights.js`),
+    context: {
+      page: 1,
+      limit: postsPerPage,
+      skip: 0,
+      totalPages: totalPages,
+    },
+    // ownerNodeId: node.id,
+    // context: {
+    //   id: node.id,
+    // },
   });
 
+  for (let i = 1; i <= totalPages; i++) {
+    createPage({
+      path: `/insights/${i}`,
+      component: path.resolve(`./src/templates/insights.js`),
+      context: {
+        page: i,
+        limit: postsPerPage,
+        skip: (i - 1) * postsPerPage + 1,
+        totalPages: totalPages,
+      },
+      // ownerNodeId: node.id,
+      // context: {
+      //   id: node.id,
+      // },
+    });
+  }
+  // result.data.allWpPost.edges.forEach((node) => {
+  // });
+
   const posts = result.data.allWpPost.edges;
+
   posts.forEach(({ node }) => {
     createPage({
       path: `/${node.slug}/`,
