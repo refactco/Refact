@@ -19,6 +19,7 @@
     "@mdx-js/react": "^2.3.0",
     "axios": "^1.5.1",
     "dotenv": "^16.3.1",
+    "framer-motion": "^11.2.5",
     "gatsby": "^5.10.0",
     "gatsby-plugin-canonical-urls": "^5.11.0",
     "gatsby-plugin-env-variables": "^2.3.0",
