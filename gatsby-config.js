@@ -2,12 +2,12 @@ const { config } = require('dotenv');
 
 config();
 
-const siteUrl = process.env.URL;
+const siteUrl = process.env.URL || `https://refact.co`;
 
 module.exports = {
   siteMetadata: {
     title: `Refact | Creative & Software Development Agency for Media and Newsrooms`,
-    siteUrl: `http://refact.local`,
+    siteUrl: `https://refact.co`,
     description: `We work with independent media and news organizations to design, build and scale publishing platforms and digital experiences.`,
     image: `/og-refact.jpg`,
   },
@@ -76,13 +76,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-wordpress',
       options: {
-        url: process.env.WPGRAPHQL_URL,
+        url: process.env.WPGRAPHQL_URL || 'https://refact.wpengine.com/graphql',
       },
     },
     {
       resolve: `gatsby-plugin-canonical-urls`,
       options: {
-        siteUrl: `http://refact.local`,
+        siteUrl: `https://refact.co`,
         stripQueryString: true,
       },
     },

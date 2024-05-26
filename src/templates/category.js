@@ -17,9 +17,9 @@ const CategoryPage = (props) => {
     <Layout>
       <AnimatePresence>
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -50, opacity: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <ContainerBox className="c-section--headline">
             <div className="c-headline">

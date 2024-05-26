@@ -43,15 +43,15 @@ const InsightPage = (props) => {
     if (state?.pageChange) {
       smoothScrollToElement('blog-nav-id', 88);
     }
-  }, []);
+  }, [state]);
 
   return (
     <Layout>
       <AnimatePresence>
         <motion.div
-          initial={{ y: 50, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          exit={{ y: -50, opacity: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
         >
           <ContainerBox className="c-section--blog">
             <div className="c-blog-featured">
