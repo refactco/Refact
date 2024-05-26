@@ -1,7 +1,8 @@
-import { Link, graphql, navigate } from 'gatsby';
+import { useLocation } from '@reach/router';
 import { AnimatePresence, motion } from 'framer-motion';
+import { Link, graphql, navigate } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
@@ -13,6 +14,36 @@ const InsightPage = (props) => {
   const posts = data.allWpPost.edges;
   const [firstPost] = data.firstPost.edges;
   const topicItems = data.topicList.nodes;
+  const { state } = useLocation();
+
+  function smoothScrollToElement(elementId, offset = 0) {
+    const element = document.getElementById(elementId);
+    const elementPosition =
+      element.getBoundingClientRect().top + window.pageYOffset;
+    const offsetPosition = elementPosition - offset;
+
+    window.scrollTo({
+      top: offsetPosition,
+      behavior: 'smooth',
+    });
+
+    setTimeout(() => {
+      const htmlElement = document.querySelector('html');
+
+      if (!htmlElement.className.includes('has-sticky-header')) {
+        window.scrollTo({
+          top: offsetPosition - 88,
+          behavior: 'smooth',
+        });
+      }
+    }, 200);
+  }
+
+  useEffect(() => {
+    if (state?.pageChange) {
+      smoothScrollToElement('blog-nav-id', 88);
+    }
+  }, []);
 
   return (
     <Layout>
@@ -28,7 +59,11 @@ const InsightPage = (props) => {
                 <div className="c-blog-post__badge">Featured post</div>
                 <div className="c-blog-post__category">
                   {firstPost.node.tags.nodes.map((tag) => (
-                    <Link to={tag.link} className="c-link c-link--category" key={tag.id}>
+                    <Link
+                      to={tag.link}
+                      className="c-link c-link--category"
+                      key={tag.id}
+                    >
                       {tag.name}
                     </Link>
                   ))}
@@ -41,13 +76,20 @@ const InsightPage = (props) => {
                 {firstPost.node.excerpt && (
                   <div
                     className="c-blog-featured__excerpt"
-                    dangerouslySetInnerHTML={{ __html: data.allWpPost.edges[0].node.excerpt }}
+                    dangerouslySetInnerHTML={{
+                      __html: data.allWpPost.edges[0].node.excerpt,
+                    }}
                   ></div>
                 )}
                 <div className="c-blog-featured__cta">
                   <Link to={firstPost.node.uri} className="c-btn--secondary">
                     Read More
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                    >
                       <circle cx="12" cy="12" r="12" fill="#59CC51" />
                       <path
                         fill="#fff"
@@ -61,21 +103,36 @@ const InsightPage = (props) => {
                 <Link to={firstPost.node.uri} className="c-link">
                   {firstPost.node.featuredImage ? (
                     <GatsbyImage
-                      image={firstPost.node.featuredImage.node.localFile.childImageSharp.gatsbyImageData}
+                      image={
+                        firstPost.node.featuredImage.node.localFile
+                          .childImageSharp.gatsbyImageData
+                      }
                       alt={firstPost.node.featuredImage.node.altText}
                     />
                   ) : (
-                    <svg xmlns="http://www.w3.org/2000/svg" width="711" height="447" fill="none" viewBox="0 0 711 447">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="711"
+                      height="447"
+                      fill="none"
+                      viewBox="0 0 711 447"
+                    >
                       <path fill="#E5F7E3" d="M0 0h711v447H0z" />
                     </svg>
                   )}
                 </Link>
               </div>
             </div>
-            <div className="c-blog-nav">
+            <div className="c-blog-nav" id="blog-nav-id">
               <div className="c-blog-nav__title">Topics</div>
               <div className="c-blog-nav__wrap is-insight">
-                <swiper-container space-between={8} slides-per-view={'auto'} css-mode={false} navigation={false} allow-touch-move={true}>
+                <swiper-container
+                  space-between={8}
+                  slides-per-view={'auto'}
+                  css-mode={false}
+                  navigation={false}
+                  allow-touch-move={true}
+                >
                   {topicItems.map((topic) => (
                     <swiper-slide key={topic.id}>
                       <div className="item">
@@ -93,14 +150,21 @@ const InsightPage = (props) => {
                     <div className="c-blog-post__image">
                       <Link to={node.uri} className="c-link">
                         <GatsbyImage
-                          image={node.featuredImage.node.localFile.childImageSharp.gatsbyImageData}
+                          image={
+                            node.featuredImage.node.localFile.childImageSharp
+                              .gatsbyImageData
+                          }
                           alt={node.featuredImage.node.altText}
                         />
                       </Link>
                     </div>
                     <div className="c-blog-post__category">
                       {node.tags.nodes.map((tag) => (
-                        <Link to={tag.link} className="c-link c-link--category" key={tag.id}>
+                        <Link
+                          to={tag.link}
+                          className="c-link c-link--category"
+                          key={tag.id}
+                        >
                           {tag.name}
                         </Link>
                       ))}
@@ -113,7 +177,12 @@ const InsightPage = (props) => {
                     <div className="c-blog-post__cta">
                       <Link to={node.uri} className="c-btn--secondary">
                         Read More
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          width="24"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                        >
                           <circle cx="12" cy="12" r="12" fill="#59CC51" />
                           <path
                             fill="#fff"
@@ -131,7 +200,11 @@ const InsightPage = (props) => {
                   total={totalPages}
                   maxWidth={200}
                   onPageChange={(changedPage) => {
-                    navigate(`/insights/${changedPage}`);
+                    navigate(`/insights/page/${changedPage}`, {
+                      state: {
+                        pageChange: true,
+                      },
+                    });
                   }}
                 />
               </div>
