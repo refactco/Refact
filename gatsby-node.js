@@ -10,6 +10,72 @@ exports.createPages = async ({ graphql, actions }) => {
 
   const result = await graphql(`
     query {
+      allInsights: allWpPost(
+        sort: { date: DESC }
+        filter: {
+          categories: { nodes: { elemMatch: { slug: { ne: "case-studies" } } } }
+        }
+      ) {
+        edges {
+          node {
+            id
+            title
+            slug
+            uri
+            excerpt
+            date(formatString: "MMMM DD, YYYY")
+            featuredImage {
+              node {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                  url
+                }
+                altText
+              }
+            }
+            terms {
+              nodes {
+                name
+                link
+              }
+            }
+            coAuthors {
+              nodes {
+                id
+                displayName
+              }
+            }
+            categories {
+              nodes {
+                slug
+              }
+            }
+            caseStudyPosts {
+              fieldGroupName
+              project {
+                cover {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                cta {
+                  target
+                  title
+                  url
+                }
+                description
+                fieldGroupName
+                title
+              }
+            }
+          }
+        }
+      }
       allWpPost(sort: { date: DESC }) {
         edges {
           node {
@@ -89,6 +155,11 @@ exports.createPages = async ({ graphql, actions }) => {
           link
           name
           id
+          posts {
+            nodes {
+              id
+            }
+          }
         }
       }
       topicList: allWpTag(filter: { count: { gt: 0 } }) {
@@ -96,6 +167,11 @@ exports.createPages = async ({ graphql, actions }) => {
           name
           link
           id
+          posts {
+            nodes {
+              id
+            }
+          }
         }
       }
       careersPage: wpPage(slug: { eq: "careers" }) {
@@ -521,18 +597,40 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   `);
 
-  result.data.allWpPost.edges.forEach((node) => {
-    createPage({
-      path: `/insights/`,
-      component: path.resolve(`./src/templates/insights.js`),
-      ownerNodeId: node.id,
-      context: {
-        id: node.id,
-      },
-    });
+  const insights = result.data.allInsights.edges;
+  const postsPerPage = 4;
+  const totalPages = Math.ceil(insights.length / postsPerPage);
+
+  createPage({
+    path: `/insights/`,
+    component: path.resolve(`./src/templates/insights.js`),
+    context: {
+      page: 1,
+      limit: postsPerPage,
+      skip: 0,
+      totalPages: totalPages,
+    },
+    // ownerNodeId: node.id,
+    // context: {
+    //   id: node.id,
+    // },
   });
 
+  for (let i = 1; i <= totalPages; i++) {
+    createPage({
+      path: `/insights/page/${i}`,
+      component: path.resolve(`./src/templates/insights.js`),
+      context: {
+        page: i,
+        limit: postsPerPage,
+        skip: (i - 1) * postsPerPage + 1,
+        totalPages: totalPages,
+      },
+    });
+  }
+
   const posts = result.data.allWpPost.edges;
+
   posts.forEach(({ node }) => {
     createPage({
       path: `/${node.slug}/`,
@@ -546,25 +644,81 @@ exports.createPages = async ({ graphql, actions }) => {
   });
 
   const catItems = result.data.categoryList.nodes;
+
   catItems.forEach((cat) => {
+    const categoryPosts = cat.posts.nodes;
+    const categoryPostsPerPage = 4;
+    const totalCategoryPages = Math.ceil(
+      categoryPosts.length / categoryPostsPerPage
+    );
+
     createPage({
       path: `${cat.link}`,
       component: path.resolve('./src/templates/category.js'),
       context: {
         catId: cat.id,
+        page: 1,
+        limit: categoryPostsPerPage,
+        skip: 0,
+        totalPages: totalCategoryPages,
       },
     });
+
+    if (categoryPosts.length > 0) {
+      for (let i = 1; i <= totalCategoryPages; i++) {
+        console.log({ id: cat.id, i });
+
+        createPage({
+          path: `${cat.link}page/${i}`,
+          component: path.resolve('./src/templates/category.js'),
+          context: {
+            catId: cat.id,
+            page: i,
+            limit: categoryPostsPerPage,
+            skip: (i - 1) * categoryPostsPerPage + 1,
+            totalPages: totalCategoryPages,
+          },
+        });
+      }
+    }
   });
 
   const tagItems = result.data.topicList.nodes;
+
   tagItems.forEach((tag) => {
+    const tagPosts = tag.posts.nodes;
+    const tagPostsPerPage = 4;
+    const totalTagPages = Math.ceil(tagPosts.length / tagPostsPerPage);
+
     createPage({
       path: `${tag.link}`,
       component: path.resolve('./src/templates/tags.js'),
       context: {
         tagId: tag.id,
+        page: 1,
+        limit: tagPostsPerPage,
+        skip: 0,
+        totalPages: totalTagPages,
       },
     });
+
+    if (tagPosts.length > 0) {
+      for (let i = 1; i <= totalTagPages; i++) {
+        console.log({ id: tag.id, i });
+
+        createPage({
+          path: `${tag.link}page/${i}`,
+          component: path.resolve('./src/templates/tags.js'),
+          context: {
+            tagId: tag.id,
+            page: i,
+            limit: tagPostsPerPage,
+            skip: (i - 1) * tagPostsPerPage + 1,
+            totalPages: totalTagPages,
+          },
+        });
+      }
+    }
   });
 
   const careers =
