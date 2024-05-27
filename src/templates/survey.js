@@ -25,7 +25,7 @@ const ServicesPage = ({data}) => {
           </h1>
           <div className="c-page-header__text" dangerouslySetInnerHTML={{__html:heroSection.text}}></div>
           {heroSection.cta && (
-          <div className="c-page-header__cta">
+          <div className="c-page-header__cta" style={{marginTop: 24}}>
             {heroSection.cta.target === '_blank' ? 
               <a href={heroSection.cta.url} target='_blank' rel="nofollow, noreferrer" className="c-btn">
                 {heroSection.cta.title}
