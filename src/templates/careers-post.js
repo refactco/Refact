@@ -8,9 +8,8 @@ const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
   return (
     <Layout>
-      <ContainerBox className="c-section--article">
-        <article className="c-career">
-          <header className="c-career__header">
+       <ContainerBox className="o-section c-section--page-careers">
+        <header className="c-career__header">
             <div className="c-career__header-wrapper">
               <div className="c-page-header">
                 <div className="c-page-header__sub-title">Careers</div>
@@ -38,6 +37,9 @@ const BlogPostTemplate = ({ data }) => {
               </div>
             </div>
           </header>
+      </ContainerBox>
+      <ContainerBox className="c-section--career-single">
+        <article className="c-career">
           <div className="c-career__content js-career-main">
             <div className="c-career__content-wrapper s-content js-career-content" dangerouslySetInnerHTML={{__html:post.content}}></div>
             <div className="c-career__sidebar js-career-sidebar">
