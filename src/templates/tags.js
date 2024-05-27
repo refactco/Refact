@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, graphql, navigate } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
 import ContainerBox from '../components/container-box/container-box';
@@ -37,7 +36,7 @@ const TagPage = (props) => {
                   >
                     {topicItems.map((topic) => (
                       <swiper-slide key={topic.id}>
-                        <div className="item">
+                        <div className={`item ${topic.name === name ? 'is-active' : ''}`}>
                           <Link to={topic.link}>{topic.name}</Link>
                         </div>
                       </swiper-slide>
@@ -52,17 +51,6 @@ const TagPage = (props) => {
               <div className="c-blog__list">
                 {posts.map((node) => (
                   <div className="c-blog__item" key={node.id}>
-                    <div className="c-blog-post__image">
-                      <Link to={node.uri} className="c-link">
-                        <GatsbyImage
-                          image={
-                            node.featuredImage.node.localFile.childImageSharp
-                              .gatsbyImageData
-                          }
-                          alt={node.featuredImage.node.altText}
-                        />
-                      </Link>
-                    </div>
                     <div className="c-blog-post__category">
                       {node.tags.nodes.map((tag) => (
                         <Link
@@ -80,7 +68,14 @@ const TagPage = (props) => {
                         {node.title}
                       </Link>
                     </h3>
-
+                    {node.excerpt && (
+                      <div
+                        className="c-blog-featured__excerpt"
+                        dangerouslySetInnerHTML={{
+                          __html: node.excerpt,
+                        }}
+                      ></div>
+                    )}
                     <div className="c-blog-post__cta">
                       <Link to={node.uri} className="c-btn--secondary">
                         Read More
@@ -101,7 +96,7 @@ const TagPage = (props) => {
                   </div>
                 ))}
               </div>
-              <div className="c-blog-posts__pagination">
+              <div className={totalPages <= 1 ? 'c-blog-posts__pagination is-hidden' : 'c-blog-posts__pagination'}>
                 <ResponsivePagination
                   current={page}
                   total={totalPages}

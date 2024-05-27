@@ -1,7 +1,6 @@
 import { useLocation } from '@reach/router';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, graphql, navigate } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import React, { useEffect } from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
 import ContainerBox from '../components/container-box/container-box';
@@ -11,7 +10,8 @@ import Seo from '../components/seo/seo';
 const InsightPage = (props) => {
   const { data, pageContext } = props;
   const { page, totalPages } = pageContext;
-  const posts = data.allWpPost.edges;
+  const posts = data.allWpPost.edges.slice(1); // Exclude the first post by slicing the array
+
   const [firstPost] = data.firstPost.edges;
   const topicItems = data.topicList.nodes;
   const { state } = useLocation();
@@ -32,7 +32,7 @@ const InsightPage = (props) => {
 
       if (!htmlElement.className.includes('has-sticky-header')) {
         window.scrollTo({
-          top: offsetPosition - 88,
+          top: offsetPosition - 0,
           behavior: 'smooth',
         });
       }
@@ -41,7 +41,7 @@ const InsightPage = (props) => {
 
   useEffect(() => {
     if (state?.pageChange) {
-      smoothScrollToElement('blog-nav-id', 88);
+      smoothScrollToElement('blog-nav-id', 0);
     }
   }, [state]);
 
@@ -56,7 +56,6 @@ const InsightPage = (props) => {
           <ContainerBox className="c-section--blog">
             <div className="c-blog-featured">
               <div className="c-blog-featured__wrap">
-                <div className="c-blog-post__badge">Featured post</div>
                 <div className="c-blog-post__category">
                   {firstPost.node.tags.nodes.map((tag) => (
                     <Link
@@ -99,29 +98,6 @@ const InsightPage = (props) => {
                   </Link>
                 </div>
               </div>
-              <div className="c-blog-featured__image c-blog-post__image">
-                <Link to={firstPost.node.uri} className="c-link">
-                  {firstPost.node.featuredImage ? (
-                    <GatsbyImage
-                      image={
-                        firstPost.node.featuredImage.node.localFile
-                          .childImageSharp.gatsbyImageData
-                      }
-                      alt={firstPost.node.featuredImage.node.altText}
-                    />
-                  ) : (
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="711"
-                      height="447"
-                      fill="none"
-                      viewBox="0 0 711 447"
-                    >
-                      <path fill="#E5F7E3" d="M0 0h711v447H0z" />
-                    </svg>
-                  )}
-                </Link>
-              </div>
             </div>
             <div className="c-blog-nav" id="blog-nav-id">
               <div className="c-blog-nav__title">Topics</div>
@@ -147,17 +123,6 @@ const InsightPage = (props) => {
               <div className="c-blog__list">
                 {posts.map(({ node }) => (
                   <div className="c-blog__item" key={node.id}>
-                    <div className="c-blog-post__image">
-                      <Link to={node.uri} className="c-link">
-                        <GatsbyImage
-                          image={
-                            node.featuredImage.node.localFile.childImageSharp
-                              .gatsbyImageData
-                          }
-                          alt={node.featuredImage.node.altText}
-                        />
-                      </Link>
-                    </div>
                     <div className="c-blog-post__category">
                       {node.tags.nodes.map((tag) => (
                         <Link
@@ -174,6 +139,14 @@ const InsightPage = (props) => {
                         {node.title}
                       </Link>
                     </h3>
+                    {node.excerpt && (
+                      <div
+                        className="c-blog-featured__excerpt"
+                        dangerouslySetInnerHTML={{
+                          __html: node.excerpt,
+                        }}
+                      ></div>
+                    )}
                     <div className="c-blog-post__cta">
                       <Link to={node.uri} className="c-btn--secondary">
                         Read More

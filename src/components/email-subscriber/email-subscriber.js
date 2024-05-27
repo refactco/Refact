@@ -63,12 +63,21 @@ const EmailSubscriber = () => {
       const scrollPosition = window.scrollY;
       const windowHeight = window.innerHeight;
       const pageHeight = document.body.clientHeight;
+      const contentElement = document.querySelector('.c-article__content-wrapper');
       const scrollPercentage =
         (scrollPosition / (pageHeight - windowHeight)) * 100;
 
       if (!successfulSubmit && scrollPercentage >= 10) {
         setShowBox(true);
-      } else {
+      } 
+      else {
+        setShowBox(false);
+      }
+      const contentBottomPosition = contentElement
+        ? contentElement.offsetTop + contentElement.offsetHeight
+        : 0;
+
+      if (scrollPosition + windowHeight >= contentBottomPosition) {
         setShowBox(false);
       }
     };

@@ -1,6 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import { Link, graphql, navigate } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import ResponsivePagination from 'react-responsive-pagination';
 import ContainerBox from '../components/container-box/container-box';
@@ -31,17 +30,6 @@ const CategoryPage = (props) => {
               <div className="c-blog__list">
                 {posts.map((node) => (
                   <div className="c-blog__item" key={node.id}>
-                    <div className="c-blog-post__image">
-                      <Link to={node.uri} className="c-link">
-                        <GatsbyImage
-                          image={
-                            node.featuredImage.node.localFile.childImageSharp
-                              .gatsbyImageData
-                          }
-                          alt={node.featuredImage.node.altText}
-                        />
-                      </Link>
-                    </div>
                     <div className="c-blog-post__category">
                       {node.tags.nodes.map((tag) => (
                         <Link
@@ -80,7 +68,7 @@ const CategoryPage = (props) => {
                   </div>
                 ))}
               </div>
-              <div className="c-blog-posts__pagination">
+              <div className={totalPages <= 1 ? 'c-blog-posts__pagination is-hidden' : 'c-blog-posts__pagination'}>
                 <ResponsivePagination
                   current={page}
                   total={totalPages}
@@ -94,9 +82,6 @@ const CategoryPage = (props) => {
                   }}
                 />
               </div>
-              {/* <div className="c-blog__cta">
-            <LoadMoreButton onClick={handleLoadMore} disabled={!hasMorePosts} />
-          </div> */}
             </div>
           </ContainerBox>
         </motion.div>

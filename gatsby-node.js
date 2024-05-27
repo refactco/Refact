@@ -598,7 +598,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const insights = result.data.allInsights.edges;
-  const postsPerPage = 4;
+  const postsPerPage = 9;
   const totalPages = Math.ceil(insights.length / postsPerPage);
 
   createPage({
@@ -647,7 +647,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   catItems.forEach((cat) => {
     const categoryPosts = cat.posts.nodes;
-    const categoryPostsPerPage = 4;
+    const categoryPostsPerPage = 8;
     const totalCategoryPages = Math.ceil(
       categoryPosts.length / categoryPostsPerPage
     );
@@ -687,7 +687,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   tagItems.forEach((tag) => {
     const tagPosts = tag.posts.nodes;
-    const tagPostsPerPage = 4;
+    const tagPostsPerPage = 8;
     const totalTagPages = Math.ceil(tagPosts.length / tagPostsPerPage);
 
     createPage({
