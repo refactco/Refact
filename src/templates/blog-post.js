@@ -1,5 +1,4 @@
 import { Link, graphql } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import CaseStudyPosts from '../components/case-study/case-study';
 import ContainerBox from '../components/container-box/container-box';
@@ -18,88 +17,65 @@ const BlogPostTemplate = ({ data }) => {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <Layout>
+      <ContainerBox className="c-section--article-header">
+        <div className="c-article__header">
+          <div className="c-article__category">
+            {post.tags.nodes.map((tag) => (
+              <Link
+                to={tag.link}
+                className="c-link c-link--category"
+                key={tag.id}
+              >
+                {tag.name}
+              </Link>
+            ))}
+          </div>
+          <h1 className="c-article__title">{post.title}</h1>
+          <div className="c-article__author-date">{post.date}</div>
+          <div className="c-article__author">
+            <div className='c-article-author__wrapper'>
+            {authorPosts.map((author) => (
+                <div className='c-article-author__img' key={author.id}>
+                  {author.userMeta.profileImage && (
+                  <img
+                    src={author.userMeta.profileImage.localFile.url}
+                    alt={author.name}
+                    width="32"
+                    height="32"
+                    loading='lazy'
+                  />
+                  )}
+                </div>
+              ))}
+            </div>
+            <div className="c-article-author__name">
+              {post.coAuthors.nodes.map((author, index) => (
+                <span key={author.id}>
+                  {author.displayName}
+                  {index < post.coAuthors.nodes.length - 2 ? ", " : index === post.coAuthors.nodes.length - 2 ? " & " : ""}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </ContainerBox>
       <ContainerBox className="c-section--article">
         <article className="c-article"> 
-          <header className="c-article__header">
-            <div className="c-article__header-wrapper">
-              <div className="c-article__meta">
-                <div className="c-article__category">
-                  {post.tags.nodes.map((tag) => (
-                    <Link
-                      to={tag.link}
-                      className="c-link c-link--category"
-                      key={tag.id}
-                    >
-                      {tag.name}
-                    </Link>
-                  ))}
-                </div>
-                <h1 className="c-article__title">{post.title}</h1>
-                <div className="c-article__author-date">{post.date}</div>
-                <div className="c-article__author">
-                  <div className='c-article-author__wrapper'>
-                  {authorPosts.map((author) => (
-                      <div className='c-article-author__img' key={author.id}>
-                        {author.userMeta.profileImage && (
-                        <img
-                          src={author.userMeta.profileImage.localFile.url}
-                          alt={author.name}
-                          width="32"
-                          height="32"
-                          loading='lazy'
-                        />
-                        )}
-                      </div>
-                    ))}
-                  </div>
-                  <div className="c-article-author__name">
-                    {post.coAuthors.nodes.map((author, index) => (
-                      <span key={author.id}>
-                        {author.displayName}
-                        {index < post.coAuthors.nodes.length - 2 ? ", " : index === post.coAuthors.nodes.length - 2 ? " & " : ""}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-              <div className="c-article__image">
-                {post.featuredImage ? (
-                  <GatsbyImage
-                    image={
-                      post.featuredImage.node.localFile.childImageSharp
-                        .gatsbyImageData
-                    }
-                    alt={post.featuredImage.node.altText}
-                  />
-                ) : (
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="711"
-                    height="447"
-                    fill="none"
-                    viewBox="0 0 711 447"
-                  >
-                    <path fill="#E5F7E3" d="M0 0h711v447H0z" />
-                  </svg>
-                )}
-              </div>
-            </div>
-          </header>
           <div className="c-article__content">
+            <div className="c-article__share">
+              <ShareButton postUrl={currentUrl} postTitle={post.title} />
+            </div>
             <div
               className="c-article__content-wrapper s-content"
               dangerouslySetInnerHTML={{ __html: post.content }}
             ></div>
-            <div className="c-article__share">
-              <ShareButton postUrl={currentUrl} postTitle={post.title} />
-            </div>
           </div>
           <CtaPost />
         </article>
-        {post.categories?.nodes[0].slug === 'case-studies' ? '' : (
+      </ContainerBox>
+      {post.categories?.nodes[0].slug === 'case-studies' ? '' : (
           <EmailSubscriber />
         )}
-      </ContainerBox>
       {post.categories?.nodes[0].slug === 'case-studies' ? (
         <CaseStudyPosts caseStudies={caseStudy} />
       ) : (
