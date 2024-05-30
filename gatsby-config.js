@@ -77,6 +77,18 @@ module.exports = {
       resolve: 'gatsby-source-wordpress',
       options: {
         url: process.env.WPGRAPHQL_URL || 'https://refact.wpengine.com/graphql',
+        // Increase the max file size limit
+        schema: {
+          requestConcurrency: 5, // currently set to 5
+          previewRequestConcurrency: 2, // currently set to 2
+        },
+        type: {
+          MediaItem: {
+            localFile: {
+              maxFileSizeBytes: 104857600, // Set to 100 MB
+            },
+          },
+        },
       },
     },
     {
