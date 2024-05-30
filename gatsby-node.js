@@ -398,6 +398,129 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      workPost: allWpWork {
+        edges {
+          node {
+              id
+              title
+              uri
+              databaseId
+              slug
+              excerpt
+              content
+              seo {
+                title
+                metaDesc
+              }
+              caseStudies {
+                description
+                fieldGroupName
+                keyWork {
+                  fieldGroupName
+                  text
+                }
+                primaryCover {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                secondaryCover {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                caseStudyFields {
+                  ... on WpWork_Casestudies_CaseStudyFields_ImageSection {
+                    displaySettings
+                    fieldGroupName
+                    video {
+                      altText
+                      filename
+                      localFile {
+                        url
+                        id
+                      }
+                      height
+                      width
+                    }
+                    mediaType
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    mediaTypeSecondary
+                    reverseImages
+                    secondaryImage {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    secondayVideo {
+                      altText
+                      height
+                      localFile {
+                        url
+                        id
+                      }
+                      width
+                    }
+                  }
+                  ... on WpWork_Casestudies_CaseStudyFields_Content {
+                    fieldGroupName
+                    text
+                    title
+                  }
+                  ... on WpWork_Casestudies_CaseStudyFields_Testimonial {
+                    author
+                    fieldGroupName
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    mediaType
+                    text
+                    video {
+                      altText
+                      height
+                      localFile {
+                        id
+                        url
+                      }
+                      width
+                    }
+                  }
+                  ... on WpWork_Casestudies_CaseStudyFields_CtaSection {
+                    description
+                    fieldGroupName
+                    button {
+                      target
+                      title
+                      url
+                    }
+                    title
+                  }
+                }
+              }
+          }
+        }
+      }
       workPage: wpPage(slug: { eq: "work" }) {
         id
         content
@@ -736,6 +859,19 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/careers/${node.slug}/`,
       component: path.resolve('./src/templates/careers-post.js'),
+      context: {
+        id: node.id,
+        title: node.title,
+        content: node.content,
+      },
+    });
+  });
+
+  const workPosts = result.data.workPost.edges;
+  workPosts.forEach(({ node }) => {
+    createPage({
+      path: `/work/${node.slug}/`,
+      component: path.resolve('./src/templates/work-post.js'),
       context: {
         id: node.id,
         title: node.title,
