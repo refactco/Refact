@@ -408,9 +408,11 @@
       text-decoration: none;
       padding: 1rem;
       color: #fff;
+      @include font-size(14px, 1.5);
       @include mq(md) {
         min-height: 21.375rem;
         padding: 1.5rem;
+        @include font-size(16px, 1.5);
       }
       @include mq(lg){
         padding: 2.5rem;
