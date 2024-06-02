@@ -1,99 +1,37 @@
 import { Link, graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
-import AboutLogo from '../components/about-logo/about-logo';
-import ContainerBox from '../components/container-box/container-box';
-import Layout from '../components/layout/layout';
-import Seo from '../components/seo/seo';
+import ContainerBox from '../../components/container-box/container-box';
+import Seo from '../../components/seo/seo';
+import ServiceHero from '../../components/service-hero/service-hero';
+import ServiceLayout from '../../components/service-layout/service-layout';
+import ServiceSubItemList from '../../components/service-sub-item-list/service-sub-item-list';
 
-const WorkPage = ({ data }) => {
-  const workContent = data.wpPage.template.pageBuilder.pageBuilder;
-  const heroSection = workContent.find(
+const ServiceProductDesignPage = ({ data }) => {
+  const serviceContent = data.wpPage.template.pageBuilder.pageBuilder;
+  const workContent = data.workContent.template.pageBuilder.pageBuilder;
+  const serviceTemplate = serviceContent.find(
     (section) =>
       section.fieldGroupName ===
-      'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader'
-  );
-  const clientSection = workContent.find(
-    (section) =>
-      section.fieldGroupName ===
-      'Template_PageBuilder_Pagebuilder_PageBuilder_Clients'
-  );
-  const textButton = workContent.find(
-    (section) =>
-      section.fieldGroupName ===
-      'Template_PageBuilder_Pagebuilder_PageBuilder_TextButton'
+      'Template_PageBuilder_Pagebuilder_PageBuilder_Services'
   );
 
-  // function scrollToSection(sectionId) {
-  //   const section = document.getElementById(sectionId);
+  console.log({ serviceTemplate });
+  const currentService = serviceTemplate.services.find(
+    (service) =>
+      service.slug === 'product-design' || service.title === 'Product Design'
+  );
 
-  //   if (section) {
-  //     section.scrollIntoView({
-  //       behavior: 'smooth',
-  //     });
-  //   }
-  // }
   return (
-    <Layout>
-      {heroSection && (
-        <ContainerBox className="o-section c-section--page-header is-work">
-          <div className="c-page-header is-full">
-            {heroSection.subtitle && (
-              <div className="c-page-header__sub-title">
-                {heroSection.subtitle}
-              </div>
-            )}
-            <h1 className="c-page-header__title">
-              {heroSection.title}
-            </h1>
-            <div
-              className="c-page-header__text"
-              dangerouslySetInnerHTML={{ __html: heroSection.text }}
-              style={{ maxWidth: 796 }}
-            ></div>
-            {heroSection.cta && (
-              <div className="c-page-header__cta">
-                {heroSection.cta.target === '_blank' ? (
-                  <a
-                    href={heroSection.cta.url}
-                    target="_blank"
-                    rel="nofollow, noreferrer"
-                    className="c-btn"
-                  >
-                    {heroSection.cta.title}
-                  </a>
-                ) : (
-                  <Link to={heroSection.cta.url} className="c-btn">
-                    {heroSection.cta.title}
-                  </Link>
-                )}
-              </div>
-            )}
-            {/* <button
-              className="c-page-header__scroll"
-              onClick={() => scrollToSection('work-section')}
-            >
-              Explore Our Case Studies
-              <div className="c-cta__arrow">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="14"
-                  viewBox="0 0 14 13"
-                  fill="none"
-                >
-                  <path
-                    d="M6.42146 12.5785C6.74098 12.8981 7.25902 12.8981 7.57854 12.5785L12.7854 7.37166C13.1049 7.05214 13.1049 6.5341 12.7854 6.21458C12.4659 5.89506 11.9479 5.89506 11.6283 6.21458L7 10.8429L2.37166 6.21458C2.05214 5.89506 1.5341 5.89506 1.21458 6.21458C0.89506 6.5341 0.89506 7.05214 1.21458 7.37166L6.42146 12.5785ZM6.18182 -3.57639e-08L6.18182 12L7.81818 12L7.81818 3.57639e-08L6.18182 -3.57639e-08Z"
-                    fill="white"
-                  />
-                </svg>
-              </div>
-            </button> */}
-          </div>
-        </ContainerBox>
-      )}
+    <ServiceLayout>
+      <ServiceHero
+        title={currentService.title}
+        description={currentService.desc}
+      />
+      <ServiceSubItemList subList={currentService.subList} />
       <ContainerBox className="o-section c-section--works" id="work-section">
         <div className="c-work-page">
-          {workContent.map((section) => {
+          {workContent.slice(0, 3).map((section) => {
             switch (section.fieldGroupName) {
               case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost':
                 const featuredPost = section;
@@ -181,49 +119,6 @@ const WorkPage = ({ data }) => {
                           </Link>
                         )}
                       </div>
-                    </div>
-                  </div>
-                );
-              case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial':
-                const featuredTestimonial = section;
-
-                return (
-                  <div key={section.id} className="c-work__testimonial">
-                    <div className="c-work-testimonial__text">
-                      <div className="c-work-testimonial__quote">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="80"
-                          fill="none"
-                          viewBox="0 0 80 60"
-                        >
-                          <path
-                            fill="#C6F0C2"
-                            d="m25 10 5-10H20C8.95 0 0 13.95 0 25v35h35V25H15c0-15 10-15 10-15Zm35 15c0-15 10-15 10-15l5-10H65C53.95 0 45 13.95 45 25v35h35V25H60Z"
-                          />
-                        </svg>
-                      </div>
-                      <span>{featuredTestimonial.text}</span>
-                    </div>
-                    <div className="c-work-testimonial__info">
-                      {featuredTestimonial.logo && (
-                        <div
-                          className="c-work-testimonial__logo"
-                          dangerouslySetInnerHTML={{
-                            __html: featuredTestimonial.logo,
-                          }}
-                        ></div>
-                      )}
-                      {featuredTestimonial.name && (
-                        <div className="c-work-testimonial__name">
-                          {featuredTestimonial.name}
-                        </div>
-                      )}
-                      {featuredTestimonial.position && (
-                        <div className="c-work-testimonial__position">
-                          {featuredTestimonial.position}
-                        </div>
-                      )}
                     </div>
                   </div>
                 );
@@ -334,60 +229,11 @@ const WorkPage = ({ data }) => {
           })}
         </div>
       </ContainerBox>
-      {clientSection && (
-        <ContainerBox className="c-section--client is-work">
-          <div className="c-client">
-            {clientSection.title && (
-              <h3 className="c-section__title">{clientSection.title}</h3>
-            )}
-            {clientSection.description && (
-              <div
-                className="c-client__text"
-                dangerouslySetInnerHTML={{ __html: clientSection.description }}
-              ></div>
-            )}
-            {clientSection.showClientLogos && <AboutLogo />}
-          </div>
-        </ContainerBox>
-      )}
-      {textButton && (
-        <ContainerBox className="c-section--textbutton is-work">
-          <div className="c-team">
-            {textButton.title && (
-              <h3 className="c-section__title">{textButton.title}</h3>
-            )}
-            {textButton.description && (
-              <div
-                className="c-team__description"
-                dangerouslySetInnerHTML={{ __html: textButton.description }}
-              ></div>
-            )}
-            {textButton.cta && (
-              <div className="c-textbutton__cta">
-                {textButton.cta.target === '_blank' ? (
-                  <a
-                    href={textButton.cta.url}
-                    target="_blank"
-                    rel="nofollow, noreferrer"
-                    className="c-btn"
-                  >
-                    {textButton.cta.title}
-                  </a>
-                ) : (
-                  <Link to={textButton.cta.url} className="c-btn">
-                    {textButton.cta.title}
-                  </Link>
-                )}
-              </div>
-            )}
-          </div>
-        </ContainerBox>
-      )}
-    </Layout>
+    </ServiceLayout>
   );
 };
 
-export default WorkPage;
+export default ServiceProductDesignPage;
 
 export function Head({ data }) {
   const post = data.wpPage;
@@ -400,7 +246,43 @@ export function Head({ data }) {
 
 export const pageQuery = graphql`
   query {
-    wpPage(slug: { eq: "work" }) {
+    wpPage(slug: { eq: "services" }) {
+      seo {
+        title
+        metaDesc
+      }
+      template {
+        ... on WpTemplate_PageBuilder {
+          pageBuilder {
+            fieldGroupName
+            pageBuilder {
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Services {
+                fieldGroupName
+                services {
+                  desc
+                  fieldGroupName
+                  title
+                  slug
+                  subList {
+                    ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Services_services_SubList_Item {
+                      activateSubitem
+                      fieldGroupName
+                      subItem {
+                        fieldGroupName
+                        title
+                      }
+                      title
+                      description
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+    workContent: wpPage(slug: { eq: "work" }) {
       id
       content
       seo {
@@ -413,28 +295,6 @@ export const pageQuery = graphql`
           pageBuilder {
             fieldGroupName
             pageBuilder {
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
-                fieldGroupName
-                fullWidth
-                subtitle
-                text
-                title
-                cta {
-                  target
-                  title
-                  url
-                }
-              }
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
-                fieldGroupName
-                title
-                cta {
-                  target
-                  title
-                  url
-                }
-                description
-              }
               ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost {
                 description
                 fieldGroupName
@@ -452,13 +312,6 @@ export const pageQuery = graphql`
                   url
                 }
                 title
-              }
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
-                fieldGroupName
-                logo
-                name
-                position
-                text
               }
               ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Project {
                 fieldGroupName
@@ -485,12 +338,6 @@ export const pageQuery = graphql`
                   fieldGroupName
                   title
                 }
-              }
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Clients {
-                description
-                fieldGroupName
-                showClientLogos
-                title
               }
             }
           }

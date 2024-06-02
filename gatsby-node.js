@@ -880,13 +880,13 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  const services = result.data.servicesPage.template.pageBuilder.pageBuilder;
-  services.forEach(({ node }) => {
-    createPage({
-      path: `/services/`,
-      component: path.resolve(`./src/templates/services.js`),
-    });
-  });
+  // const services = result.data.servicesPage.template.pageBuilder.pageBuilder;
+  // services.forEach(({ node }) => {
+  //   createPage({
+  //     path: `/services/`,
+  //     component: path.resolve(`./src/templates/services.js`),
+  //   });
+  // });
 
   const survey = result.data.surveyPage.template.pageBuilder.pageBuilder;
   survey.forEach(({ node }) => {

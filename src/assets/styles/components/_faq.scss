@@ -1,0 +1,176 @@
+.c-service-faq {
+  padding: 3rem 0;
+  @include mq(md){
+    padding: 7rem 0;
+  }
+  .c-service-faq__wrapper {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+
+    @include mq(md) {
+      grid-template-columns: 1fr 1fr;
+    }
+    @include mq(lg){
+      gap: 5rem;
+    }
+
+    .c-service-faq__title-section {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2rem;
+
+      @include mq(desktop) {
+        width: 31.25rem;
+      }
+
+      .c-service-faq__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+        align-self: stretch;
+
+        .c-service-faq__title {
+          color: var(--color-primary-r);
+          font-family: Sentient;
+          font-weight: 400;
+          margin-block: 0 0.5rem;
+
+          @include font-size(28px, 1.2);
+
+          @include mq(md) {
+            @include font-size(40px, 1.2);
+          }
+        }
+
+        .c-service-faq__description {
+          color: var(--color-primary-r);
+          font-family: $inter;
+          font-weight: 400;
+          margin: 0;
+          max-width: 27.4375rem;
+          @include font-size(16px, 1.5);
+
+          @include mq(md) {
+            @include font-size(18px, 1.35);
+          }
+        }
+      }
+
+      // .c-service-faq__cta {
+      //   display: flex;
+      //   align-items: center;
+      //   gap: 0.75rem;
+
+      //   & > a {
+      //     color: var(--color-primary-r);
+      //     font-family: $inter;
+      //     font-weight: 600;
+      //     text-decoration: none;
+      //     @include font-size(14px, 1.5);
+
+      //     @include mq(md) {
+      //       @include font-size(16px, 1.5);
+      //     }
+      //   }
+      // }
+    }
+
+    .c-service-faq__accordion {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1 0 0;
+
+      .c-service-faq__item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        align-self: stretch;
+        &.is-active{
+          .c-service-faq__answer{
+            margin-bottom: 1rem;
+          }
+        }
+      }
+
+      .c-service-faq__divider {
+        height: 0.0625rem;
+        align-self: stretch;
+        background: var(--color-gains);
+      }
+
+      .c-service-faq__item-button {
+        display: flex;
+        padding: 0.75rem 0rem;
+        justify-content: space-between;
+        align-items: center;
+        align-self: stretch;
+        gap: 1rem;
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+        @include mq(md){
+          padding: 1.25rem 0;
+        }
+        .c-service-faq__icon {
+          transition: 0.25s transform ease;
+          display: flex;
+        }
+
+        &.is-active {
+          .c-service-faq__icon {
+            transform: rotate(180deg);
+            transition: 0.25s transform ease;
+          }
+        }
+
+        .c-service-faq__question {
+          color: var(--color-primary-r);
+          font-family: $inter;
+          font-weight: 600;
+          @include font-size(16px, 1.35);
+          text-align: left;
+          @include mq(md) {
+            @include font-size(18px, 1.5);
+          }
+        }
+      }
+
+      .c-service-faq__answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out, margin-bottom 0.2s ease-out;
+        color: var(--color-text);
+        font-family: $inter;
+        @include font-size(16px, 1.5);
+        font-weight: 400;
+        p{
+          margin: 0;
+          &:not(:last-child){
+            margin-bottom: 0.5rem;
+          }
+        }
+        // .is-active & {
+        //   margin-top: 16px;
+        // }
+
+        @include mq(md) {
+          @include font-size(19px, 1.47);
+        }
+
+        a {
+          color: var(--color-primary-sh);
+          transition: all 0.25s ease-in-out;
+          text-decoration: underline;
+
+          &:hover {
+            color: var(--color-primary-l);
+          }
+        }
+      }
+    }
+  }
+}

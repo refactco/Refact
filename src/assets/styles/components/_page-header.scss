@@ -7,9 +7,9 @@
         background: var(--color-white);
     }
     &.is-work{
-        .c-page-header__title{
-            max-width: 600px !important;
-        }
+        // .c-page-header__title{
+        //     max-width: 600px !important;
+        // }
         // .c-page-header__text{
         //     margin-bottom: 24px;
         //     @include mq(md){
@@ -27,6 +27,20 @@
                 .c-page-header__text{
                     max-width: 870px;
                 }
+            }
+        }
+    }
+    &.is-services{
+        padding: 3rem 0 1.5rem;
+        @include mq(md){
+            padding: 6rem 0 4rem;
+        }
+        .c-page-header{
+            max-width: 100%;
+        }
+        .c-page-header__text{
+            @include mq(md){
+                max-width: 880px;
             }
         }
     }
@@ -135,7 +149,7 @@
     color: var(--color-white);
 
     @include mq(md) {
-        @include font-size(28px, 1.5);
+        @include font-size(24px, 1.5);
     }
     p{
         margin: 0;
@@ -151,5 +165,15 @@
         @include mq(md){
             width: auto;
         }
+    }
+}
+.c-section-services-logo{
+    background-color: var(--color-primary-r);
+    padding: 0 0 1.5rem;
+    @include mq(md){
+        padding: 2.5rem 0;
+    }
+    .c-hero-logo__wrapper{
+        margin-top: 0;
     }
 }
