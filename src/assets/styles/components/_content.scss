@@ -595,3 +595,6 @@ h6 {
 	font-size: 14px;
 	font-weight: 400;
 }
+code[class*=language-], pre[class*=language-]{
+  white-space: pre-wrap !important;
+}
