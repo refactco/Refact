@@ -1,4 +1,4 @@
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import React from 'react';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
@@ -149,7 +149,7 @@ const WorkPostTemplate = ({ data }) => {
           ))
         )}
       </ContainerBox>
-      <ContainerBox className="c-section--talk">
+      {/* <ContainerBox className="c-section--talk">
         <div className='c-talk'>
           <div className='c-talk__wrapper'>
             <h4 className='c-talk__title'>Let's Create!</h4>
@@ -157,7 +157,7 @@ const WorkPostTemplate = ({ data }) => {
             <Link to='/services' className='c-btn'>Our Services</Link>
           </div>
         </div>
-      </ContainerBox>
+      </ContainerBox> */}
       <RelatedWorks currentPostId={post.databaseId} />
     </Layout>
   );

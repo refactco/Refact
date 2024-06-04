@@ -6,9 +6,9 @@ const siteUrl = process.env.URL || `https://refact.co`;
 
 module.exports = {
   siteMetadata: {
-    title: `Refact | Creative & Software Development Agency for Media and Newsrooms`,
+    title: `Refact | Full Digital Agency for Audience-first Companies`,
     siteUrl: `https://refact.co`,
-    description: `We work with independent media and news organizations to design, build and scale publishing platforms and digital experiences.`,
+    description: `We work with content centric brands to create digital experiences that connect people with information, ideas, and products across the web.`,
     image: `/og-refact.jpg`,
   },
   plugins: [

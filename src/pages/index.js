@@ -94,7 +94,7 @@ const Homepage = () => {
         <ContainerBox className='c-section--hero'>
           <div className="c-hero">
             {heroSection.title && (
-              <h1 className="c-hero__title">{heroSection.title}</h1>
+              <h1 className="c-hero__title" style={{maxWidth: 900}}>{heroSection.title}</h1>
             )}
             {heroSection.text && (
               <div className="c-hero__text">{heroSection.text}</div>

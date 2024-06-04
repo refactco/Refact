@@ -48,7 +48,7 @@ const RelatedWorks = ({ currentPostId }) => {
   }, [data, currentPostId]);
 
   if (!relatedWork) {
-    return <div>Loading...</div>;
+    return '';
   }
 
   return (
