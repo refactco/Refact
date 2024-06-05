@@ -200,6 +200,7 @@
   padding-top: 0;
   @include mq(lg){
     padding-bottom: 9.5em;
+    padding-top: 3rem;
   }
   .c-project__title{
     @include mq(lg){
