@@ -56,9 +56,9 @@ const RelatedWorks = ({ currentPostId }) => {
       <div className='c-related-work'>
         <div className='c-related-work__col'>
         {relatedWork.caseStudies.primaryCover && (
-          <div>
+          <Link to={relatedWork.uri} title={relatedWork.title}>
             <GatsbyImage image={relatedWork.caseStudies.primaryCover.localFile.childImageSharp.gatsbyImageData} alt={relatedWork.caseStudies.primaryCover.altText} />
-          </div>
+          </Link>
         )}
         </div>
         <div className='c-related-work__col'>

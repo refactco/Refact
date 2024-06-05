@@ -425,6 +425,7 @@ exports.createPages = async ({ graphql, actions }) => {
                     childImageSharp {
                       gatsbyImageData
                     }
+                    url
                   }
                 }
                 secondaryCover {

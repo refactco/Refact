@@ -217,10 +217,11 @@
 .c-related-work{
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2rem;
+  gap: 1.5rem;
   @include mq(md){
     grid-template-columns: 1.3fr 1fr;
     align-items: flex-end;
+    gap: 2rem;
   }
   @include mq(lg){
     grid-template-columns: 2fr 1fr;

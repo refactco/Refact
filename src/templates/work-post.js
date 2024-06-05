@@ -172,7 +172,7 @@ export function Head({ data }) {
       <Seo
         title={post.seo.title}
         description={post.seo.metaDesc}
-        // featuredImage={post.featuredImage.node.localFile.url}
+        featuredImage={post.caseStudies.primaryCover.localFile.url}
       />
       <body className="is-work-single-page" />
     </>
@@ -205,6 +205,7 @@ export const pageQuery = graphql`
             childImageSharp {
               gatsbyImageData
             }
+            url
           }
         }
         secondaryCover {
