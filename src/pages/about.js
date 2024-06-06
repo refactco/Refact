@@ -88,7 +88,7 @@ console.log(aboutItems);
         </ContainerBox>
       )}
       {capabilities && (
-        <ContainerBox className="c-section--capabilites pb-small">
+        <ContainerBox className="c-section--capabilites pb-small is-about">
           <div className="c-capabilites">
             {capabilities.title && (
               <h3 className="c-section__title">{capabilities.title}</h3>

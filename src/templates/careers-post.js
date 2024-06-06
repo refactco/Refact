@@ -49,7 +49,7 @@ const BlogPostTemplate = ({ data }) => {
                   href={post.careers.url.url} 
                   target={post.careers.url.target === '_blank' ? '_blank' : '_self'} 
                   rel={post.careers.url.target === '_blank' ? 'noreferrer' : ''}
-                  className="js-career-change c-btn c-btn--primary"
+                  className="js-career-change c-btn c-btn--primary c-btn--green"
                 >
                   Apply Now
                 </a>
@@ -58,7 +58,7 @@ const BlogPostTemplate = ({ data }) => {
                   href={`mailto:hr@refact.co?subject=${post.title}`} 
                   target="_blank" 
                   rel="noreferrer" 
-                  className="js-career-change c-btn c-btn--primary"
+                  className="js-career-change c-btn c-btn--primary c-btn--green"
                 >
                   Apply Now
                 </a>

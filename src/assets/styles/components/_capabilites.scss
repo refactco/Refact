@@ -7,8 +7,12 @@
     }
     &.pb-small{
         padding-bottom: 1em;
+        background-color: #fff;
         @include mq(md) {
-            padding: 9.75em 0 6.75em;
+            padding: 7.75rem 0;
+        }
+        &.is-about{
+            background: var(--color-primary-h);
         }
     }
 }
@@ -19,16 +23,17 @@
 
     .c-section__title {
         margin-bottom: 1.142857142857143em;
-
+        
         @include mq(md) {
             margin-bottom: 0.8em;
         }
 
         .home & {
-            margin-bottom: 0.8em;
-
+            margin-bottom: 1.5rem;
+            @include font-size(28px, 1.22);
             @include mq(md) {
-                margin-bottom: 1.6em;
+                margin-bottom: 4rem;
+                @include font-size(48px, 1.22);
             }
         }
     }
@@ -66,8 +71,10 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: 2em;
-
+    margin-bottom: -2.5em;
+    @include mq(md){
+        margin-bottom: -4em;
+    }
     &.c-capabilites__items--we-work {
         margin: 0;
     }
@@ -116,7 +123,7 @@
     font-weight: 600;
     @include font-size(18px, 1.5);
     color: var(--color-text);
-    margin-bottom: 16px;
+    margin-bottom: 8px;
 
     @include mq(md) {
         @include font-size(23px, 1.48);

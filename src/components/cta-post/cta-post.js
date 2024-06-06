@@ -9,7 +9,7 @@ const CtaPost = () => {
           <h5 className="c-git__title">Looking to grow your media business?</h5>
           <p className="c-git__text">Get in touch and tell us about your project!</p>
         </div>
-        <Link to="/contact" className='c-btn'>Get in Touch</Link>
+        <Link to="/contact" className='c-btn c-btn--green'>Get in Touch</Link>
       </div>
     </footer>
   );

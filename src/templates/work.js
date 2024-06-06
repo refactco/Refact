@@ -369,12 +369,12 @@ const WorkPage = ({ data }) => {
                     href={textButton.cta.url}
                     target="_blank"
                     rel="nofollow, noreferrer"
-                    className="c-btn"
+                    className="c-btn c-btn--green"
                   >
                     {textButton.cta.title}
                   </a>
                 ) : (
-                  <Link to={textButton.cta.url} className="c-btn">
+                  <Link to={textButton.cta.url} className="c-btn c-btn--green">
                     {textButton.cta.title}
                   </Link>
                 )}

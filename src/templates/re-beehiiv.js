@@ -282,7 +282,7 @@ const BeehiivPage = ({data}) => {
           ))}
           </div>
           <div className="c-cta c-cta--beehiiv">
-            <Link to="/contact" className='c-btn'>Have More Questions?</Link>
+            <Link to="/contact" className='c-btn c-btn--green'>Have More Questions?</Link>
           </div>
         </ContainerBox>
       )}

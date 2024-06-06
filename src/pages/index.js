@@ -93,20 +93,22 @@ const Homepage = () => {
       {heroSection && (
         <ContainerBox className='c-section--hero'>
           <div className="c-hero">
-            {heroSection.title && (
+            {/* {heroSection.title && (
               <h1 className="c-hero__title" style={{maxWidth: 850}}>{heroSection.title}</h1>
-            )}
+            )} */}
             {heroSection.text && (
-              <div className="c-hero__text">{heroSection.text}</div>
+              <h1 className="c-hero__text">{heroSection.text}</h1>
             )}
-            <Link to="/contact" className='c-btn'>Work with Us</Link>
-            <div className="c-hero-logo__wrapper" style={{overflow: 'hidden'}}>
-              <CompanyLogo />
-              <CompanyLogoReverse />
-            </div>
+            <Link to="/services" className='c-btn'>What we do</Link>
           </div>
         </ContainerBox>
       )}
+      <ContainerBox className='c-section--company-logo'>
+        <div className="c-hero-logo__wrapper" style={{overflow: 'hidden'}}>
+          <CompanyLogo />
+          <CompanyLogoReverse />
+        </div>
+      </ContainerBox>
       {capabilitiesSection && (
         <ContainerBox className='c-section--capabilites pb-small'>
           <div className="c-capabilites">

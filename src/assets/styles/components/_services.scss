@@ -571,12 +571,13 @@
   padding: 48px 0;
   &.is-testimonial-0 {
     padding-bottom: 0;
+    padding-top: 64px;
   }
   &.is-testimonial-1 {
     padding-top: 0;
   }
   @include mq(md) {
-    padding: 156px 0;
+    padding: 124px 0;
   }
 }
 

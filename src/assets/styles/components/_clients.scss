@@ -35,6 +35,11 @@
     }
     .c-hero-logo__items{
         a{
+            svg{
+                path{
+                    fill: #003233;
+                }
+            }
             &:hover{
                 svg{
                     path{

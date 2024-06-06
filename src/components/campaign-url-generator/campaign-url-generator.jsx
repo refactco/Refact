@@ -155,7 +155,7 @@ const CampaignURLGenerator = () => {
                     <span className='c-utm-field__text'>Use Campaign Content to distinguish different CTAs or other elements in your campaign. Great for A/B testing.</span>
                   </div>
                   <div className="c-utm-form__items">
-                    <button className='c-btn c-btn--utm' type="submit">Generate URL</button>
+                    <button className='c-btn c-btn--utm c-btn--green' type="submit">Generate URL</button>
                   </div>
                 </form>
               </div>
@@ -209,7 +209,7 @@ const CampaignURLGenerator = () => {
                   <input type="text" value={generatedURL} readOnly />
                 </div>
                 <div className="c-utm-box__generated-item">
-                  <button className="c-btn c-btn--utm" onClick={copyToClipboard}>
+                  <button className="c-btn c-btn--utm c-btn--green" onClick={copyToClipboard}>
                     <div className="c-btn__icon">
                       <svg xmlns="http://www.w3.org/2000/svg" width="24" fill="none" viewBox="0 0 24 24"><path stroke="currentColor" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2" d="M18 5H2v18h16V5Z"/><path stroke="currentColor" strokeLinecap="square" strokeMiterlimit="10" strokeWidth="2" d="M5 1h17v20M6 10h8M6 14h8M6 18h4"/></svg>
                     </div>
