@@ -564,12 +564,23 @@ exports.createPages = async ({ graphql, actions }) => {
                       }
                     }
                   }
+                  video{
+                    altText
+                    filename
+                    localFile {
+                      url
+                      id
+                    }
+                    height
+                    width
+                  }
                   cta {
                     target
                     title
                     url
                   }
                   title
+                  mediaSettings
                 }
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
                   fieldGroupName
@@ -585,6 +596,7 @@ exports.createPages = async ({ graphql, actions }) => {
                     title
                     url
                   }
+                  displayMode
                   projectList {
                     cover {
                       altText
@@ -594,11 +606,22 @@ exports.createPages = async ({ graphql, actions }) => {
                         }
                       }
                     }
+                    video{
+                      altText
+                      filename
+                      localFile {
+                        url
+                        id
+                      }
+                      height
+                      width
+                    }
                     cta {
                       target
                       title
                       url
                     }
+                    mediaSettings
                     description
                     fieldGroupName
                     title
@@ -609,6 +632,11 @@ exports.createPages = async ({ graphql, actions }) => {
                   fieldGroupName
                   showClientLogos
                   title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Spacer {
+                  desktop
+                  fieldGroupName
+                  mobile
                 }
               }
             }

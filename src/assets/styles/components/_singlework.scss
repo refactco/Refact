@@ -231,6 +231,23 @@
     grid-template-columns: 2fr 1fr;
   }
 }
+.c-related-work__col{
+  .c-project__img{
+    margin-bottom: 0;
+  }
+  &.is-media-both{
+    .gatsby-image-wrapper{
+        z-index: 1;
+        opacity: 1;
+        transition: opacity .25s ease-in-out;
+    }
+    &:hover{
+        .gatsby-image-wrapper{
+            opacity: 0;
+        }
+    }
+  }
+}
 .c-section--talk{
   padding-bottom: 4rem;
   padding-top: 0.875rem;

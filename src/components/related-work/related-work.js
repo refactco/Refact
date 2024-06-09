@@ -27,6 +27,17 @@ const RelatedWorks = ({ currentPostId }) => {
                     }
                   }
                 }
+                primaryVideo{
+                  altText
+                  filename
+                  localFile {
+                    url
+                    id
+                  }
+                  height
+                  width
+                }
+                mediaSettings
               }
             }
           }
@@ -54,10 +65,23 @@ const RelatedWorks = ({ currentPostId }) => {
   return (
     <ContainerBox className="c-section--related-work">
       <div className='c-related-work'>
-        <div className='c-related-work__col'>
+        <div className={`c-related-work__col is-media-${relatedWork.caseStudies.mediaSettings}`}>
         {relatedWork.caseStudies.primaryCover && (
-          <Link to={relatedWork.uri} title={relatedWork.title}>
-            <GatsbyImage image={relatedWork.caseStudies.primaryCover.localFile.childImageSharp.gatsbyImageData} alt={relatedWork.caseStudies.primaryCover.altText} />
+          <Link to={relatedWork.uri} title={relatedWork.title} className="c-project__img media media--hover-effect media--landscape">
+            {(relatedWork.caseStudies.mediaSettings === 'image' || relatedWork.caseStudies.mediaSettings === 'both') && (
+              <GatsbyImage image={relatedWork.caseStudies.primaryCover.localFile.childImageSharp.gatsbyImageData} alt={relatedWork.caseStudies.primaryCover.altText} />
+            )}
+            {(relatedWork.caseStudies.mediaSettings === 'video' || relatedWork.caseStudies.mediaSettings === 'both') && (
+              <video
+                src={relatedWork.caseStudies.primaryVideo.localFile.url}
+                alt={relatedWork.caseStudies.primaryVideo.altText}
+                width={relatedWork.caseStudies.primaryVideo.width}
+                height={relatedWork.caseStudies.primaryVideo.height}
+                autoPlay
+                muted
+                loop
+              />
+            )}
           </Link>
         )}
         </div>

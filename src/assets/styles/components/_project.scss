@@ -294,12 +294,14 @@
   
   @media screen and (min-width: 990px) {
     .c-project__item .media.media--hover-effect > .gatsby-image-wrapper img,
-    .c-work__featured .media.media--hover-effect > .gatsby-image-wrapper img{
+    .c-work__featured .media.media--hover-effect > .gatsby-image-wrapper img,
+    .c-related-work .media.media--hover-effect > .gatsby-image-wrapper img{
       transition: transform 500ms ease;
     }
   
     .c-project__item:hover .media.media--hover-effect > .gatsby-image-wrapper img,
-    .c-work__featured:hover .media.media--hover-effect > .gatsby-image-wrapper img {
+    .c-work__featured:hover .media.media--hover-effect > .gatsby-image-wrapper img,
+    .c-related-work:hover .media.media--hover-effect > .gatsby-image-wrapper img{
       transform: scale(1.03);
     }
   
