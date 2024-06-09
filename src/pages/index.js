@@ -138,9 +138,7 @@ const Homepage = () => {
           <div className="c-work__testimonial">
             <div className="c-work-testimonial__text">
               <div className="c-work-testimonial__quote">
-                <svg xmlns="http://www.w3.org/2000/svg" width="80" fill="none" viewBox="0 0 80 60">
-                  <path fill="#C6F0C2" d="m25 10 5-10H20C8.95 0 0 13.95 0 25v35h35V25H15c0-15 10-15 10-15Zm35 15c0-15 10-15 10-15l5-10H65C53.95 0 45 13.95 45 25v35h35V25H60Z"/>
-                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" fill="none" viewBox="0 0 64 48"><path fill="#C6F0C2" d="m20 8 4-8h-8C7.16 0 0 11.16 0 20v28h28V20H12c0-12 8-12 8-12Zm28 12c0-12 8-12 8-12l4-8h-8c-8.84 0-16 11.16-16 20v28h28V20H48Z" opacity=".4"/></svg>
               </div>
               <span>{testimonial.text}</span>
             </div>

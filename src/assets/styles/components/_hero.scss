@@ -35,14 +35,14 @@
 
 .c-hero__text {
     font-family: $inter;
-    font-weight: 600;
-    @include font-size(24px, 1.5);
+    font-weight: 500;
+    @include font-size(24px, 1.4);
     color: var(--color-white);
     margin: 0 0 1.5rem;
     text-align: left;
     max-width: 910px;
     @include mq(md) {
-        @include font-size(48px, 1.5);
+        @include font-size(48px, 1.21);
         letter-spacing: -0.96px;
         margin-bottom: 3rem;
     }

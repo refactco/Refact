@@ -181,8 +181,11 @@
   display: flex;
   position: absolute;
   top: -12px;
-  left: -40px;
+  left: -8px;
   z-index: -1;
+  @include mq(md){
+    left: -40px;
+  }
 }
 .c-works-testimonial__col{
   img{
