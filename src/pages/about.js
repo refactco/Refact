@@ -60,7 +60,7 @@ const AboutPage = () => {
     }
   `);
 const aboutItems = data.aboutPage.template.pageBuilder.pageBuilder;
-console.log(aboutItems);
+// console.log(aboutItems);
  const pageHeader = aboutItems.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader');
   const capabilities = aboutItems.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites');
   const team = aboutItems.find(section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Team');

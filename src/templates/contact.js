@@ -73,7 +73,7 @@ const ContactPage = ({ data }) => {
     { client }
   );
 
-  console.log({ mutationData, loading });
+  // console.log({ mutationData, loading });
 
   return (
     <Layout>
@@ -191,7 +191,7 @@ const ContactPage = ({ data }) => {
                       (e) => e.id === databaseId
                     );
 
-                    console.log({ error });
+                    // console.log({ error });
 
                     return (
                       <div

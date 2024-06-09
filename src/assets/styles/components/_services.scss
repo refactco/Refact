@@ -571,7 +571,7 @@
 }
 
 .c-section--featured-testimonial {
-  padding: 48px 0;
+  padding: 2.5rem 0;
   &.is-testimonial-0 {
     padding-bottom: 0;
     padding-top: 64px;
@@ -580,7 +580,7 @@
     padding-top: 0;
   }
   @include mq(md) {
-    padding: 124px 0;
+    padding: 4rem 0;
   }
 }
 
@@ -621,4 +621,7 @@
       display: none;
     }
   }
+}
+.c-section--spacer{
+  padding: 0;
 }

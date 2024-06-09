@@ -6,13 +6,16 @@
         padding: 9.75em 0;
     }
     &.pb-small{
-        padding-bottom: 1em;
+        // padding-bottom: 1em;
         background-color: #fff;
         @include mq(md) {
             padding: 7.75rem 0;
         }
         &.is-about{
             background: var(--color-primary-h);
+            .c-section__title{
+                margin-bottom: 0;
+            }
         }
     }
 }
@@ -71,7 +74,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    margin-bottom: -2.5em;
+    // margin-bottom: -2.5em;
     @include mq(md){
         margin-bottom: -4em;
     }
