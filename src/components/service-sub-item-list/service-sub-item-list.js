@@ -35,6 +35,7 @@ const ServiceSubItemList = ({
             <ServiceSubItem
               index={index + 1}
               title={title}
+              key={index}
               description={description}
             />
           );

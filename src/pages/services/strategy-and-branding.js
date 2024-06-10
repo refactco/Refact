@@ -255,7 +255,7 @@ const ServiceStrategyPage = ({ data }) => {
           renderSection(section, index)
         ))
       )}
-      <section class="o-section c-section--spacer c-section--spacer-1"><div class="o-section__wrapper"><div class="c-spacer"></div></div></section>
+      <section className="o-section c-section--spacer c-section--spacer-1"><div className="o-section__wrapper"><div className="c-spacer"></div></div></section>
     </ServiceLayout>
   );
 };

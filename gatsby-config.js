@@ -158,5 +158,26 @@ module.exports = {
       },
       __key: 'pages',
     },
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          runtimeCaching: [
+            {
+              urlPattern: /^https?:.*\/page-data\/.*\/page-data\.json/,
+              handler: `NetworkFirst`,
+            },
+            {
+              urlPattern: /^https?:.*\.(json|js|css)$/,
+              handler: `StaleWhileRevalidate`,
+            },
+            {
+              urlPattern: /^https?:.*\/.*$/,
+              handler: `NetworkFirst`,
+            },
+          ],
+        },
+      },
+    },
   ],
 };
