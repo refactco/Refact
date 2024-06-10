@@ -125,7 +125,15 @@ const renderSection = (section, index) => {
               <div className="col-md-5 c-work-featured__col">
                 <div className="c-work-featured__info">
                   <h5 className="c-project__title">
-                    {section.title}
+                    {section.cta.target === '_blank' ?
+                      <a href={section.cta.url} target={section.cta.target} rel="nofollow, noopener" className='c-link c-link--blog'>
+                      {section.title}
+                      </a>
+                      :
+                      <Link to={section.cta.url} className='c-link c-link--blog'>
+                      {section.title}
+                      </Link>
+                    }
                   </h5>
                   <div className="c-project__text">
                     {section.description}

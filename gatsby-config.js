@@ -158,6 +158,7 @@ module.exports = {
       },
       __key: 'pages',
     },
+    'gatsby-plugin-remove-serviceworker',
     {
       resolve: 'gatsby-plugin-offline',
       options: {
