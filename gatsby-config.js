@@ -159,5 +159,26 @@ module.exports = {
       __key: 'pages',
     },
     'gatsby-plugin-remove-serviceworker',
+    {
+      resolve: 'gatsby-plugin-offline',
+      options: {
+        workboxConfig: {
+          runtimeCaching: [
+            {
+              urlPattern: /^https?:.*\/page-data\/.*\.json/,
+              handler: `StaleWhileRevalidate`,
+            },
+            {
+              urlPattern: /^https?:.*\.(json|js|css)$/,
+              handler: `StaleWhileRevalidate`,
+            },
+            {
+              urlPattern: /^https?:.*\/.*$/,
+              handler: `StaleWhileRevalidate`,
+            },
+          ],
+        },
+      },
+    },
   ],
 };
