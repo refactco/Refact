@@ -166,15 +166,15 @@ module.exports = {
           runtimeCaching: [
             {
               urlPattern: /^https?:.*\/page-data\/.*\.json/,
-              handler: `StaleWhileRevalidate`,
+              handler: `NetworkFirst`,
             },
             {
               urlPattern: /^https?:.*\.(json|js|css)$/,
-              handler: `StaleWhileRevalidate`,
+              handler: `NetworkFirst`,
             },
             {
               urlPattern: /^https?:.*\/.*$/,
-              handler: `StaleWhileRevalidate`,
+              handler: `NetworkFirst`,
             },
           ],
         },
