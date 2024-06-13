@@ -89,7 +89,7 @@ const UrlBuilder = ({data}) => {
                 <tbody>
                   {section.tableContent.map((row, index) => (
                     <tr key={index}>
-                      <td data-label="Parameter">
+                      <td data-label="Parameter" aria-label="Parameter">
                         <div className="c-table-parameter" dangerouslySetInnerHTML={{__html:row.parameter}}></div>
                       </td>
                       <td data-label="Example">{row.example}</td>
