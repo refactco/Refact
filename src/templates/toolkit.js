@@ -30,15 +30,22 @@ const ToolsPage = ({data}) => {
                     <div className="c-tools__details">
                       {item.image && (
                         <div className="c-tools-item__image">
-                          {item.cta.target === '_blank' ?
-                            <a href={item.cta.url} target={item.cta.target} rel="noopener noreferrer" className="c-btn--secondary">
-                              <GatsbyImage image={item.image.localFile.childImageSharp.gatsbyImageData} alt={item.image.altText} />
-                            </a>
-                            :
-                            <Link to={item.cta.url} className="c-btn--secondary">
-                              <GatsbyImage image={item.image.localFile.childImageSharp.gatsbyImageData} alt={item.image.altText} />
-                            </Link>
-                          }
+                          {item.cta ? (
+                            <>
+                            {item.cta.target === '_blank' ?
+                              <a href={item.cta.url} target={item.cta.target} rel="noopener noreferrer" className="c-btn--secondary">
+                                <GatsbyImage image={item.image.localFile.childImageSharp.gatsbyImageData} alt={item.image.altText} />
+                              </a>
+                              :
+                              <Link to={item.cta.url} className="c-btn--secondary">
+                                <GatsbyImage image={item.image.localFile.childImageSharp.gatsbyImageData} alt={item.image.altText} />
+                              </Link>
+                            }
+                            </>
+                          ):
+                          (
+                            <GatsbyImage image={item.image.localFile.childImageSharp.gatsbyImageData} alt={item.image.altText} />
+                          )}
                           {item.badge && (
                             <div className="c-tools-item__badge">{item.badge}</div>
                           )}
@@ -46,7 +53,9 @@ const ToolsPage = ({data}) => {
                       )}
                       <div className="c-tools-item__info">
                         <h2 className="c-tools__item-title">
-                        {item.cta.target === '_blank' ?
+                        {item.cta ? (
+                          <>
+                          {item.cta.target === '_blank' ?
                           <a href={item.cta.url} target={item.cta.target} rel="noopener noreferrer">
                             {item.title}
                           </a>
@@ -55,13 +64,17 @@ const ToolsPage = ({data}) => {
                             {item.title}
                           </Link>
                         }
+                          </>
+                        ):
+                        (
+                          <>{item.title}</>
+                        )}
                         </h2>
                         {item.description && (
                           <div className="c-tools__item-desc" dangerouslySetInnerHTML={{__html:item.description}}></div>
                         )}
                       </div>
                     </div>
-                    {item.cta && (
                       <div className="c-tools-item__cta">
                         {item.github && (
                           <a href={item.github} target="_blank" rel="noopener noreferrer" className="c-btn c-btn--github c-btn--green">
@@ -69,6 +82,8 @@ const ToolsPage = ({data}) => {
                             Download
                           </a>
                         )}
+                       {item.cta && (
+                        <>
                         {item.cta.target === '_blank' ?
                           <a href={item.cta.url} target={item.cta.target} rel="noopener noreferrer" className="c-btn--secondary">
                             {item.cta.title}
@@ -86,8 +101,9 @@ const ToolsPage = ({data}) => {
                             </svg>
                           </Link>
                         }
+                        </>
+                      )}
                       </div>
-                    )}
                   </div>
                 </div>
               ))}
