@@ -11,7 +11,7 @@ const ContactPage = ({ data }) => {
   
   const initialFieldValues = wpGfForm.formFields.nodes.reduce((acc, field) => {
     if (field.type === 'SELECT' && field.choices.length > 0) {
-      acc[field.databaseId] = field.choices[0].value;
+      acc[field.databaseId] = field.placeholder;
     } else {
       acc[field.databaseId] = field.defaultValue || '';
     }
@@ -262,10 +262,11 @@ const ContactPage = ({ data }) => {
                           />
                         ) : type === 'CHECKBOX' ? (
                           choices.map((choice, idx) => (
-                            <label key={idx}>
+                            <div key={idx}>
                               <input
                                 type="checkbox"
                                 name={inputName}
+                                id={`selectfield-${idx}`}
                                 value={choice.value}
                                 checked={fieldValues[databaseId]?.includes(choice.value) || false}
                                 onChange={(event) => {
@@ -284,14 +285,16 @@ const ContactPage = ({ data }) => {
                                   });
                                 }}
                               />
+                            <label htmlFor={`selectfield-${idx}`}>
                               {choice.text}
                             </label>
+                          </div>
                           ))
-                          
                         ) : type === 'SELECT' ? (
                           <select
                             name={inputName}
                             id={`input_${formId}_${databaseId}`}
+                            className='c-form-select'
                             value={fieldValues[databaseId]}
                             onChange={(event) => {
                               setFieldValues({
@@ -300,6 +303,7 @@ const ContactPage = ({ data }) => {
                               });
                             }}
                           >
+                            <option selected disabled>{placeholder}</option>
                             {choices.map((choice, idx) => (
                               <option key={idx} value={choice.value}>
                                 {choice.text}
@@ -562,6 +566,7 @@ export const pageQuery = graphql`
             isRequired
             type
             label
+            placeholder
             choices {
               text
               value
