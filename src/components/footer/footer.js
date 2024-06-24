@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
-import CtaSection from '../cta/cta';
 import { PopupModal } from 'react-calendly';
 
 const Footer = () => {
@@ -31,7 +30,6 @@ const Footer = () => {
   };
   return (
     <>
-      <CtaSection />
       <footer className="o-section c-section--footer">
         <div className="o-section__wrapper">
           <div className="c-footer">
