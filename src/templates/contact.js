@@ -321,27 +321,10 @@ const ContactPage = ({ data }) => {
                             id={`input_${formId}_${databaseId}`}
                             aria-required={isRequired}
                             onChange={(event) => {
-                              if (type === 'WEBSITE') {
-                                let url = event.target.value;
-                          
-                                // Match and replace only the first occurrence of the protocol
-                                const matchPattern = /^(https?:\/\/)/;
-                          
-                                // Check if the URL starts with the protocol and remove it
-                                if (matchPattern.test(url)) {
-                                  url = url.replace(matchPattern, '');
-                                }
-                          
-                                setFieldValues({
-                                  ...fieldValues,
-                                  [databaseId]: url,
-                                });
-                              } else {
                               setFieldValues({
                                 ...fieldValues,
                                 [databaseId]: event.target.value,
                               });
-                            }
                             }}
                           />
                         )}
