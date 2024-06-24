@@ -122,7 +122,7 @@ const ContactPage = ({ data }) => {
       <ContainerBox className="c-section--contact">
         <div className="c-contact">
           <div className="c-contact__text">
-            Reach out via the form below or schedule a
+            Fill out the short form below or schedule a 
             {typeof window !== 'undefined' ? (
               <>
                 <button onClick={handleLinkClick}>call with us here</button>
@@ -374,77 +374,12 @@ const ContactPage = ({ data }) => {
             ) : null}
           </div>
           <div className="c-contact-footer__info s-content">
-            <h4 className="c-contact-info__title">Not ready to chat?</h4>
+            <h4 className="c-contact-info__title">Want to learn more?</h4>
             <p className="c-contact-info__text">
-              Why not take a moment to browse through our previous projects? Let
-              our work inspire you! And for a regular dose of inspiration, make
-              sure to follow us and keep up with all the exciting developments
-              in digital media. We're constantly updating our feeds with fresh,
-              innovative ideas, and we'd love to share our world of creativity
-              with you.
+              Browse our <Link to='/work'>previous projects here</Link>.  Follow us <a href='https://www.linkedin.com/company/refactco/' target='_blank' rel='noreferrer'>on LinkedIn</a>, subscribe to <a href='https://www.linkedin.com/newsletters/media-tech-report-7150380343559118848/' target='_blank' rel='noreferrer'>our newsletter</a>, and check out <Link to='/insights'>our blog</Link> to keep up with all the exciting developments in digital media..
             </p>
+            <p style={{marginBottom: 8}}><strong>See what our clients have to say at Clutch:</strong></p>
             <div className="c-contact-info__social">
-              <div className="c-contact-info__social-item">
-                <a
-                  href="https://www.linkedin.com/company/refactco/"
-                  target="_blank"
-                  aria-label="Refact Linkedin Profile"
-                  rel="noreferrer"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="100"
-                    data-name="Group 1280"
-                    viewBox="0 0 267.504 65.326"
-                  >
-                    <path
-                      fill="#0a66c2"
-                      d="M263.744 61.109a1.2 1.2 0 0 0 1.21-1.269c0-.9-.543-1.33-1.657-1.33h-1.8v4.712h.677v-2.054h.832l.019.025 1.291 2.029h.724l-1.389-2.1Zm-.783-.472h-.785v-1.593h.995c.514 0 1.1.084 1.1.757 0 .774-.593.836-1.314.836"
-                      data-name="Path 2525"
-                    />
-                    <path
-                      fill="#0a66c2"
-                      d="M0 9.587h9.993v36.4h18.5v9.222H0Z"
-                      data-name="Path 2514"
-                    />
-                    <path
-                      fill="#0a66c2"
-                      d="M32.911 24.276h9.6v30.916h-9.6Zm4.8-15.37a5.569 5.569 0 1 1-5.57 5.569 5.569 5.569 0 0 1 5.57-5.569"
-                      data-name="Path 2515"
-                    />
-                    <path
-                      fill="#0a66c2"
-                      d="M82.669 9.58h9.6v27.265l10.88-12.583h11.77l-12.6 14.313 12.335 16.63h-12.066L92.397 39.923h-.126v15.28h-9.6Z"
-                      data-name="Path 2516"
-                    />
-                    <path
-                      fill="#0a66c2"
-                      d="M47.834 24.279h9.219v4.225h.131a10.085 10.085 0 0 1 9.09-4.994c9.735 0 11.527 6.405 11.527 14.726V55.19h-9.6V40.159c0-3.588-.066-8.2-5-8.2-4.99 0-5.76 3.907-5.76 7.939v15.288h-9.6Z"
-                      data-name="Path 2517"
-                    />
-                    <path
-                      fill="#0a66c2"
-                      d="M135.136 36.138a5.756 5.756 0 0 0-5.894-5.89 6.406 6.406 0 0 0-6.784 5.89Zm8.132 13.7a16.909 16.909 0 0 1-13.128 6.151c-9.6 0-17.286-6.408-17.286-16.331s7.685-16.328 17.286-16.328c8.973 0 14.6 6.4 14.6 16.328v3.01h-22.282a7.171 7.171 0 0 0 7.235 6.019 8.193 8.193 0 0 0 6.851-3.778Z"
-                      data-name="Path 2518"
-                    />
-                    <path
-                      fill="#0a66c2"
-                      d="M164.75 31.749c-4.8 0-7.68 3.205-7.68 7.875s2.879 7.878 7.68 7.878 7.687-3.2 7.687-7.878-2.881-7.875-7.687-7.875m16.525 23.437h-8.838v-4.1h-.131a12.071 12.071 0 0 1-9.544 4.868c-9.224 0-15.3-6.657-15.3-16.071 0-8.646 5.377-16.585 14.216-16.585 3.973 0 7.684 1.087 9.861 4.1h.126V9.577h9.609Z"
-                      data-name="Path 2519"
-                    />
-                    <path
-                      fill="#0a66c2"
-                      d="M246.084 55.204h-9.6V40.17c0-3.585-.064-8.2-4.993-8.2-5 0-5.765 3.906-5.765 7.939v15.294h-9.6V24.287h9.216v4.225h.129a10.1 10.1 0 0 1 9.093-4.994c9.73 0 11.524 6.4 11.524 14.726Zm-40.79-35.143a5.571 5.571 0 1 1 5.57-5.572 5.571 5.571 0 0 1-5.57 5.572m4.8 35.143h-9.61V24.287h9.61ZM250.87.004h-55.21a4.728 4.728 0 0 0-4.781 4.67v55.439a4.731 4.731 0 0 0 4.781 4.675h55.21a4.741 4.741 0 0 0 4.8-4.675V4.67a4.738 4.738 0 0 0-4.8-4.67"
-                      data-name="Path 2520"
-                    />
-                    <path
-                      fill="#0a66c2"
-                      d="M263.043 56.411a4.418 4.418 0 1 0 .085 0h-.085m0 8.33a3.874 3.874 0 1 1 3.809-3.938v.065a3.791 3.791 0 0 1-3.708 3.871h-.1"
-                      data-name="Path 2526"
-                    />
-                  </svg>
-                </a>
-              </div>
               <div className="c-contact-info__social-item">
                 <a
                   href="https://clutch.co/profile/refact"
