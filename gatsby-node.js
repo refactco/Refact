@@ -300,7 +300,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      beehiivPage: wpPage(slug: { eq: "re-beehiiv" }) {
+      beehiivPage: wpPage(slug: { eq: "integration-toolkit-for-beehiiv" }) {
         id
         content
         template {
@@ -927,8 +927,8 @@ exports.createPages = async ({ graphql, actions }) => {
   const beehiiv = result.data.beehiivPage.template.pageBuilder.pageBuilder;
   beehiiv.forEach(({ node }) => {
     createPage({
-      path: `/re-beehiiv/`,
-      component: path.resolve(`./src/templates/re-beehiiv.js`),
+      path: `/integration-toolkit-for-beehiiv/`,
+      component: path.resolve(`./src/templates/integration-toolkit-for-beehiiv.js`),
     });
   });
   const ourWork = result.data.workPage.template.pageBuilder.pageBuilder;

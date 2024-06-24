@@ -303,7 +303,7 @@ export function Head({ data }) {
 
 export const pageQuery = graphql`
   query {
-    wpPage(slug: {eq: "re-beehiiv"}) {
+    wpPage(slug: {eq: "integration-toolkit-for-beehiiv"}) {
       id
       content
       seo {
