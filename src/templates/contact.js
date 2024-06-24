@@ -8,12 +8,18 @@ import Seo from '../components/seo/seo';
 
 const ContactPage = ({ data }) => {
   const { wpPage, wpGfForm } = data;
-  const websiteFormField = wpGfForm.formFields.nodes.find(
-    (formField) => formField.type === 'WEBSITE'
-  );
-  const [fieldValues, setFieldValues] = useState({
-    [websiteFormField.databaseId]: websiteFormField.defaultValue,
-  });
+  
+  const initialFieldValues = wpGfForm.formFields.nodes.reduce((acc, field) => {
+    if (field.type === 'SELECT' && field.choices.length > 0) {
+      acc[field.databaseId] = field.placeholder;
+    } else {
+      acc[field.databaseId] = field.defaultValue ?? '';
+    }
+    return acc;
+  }, {});
+
+  const [fieldValues, setFieldValues] = useState(initialFieldValues);
+  // const [validationErrors, setValidationErrors] = useState({});
 
   const contactContent = wpPage.template.pageBuilder.pageBuilder;
   const [isOpen, setIsOpen] = useState(false);
@@ -147,12 +153,28 @@ const ContactPage = ({ data }) => {
                 event.stopPropagation();
                 event.preventDefault();
 
+                // const errors = {};
+                // formFields.nodes.forEach((field) => {
+                //   if (field.isRequired && field.type === 'CHECKBOX') {
+                //     if (!fieldValues[field.databaseId] || fieldValues[field.databaseId].length === 0) {
+                //       errors[field.databaseId] = 'This field is required';
+                //     }
+                //   }
+                // });
+
+                // console.log(errors)
+                // if (Object.keys(errors).length > 0) {
+                //   setValidationErrors(errors);
+                //   return;
+                // }
+
                 const values = Object.entries(fieldValues).map(
                   ([key, value]) => {
-                    let emailObject = {};
+                    let inputObject = { id: Number(key), value };
 
                     if (key === '4') {
-                      emailObject = {
+                      inputObject = {
+                        ...inputObject,
                         emailValues: {
                           confirmationValue: '',
                           value,
@@ -160,11 +182,23 @@ const ContactPage = ({ data }) => {
                       };
                     }
 
-                    return {
-                      id: Number(key),
-                      value,
-                      ...emailObject,
-                    };
+                    if (key === '10') {
+                      const choices = formFields.nodes.find(
+                        (field) => field.databaseId.toString() === key
+                      ).choices;
+                
+                      if (choices) {
+                        const checkboxValues = choices.map((choice, index) => ({
+                          inputId: parseFloat(`${inputObject.id}.${index + 1}`),
+                          value: value.includes(choice.value) ? choice.value : "",
+                        }));
+                
+                        inputObject = { id: inputObject.id, checkboxValues };
+                      }
+                    }
+                    
+
+                    return inputObject;
                   }
                 );
 
@@ -177,107 +211,153 @@ const ContactPage = ({ data }) => {
             >
               <div className="gform-body gform_body">
                 <div className="gform_fields top_label form_sublabel_below description_below">
-                  {formFields.nodes.map((field, index) => {
-                    const {
-                      type,
-                      // layoutGridColumnSpan,
-                      inputName,
-                      isRequired,
-                      label,
-                      placeholder,
-                      databaseId,
-                    } = field;
-                    const error = mutationData?.submitGfForm?.errors?.find(
-                      (e) => e.id === databaseId
-                    );
+                {formFields.nodes.map((field, index) => {
+                  const {
+                    type,
+                    inputName,
+                    isRequired,
+                    label,
+                    placeholder,
+                    databaseId,
+                    choices,
+                  } = field;
+                  const error = mutationData?.submitGfForm?.errors?.find(
+                    (e) => e.id === databaseId
+                  );
 
-                    // console.log({ error });
-
-                    return (
-                      <div
-                        className={[
-                          'gfield',
-                          `gfield--type-${type.toLowerCase()}`,
-                          'gfield--width-full',
-                          error ? 'gfield_error' : '',
-                        ].join(' ')}
-                        key={index}
+                  return (
+                    <div
+                      className={[
+                        'gfield',
+                        `gfield--type-${type.toLowerCase()}`,
+                        'gfield--width-full',
+                        error ? 'gfield_error' : '',
+                      ].join(' ')}
+                      key={index}
+                    >
+                      <label
+                        className="gfield_label gform-field-label"
+                        htmlFor={`input_${formId}_${databaseId}`}
                       >
-                        <label
-                          className="gfield_label gform-field-label"
-                          htmlFor={`input_${formId}_${databaseId}`}
-                        >
-                          {label}{' '}
-                          {isRequired ? (
-                            <span className="gfield_required gfield_required_asterisk">
-                              *
-                            </span>
-                          ) : (
-                            ''
-                          )}
-                        </label>
-                        <div
-                          className={`ginput_container ginput_container_${type.toLowerCase()}`}
-                        >
-                          {type === 'TEXTAREA' ? (
-                            <textarea
-                              placeholder={placeholder}
-                              name={inputName}
-                              value={fieldValues[databaseId]}
-                              id={`input_${formId}_${databaseId}`}
-                              className="c-textarea"
-                              aria-required={isRequired}
-                              onChange={(event) => {
+                        {label}{' '}
+                        {isRequired ? (
+                          <span className="gfield_required gfield_required_asterisk">*</span>
+                        ) : (
+                          ''
+                        )}
+                      </label>
+                      <div className={`ginput_container ginput_container_${type.toLowerCase()}`}>
+                        {type === 'TEXTAREA' ? (
+                          <textarea
+                            placeholder={placeholder}
+                            name={inputName}
+                            value={fieldValues[databaseId]}
+                            id={`input_${formId}_${databaseId}`}
+                            className="c-textarea"
+                            aria-required={isRequired}
+                            onChange={(event) => {
+                              setFieldValues({
+                                ...fieldValues,
+                                [databaseId]: event.target.value,
+                              });
+                            }}
+                          />
+                        ) : type === 'CHECKBOX' ? (
+                          choices.map((choice, idx) => (
+                            <div key={idx}>
+                              <input
+                                type="checkbox"
+                                name={inputName}
+                                id={`selectfield-${idx}`}
+                                value={choice.value}
+                                checked={fieldValues[databaseId]?.includes(choice.value) ?? false}
+                                onChange={(event) => {
+                                  const newValue = [...(fieldValues[databaseId] ?? [])];
+                                  if (event.target.checked) {
+                                    newValue.push(choice.value);
+                                  } else {
+                                    const index = newValue.indexOf(choice.value);
+                                    if (index > -1) {
+                                      newValue.splice(index, 1);
+                                    }
+                                  }
+                                  setFieldValues({
+                                    ...fieldValues,
+                                    [databaseId]: newValue,
+                                  });
+                                }}
+                              />
+                            <label htmlFor={`selectfield-${idx}`}>
+                              {choice.text}
+                            </label>
+                          </div>
+                          ))
+                        ) : type === 'SELECT' ? (
+                          <select
+                            name={inputName}
+                            id={`input_${formId}_${databaseId}`}
+                            className='c-form-select'
+                            value={fieldValues[databaseId]}
+                            onChange={(event) => {
+                              setFieldValues({
+                                ...fieldValues,
+                                [databaseId]: event.target.value,
+                              });
+                            }}
+                          >
+                            <option defaultValue disabled>{placeholder}</option>
+                            {choices.map((choice, idx) => (
+                              <option key={idx} value={choice.value}>
+                                {choice.text}
+                              </option>
+                            ))}
+                          </select>
+                        ) : (
+                          <input
+                            placeholder={placeholder}
+                            name={inputName}
+                            type={convertInputType(type)}
+                            value={fieldValues[databaseId]}
+                            id={`input_${formId}_${databaseId}`}
+                            aria-required={isRequired}
+                            onChange={(event) => {
+                              if (type === 'WEBSITE') {
+                                let url = event.target.value;
+                          
+                                // Match and replace only the first occurrence of the protocol
+                                const matchPattern = /^(https?:\/\/)/;
+                          
+                                // Check if the URL starts with the protocol and remove it
+                                if (matchPattern.test(url)) {
+                                  url = url.replace(matchPattern, '');
+                                }
+                          
                                 setFieldValues({
                                   ...fieldValues,
-                                  [databaseId]: event.target.value,
+                                  [databaseId]: url,
                                 });
-                              }}
-                            />
-                          ) : (
-                            <input
-                              placeholder={placeholder}
-                              name={inputName}
-                              type={convertInputType(type)}
-                              value={fieldValues[databaseId]}
-                              id={`input_${formId}_${databaseId}`}
-                              aria-required={isRequired}
-                              onChange={(event) => {
-                                if (type === 'WEBSITE') {
-                                  let url = event.target.value;
-
-                                  const matchPattern = /^(https?:\/\/){2,}/;
-                                  const replacePattern = /^(https?:\/\/)/;
-
-                                  if (matchPattern.test(url)) {
-                                    url = url.replace(replacePattern, '');
-                                  }
-
-                                  setFieldValues({
-                                    ...fieldValues,
-                                    [databaseId]: url,
-                                  });
-                                } else {
-                                  setFieldValues({
-                                    ...fieldValues,
-                                    [databaseId]: event.target.value,
-                                  });
-                                }
-                              }}
-                            />
-                          )}
-                        </div>
-                        {error ? (
-                          <div
-                            id={`validation_message_${formId}_${databaseId}`}
-                            className="gfield_description validation_message gfield_validation_message"
-                          >
-                            {error.message}
-                          </div>
-                        ) : null}
+                              } else {
+                              setFieldValues({
+                                ...fieldValues,
+                                [databaseId]: event.target.value,
+                              });
+                            }
+                            }}
+                          />
+                        )}
                       </div>
-                    );
-                  })}
+                      {error ? (
+                        <div
+                          id={`validation_message_${formId}_${databaseId}`}
+                          className="gfield_description validation_message gfield_validation_message"
+                        >
+                          {error.message}
+                        </div>
+                      ) : null}
+                    </div>
+                  );
+                })}
+
                 </div>
               </div>
               <div className="gform_footer top_label">
@@ -491,6 +571,25 @@ export const pageQuery = graphql`
             isRequired
             label
             placeholder
+          }
+          ... on WpCheckboxField {
+            isRequired
+            inputName
+            label
+            choices {
+              text
+              value
+            }
+          }
+          ... on WpSelectField {  
+            isRequired
+            type
+            label
+            placeholder
+            choices {
+              text
+              value
+            }
           }
         }
       }

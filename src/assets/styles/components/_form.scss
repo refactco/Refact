@@ -523,3 +523,65 @@
     display: none;
   }
 }
+
+/* Container Styling */
+.ginput_container_checkbox {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+/* Hide the default checkboxes */
+.ginput_container_checkbox input[type="checkbox"] {
+  display: none;
+}
+
+/* Label Styling */
+.ginput_container_checkbox label {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #f8f8f8;
+  border: 1px solid var(--color-cultred);
+  font-weight: 500;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s, border-color 0.3s;
+  user-select: none;
+}
+
+/* Hover and Focus Effects */
+.ginput_container_checkbox label:hover,
+.ginput_container_checkbox label:focus-within {
+  background-color: var(--color-white);
+  border-color: var(--color-primary-s);
+}
+
+/* Checked State */
+.ginput_container_checkbox input[type="checkbox"]:checked + label {
+  background-color: var(--color-primary-t);
+  color: var(--color-text);
+  border-color: var(--color-primary-t);
+}
+
+.c-form-select{
+  width: 100%;
+  padding: 14px 12px;
+  cursor: pointer;
+  border: 1px solid var(--color-grey);
+  border-radius: 0.25rem;
+  background-color: var(--color-white);
+  font-size: 16px;
+  line-height: 1.5;
+  box-shadow: none;
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="none" height="24" stroke="black" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary-s);
+  }
+}
