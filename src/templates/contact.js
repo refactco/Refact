@@ -13,13 +13,13 @@ const ContactPage = ({ data }) => {
     if (field.type === 'SELECT' && field.choices.length > 0) {
       acc[field.databaseId] = field.placeholder;
     } else {
-      acc[field.databaseId] = field.defaultValue || '';
+      acc[field.databaseId] = field.defaultValue ?? '';
     }
     return acc;
   }, {});
 
   const [fieldValues, setFieldValues] = useState(initialFieldValues);
-  const [validationErrors, setValidationErrors] = useState({});
+  // const [validationErrors, setValidationErrors] = useState({});
 
   const contactContent = wpPage.template.pageBuilder.pageBuilder;
   const [isOpen, setIsOpen] = useState(false);
@@ -153,20 +153,20 @@ const ContactPage = ({ data }) => {
                 event.stopPropagation();
                 event.preventDefault();
 
-                const errors = {};
-                formFields.nodes.forEach((field) => {
-                  if (field.isRequired && field.type === 'CHECKBOX') {
-                    if (!fieldValues[field.databaseId] || fieldValues[field.databaseId].length === 0) {
-                      errors[field.databaseId] = 'This field is required';
-                    }
-                  }
-                });
+                // const errors = {};
+                // formFields.nodes.forEach((field) => {
+                //   if (field.isRequired && field.type === 'CHECKBOX') {
+                //     if (!fieldValues[field.databaseId] || fieldValues[field.databaseId].length === 0) {
+                //       errors[field.databaseId] = 'This field is required';
+                //     }
+                //   }
+                // });
 
-                console.log(errors)
-                if (Object.keys(errors).length > 0) {
-                  setValidationErrors(errors);
-                  return;
-                }
+                // console.log(errors)
+                // if (Object.keys(errors).length > 0) {
+                //   setValidationErrors(errors);
+                //   return;
+                // }
 
                 const values = Object.entries(fieldValues).map(
                   ([key, value]) => {
@@ -183,14 +183,17 @@ const ContactPage = ({ data }) => {
                     }
 
                     if (key === '10') {
-                      if(value && value.length > 0) {
-                        const checkboxValues = value.map((v, index) => ({
+                      const choices = formFields.nodes.find(
+                        (field) => field.databaseId.toString() === key
+                      ).choices;
+                
+                      if (choices) {
+                        const checkboxValues = choices.map((choice, index) => ({
                           inputId: parseFloat(`${inputObject.id}.${index + 1}`),
-                          value: v,
+                          value: value.includes(choice.value) ? choice.value : "",
                         }));
+                
                         inputObject = { id: inputObject.id, checkboxValues };
-                      } else {
-                        inputObject = { id: inputObject.id, checkboxValues: [] };
                       }
                     }
                     
@@ -198,7 +201,6 @@ const ContactPage = ({ data }) => {
                     return inputObject;
                   }
                 );
-
 
                 submitForm({
                   variables: {
@@ -221,7 +223,7 @@ const ContactPage = ({ data }) => {
                   } = field;
                   const error = mutationData?.submitGfForm?.errors?.find(
                     (e) => e.id === databaseId
-                  ) || validationErrors[databaseId];
+                  );
 
                   return (
                     <div
@@ -268,9 +270,9 @@ const ContactPage = ({ data }) => {
                                 name={inputName}
                                 id={`selectfield-${idx}`}
                                 value={choice.value}
-                                checked={fieldValues[databaseId]?.includes(choice.value) || false}
+                                checked={fieldValues[databaseId]?.includes(choice.value) ?? false}
                                 onChange={(event) => {
-                                  const newValue = [...(fieldValues[databaseId] || [])];
+                                  const newValue = [...(fieldValues[databaseId] ?? [])];
                                   if (event.target.checked) {
                                     newValue.push(choice.value);
                                   } else {
@@ -303,7 +305,7 @@ const ContactPage = ({ data }) => {
                               });
                             }}
                           >
-                            <option selected disabled>{placeholder}</option>
+                            <option defaultValue disabled>{placeholder}</option>
                             {choices.map((choice, idx) => (
                               <option key={idx} value={choice.value}>
                                 {choice.text}
