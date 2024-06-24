@@ -68,6 +68,7 @@ const Homepage = () => {
                     }
                     height
                     width
+                    mimeType
                   }
                   mediaSettings
                 }
@@ -91,6 +92,7 @@ const Homepage = () => {
                       }
                       height
                       width
+                      mimeType
                     }
                     description
                     fieldGroupName
@@ -236,14 +238,17 @@ const Homepage = () => {
                         )}
                         {(section.mediaSettings === 'video' || section.mediaSettings === 'both') && (
                           <video
-                            src={section.video.localFile.url}
                             alt={section.video.altText}
                             width={section.video.width}
                             height={section.video.height}
                             autoPlay
                             muted
                             loop
-                          />
+                            playsInline
+                          >
+                            <source src={section.video.localFile.url} type={section.video.mimeType} />
+                            Your browser does not support the video tag.
+                          </video>
                         )}
                       </a>
                       :
@@ -253,14 +258,17 @@ const Homepage = () => {
                         )}
                         {(section.mediaSettings === 'video' || section.mediaSettings === 'both') && (
                           <video
-                            src={section.video.localFile.url}
                             alt={section.video.altText}
                             width={section.video.width}
                             height={section.video.height}
                             autoPlay
                             muted
                             loop
-                          />
+                            playsInline
+                            >
+                            <source src={section.video.localFile.url} type={section.video.mimeType} />
+                            Your browser does not support the video tag.
+                          </video>
                         )}
                       </Link>
                     }
@@ -329,14 +337,17 @@ const Homepage = () => {
                               )}
                               {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
                                 <video
-                                  src={project.video.localFile.url}
                                   alt={project.video.altText}
                                   width={project.video.width}
                                   height={project.video.height}
                                   autoPlay
                                   muted
                                   loop
-                                />
+                                  playsInline
+                                  >
+                                    <source src={project.video.localFile.url} type={project.video.mimeType} />
+                                    Your browser does not support the video tag.
+                                </video>
                               )}
                             </a>
                             :
@@ -346,14 +357,16 @@ const Homepage = () => {
                               )}
                               {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
                                 <video
-                                  src={project.video.localFile.url}
                                   alt={project.video.altText}
                                   width={project.video.width}
                                   height={project.video.height}
                                   autoPlay
                                   muted
                                   loop
-                                />
+                                  >
+                                  <source src={project.video.localFile.url} type={project.video.mimeType} />
+                                  Your browser does not support the video tag.
+                                </video>
                               )}
                             </Link>
                           }

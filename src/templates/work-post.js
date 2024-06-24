@@ -15,14 +15,17 @@ const renderSection = (section, index) => {
             {section.mediaType === true && section.video ? (
               <div className='c-media__items is-video'>
                 <video
-                  src={section.video.localFile.url}
                   alt={section.video.altText}
                   width={section.video.width}
                   height={section.video.height}
                   autoPlay
                   muted
                   loop
-                />
+                  playsInline
+                >
+                  <source src={section.video.localFile.url} type={section.video.mimeType} />
+                  Your browser does not support the video tag.
+                </video>
               </div>
             ) : (
               <div className='c-media__items is-image'>
@@ -37,14 +40,17 @@ const renderSection = (section, index) => {
               {section.mediaTypeSecondary === true && section.secondayVideo ? (
                 <div className='c-media__items is-video'>
                 <video
-                  src={section.secondayVideo.localFile.url}
                   alt={section.secondayVideo.altText}
                   width={section.secondayVideo.width}
                   height={section.secondayVideo.height}
                   autoPlay
                   muted
                   loop
-                />
+                  playsInline
+                  >
+                  <source src={section.secondayVideo.localFile.url} type={section.secondayVideo.mimeType} />
+                  Your browser does not support the video tag.
+                </video>
                 </div>
               ) : (
                 <div className='c-media__items is-image'>
@@ -81,14 +87,17 @@ const renderSection = (section, index) => {
             {section.mediaType === true && section.video ? (
               <div className='c-works-testimonial__col'>
                 <video
-                  src={section.video.localFile.url}
                   alt={section.video.altText}
                   width={section.video.width}
                   height={section.video.height}
                   autoPlay
                   muted
                   loop
-                />
+                  playsInline
+                >
+                 <source src={section.video.localFile.url} type={section.video.mimeType} />
+                 Your browser does not support the video tag.
+                </video>
               </div>
             ) : (
               <>
@@ -229,6 +238,7 @@ export const pageQuery = graphql`
               }
               height
               width
+              mimeType
             }
             mediaType
             image {
@@ -257,6 +267,7 @@ export const pageQuery = graphql`
                 id
               }
               width
+              mimeType
             }
           }
           ... on WpWork_Casestudies_CaseStudyFields_Content {
@@ -285,6 +296,7 @@ export const pageQuery = graphql`
                 url
               }
               width
+              mimeType
             }
           }
           ... on WpWork_Casestudies_CaseStudyFields_CtaSection {

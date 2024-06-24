@@ -36,6 +36,7 @@ const RelatedWorks = ({ currentPostId }) => {
                   }
                   height
                   width
+                  mimeType
                 }
                 mediaSettings
               }
@@ -73,14 +74,17 @@ const RelatedWorks = ({ currentPostId }) => {
             )}
             {(relatedWork.caseStudies.mediaSettings === 'video' || relatedWork.caseStudies.mediaSettings === 'both') && (
               <video
-                src={relatedWork.caseStudies.primaryVideo.localFile.url}
                 alt={relatedWork.caseStudies.primaryVideo.altText}
                 width={relatedWork.caseStudies.primaryVideo.width}
                 height={relatedWork.caseStudies.primaryVideo.height}
                 autoPlay
                 muted
                 loop
-              />
+                playsInline
+                >
+                  <source src={relatedWork.caseStudies.primaryVideo.localFile.url} type={relatedWork.caseStudies.primaryVideo.mimeType} />
+                  Your browser does not support the video tag.
+                </video>
             )}
           </Link>
         )}

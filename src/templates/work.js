@@ -93,14 +93,17 @@ const renderSection = (section, index) => {
                     )}
                     {(section.mediaSettings === 'video' || section.mediaSettings === 'both') && (
                       <video
-                        src={section.video.localFile.url}
                         alt={section.video.altText}
                         width={section.video.width}
                         height={section.video.height}
                         autoPlay
                         muted
                         loop
-                      />
+                        playsInline
+                        >
+                        <source src={section.video.localFile.url} type={section.video.mimeType} />
+                        Your browser does not support the video tag.
+                      </video>
                     )}
                   </a>
                   :
@@ -110,14 +113,17 @@ const renderSection = (section, index) => {
                     )}
                     {(section.mediaSettings === 'video' || section.mediaSettings === 'both') && (
                       <video
-                        src={section.video.localFile.url}
                         alt={section.video.altText}
                         width={section.video.width}
                         height={section.video.height}
                         autoPlay
                         muted
                         loop
-                      />
+                        playsInline
+                        >
+                        <source src={section.video.localFile.url} type={section.video.mimeType} />
+                        Your browser does not support the video tag.
+                      </video>
                     )}
                   </Link>
                 }
@@ -216,14 +222,17 @@ const renderSection = (section, index) => {
                           )}
                           {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
                             <video
-                              src={project.video.localFile.url}
                               alt={project.video.altText}
                               width={project.video.width}
                               height={project.video.height}
                               autoPlay
                               muted
                               loop
-                            />
+                              playsInline
+                              >
+                              <source src={project.video.localFile.url} type={project.video.mimeType} />
+                              Your browser does not support the video tag.
+                            </video>
                           )}
                         </a>
                         :
@@ -233,14 +242,17 @@ const renderSection = (section, index) => {
                           )}
                           {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
                             <video
-                              src={project.video.localFile.url}
                               alt={project.video.altText}
                               width={project.video.width}
                               height={project.video.height}
                               autoPlay
                               muted
                               loop
-                            />
+                              playsInline
+                              >
+                              <source src={project.video.localFile.url} type={project.video.mimeType} />
+                              Your browser does not support the video tag.
+                            </video>
                           )}
                         </Link>
                       }
@@ -428,6 +440,7 @@ export const pageQuery = graphql`
                   }
                   height
                   width
+                  mimeType
                 }
                 cta {
                   target
@@ -470,6 +483,7 @@ export const pageQuery = graphql`
                     }
                     height
                     width
+                    mimeType
                   }
                   cta {
                     target
