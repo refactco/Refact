@@ -23,7 +23,7 @@ const ContactPage = ({ data }) => {
 
   const contactContent = wpPage.template.pageBuilder.pageBuilder;
   const [isOpen, setIsOpen] = useState(false);
-  const formId = 10;
+  const formId = 9;
 
   const handleLinkClick = () => {
     setIsOpen(true);
@@ -57,7 +57,7 @@ const ContactPage = ({ data }) => {
       ) {
         submitGfForm(
           input: {
-            id: 10
+            id: 9
             fieldValues: $fieldValues
             saveAsDraft: false
             sourcePage: 1
@@ -518,7 +518,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    wpGfForm(databaseId: { eq: 10 }) {
+    wpGfForm(databaseId: { eq: 9 }) {
       submitButton {
         text
         type
