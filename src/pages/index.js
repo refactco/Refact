@@ -26,6 +26,28 @@ const Homepage = () => {
                     title
                     url
                   }
+                  video {
+                    altText
+                    filename
+                    localFile {
+                      url
+                      id
+                    }
+                    height
+                    width
+                    mimeType
+                  }
+                  videoMobile{
+                    altText
+                    filename
+                    localFile {
+                      url
+                      id
+                    }
+                    height
+                    width
+                    mimeType
+                  }
                 }
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
                   description
@@ -139,6 +161,20 @@ const Homepage = () => {
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero':
         return (
           <ContainerBox key={index}  className='c-section--hero'>
+            {/* <div className="c-hero__video">
+              <video
+                alt={section.video.altText}
+                width={section.video.width}
+                height={section.video.height}
+                autoPlay
+                muted
+                loop
+                playsInline
+              >
+                <source src={section.video.localFile.url} type={section.video.mimeType} />
+                Your browser does not support the video tag.
+              </video>
+            </div> */}
             <div className="c-hero">
               {/* {heroSection.title && (
                 <h1 className="c-hero__title" style={{maxWidth: 850}}>{heroSection.title}</h1>

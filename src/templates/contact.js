@@ -376,9 +376,9 @@ const ContactPage = ({ data }) => {
           <div className="c-contact-footer__info s-content">
             <h4 className="c-contact-info__title">Want to learn more?</h4>
             <p className="c-contact-info__text">
-              Browse our <Link to='/work'>previous projects here</Link>.  Follow us <a href='https://www.linkedin.com/company/refactco/' target='_blank' rel='noreferrer'>on LinkedIn</a>, subscribe to <a href='https://www.linkedin.com/newsletters/media-tech-report-7150380343559118848/' target='_blank' rel='noreferrer'>our newsletter</a>, and check out <Link to='/insights'>our blog</Link> to keep up with all the exciting developments in digital media..
+              Browse our <Link to='/work'>previous projects here</Link>.  Follow us <a href='https://www.linkedin.com/company/refactco/' target='_blank' rel='noreferrer'>on LinkedIn</a>, subscribe to <a href='https://www.linkedin.com/newsletters/media-tech-report-7150380343559118848/' target='_blank' rel='noreferrer'>our newsletter</a>, and check out <Link to='/insights'>our blog</Link> to keep up with all the exciting developments in digital media.
             </p>
-            <p style={{marginBottom: 8}}><strong>See what our clients have to say at Clutch:</strong></p>
+            <p style={{marginBottom: 8}}><strong>See what our clients have to say on Clutch:</strong></p>
             <div className="c-contact-info__social">
               <div className="c-contact-info__social-item">
                 <a

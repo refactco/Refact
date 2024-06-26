@@ -2,12 +2,40 @@
     padding: 3rem 0;
     background: var(--color-primary-r);
     overflow-x: hidden;
-
+    position: relative;
     @include mq(md) {
         padding: 5.25rem 0 7.75rem;
     }
+    // .o-section__wrapper{
+    //     @include mq(lg){
+    //         max-width: calc(1440px - 2em);
+    //     }
+    // }
 }
-
+// .c-hero__video{
+//     pointer-events: none;
+//     width: 100%;
+//     height: 100%;
+//     position: absolute;
+//     top: 0%;
+//     bottom: 0%;
+//     left: 0%;
+//     right: 0%;
+//     video{
+//         object-fit: cover;
+//         z-index: -100;
+//         background-position: 50%;
+//         background-size: cover;
+//         width: 100%;
+//         height: 100%;
+//         margin: auto;
+//         position: absolute;
+//         top: -100%;
+//         bottom: -100%;
+//         left: -100%;
+//         right: -100%;
+//     }
+// }
 .c-hero {
     display: flex;
     flex-direction: column;
