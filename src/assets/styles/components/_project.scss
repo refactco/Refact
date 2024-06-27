@@ -1,5 +1,5 @@
 .c-section--project {
-    padding: 0 0 2.5rem;
+    padding: 0 0 3rem;
 
     @include mq(md) {
         padding: 4rem 0;
@@ -9,7 +9,7 @@
     }
     &.is-featured{
         .c-project__items{
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             @include mq(md){
                 margin-bottom: 2rem;
             }
@@ -17,12 +17,12 @@
     }
     &.is-normal,
     &.is-reverse {
-        padding-bottom: 2.5rem;
+        padding-bottom: 3rem;
         @include mq(md) {
             padding-bottom: 2rem;
         }
         .c-project__item{
-            margin-bottom: 2.5rem;
+            margin-bottom: 3rem;
             @include mq(md){
                 margin-bottom: 2rem;
             }
@@ -235,9 +235,9 @@
     }
 }
 .c-project__imgs{
-    margin-bottom: 1.5em;
+    margin-bottom: 1em;
     @media (max-width: 1087px){
-        padding-bottom: 100% !important;
+        padding-bottom: 66.6% !important;
         .is-featured &{
             padding-bottom: 66.6% !important;
         }
@@ -313,19 +313,26 @@
     margin: 0;
     font-family: $inter;
     font-weight: 600;
-    @include font-size(20px, 1.5);
+    @include font-size(22px, 1.27);
     color: var(--color-text);
-
+    margin-bottom: 1rem;
     @include mq(md) {
         @include font-size(28px, 1.48);
+        margin-bottom: 0;
     }
 }
 
 .c-project__text {
     font-family: $inter;
     font-weight: 400;
-    @include font-size(16px, 1.5);
+    @include font-size(14px, 1.5);
     color: var(--color-grey);
-    margin-bottom: 1em;
+    margin-bottom: 0.75rem;
+    display: none;
+    @include mq(md){
+        display: block;
+        @include font-size(16px, 1.5);
+        margin-bottom: 1rem;
+    }
 }
 

@@ -1,5 +1,5 @@
 .c-section--cta {
-    padding: 3em 0 2.25em;
+    padding: 3rem 0 1.5rem;
     background-color: var(--color-primary-r);
 
     @include mq(md) {
@@ -13,6 +13,7 @@
     justify-content: space-between;
 
     @include mq(md) {
+        gap: 1rem;
         flex-direction: row;
         align-items: flex-start;
     }
@@ -31,10 +32,11 @@
     font-weight: 400;
     @include font-size(32px, 1.19);
     color: var(--color-white);
-    max-width: 472px;
-    margin: 0 0 32px;
-
+    margin: 0 auto 8px;
+    text-align: center;
     @include mq(md) {
+        max-width: 472px;
+        text-align: left;
         @include font-size(48px, 1.21);
         margin: 0;
     }
@@ -45,11 +47,29 @@
     font-weight: 400;
     @include font-size(16px, 1.5);
     color: var(--color-primary-h);
-    margin-bottom: 33px;
     max-width: 441px;
-
+    margin: 0 auto 24px;
+    text-align: center;
     @include mq(md) {
         @include font-size(23px, 1.48);
-        margin-bottom: 24px;
+        text-align: left;
+        margin: 0 0 24px;
+    }
+}
+.c-cta__col{
+    &:last-child{
+        @media (max-width: 589px){
+            .c-btn{
+                width: 100%;
+                text-align: center;
+                justify-content: center;
+            }
+        }
+        @media (max-width: 767px){
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+        }
     }
 }

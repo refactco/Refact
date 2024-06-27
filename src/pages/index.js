@@ -2,10 +2,8 @@ import { useStaticQuery, graphql, Link } from 'gatsby';
 import React from 'react';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
-import CompanyLogo from '../components/company-logo/company-logo';
 import Seo from '../components/seo/seo';
 import { GatsbyImage } from 'gatsby-plugin-image';
-import CompanyLogoReverse from '../components/company-logo/company-logo-reverse';
 
 const Homepage = () => {
   const data = useStaticQuery(graphql`
@@ -161,8 +159,9 @@ const Homepage = () => {
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero':
         return (
           <ContainerBox key={index}  className='c-section--hero'>
-            {/* <div className="c-hero__video">
+            <div className="c-hero__video">
               <video
+                className='c-hero__video--desktop'
                 alt={section.video.altText}
                 width={section.video.width}
                 height={section.video.height}
@@ -174,7 +173,9 @@ const Homepage = () => {
                 <source src={section.video.localFile.url} type={section.video.mimeType} />
                 Your browser does not support the video tag.
               </video>
-            </div> */}
+            </div>
+            <div className='c-hero-top__overlay'></div>
+            <div className='c-hero-bottom__overlay'></div>
             <div className="c-hero">
               {/* {heroSection.title && (
                 <h1 className="c-hero__title" style={{maxWidth: 850}}>{heroSection.title}</h1>
@@ -184,15 +185,27 @@ const Homepage = () => {
               )}
               <Link to="/services" className='c-btn'>What we do</Link>
             </div>
+            <div className='c-hero-mobile__video'>
+              <video
+                  className='c-hero__video--mobile'
+                  alt={section.videoMobile.altText}
+                  width={section.videoMobile.width}
+                  height={section.videoMobile.height}
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
+                >
+                  <source src={section.videoMobile.localFile.url} type={section.videoMobile.mimeType} />
+                  Your browser does not support the video tag.
+                </video>
+              </div>
           </ContainerBox>
         )
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_LogoSection':
         return (
-          <ContainerBox key={index} className='c-section--company-logo'>
-            <div className="c-hero-logo__wrapper" style={{overflow: 'hidden'}}>
-              <CompanyLogo />
-              <CompanyLogoReverse />
-            </div>
+          <ContainerBox key={index} className='c-section--section-title'>
+            <h3 className="c-section__title">Case Studies</h3>
           </ContainerBox>
         )
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Spacer':

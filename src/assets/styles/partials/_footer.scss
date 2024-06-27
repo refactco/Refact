@@ -1,5 +1,5 @@
 .c-section--footer {
-    padding: 2.25em 0 2.125em;
+    padding: 1.5rem 0 2rem;
     background: var(--color-primary-r);
     overflow: hidden;
     margin: -1px 0;
@@ -23,9 +23,9 @@
 .c-footer__main {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
-    flex-direction: column;
-    margin: 0 0 1.5em;
+    align-items: center;
+    flex-direction: column-reverse;
+    margin: 0 0 2rem;
 
     @include mq(md) {
         flex-direction: row;
@@ -36,12 +36,23 @@
 
 .c-footer__col {
     margin: 0 0 0.5em;
-
+    width: 100%;
     &:first-of-type {
         margin: 0;
     }
+    &:last-child{
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #2E9E62;
+        @include mq(md){
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+    }
 
     @include mq(md) {
+        width: auto;
         margin: 0;
     }
 }
@@ -70,9 +81,11 @@
 
 .c-footer__logos {
     display: flex;
-    margin-bottom: 22px;
+    justify-content: center;
+    margin-bottom: 0;
 
     @include mq(md) {
+        justify-content: flex-start;
         margin-bottom: 0;
         margin-top: 40px;
     }
@@ -112,23 +125,32 @@
 
 .c-footer__menu {
     display: flex;
+    width: 100%;
     
     @include mq(md) {
+        width: auto;
         justify-content: flex-end;
         // min-width: 20.9375em;
     }
 }
 
 .c-footer__links {
-    display: flex;
-    flex-direction: row;
-    flex-flow: row wrap;
+    
     list-style: none;
     margin: 0 4.625em 0 0;
     padding: 0;
-    gap: 16px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.75rem;
+    column-gap: 2rem;
+    width: 100%;
     @include mq(md) {
+        display: flex;
+        flex-direction: row;
+        flex-flow: row wrap;
+        gap: 16px;
         margin: 0;
+        width: auto;
     }
 
     &:last-of-type {
@@ -184,19 +206,24 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: flex-start;
-    border-top: 1px solid var(--color-primary-sh);
-    padding-top: 1.5em;
+    align-items: center;
+    // border-top: 1px solid var(--color-primary-sh);
+    // padding-top: 1.5em;
     font-family: $inter;
     font-weight: 600;
     @include font-size(13px, 1.54);
     color: var(--color-white-80);
 
     @include mq(sm) {
-        padding-top: 2.5em;
+
+        font-weight: 400;
+    }
+    @include mq(md){
         flex-direction: row;
         align-items: center;
-        font-weight: 400;
+        padding-top: 2.5em;
+        border-top: 1px solid var(--color-primary-sh);
+        padding-top: 1.5em;
     }
 
     a {
@@ -229,15 +256,17 @@
     }
     &:first-child{
         flex-direction: column;
-        align-items: flex-start;
+        align-items: center;
+        margin-bottom: 0.75rem;
         svg{
             margin: 0;
         }
         @include mq(md){
+            margin-bottom: 0;
             align-items: center;
         }
     }
-    @include mq(sm) {
+    @include mq(md) {
         &:first-child{
             flex-direction: row;
             svg {

@@ -33,10 +33,10 @@
 
         .home & {
             margin-bottom: 1.5rem;
-            @include font-size(28px, 1.22);
+            @include font-size(22px, 1.45);
             @include mq(md) {
                 margin-bottom: 4rem;
-                @include font-size(48px, 1.22);
+                @include font-size(40px, 1.2);
             }
         }
     }
@@ -86,7 +86,7 @@
 .c-capabilites__item {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2.5em;
+    margin-bottom: 2rem;
 
     &:last-of-type {
         margin-bottom: 0;
@@ -104,13 +104,15 @@
 .c-capabilites__number {
     font-family: $inter;
     font-weight: 400;
-    @include font-size(19px, 1.47);
+    @include font-size(14px, 1.35);
     color: var(--color-grey);
     display: flex;
     align-items: center;
     // gap: 4px;
     margin-bottom: 4px;
-
+    @include mq(md){
+        @include font-size(19px, 1.47);
+    }
     &::after {
         content: '';
         background: var(--color-grey);
@@ -142,10 +144,11 @@
 }
 
 .c-capabilites__text {
-    @include font-size(16px, 1.5);
+    @include font-size(14px, 1.57);
     color: var(--color-text);
     @include mq(md){
         max-width: 500px;
+        @include font-size(16px, 1.5);
     }
 }
 
