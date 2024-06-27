@@ -1,8 +1,8 @@
 .c-section--contact {
-    padding: 3em 0;
+    padding: 3rem 0;
 
     @include mq(md) {
-        padding: 8em 0;
+        padding: 5rem 0;
     }
 }
 
@@ -21,7 +21,7 @@
     }
 }
 .c-contact{
-    max-width: 870px;
+    max-width: 731px;
     .gform_wrapper{
         margin-bottom: 3rem;
         @include mq(lg){
@@ -30,6 +30,7 @@
     }
 }
 .c-contact-form__title{
+    margin: 0 0 0.5rem;
     &.is-hidden{
         display: none;
     }
@@ -37,15 +38,15 @@
 .c-contact__text {
     font-family: $inter;
     font-weight: 400;
-    @include font-size(18px, 1.56);
+    @include font-size(18px, 1.5);
     // display: flex;
     // align-items: center;
     width: 100%;
     color: var(--color-text);
     word-wrap: break-word;
-    margin: 0 0 3rem;
+    margin: 0 0 1.5rem;
     button{
-        margin: 0 0 0 6px;
+        margin: 0;
         padding: 0;
         background: transparent;
         outline: none;
@@ -61,8 +62,7 @@
         }
     }
     @include mq(md) {
-        @include font-size(28px, 1.5);
-        margin: 0 0 4rem;
+        margin: 0 0 2rem;
     }
 }
 

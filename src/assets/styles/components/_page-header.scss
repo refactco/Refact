@@ -18,9 +18,9 @@
         // }
     }
     &.is-page-contact{
-        padding: 48px 0;
+        padding: 3rem 0 1.875rem;
         @include mq(md){
-            padding: 64px 0;
+            padding: 6rem 0 8rem;
         }
         .c-page-header{
             &.is-full{

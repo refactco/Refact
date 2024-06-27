@@ -121,8 +121,15 @@ const ContactPage = ({ data }) => {
       ) : null}
       <ContainerBox className="c-section--contact">
         <div className="c-contact">
+          <h3
+            className={`c-contact-form__title ${
+              mutationData?.submitGfForm?.confirmation ? 'is-hidden' : ''
+            }`}
+          >
+            Let's chat.
+          </h3>
           <div className="c-contact__text">
-            Fill out the short form below or schedule a 
+            Fill out the short form below or schedule a {' '} 
             {typeof window !== 'undefined' ? (
               <>
                 <button onClick={handleLinkClick}>call with us here</button>
@@ -136,13 +143,6 @@ const ContactPage = ({ data }) => {
             ) : null}
             .
           </div>
-          <h2
-            className={`c-contact-form__title ${
-              mutationData?.submitGfForm?.confirmation ? 'is-hidden' : ''
-            }`}
-          >
-            Let's chat.
-          </h2>
           <div className="gform_wrapper gravity-theme">
             <form
               noValidate
