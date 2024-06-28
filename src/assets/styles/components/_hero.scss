@@ -8,6 +8,7 @@
     }
     @include mq(lg){
         padding: 8.25rem 0 8.75rem;
+        min-height: 596px;
     }
     .o-section__wrapper{
         @include mq(lg){
