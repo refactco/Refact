@@ -10,7 +10,7 @@ const pageStyles = {
   justifyContent: 'center',
   minHeight: '100vh',
   backgroundColor: '#003233',
-  padding: '48px 0',
+  padding: '48px',
 };
 
 const NotFoundPage = () => {
