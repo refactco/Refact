@@ -1,10 +1,26 @@
 import { ApolloClient, InMemoryCache, gql, useMutation } from '@apollo/client';
 import { Link, graphql } from 'gatsby';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { PopupModal } from 'react-calendly';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
+
+// Add these functions to manage UTM cookies
+function getUTMCookies() {
+  const cookies = document.cookie.split('; ').reduce((acc, cookie) => {
+    const [name, value] = cookie.split('=');
+    acc[name] = value;
+    return acc;
+  }, {});
+
+  return {
+    utm_campaign: cookies.utm_campaign || '',
+    utm_medium: cookies.utm_medium || '',
+    utm_source: cookies.utm_source || '',
+    utm_term: cookies.utm_term || '',
+  };
+}
 
 const ContactPage = ({ data }) => {
   const { wpPage, wpGfForm } = data;
@@ -49,6 +65,18 @@ const ContactPage = ({ data }) => {
 
     return type.toLowerCase();
   };
+
+  useEffect(() => {
+    const utmCookies = getUTMCookies();
+    // console.log('utmCookies', utmCookies);
+    setFieldValues(prevValues => ({
+      ...prevValues,
+      12: utmCookies.utm_campaign,
+      13: utmCookies.utm_medium,
+      14: utmCookies.utm_source,
+      15: utmCookies.utm_term,
+    }));
+  }, []);
 
   const [submitForm, { data: mutationData, loading }] = useMutation(
     gql`
@@ -220,6 +248,8 @@ const ContactPage = ({ data }) => {
                     placeholder,
                     databaseId,
                     choices,
+                    visibility,
+                    cssClass,
                   } = field;
                   const error = mutationData?.submitGfForm?.errors?.find(
                     (e) => e.id === databaseId
@@ -232,6 +262,8 @@ const ContactPage = ({ data }) => {
                         `gfield--type-${type.toLowerCase()}`,
                         'gfield--width-full',
                         error ? 'gfield_error' : '',
+                        cssClass ? cssClass : '',
+                        visibility ? 'gfield_visibility_hidden' : 'gfield_visibility_visible',
                       ].join(' ')}
                       key={index}
                     >
@@ -470,6 +502,8 @@ export const pageQuery = graphql`
             isRequired
             label
             placeholder
+            cssClass
+            visibility
           }
           ... on WpEmailField {
             inputName
