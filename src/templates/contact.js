@@ -263,7 +263,7 @@ const ContactPage = ({ data }) => {
                         'gfield--width-full',
                         error ? 'gfield_error' : '',
                         cssClass ? cssClass : '',
-                        visibility ? 'gfield_visibility_hidden' : 'gfield_visibility_visible',
+                        visibility === 'HIDDEN' ? 'gfield_visibility_hidden' : 'gfield_visibility_visible',
                       ].join(' ')}
                       key={index}
                     >
