@@ -5,7 +5,7 @@ import ContainerBox from '../container-box/container-box';
 
 const CaseStudyPosts = ({ caseStudies }) => (
   <ContainerBox className="c-section--project">
-    <div className="c-projects">
+    <div className="c-projects_cs">
       <div className="c-project__items">
           {caseStudies && caseStudies.map((node, index) => (
           <div className="c-project__item" key={index}>

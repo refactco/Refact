@@ -1,12 +1,10 @@
 import axios from 'axios';
 import Cookie from 'js-cookie';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import SpinnerIcon from '../spinner/spinner';
 
-const EmailSubscriber = () => {
+const NewsletterForm = () => {
   const [email, setEmail] = useState('');
-  const [showBox, setShowBox] = useState(false);
-  const [position, setPosition] = useState('sticky');
   const [submitInProgress, setSubmitInProgress] = useState(false);
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
   const [errorSubmit, setErrorSubmit] = useState(false);
@@ -38,9 +36,6 @@ const EmailSubscriber = () => {
           expires: 7,
         });
 
-        setTimeout(() => {
-          setShowBox(false);
-        }, 5000);
       })
       .catch(() => {
         setErrorSubmit(true);
@@ -50,69 +45,22 @@ const EmailSubscriber = () => {
       });
   };
 
-  useEffect(() => {
-    const alreadySubscribed = Cookie.get('already-subscribed');
-
-    if (alreadySubscribed === 'Yes') {
-      setShowBox(true);
-      setPosition('static');
-    }
-  }, []);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const pageHeight = document.body.clientHeight;
-      const contentElement = document.querySelector('.c-article__content-wrapper');
-      const scrollPercentage =
-        (scrollPosition / (pageHeight - windowHeight)) * 100;
-
-      if (!successfulSubmit && scrollPercentage >= 10) {
-        setShowBox(true);
-      } 
-      else {
-        setShowBox(false);
-      }
-      const contentBottomPosition = contentElement
-        ? contentElement.offsetTop + contentElement.offsetHeight
-        : 0;
-
-      if (scrollPosition + windowHeight >= contentBottomPosition) {
-        setShowBox(false);
-      }
-    };
-
-    window.addEventListener('scroll', handleScroll);
-
-    return () => {
-      window.removeEventListener('scroll', handleScroll);
-    };
-  }, [successfulSubmit]);
 
   // CSS class to add a fade-in transition
   const emailSubscriberClass = [
-    'c-email-subscriber',
-    showBox ? 'c-email-subscriber--show' : '',
-    `c-email-subscriber--${position}`,
+    'c-newsletter-form',
   ].join(' ');
 
   return (
     <div className={emailSubscriberClass}>
       {successfulSubmit ? (
-        <p className="c-email-subscriber__success-message">
+        <p className="c-newsletter-form__success-message">
           Thank you for subscribing! An email is on its way to you.
         </p>
       ) : (
         <>
-          <div className="c-email-subscriber__info">
-            <h4 className="c-email-subscriber__title">Enjoying this post?</h4>
-            <p className="c-email-subscriber__text">
-              Subscribe and receive more along with updates from us.
-            </p>
-          </div>
-          <div className="c-email-subscriber-form__wrap">
-            <div className="c-email-subscriber__form">
+          <div className="c-newsletter-form__wrap">
+            <div className="c-newsletter-form__box">
               <input
                 value={email}
                 placeholder="Enter email address"
@@ -122,7 +70,7 @@ const EmailSubscriber = () => {
                 }}
               />
               <button
-                className="c-btn c-btn--subscriber c-btn--green"
+                className="c-btn c-btn--newsletter"
                 disabled={submitInProgress}
                 onClick={() => {
                   subscribe();
@@ -144,4 +92,4 @@ const EmailSubscriber = () => {
   );
 };
 
-export default EmailSubscriber;
+export default NewsletterForm;

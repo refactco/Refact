@@ -296,18 +296,15 @@ const renderSection = (section, index) => {
       )
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial':
       return (
-        <ContainerBox key={index} className={`c-section--featured-testimonial is-testimonial-${index}`}>
+        <ContainerBox key={index} className={`c-section--featured-testimonial is-testimonial-work is-testimonial-${index}`}>
           <div className="c-work__testimonial">
             <div className="c-work-testimonial__text">
               <div className="c-work-testimonial__quote">
-                <svg xmlns="http://www.w3.org/2000/svg" width="64" fill="none" viewBox="0 0 64 48"><path fill="#C6F0C2" d="m20 8 4-8h-8C7.16 0 0 11.16 0 20v28h28V20H12c0-12 8-12 8-12Zm28 12c0-12 8-12 8-12l4-8h-8c-8.84 0-16 11.16-16 20v28h28V20H48Z" opacity=".4"/></svg>
+                <svg xmlns="http://www.w3.org/2000/svg" width="64" fill="none" viewBox="0 0 64 48"><path fill="#D9EED6" d="m20 8 4-8h-8C7.16 0 0 11.16 0 20v28h28V20H12c0-12 8-12 8-12Zm28 12c0-12 8-12 8-12l4-8h-8c-8.84 0-16 11.16-16 20v28h28V20H48Z" /></svg>
               </div>
-              <span>{section.text}</span>
+              <span dangerouslySetInnerHTML={{__html: section.text}} />
             </div>
             <div className="c-work-testimonial__info">
-              {section.logo && (
-                <div className="c-work-testimonial__logo" dangerouslySetInnerHTML={{__html: section.logo}}></div>
-              )}
               {section.name && (
                 <div className="c-work-testimonial__name">{section.name}</div>
               )}

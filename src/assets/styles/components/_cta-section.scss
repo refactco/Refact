@@ -1,21 +1,16 @@
 .c-section--cta {
-    padding: 3rem 0 1.5rem;
-    background-color: var(--color-primary-r);
-
-    @include mq(md) {
-        padding: 9.75em 0 6em;
-    }
+    padding: 4rem 0;
+    background-color: var(--color-text);
 }
 
 .c-cta {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-
+    gap: 2rem;
     @include mq(md) {
-        gap: 1rem;
         flex-direction: row;
-        align-items: flex-start;
+        align-items: center;
     }
     &.c-cta--beehiiv{
         justify-content: center;
@@ -28,48 +23,88 @@
 }
 
 .c-cta__title {
-    font-family: $sentient;
-    font-weight: 400;
-    @include font-size(32px, 1.19);
+    font-family: $inter;
+    font-weight: 600;
+    @include font-size(24px, 1.2);
     color: var(--color-white);
-    margin: 0 auto 8px;
-    text-align: center;
-    @include mq(md) {
-        max-width: 472px;
-        text-align: left;
-        @include font-size(48px, 1.21);
-        margin: 0;
-    }
+    text-transform: uppercase;
+    margin: 0 0 0.375rem;
+    text-align: left;
 }
 
 .c-cta__text {
     font-family: $inter;
     font-weight: 400;
-    @include font-size(16px, 1.5);
+    @include font-size(16px, 1.35);
     color: var(--color-primary-h);
-    max-width: 441px;
-    margin: 0 auto 24px;
-    text-align: center;
-    @include mq(md) {
-        @include font-size(23px, 1.48);
-        text-align: left;
-        margin: 0 0 24px;
-    }
+    margin: 0;
+    text-align: left;
 }
 .c-cta__col{
     &:last-child{
-        @media (max-width: 589px){
-            .c-btn{
-                width: 100%;
-                text-align: center;
-                justify-content: center;
-            }
-        }
-        @media (max-width: 767px){
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-
+        width: 100%;
+        @media (min-width: 768px){
+            width: 100%;
+            max-width: 463px;
         }
     }
+}
+.c-newsletter-form{
+    width: 100%;
+    margin: 0;
+}
+.c-newsletter-form__wrap{
+    width: 100%;
+    p {
+        color: var(--color-white-80);
+        font-size: 0.875rem;
+        margin: 0.5rem 0 0;
+    }
+}
+.c-newsletter-form__box{
+    width: 100%;
+    display: flex;
+    position: relative;
+    input{
+        width: 100%;
+        height: 3rem;
+        background-color: var(--color-white);
+        border-radius: 50px;
+        padding: 0 1rem;
+        border: none;
+        &:focus {
+            outline: 1px solid var(--color-primary-s);
+        }
+    }
+    .c-btn{
+        position: absolute;
+    }
+}
+.c-btn--newsletter{
+    @include font-size(14px, 1);
+    padding: 0.5rem 1.5rem;
+    height: 2.5rem;
+    width: 7.9375rem;
+    display: flex;
+    align-items: center;
+    right: 0.25rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: var(--color-primary-r);
+    color: var(--color-white);
+    &:hover{
+        background-color: var(--color-primary-sh);
+    }
+}
+.c-newsletter-form__success-message{
+    color: var(--color-text);
+    font-size: 0.875rem;
+    line-height: 1.2;
+    background: var(--color-primary-h);
+    height: 3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50px;
+    font-weight: 500;
 }

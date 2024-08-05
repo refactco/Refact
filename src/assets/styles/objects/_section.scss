@@ -11,7 +11,7 @@
   margin: 0 auto;
   padding: 0 1.5rem;
 
-  @include mq(lg) {
-    max-width: calc(1192px - 2em);
+  @include mq(lg) { 
+    max-width: calc(1200px - 2em);
   }
 }

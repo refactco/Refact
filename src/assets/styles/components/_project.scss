@@ -336,3 +336,113 @@
     }
 }
 
+
+
+.c-section--project-home{
+    padding: 6rem 0;
+    @include mq(lg){
+        padding: 8rem 0;
+    }
+    .o-section__wrapper{
+        max-width: calc(1204px - 2em);
+        padding: 0;
+        @include mq(md){
+            padding: 0 1.5rem;
+        }
+    }
+    .c-sf__cta{
+        margin-top: 3rem;
+        @include mq(md){
+            margin-top: 4rem;
+        }
+    }
+}
+.c-project__header{
+    max-width: 807px;
+    padding: 0 1.5rem;
+    @include mq(md){
+        padding: 0;
+    }
+}
+.c-projects-item__info{
+    padding: 0 1.5rem;
+    margin: 0;
+    @include mq(md){
+        padding: 0;
+        margin-bottom: 1.25rem;
+    }
+}
+.c-projects{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    @include mq(md){
+        gap: 8rem;
+    }
+    @include mq(lg){
+        gap: 10.625rem;
+    }
+}
+.c-projects__item{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.875rem;
+    @include mq(md){
+      grid-template-columns: 1.3fr 1fr;
+      align-items: flex-end;
+      gap: 2rem;
+    }
+    @include mq(lg){
+      grid-template-columns: 2fr 1fr;
+    }
+    &:nth-child(2n) {
+        @include mq(md){
+            grid-template-columns: 1fr 1.3fr;
+            align-items: flex-end;
+          }
+          @include mq(lg){
+            grid-template-columns: 1fr 2fr;
+          }
+        .c-projects-item__col{
+            &:last-child{
+                @include mq(md){
+                    order: -1;
+                }
+            }
+        }
+    }
+}
+.c-projects-item__col{
+    .c-project__title{
+        @include font-size(21px, 1.2);
+        margin: 0 0 0.25rem;
+        @include mq(md){
+            @include font-size(28px, 1.14);
+            margin: 0 0 0.5rem;
+        }
+    }
+    .c-project__text{
+        display: block;
+        margin-bottom: 0;
+        @include font-size(16px, 1.37);
+        color: var(--color-text);
+        @include mq(md){
+            @include font-size(19px, 1.47);
+        }
+    }
+    .c-project__imgs{
+      margin-bottom: 0;
+    }
+    &.is-media-both{
+      .gatsby-image-wrapper{
+          z-index: 1;
+          opacity: 1;
+          transition: opacity .25s ease-in-out;
+      }
+      &:hover{
+          .gatsby-image-wrapper{
+              opacity: 0;
+          }
+      }
+    }
+  }

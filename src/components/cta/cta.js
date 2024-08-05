@@ -1,6 +1,6 @@
 import React from "react";
 import ContainerBox from "../container-box/container-box";
-import { Link } from "gatsby";
+import NewsletterForm from "../newsletter/email-subscriber";
 
 const CtaSection = () => {
   return (
@@ -8,14 +8,14 @@ const CtaSection = () => {
       <div className="c-cta">
         <div className="c-cta__col">
           <h4 className="c-cta__title">
-            Looking to build something new?
+            Sound Smarter in Meetings
           </h4>
+          <div className="c-cta__text">
+            Weekly media tech news in easy-to-read chunks. 
+          </div>
         </div>
         <div className="c-cta__col">
-          <div className="c-cta__text">
-            Whatever stage your project is at, we want to help you make it a big success.
-          </div>
-          <Link to="/contact" className='c-btn'>Work with us</Link>
+          <NewsletterForm />
         </div>
       </div>
     </ContainerBox>
