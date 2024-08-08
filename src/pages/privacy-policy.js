@@ -34,13 +34,12 @@ const privacyContent = data.privacyPage.content;
       <ContainerBox className="c-section--pagehead">
         <div className="c-pagehead">
           {privacyItem.headline && (
-            <div className="c-pagehead__headline">
-              <svg width="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="8" cy="8" r="8" fill="#59CC51"/></svg>
+            <div className="c-page-header__sub-title">
               {privacyItem.headline}
             </div>
           )}
           {privacyItem.title && (
-            <h1 className="c-pagehead__title">
+            <h1 className="c-page-header__title">
               {privacyItem.title}
             </h1>
           )}

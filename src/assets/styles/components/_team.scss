@@ -1,17 +1,17 @@
 .c-section--team {
-    padding: 3em 0;
+    padding: 4rem 0 2rem;
 
     @include mq(md) {
-        padding: 9.75em 0;
+        padding: 8rem 0 4rem;
     }
 }
 
 .c-team {
-    .c-section__title {
-        margin-bottom: 16px;
+    .c-section {
+        margin-bottom: 2rem;
 
         @include mq(md) {
-            margin-bottom: 64px;
+            margin-bottom: 2.5rem;
         }
     }
 }
@@ -36,90 +36,5 @@
         &:hover {
           color: var(--color-primary-l);
         }
-    }
-}
-
-.c-team__users {
-    display: flex;
-    flex-direction: column;
-    gap: 0 2.5em;
-
-    @include mq(md) {
-        flex-direction: row;
-        flex-wrap: wrap;
-    }
-}
-
-.c-team__user {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    max-width: 100%;
-
-    @include mq(md) {
-        flex: 21.5625em;
-        max-width: 21.5625em;
-    }
-
-    @include mq($until: md) {
-        margin: 0 0 2.5em;
-
-        &:last-of-type {
-            margin: 0;
-        }
-    }
-}
-
-.c-team__photo {
-    display: flex;
-    margin-bottom: 1.5em;
-    overflow: hidden;
-    min-height: auto;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    @include mq(md) {
-        margin-bottom: 2em;
-    }
-
-    img {
-        max-width: 100%;
-        min-height: auto;
-        user-drag: none;
-        user-select: none;
-        object-fit: cover;
-        transition: transform 1.5s cubic-bezier(.19,1,.22,1), opacity .75s cubic-bezier(.19,1,.22,1);
-    }
-
-    &:hover {
-        img {
-            transform: scale(1.05);
-        }
-    }
-}
-
-.c-team__name {
-    margin: 0;
-    font-family: $inter;
-    font-style: normal;
-    font-weight: 600;
-    @include font-size(18px, 1.5);
-    color: var(--color-text);
-    margin-bottom: 8px;
-
-    @include mq(md) {
-        @include font-size(23px, 1.48);
-    }
-}
-
-.c-team__position {
-    font-family: $inter;
-    font-weight: 400;
-    @include font-size(14px, 1.57);
-    color: var(--color-grey);
-
-    @include mq(md) {
-        @include font-size(16px, 1.5);
     }
 }

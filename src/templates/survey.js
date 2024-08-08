@@ -61,11 +61,11 @@ const ServicesPage = ({data}) => {
             {textButton.cta && (
               <div className="c-textbutton__cta">
                 {textButton.cta.target === '_blank' ?
-                  <a href={textButton.cta.url} target='_blank' rel="nofollow, noreferrer" className="c-btn">
+                  <a href={textButton.cta.url} target='_blank' rel="nofollow, noreferrer" className="c-btn c-btn--green">
                     {textButton.cta.title}
                   </a>
                   :
-                  <Link to={textButton.cta.url} className="c-btn">
+                  <Link to={textButton.cta.url} className="c-btn c-btn--green">
                     {textButton.cta.title}
                   </Link>
                 }

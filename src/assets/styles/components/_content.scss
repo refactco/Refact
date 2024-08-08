@@ -29,20 +29,20 @@ body{--wp--preset--color--black: #000000;--wp--preset--color--cyan-bluish-gray: 
   color: #fff;
   margin: 0;
 }
-.c-pagehead__headline{
-  display: flex;
-  align-items: center;
-  margin: 0 0 24px;
-  font-family: $inter;
-  font-weight: 600;
-  @include font-size(13px, 1.85);
-  letter-spacing: 3px;
-  text-transform: uppercase;
-  color: #FFFFFF;
-  svg{
-    margin-right: 9px;
-  }
-}
+// .c-pagehead__headline{
+//   display: flex;
+//   align-items: center;
+//   margin: 0 0 24px;
+//   font-family: $inter;
+//   font-weight: 600;
+//   @include font-size(13px, 1.85);
+//   letter-spacing: 3px;
+//   text-transform: uppercase;
+//   color: #FFFFFF;
+//   svg{
+//     margin-right: 9px;
+//   }
+// }
 h1{
   font-family: $sentient;
   font-weight: 400;

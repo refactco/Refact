@@ -123,7 +123,7 @@ const ContactPage = ({ data }) => {
               {heroSection.title}
             </h1>
             <div
-              className="c-page-header__text"
+              className="c-page-header__text" style={{ maxWidth: 745 }}
               dangerouslySetInnerHTML={{ __html: heroSection.text }}
             ></div>
             {heroSection.cta ? (
