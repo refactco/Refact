@@ -44,6 +44,23 @@
             }
         }
     }
+    &.is-partners-hero{
+        .c-page-header__cta{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 3rem;
+            @include mq(sm){
+                justify-content: flex-start;
+            }
+            @include mq(md){
+                margin-top: 2.5rem;
+            }
+            .c-btn{
+                width: auto;
+            }
+        }
+    }
     &.is-url-builder{
         padding: 48px 0;
         @include mq(md){

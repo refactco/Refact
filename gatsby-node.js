@@ -643,6 +643,73 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      partnersPage: wpPage(slug: {eq: "partners"}) {
+        id
+        content
+        seo {
+          title
+          metaDesc
+        }
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  subtitle
+                  text
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
+                  description
+                  fieldGroupName
+                  items {
+                    fieldGroupName
+                    text
+                    title
+                  }
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Spacer {
+                  desktop
+                  fieldGroupName
+                  mobile
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_ToolsResources {
+                  fieldGroupName
+                  title
+                  list {
+                    cta {
+                      target
+                      title
+                      url
+                    }
+                    customWidth
+                    description
+                    fieldGroupName
+                    image {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    svg
+                    title
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       contact: wpPage(slug: { eq: "contact" }) {
         id
         content
@@ -936,6 +1003,13 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/work/`,
       component: path.resolve(`./src/templates/work.js`),
+    });
+  });
+  const partnersPage = result.data.partnersPage.template.pageBuilder.pageBuilder;
+  partnersPage.forEach(({ node }) => {
+    createPage({
+      path: `/partners/`,
+      component: path.resolve(`./src/templates/partners.js`),
     });
   });
   const toolsResources = result.data.toolsPage.template.pageBuilder.pageBuilder;
