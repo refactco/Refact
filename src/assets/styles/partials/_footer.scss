@@ -205,8 +205,8 @@
 }
 .c-float-btn{
     position: fixed;
-    right: 2.5rem;
-    bottom: 2.5rem;
+    right: 1rem;
+    bottom: 1rem;
     background-color: var(--color-primary-sh);
     color: var(--color-white);
     display: flex;
@@ -225,6 +225,14 @@
     transition: 0.4s;
     z-index: 1000;
     box-shadow: 0px 6px 3px 0px rgba(0, 0, 0, 0.12);
+    @include mq(md){
+        right: 1.5rem;
+        bottom: 1.5rem;
+    }
+    @include mq(lg){
+        right: 2.5rem;
+        bottom: 2.5rem;
+    }
     &:hover{
         background-color: var(--color-primary-t);
         color: var(--color-primary-r);
