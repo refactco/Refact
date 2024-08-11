@@ -119,7 +119,7 @@
     color: var(--color-white);
     font-family: $inter;
     font-weight: 600;
-    text-transform: uppercase;
+    text-transform: initial;
 }
 .c-footer-cta__text{
     @include font-size(16px, 1.35);
@@ -203,344 +203,51 @@
   margin: 0 -1.75rem;
   
 }
-
-
-
-// .clutch-widget-container .clutch-widget {
-//     width: 100%;
-//     height: auto;
-//     max-height: 100%;
-//     object-fit: contain; /* Ensure the widget fits within the container */
-//     transform: scale(0.8); /* Adjust the scaling as needed */
-//     transform-origin: center;
-// }
-
-// .c-footer__main {
-//     display: flex;
-//     justify-content: space-between;
-//     align-items: center;
-//     flex-direction: column-reverse;
-//     margin: 0 0 2rem;
-
-//     @include mq(md) {
-//         flex-direction: row;
-//         margin: 0 0 2em;
-//         align-items: flex-end;
-//     }
-// }
-
-// .c-footer__col {
-//     margin: 0 0 0.5em;
-//     width: 100%;
-//     &:first-of-type {
-//         margin: 0;
-//     }
-//     &:last-child{
-//         margin-bottom: 1.5rem;
-//         padding-bottom: 1.5rem;
-//         border-bottom: 1px solid #2E9E62;
-//         @include mq(md){
-//             margin-bottom: 0;
-//             padding-bottom: 0;
-//             border-bottom: none;
-//         }
-//     }
-
-//     @include mq(md) {
-//         width: auto;
-//         margin: 0;
-//     }
-// }
-
-// .c-footer__text {
-//     font-family: $inter;
-//     font-weight: 400;
-//     @include font-size(14px, 1.57);
-//     color: var(--color-white);
-//     margin-bottom: 12px;
-    
-//     @include mq(md) {
-//         max-width: 13.125em;
-//         @include font-size(16px, 1.5);
-//         margin-bottom: 18px;
-//     }
-
-//     span {
-//         display: none;
-
-//         @include mq(md) {
-//             display: inline-flex;
-//         }
-//     }
-// }
-
-// .c-footer__logos {
-//     display: flex;
-//     justify-content: center;
-//     margin-bottom: 0;
-
-//     @include mq(md) {
-//         justify-content: flex-start;
-//         margin-bottom: 0;
-//         margin-top: 40px;
-//     }
-
-//     .c-link {
-//         margin: 0 1.5em 0 0;
-
-//         @include mq(md) {
-//             margin: 0 2.5em 0 0;
-//         }
-
-//         &:last-of-type {
-//             margin: 0;
-//         }
-//     }
-
-//     .c-footer__logos--clu {
-//         width: 54.71px;
-//         height: 31px;
-
-//         @include mq(md) {
-//             width: 90px;
-//             height: 51px;
-//         }
-//     }
-
-//     .c-footer__logos--bbb {
-//         width: 80.84px;
-//         height: 28.57px;
-
-//         @include mq(md) {
-//             width: 133px;
-//             height: 47px;
-//         }
-//     }
-// }
-
-// .c-footer__menu {
-//     display: flex;
-//     width: 100%;
-    
-//     @include mq(md) {
-//         width: auto;
-//         justify-content: flex-end;
-//         // min-width: 20.9375em;
-//     }
-// }
-
-// .c-footer__links {
-    
-//     list-style: none;
-//     margin: 0 4.625em 0 0;
-//     padding: 0;
-//     display: grid;
-//     grid-template-columns: 1fr 1fr;
-//     gap: 0.75rem;
-//     column-gap: 2rem;
-//     width: 100%;
-//     @include mq(md) {
-//         display: flex;
-//         flex-direction: row;
-//         flex-flow: row wrap;
-//         gap: 16px;
-//         margin: 0;
-//         width: auto;
-//     }
-
-//     &:last-of-type {
-//         margin: 0;
-//     }
-
-//     li {
-//         margin: 0;
-
-//         &:last-of-type {
-//             margin: 0;
-//         }
-
-//         a, .c-btn-link {
-//             display: flex;
-//             align-items: center;
-//             font-family: $inter;
-//             font-weight: 400;
-//             @include font-size(16px, 1.5);
-//             color: var(--color-white);
-//             text-decoration: none;
-//             transition: color .25s linear 0s;
-//             &:hover {
-//                 color: var(--color-primary-l);
-//                 path {
-//                     fill: var(--color-primary-l);
-//                 }
-//             }
-
-//             svg {
-//                 width: 16px;
-//                 margin: 0 .75em 0 0;
-
-//                 @include mq(md) {
-//                     width: 24px;
-//                 }
-//             }
-
-//             path {
-//                 transition: fill .25s linear 0s;
-//             }
-//         }
-//         .c-btn-link{
-//             background: transparent;
-//             border: none;
-//             cursor: pointer;
-//             padding: 0;
-//         }
-//     }
-// }
-
-// .c-footer__copyright {
-//     display: flex;
-//     flex-direction: column;
-//     justify-content: space-between;
-//     align-items: center;
-//     // border-top: 1px solid var(--color-primary-sh);
-//     // padding-top: 1.5em;
-//     font-family: $inter;
-//     font-weight: 600;
-//     @include font-size(13px, 1.54);
-//     color: var(--color-white-80);
-
-//     @include mq(sm) {
-
-//         font-weight: 400;
-//     }
-//     @include mq(md){
-//         flex-direction: row;
-//         align-items: center;
-//         padding-top: 2.5em;
-//         border-top: 1px solid var(--color-primary-sh);
-//         padding-top: 1.5em;
-//     }
-
-//     a {
-//         color: var(--color-white-80);
-//         font-weight: 400;
-//         @include font-size(14px, 1.57);
-
-//         @include mq(md) {
-//             @include font-size(13px, 1.57);
-//         }
-
-//         &:hover {
-//             color: var(--color-primary-l);
-//         }
-//     }
-// }
-
-// .c-copyright__col {
-//     display: flex;
-//     align-items: center;
-//     margin: 0 0 24px;
-//     &:last-of-type {
-//         margin: 0;
-//     }
-//     span{
-//         font-family: $inter;
-//         font-weight: 400;
-//         @include font-size(13px, 1.54);
-//         color: rgba(255, 255, 255, 0.8);
-//     }
-//     &:first-child{
-//         flex-direction: column;
-//         align-items: center;
-//         margin-bottom: 0.75rem;
-//         svg{
-//             margin: 0;
-//         }
-//         @include mq(md){
-//             margin-bottom: 0;
-//             align-items: center;
-//         }
-//     }
-//     @include mq(md) {
-//         &:first-child{
-//             flex-direction: row;
-//             svg {
-//                 margin: 0 1.5em 0 0;
-//             }
-//         }
-//         margin: 0;
-//     }
-// }
-
-// .c-logo{
-//     display: flex;
-//     margin: 0 0 8px;
-//     @include mq(md){
-//         margin: 0;
-//     }
-// }
-
-
-// // Footer Landing
-// .c-footer-landing__wrap{
-//     display: flex;
-//     flex-direction: column;
-//     align-items: flex-start;
-//     .c-logo{
-//         margin: 0 0 24px;
-//         svg{
-//             width: 105px;
-//             @include mq(md){
-//                 width: 122.5px;
-//             }
-//         }
-//     }
-//     span{
-//         font-family: $inter;
-//         @include font-size(16px, 1.5);
-//         font-weight: 400;
-//         color: var(--color-white-80);
-//         margin: 0;
-//     }
-// }
-// .c-footer-landing__text{
-//     font-family: $inter;
-//     @include font-size(12px, 2);
-//     letter-spacing: 3px;
-//     text-transform: uppercase;
-//     font-weight: 600;
-//     color: var(--color-white-80);
-//     margin: 0 0 8px;
-//     @include mq(md){
-//         @include font-size(13px, 1.84);
-//     }
-// }
-// .c-footer-landing__col{
-//     &:not(:last-child){
-//         margin-bottom: 30px;
-//         @include mq(md){
-//             margin-bottom: 0;
-//         }
-//     }
-//     &:last-child{
-//         display: flex;
-//         justify-content: flex-start;
-//         @include mq(md){
-//             justify-content: flex-end;
-//             align-items: flex-end;
-//         }
-//     }
-// }
-// .c-footer-landing__nav{
-//     a{
-//         font-family: $inter;
-//         @include font-size(16px, 1.5);
-//         font-weight: 400;
-//         color: var(--color-white-80);
-//         margin: 0;
-//         transition: color 0.25s ease-in-out;
-//         &:hover{
-//             color: var(--color-primary-l);
-//         }
-//     }
-// }
+.c-float-btn{
+    position: fixed;
+    right: 2.5rem;
+    bottom: 2.5rem;
+    background-color: var(--color-primary-sh);
+    color: var(--color-white);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    height: 63px;
+    width: 253px;
+    padding: 0;
+    @include font-size(16px, 1);
+    font-weight: 600;
+    border-radius: 94.5px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, width 0.25s ease-in-out;
+    transition: 0.4s;
+    z-index: 1000;
+    box-shadow: 0px 6px 3px 0px rgba(0, 0, 0, 0.12);
+    &:hover{
+        background-color: var(--color-primary-t);
+        color: var(--color-primary-r);
+    }
+    &.has-hide-text{
+        width: 63px;
+        .c-float-btn__text{
+            display: none;
+        }
+        &:hover{
+            width: 253px;
+            background-color: var(--color-primary-sh);
+            color: var(--color-white);
+            .c-float-btn__text{
+                display: inline;
+            }
+        }
+    }
+}
+.c-float-btn__icon{
+    display: flex;
+}
+.c-float-btn__text{
+    display: inline;
+    white-space: nowrap;
+}

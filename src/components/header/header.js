@@ -226,13 +226,13 @@ const Header  = () => {
                 </div>
               </div>
               <div className="c-header__col">
-              {typeof window !== 'undefined' && window.location.pathname === "/contact/" ? (
+              {/* {typeof window !== 'undefined' && window.location.pathname === "/contact/" ? (
                 null
               ) : (
                 <div className='c-header-cta'>
                   <Link to="/contact">Contact</Link>
                 </div>
-              )}
+              )} */}
                 <div className="c-hamburger">
                   <input className="c-hamburger__checkbox js-hamburger" type="checkbox" aria-label="Menu" 
                     onClick={onHamburgerClick}

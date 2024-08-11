@@ -100,7 +100,7 @@ const Footer = () => {
               <div className="c-footer__col">
                 <div className="c-footer-cta">
                   <h4 className="c-footer-cta__title">
-                    got big goals?
+                    Got Big Goals?
                   </h4>
                   <div className="c-footer-cta__text">
                     Whatever stage your project is at, we want to help you make it a huge success.

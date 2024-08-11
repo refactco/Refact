@@ -9,6 +9,7 @@ import Prism from 'prismjs';
 import 'prismjs/themes/prism.css';
 import CtaSection from '../cta/cta';
 import { useLocation } from '@reach/router';
+import FloatButton from '../float-btn/float-btn';
 
 register();
 const Layout = ({ children }) => {
@@ -22,7 +23,8 @@ const Layout = ({ children }) => {
     <>
       <Header />
       {children}
-      {location.pathname !== '/contact' && location.pathname !== '/contact/' && <CtaSection />}
+      {location.pathname !== '/contact' && location.pathname !== '/contact/' && <FloatButton />}
+      <CtaSection />
       <Footer />
     </>
   );
