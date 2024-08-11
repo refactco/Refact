@@ -51,10 +51,13 @@ const BeehiivPage = ({data}) => {
 
   const handleFaqClick = (index) => {
     setActiveIndices((prevIndices) =>
-      prevIndices.includes(index)
-        ? prevIndices.filter((item) => item !== index)
-        : [...prevIndices, index]
+      prevIndices.includes(index) ? [] : [index]
     );
+    // setActiveIndices((prevIndices) =>
+    //   prevIndices.includes(index)
+    //     ? prevIndices.filter((item) => item !== index)
+    //     : [...prevIndices, index]
+    // );
   };
   useEffect(() => {
     const updateMaxHeight = () => {

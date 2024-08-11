@@ -145,10 +145,13 @@ const pageBuilder = data.aboutPage.template.pageBuilder.pageBuilder;
   // Function to handle FAQ click events
   const handleFaqClick = (index) => {
     setActiveIndices((prevIndices) =>
-      prevIndices.includes(index)
-        ? prevIndices.filter((item) => item !== index)
-        : [...prevIndices, index]
+      prevIndices.includes(index) ? [] : [index]
     );
+    // setActiveIndices((prevIndices) =>
+    //   prevIndices.includes(index)
+    //     ? prevIndices.filter((item) => item !== index)
+    //     : [...prevIndices, index]
+    // );
   };
 
   // Effect to update the max height of FAQ answers
