@@ -43,7 +43,7 @@ const FloatButton = () => {
         </svg>
       </div>
       <span className="c-float-btn__text">
-        Let’s Work Together
+        LET’S WORK TOGETHER
       </span>
     </Link>
   );
