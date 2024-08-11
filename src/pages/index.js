@@ -436,6 +436,7 @@ const Homepage = () => {
                                     autoPlay
                                     muted
                                     loop
+                                    playsInline
                                     >
                                     <source src={project.video.localFile.url} type={project.video.mimeType} />
                                     Your browser does not support the video tag.
