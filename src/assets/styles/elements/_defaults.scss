@@ -27,15 +27,15 @@ html{
 
 .c-float-btn{
   position: fixed;
-  right: 1rem;
-  bottom: 1rem;
+  right: 1.5rem;
+  bottom: 1.5rem;
   background-color: var(--color-primary-sh);
   color: var(--color-white);
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 1.5rem;
-  height: 63px;
+  height: 56px;
   width: 284px;
   padding: 0;
   @include font-size(16px, 1);
@@ -48,20 +48,12 @@ html{
   transition: 0.4s;
   z-index: 1000;
   box-shadow: 0px 6px 3px 0px rgba(0, 0, 0, 0.12);
-  @include mq(md){
-      right: 1.5rem;
-      bottom: 1.5rem;
-  }
-  @include mq(lg){
-      right: 2.5rem;
-      bottom: 2.5rem;
-  }
   &:hover{
       background-color: var(--color-primary-t);
       color: var(--color-primary-r);
   }
   &.has-hide-text{
-      width: 63px;
+      width: 56px;
       .c-float-btn__text{
           display: none;
       }
