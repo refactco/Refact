@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
-  const [activeIndex, setActiveIndex] = useState(null);
-
+const TableOfContentItems = ({
+  headings = [],
+  onClose,
+  isSub,
+  activeIndex,
+  onActiveIndexChange,
+}) => {
   function getScrollDirection(targetScrollTop) {
     let result = '';
     const currentScrollTop = document.documentElement.scrollTop;
 
-    // console.log({ targetScrollTop, lastScrollTop });
     if (targetScrollTop > currentScrollTop) {
       // Downscroll
       result = 'down';
@@ -25,7 +28,14 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
     const targetScrollTop = rect.top + scrollTop;
 
     const direction = getScrollDirection(targetScrollTop);
-    const offset = window.innerWidth <= 768 ? 72 : direction === 'up' ? 70 : 0;
+    const offset =
+      window.innerWidth <= 768
+        ? direction === 'up'
+          ? 120
+          : 48
+        : direction === 'up'
+        ? 70
+        : 0;
 
     window.scrollTo({
       top: targetScrollTop - offset,
@@ -43,15 +53,11 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
       while (nextCollapsible) {
         if (nextCollapsible.classList.contains('collapsible-on-mobile')) {
           nextCollapsible.classList.toggle('is-collapsed');
-          // Handle the collapsible action
-          // console.log('Collapsible on mobile found:', nextCollapsible);
-          // Perform the action for the collapsible item here
           return;
         }
         nextCollapsible = nextCollapsible.nextElementSibling;
       }
 
-      // If no collapsible-on-mobile element is found, do nothing
       console.log('No collapsible-on-mobile element found');
       return;
     } else {
@@ -65,13 +71,13 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
         item.classList.remove('is-active');
       });
 
-      setActiveIndex(index);
+      onActiveIndexChange(index);
     }
   };
 
   function findNextCollapsible(currentElement) {
-    // Start from the current element's next sibling
     let sibling = currentElement.nextElementSibling;
+
     while (sibling) {
       if (
         sibling.classList &&
@@ -79,15 +85,16 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
       ) {
         return sibling;
       }
-      // If the sibling has child elements, traverse them too
+
       let collapsible = sibling.querySelector('.collapsible-on-mobile');
       if (collapsible) {
         return collapsible;
       }
       sibling = sibling.nextElementSibling;
     }
-    // Traverse up and then look for the next siblings of ancestors
+
     let parent = currentElement.parentElement;
+
     while (parent && parent !== document) {
       sibling = parent.nextElementSibling;
       while (sibling) {
@@ -97,8 +104,9 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
         ) {
           return sibling;
         }
-        // If the sibling has child elements, traverse them too
+
         let collapsible = sibling.querySelector('.collapsible-on-mobile');
+
         if (collapsible) {
           return collapsible;
         }
@@ -106,14 +114,18 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
       }
       parent = parent.parentElement;
     }
+
     return null;
   }
 
   const toggleCollapseItem = (event) => {
-    const ss = document.getElementById('ss');
     const nextCollapsible = findNextCollapsible(event.target);
-    nextCollapsible.classList.toggle('is-collapsed');
-    console.log({ nextCollapsible });
+
+    if (nextCollapsible.style.maxHeight) {
+      nextCollapsible.style.maxHeight = null;
+    } else {
+      nextCollapsible.style.maxHeight = nextCollapsible.scrollHeight + 'px';
+    }
   };
 
   return (
@@ -130,14 +142,14 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
           <>
             <li
               className={`c-table-of-content__item ${
-                activeIndex === index ? 'is-active' : ''
+                activeIndex === heading.index ? 'is-active' : ''
               }`}
               key={index}
               style={{
                 paddingLeft: `${(heading.level - 2) * 12 + 32}px`,
               }}
               onClick={(event) => {
-                handleClick(heading.element, index, event);
+                handleClick(heading.element, heading.index, event);
               }}
             >
               <span>
@@ -180,7 +192,7 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
                     />
                   </svg>
                 )}
-                {heading.text}
+                {heading.text} - {heading.index}
                 {hasSubHeading ? (
                   <svg
                     onClick={(event) => {
@@ -206,6 +218,7 @@ const TableOfContentItems = ({ headings = [], onClose, isSub }) => {
                 <TableOfContentItems
                   headings={heading.subHeadings}
                   onClose={onClose}
+                  activeIndex={activeIndex}
                   isSub
                 />
               </li>
