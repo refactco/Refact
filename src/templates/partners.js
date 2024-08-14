@@ -210,7 +210,7 @@ export function Head({ data }) {
   const post = data.wpPage;
   return (
     <>
-      <Seo title={post.seo.title} description={post.seo.metaDesc} />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.mediaItemUrl} />
       <body className="is-partners-page" />
     </>
   );
@@ -224,6 +224,9 @@ export const pageQuery = graphql`
       seo {
         title
         metaDesc
+        opengraphImage {
+          mediaItemUrl
+        }
       }
       template {
         ... on WpTemplate_PageBuilder {
