@@ -426,19 +426,20 @@
       }
     }
   }
-}
-.slick-track {
-  display: flex;
-
-  .slick-slide {
-      height: auto;
-      display: flex;
-
-      > div {
-          display: flex;
-      }
+  .slick-track {
+    display: flex;
+  
+    .slick-slide {
+        height: auto;
+        display: flex;
+  
+        > div {
+            display: flex;
+        }
+    }
   }
 }
+
 
 .c-section--partners{
   padding: 4rem 0;
