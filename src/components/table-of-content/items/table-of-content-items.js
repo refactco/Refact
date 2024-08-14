@@ -50,15 +50,16 @@ const TableOfContentItems = ({
     ) {
       let nextCollapsible = event.target.closest('li').nextElementSibling;
 
+      console.log({ nextCollapsible });
+
       while (nextCollapsible) {
-        if (nextCollapsible.classList.contains('collapsible-on-mobile')) {
-          nextCollapsible.classList.toggle('is-collapsed');
+        if (nextCollapsible.classList.contains('collapsible')) {
+          nextCollapsible.classList.toggle('is-opened');
           return;
         }
         nextCollapsible = nextCollapsible.nextElementSibling;
       }
 
-      console.log('No collapsible-on-mobile element found');
       return;
     } else {
       onClose?.();
@@ -79,14 +80,11 @@ const TableOfContentItems = ({
     let sibling = currentElement.nextElementSibling;
 
     while (sibling) {
-      if (
-        sibling.classList &&
-        sibling.classList.contains('collapsible-on-mobile')
-      ) {
+      if (sibling.classList && sibling.classList.contains('collapsible')) {
         return sibling;
       }
 
-      let collapsible = sibling.querySelector('.collapsible-on-mobile');
+      let collapsible = sibling.querySelector('.collapsible');
       if (collapsible) {
         return collapsible;
       }
@@ -98,14 +96,11 @@ const TableOfContentItems = ({
     while (parent && parent !== document) {
       sibling = parent.nextElementSibling;
       while (sibling) {
-        if (
-          sibling.classList &&
-          sibling.classList.contains('collapsible-on-mobile')
-        ) {
+        if (sibling.classList && sibling.classList.contains('collapsible')) {
           return sibling;
         }
 
-        let collapsible = sibling.querySelector('.collapsible-on-mobile');
+        let collapsible = sibling.querySelector('.collapsible');
 
         if (collapsible) {
           return collapsible;
@@ -121,18 +116,25 @@ const TableOfContentItems = ({
   const toggleCollapseItem = (event) => {
     const nextCollapsible = findNextCollapsible(event.target);
 
-    if (nextCollapsible.style.maxHeight) {
-      nextCollapsible.style.maxHeight = null;
+    if (
+      (!!nextCollapsible.style.maxHeight &&
+        nextCollapsible.style.maxHeight !== '0px') ||
+      nextCollapsible.classList.contains('is-opened')
+    ) {
+      nextCollapsible.style.maxHeight = 0;
     } else {
       nextCollapsible.style.maxHeight = nextCollapsible.scrollHeight + 'px';
     }
+
+    nextCollapsible.classList.toggle('is-opened');
+    event.target.closest('svg').classList.toggle('chevron-down');
   };
 
   return (
     <ul
       id={headings[0]?.text}
       className={`c-table-of-content__list${
-        isSub ? ' collapsible-on-mobile is-collapsed' : ''
+        isSub ? ' collapsible is-opened' : ''
       }`}
     >
       {headings.map((heading, index) => {
@@ -192,13 +194,13 @@ const TableOfContentItems = ({
                     />
                   </svg>
                 )}
-                {heading.text} - {heading.index}
+                <span style={{ flex: 1 }}>{heading.text}</span>
                 {hasSubHeading ? (
                   <svg
                     onClick={(event) => {
                       toggleCollapseItem(event);
                     }}
-                    className="chevron chevron-down exclude-click"
+                    className="chevron exclude-click"
                     width="12"
                     height="7"
                     viewBox="0 0 12 7"
