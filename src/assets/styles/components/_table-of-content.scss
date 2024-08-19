@@ -60,6 +60,9 @@
     padding-inline: 1.25rem;
     justify-content: space-between;
     cursor: pointer;
+    width: 100%;
+    border: none;
+    text-align: start;
 
     @include mq(md) {
       background: none;
@@ -124,6 +127,10 @@
     font-weight: 600;
     line-height: 1.35;
     padding-right: 0.66rem;
+    background-color: unset;
+    width: 100%;
+    border: none;
+    text-align: start;
 
     @include mq(md) {
       padding-right: 0;

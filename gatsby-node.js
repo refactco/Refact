@@ -401,124 +401,124 @@ exports.createPages = async ({ graphql, actions }) => {
       workPost: allWpWork {
         edges {
           node {
-              id
+            id
+            title
+            uri
+            databaseId
+            slug
+            excerpt
+            content
+            seo {
               title
-              uri
-              databaseId
-              slug
-              excerpt
-              content
-              seo {
-                title
-                metaDesc
-              }
-              caseStudies {
-                description
+              metaDesc
+            }
+            caseStudies {
+              description
+              fieldGroupName
+              keyWork {
                 fieldGroupName
-                keyWork {
+                text
+              }
+              primaryCover {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                  url
+                }
+              }
+              secondaryCover {
+                altText
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+              }
+              caseStudyFields {
+                ... on WpWork_Casestudies_CaseStudyFields_ImageSection {
+                  displaySettings
+                  fieldGroupName
+                  video {
+                    altText
+                    filename
+                    localFile {
+                      url
+                      id
+                    }
+                    height
+                    width
+                  }
+                  mediaType
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  mediaTypeSecondary
+                  reverseImages
+                  secondaryImage {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  secondayVideo {
+                    altText
+                    height
+                    localFile {
+                      url
+                      id
+                    }
+                    width
+                  }
+                }
+                ... on WpWork_Casestudies_CaseStudyFields_Content {
                   fieldGroupName
                   text
+                  title
                 }
-                primaryCover {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
-                    }
-                    url
-                  }
-                }
-                secondaryCover {
-                  altText
-                  localFile {
-                    childImageSharp {
-                      gatsbyImageData
+                ... on WpWork_Casestudies_CaseStudyFields_Testimonial {
+                  author
+                  fieldGroupName
+                  image {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
                     }
                   }
-                }
-                caseStudyFields {
-                  ... on WpWork_Casestudies_CaseStudyFields_ImageSection {
-                    displaySettings
-                    fieldGroupName
-                    video {
-                      altText
-                      filename
-                      localFile {
-                        url
-                        id
-                      }
-                      height
-                      width
-                    }
-                    mediaType
-                    image {
-                      altText
-                      localFile {
-                        childImageSharp {
-                          gatsbyImageData
-                        }
-                      }
-                    }
-                    mediaTypeSecondary
-                    reverseImages
-                    secondaryImage {
-                      altText
-                      localFile {
-                        childImageSharp {
-                          gatsbyImageData
-                        }
-                      }
-                    }
-                    secondayVideo {
-                      altText
-                      height
-                      localFile {
-                        url
-                        id
-                      }
-                      width
-                    }
-                  }
-                  ... on WpWork_Casestudies_CaseStudyFields_Content {
-                    fieldGroupName
-                    text
-                    title
-                  }
-                  ... on WpWork_Casestudies_CaseStudyFields_Testimonial {
-                    author
-                    fieldGroupName
-                    image {
-                      altText
-                      localFile {
-                        childImageSharp {
-                          gatsbyImageData
-                        }
-                      }
-                    }
-                    mediaType
-                    text
-                    video {
-                      altText
-                      height
-                      localFile {
-                        id
-                        url
-                      }
-                      width
-                    }
-                  }
-                  ... on WpWork_Casestudies_CaseStudyFields_CtaSection {
-                    description
-                    fieldGroupName
-                    button {
-                      target
-                      title
+                  mediaType
+                  text
+                  video {
+                    altText
+                    height
+                    localFile {
+                      id
                       url
                     }
-                    title
+                    width
                   }
                 }
+                ... on WpWork_Casestudies_CaseStudyFields_CtaSection {
+                  description
+                  fieldGroupName
+                  button {
+                    target
+                    title
+                    url
+                  }
+                  title
+                }
               }
+            }
           }
         }
       }
@@ -564,7 +564,7 @@ exports.createPages = async ({ graphql, actions }) => {
                       }
                     }
                   }
-                  video{
+                  video {
                     altText
                     filename
                     localFile {
@@ -606,7 +606,7 @@ exports.createPages = async ({ graphql, actions }) => {
                         }
                       }
                     }
-                    video{
+                    video {
                       altText
                       filename
                       localFile {
@@ -643,7 +643,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      partnersPage: wpPage(slug: {eq: "partners"}) {
+      partnersPage: wpPage(slug: { eq: "partners" }) {
         id
         content
         seo {
@@ -885,8 +885,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
     if (categoryPosts.length > 0) {
       for (let i = 1; i <= totalCategoryPages; i++) {
-        console.log({ id: cat.id, i });
-
         createPage({
           path: `${cat.link}page/${i}`,
           component: path.resolve('./src/templates/category.js'),
@@ -923,8 +921,6 @@ exports.createPages = async ({ graphql, actions }) => {
 
     if (tagPosts.length > 0) {
       for (let i = 1; i <= totalTagPages; i++) {
-        console.log({ id: tag.id, i });
-
         createPage({
           path: `${tag.link}page/${i}`,
           component: path.resolve('./src/templates/tags.js'),
@@ -995,7 +991,9 @@ exports.createPages = async ({ graphql, actions }) => {
   beehiiv.forEach(({ node }) => {
     createPage({
       path: `/integration-toolkit-for-beehiiv/`,
-      component: path.resolve(`./src/templates/integration-toolkit-for-beehiiv.js`),
+      component: path.resolve(
+        `./src/templates/integration-toolkit-for-beehiiv.js`
+      ),
     });
   });
   const ourWork = result.data.workPage.template.pageBuilder.pageBuilder;
@@ -1005,7 +1003,8 @@ exports.createPages = async ({ graphql, actions }) => {
       component: path.resolve(`./src/templates/work.js`),
     });
   });
-  const partnersPage = result.data.partnersPage.template.pageBuilder.pageBuilder;
+  const partnersPage =
+    result.data.partnersPage.template.pageBuilder.pageBuilder;
   partnersPage.forEach(({ node }) => {
     createPage({
       path: `/partners/`,

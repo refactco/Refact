@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import TableOfContentItems from './items/table-of-content-items';
 
 const TableOfContents = ({
@@ -11,14 +11,14 @@ const TableOfContents = ({
   const [openIndexes, setOpenIndexes] = useState(null);
   const headingsRef = useRef(headings);
 
-  let lastScrollTop = 0;
-  let counter = 1;
+  const lastScrollTop = useRef(0);
+  const counterRef = useRef(1);
 
   useEffect(() => {
     headingsRef.current = headings;
   }, [headings]);
 
-  const getScrollDirectionOnScroll = () => {
+  const getScrollDirectionOnScroll = useCallback(() => {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
 
     if (scrollTop < 330) {
@@ -27,7 +27,7 @@ const TableOfContents = ({
       document.querySelector('.c-table-of-content').classList.remove('is-hide');
     }
 
-    if (scrollTop > lastScrollTop) {
+    if (scrollTop > lastScrollTop.current) {
       document.querySelector('.c-table-of-content').classList.add('up-to-down');
       document
         .querySelector('.c-table-of-content')
@@ -39,10 +39,10 @@ const TableOfContents = ({
         .classList.remove('up-to-down');
     }
 
-    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
-  };
+    lastScrollTop.current = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
+  }, []);
 
-  function findHeading(headingData, index) {
+  const findHeading = useCallback((headingData, index) => {
     for (let i = 0; i < headingData.length; i++) {
       if (headingData[i].index === index) {
         return headingData[i];
@@ -56,9 +56,9 @@ const TableOfContents = ({
         }
       }
     }
-  }
+  }, []);
 
-  const handleScroll = () => {
+  const handleScroll = useCallback(() => {
     const headingElements = Array.from(
       document.querySelectorAll(
         `${selector} h1, ${selector} h2, ${selector} h3, ${selector} h4, ${selector} h5, ${selector} h6`
@@ -74,47 +74,48 @@ const TableOfContents = ({
       if (rect.top < offset && rect.bottom > 0) {
         setActiveIndex(i + 1);
 
-        console.log({ headings: headingsRef.current });
         const headingData = findHeading(headingsRef.current, i + 1);
-        console.log({ headingData, index: i + 1 });
 
         setOpenIndexes(headingData.parentIndex);
       } else if (rect.top > offset) {
         break; // Stop the loop once we find a heading that hasn't reached the offset yet
       }
     }
-  };
+  }, [findHeading, selector, getScrollDirectionOnScroll]);
 
-  function buildTreeRecursive(elements, level = 1, parentIndex = 0) {
-    const result = [];
+  const buildTreeRecursive = useCallback(
+    (elements, level = 1, parentIndex = 0) => {
+      const result = [];
 
-    while (elements.length > 0) {
-      const current = elements.shift();
-      const currentLevel = parseInt(current.tagName[1], 10);
+      while (elements.length > 0) {
+        const current = elements.shift();
+        const currentLevel = parseInt(current.tagName[1], 10);
 
-      if (currentLevel === level) {
-        const newElement = {
-          index: counter++,
-          parentIndex,
-          element: current,
-          level,
-          text: current.textContent,
-          subHeadings: [],
-        };
-        newElement.subHeadings = buildTreeRecursive(
-          elements,
-          level + 1,
-          newElement.index
-        );
-        result.push(newElement);
-      } else {
-        elements.unshift(current);
-        break;
+        if (currentLevel === level) {
+          const newElement = {
+            index: counterRef.current++,
+            parentIndex,
+            element: current,
+            level,
+            text: current.textContent,
+            subHeadings: [],
+          };
+          newElement.subHeadings = buildTreeRecursive(
+            elements,
+            level + 1,
+            newElement.index
+          );
+          result.push(newElement);
+        } else {
+          elements.unshift(current);
+          break;
+        }
       }
-    }
 
-    return result;
-  }
+      return result;
+    },
+    []
+  );
 
   useEffect(() => {
     const headingElements = Array.from(
@@ -132,7 +133,7 @@ const TableOfContents = ({
     return () => {
       document.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [selector, buildTreeRecursive, handleScroll]);
 
   const openCloseToc = () => {
     const { clientWidth } = document.documentElement;
@@ -154,7 +155,7 @@ const TableOfContents = ({
       className={`c-table-of-content${isSticky ? ' is-sticky' : ''}`}
       aria-label="Table of Contents"
     >
-      <p
+      <button
         className="c-table-of-content__title"
         onClick={() => {
           openCloseToc();
@@ -175,7 +176,7 @@ const TableOfContents = ({
             fill="black"
           />
         </svg>
-      </p>
+      </button>
       <div
         id="toc-collapsible-list"
         className="collapsible-on-mobile is-collapsed c-table-of-content__menu"

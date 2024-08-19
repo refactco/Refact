@@ -12,16 +12,31 @@ const renderSection = (section, index) => {
   switch (section.fieldGroupName) {
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost':
       return (
-        <ContainerBox key={index} className='c-section--project is-featured'>
+        <ContainerBox key={index} className="c-section--project is-featured">
           <div className="c-project">
             <div className="row c-work__featured">
-              <div className={`col-md-7 c-work-featured__col is-media-${section.mediaSettings}`}>
-                {section.cta.target === '_blank' ?
-                  <a href={section.cta.url} target={section.cta.target} rel="noopener noreferrer" className="c-project__img media media--hover-effect media--landscape">
-                    {(section.mediaSettings === 'image' || section.mediaSettings === 'both') && (
-                      <GatsbyImage image={section.cover.localFile.childImageSharp.gatsbyImageData} alt={section.cover.altText} />
+              <div
+                className={`col-md-7 c-work-featured__col is-media-${section.mediaSettings}`}
+              >
+                {section.cta.target === '_blank' ? (
+                  <a
+                    href={section.cta.url}
+                    target={section.cta.target}
+                    rel="noopener noreferrer"
+                    className="c-project__img media media--hover-effect media--landscape"
+                  >
+                    {(section.mediaSettings === 'image' ||
+                      section.mediaSettings === 'both') && (
+                      <GatsbyImage
+                        image={
+                          section.cover.localFile.childImageSharp
+                            .gatsbyImageData
+                        }
+                        alt={section.cover.altText}
+                      />
                     )}
-                    {(section.mediaSettings === 'video' || section.mediaSettings === 'both') && (
+                    {(section.mediaSettings === 'video' ||
+                      section.mediaSettings === 'both') && (
                       <video
                         alt={section.video.altText}
                         width={section.video.width}
@@ -30,18 +45,32 @@ const renderSection = (section, index) => {
                         muted
                         loop
                         playsInline
-                        >
-                        <source src={section.video.localFile.url} type={section.video.mimeType} />
+                      >
+                        <source
+                          src={section.video.localFile.url}
+                          type={section.video.mimeType}
+                        />
                         Your browser does not support the video tag.
                       </video>
                     )}
                   </a>
-                  :
-                  <Link to={section.cta.url} className="c-project__img media media--hover-effect media--landscape">
-                    {(section.mediaSettings === 'image' || section.mediaSettings === 'both') && (
-                      <GatsbyImage image={section.cover.localFile.childImageSharp.gatsbyImageData} alt={section.cover.altText} />
+                ) : (
+                  <Link
+                    to={section.cta.url}
+                    className="c-project__img media media--hover-effect media--landscape"
+                  >
+                    {(section.mediaSettings === 'image' ||
+                      section.mediaSettings === 'both') && (
+                      <GatsbyImage
+                        image={
+                          section.cover.localFile.childImageSharp
+                            .gatsbyImageData
+                        }
+                        alt={section.cover.altText}
+                      />
                     )}
-                    {(section.mediaSettings === 'video' || section.mediaSettings === 'both') && (
+                    {(section.mediaSettings === 'video' ||
+                      section.mediaSettings === 'both') && (
                       <video
                         alt={section.video.altText}
                         width={section.video.width}
@@ -50,30 +79,39 @@ const renderSection = (section, index) => {
                         muted
                         loop
                         playsInline
-                        >
-                        <source src={section.video.localFile.url} type={section.video.mimeType} />
+                      >
+                        <source
+                          src={section.video.localFile.url}
+                          type={section.video.mimeType}
+                        />
                         Your browser does not support the video tag.
                       </video>
                     )}
                   </Link>
-                }
+                )}
               </div>
               <div className="col-md-5 c-work-featured__col">
                 <div className="c-work-featured__info">
                   <h5 className="c-project__title">
-                    {section.cta.target === '_blank' ?
-                      <a href={section.cta.url} target={section.cta.target} rel="nofollow, noopener" className='c-link c-link--blog'>
-                      {section.title}
+                    {section.cta.target === '_blank' ? (
+                      <a
+                        href={section.cta.url}
+                        target={section.cta.target}
+                        rel="nofollow, noopener"
+                        className="c-link c-link--blog"
+                      >
+                        {section.title}
                       </a>
-                      :
-                      <Link to={section.cta.url} className='c-link c-link--blog'>
-                      {section.title}
+                    ) : (
+                      <Link
+                        to={section.cta.url}
+                        className="c-link c-link--blog"
+                      >
+                        {section.title}
                       </Link>
-                    }
+                    )}
                   </h5>
-                  <div className="c-project__text">
-                    {section.description}
-                  </div>
+                  <div className="c-project__text">{section.description}</div>
                   {section.cta.target === '_blank' ? (
                     <a
                       href={section.cta.url}
@@ -96,10 +134,7 @@ const renderSection = (section, index) => {
                       </svg>
                     </a>
                   ) : (
-                    <Link
-                      to={section.cta.url}
-                      className="c-btn--secondary"
-                    >
+                    <Link to={section.cta.url} className="c-btn--secondary">
                       {section.cta.title}
                       <svg
                         width="24"
@@ -120,37 +155,57 @@ const renderSection = (section, index) => {
             </div>
           </div>
         </ContainerBox>
-      )
+      );
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_Project':
       return (
-        <ContainerBox key={index} className={`c-section--project is-${section.displayMode}`}>
+        <ContainerBox
+          key={index}
+          className={`c-section--project is-${section.displayMode}`}
+        >
           <div className="c-project">
             {section.projectList && (
               <div className="c-project__items">
                 {section.projectList.map((project, index) => {
-                  let imgClasses = "c-project__imgs media media--hover-effect";
+                  let imgClasses = 'c-project__imgs media media--hover-effect';
                   if (section.displayMode === 'normal') {
                     if (index === 0) {
-                      imgClasses += " media--square";
+                      imgClasses += ' media--square';
                     } else {
-                      imgClasses += " media--box";
+                      imgClasses += ' media--box';
                     }
-                  }
-                  else{
+                  } else {
                     if (index === 0) {
-                      imgClasses += " media--box";
+                      imgClasses += ' media--box';
                     } else {
-                      imgClasses += " media--square";
+                      imgClasses += ' media--square';
                     }
                   }
-                  return(
-                    <div className={`c-project__item c-project__item-${section.displayMode === 'normal' ? index : index + 3} is-media-${project.mediaSettings}`} key={index}>
-                      {project.cta.target === '_blank' ?
-                        <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className={imgClasses}>
-                          {(project.mediaSettings === 'image' || project.mediaSettings === 'both') && (
-                            <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
+                  return (
+                    <div
+                      className={`c-project__item c-project__item-${
+                        section.displayMode === 'normal' ? index : index + 3
+                      } is-media-${project.mediaSettings}`}
+                      key={index}
+                    >
+                      {project.cta.target === '_blank' ? (
+                        <a
+                          href={project.cta.url}
+                          target={project.cta.target}
+                          rel="noopener noreferrer"
+                          className={imgClasses}
+                        >
+                          {(project.mediaSettings === 'image' ||
+                            project.mediaSettings === 'both') && (
+                            <GatsbyImage
+                              image={
+                                project.cover.localFile.childImageSharp
+                                  .gatsbyImageData
+                              }
+                              alt={project.cover.altText}
+                            />
                           )}
-                          {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
+                          {(project.mediaSettings === 'video' ||
+                            project.mediaSettings === 'both') && (
                             <video
                               alt={project.video.altText}
                               width={project.video.width}
@@ -159,18 +214,29 @@ const renderSection = (section, index) => {
                               muted
                               loop
                               playsInline
-                              >
-                              <source src={project.video.localFile.url} type={project.video.mimeType} />
+                            >
+                              <source
+                                src={project.video.localFile.url}
+                                type={project.video.mimeType}
+                              />
                               Your browser does not support the video tag.
                             </video>
                           )}
                         </a>
-                        :
+                      ) : (
                         <Link to={project.cta.url} className={imgClasses}>
-                          {(project.mediaSettings === 'image' || project.mediaSettings === 'both') && (
-                            <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
+                          {(project.mediaSettings === 'image' ||
+                            project.mediaSettings === 'both') && (
+                            <GatsbyImage
+                              image={
+                                project.cover.localFile.childImageSharp
+                                  .gatsbyImageData
+                              }
+                              alt={project.cover.altText}
+                            />
                           )}
-                          {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
+                          {(project.mediaSettings === 'video' ||
+                            project.mediaSettings === 'both') && (
                             <video
                               alt={project.video.altText}
                               width={project.video.width}
@@ -179,54 +245,90 @@ const renderSection = (section, index) => {
                               muted
                               loop
                               playsInline
-                              >
-                              <source src={project.video.localFile.url} type={project.video.mimeType} />
+                            >
+                              <source
+                                src={project.video.localFile.url}
+                                type={project.video.mimeType}
+                              />
                               Your browser does not support the video tag.
                             </video>
                           )}
                         </Link>
-                      }
-                      <h5 className='c-project__title'>
-                      {project.cta.target === '_blank' ?
-                        <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-link c-link--blog'>
-                        {project.title}
-                        </a>
-                        :
-                        <Link to={project.cta.url} className='c-link c-link--blog'>
-                        {project.title}
-                        </Link>
-                      }
+                      )}
+                      <h5 className="c-project__title">
+                        {project.cta.target === '_blank' ? (
+                          <a
+                            href={project.cta.url}
+                            target={project.cta.target}
+                            rel="nofollow, noopener"
+                            className="c-link c-link--blog"
+                          >
+                            {project.title}
+                          </a>
+                        ) : (
+                          <Link
+                            to={project.cta.url}
+                            className="c-link c-link--blog"
+                          >
+                            {project.title}
+                          </Link>
+                        )}
                       </h5>
-                      <div className='c-project__text'>{project.description}</div>
-                      {project.cta.target === '_blank' ?
-                        <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-btn--secondary'>
+                      <div className="c-project__text">
+                        {project.description}
+                      </div>
+                      {project.cta.target === '_blank' ? (
+                        <a
+                          href={project.cta.url}
+                          target={project.cta.target}
+                          rel="nofollow, noopener"
+                          className="c-btn--secondary"
+                        >
                           {project.cta.title}
-                          <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                            <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                          <svg
+                            width="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle cx="12" cy="12" r="12" fill="#59CC51" />
+                            <path
+                              d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
+                              fill="white"
+                            />
                           </svg>
                         </a>
-                        :
-                        <Link to={project.cta.url} className='c-btn--secondary'>
+                      ) : (
+                        <Link to={project.cta.url} className="c-btn--secondary">
                           {project.cta.title}
-                          <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                            <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
+                          <svg
+                            width="24"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <circle cx="12" cy="12" r="12" fill="#59CC51" />
+                            <path
+                              d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
+                              fill="white"
+                            />
                           </svg>
                         </Link>
-                      }
-                      
+                      )}
                     </div>
-                  )
+                  );
                 })}
               </div>
             )}
           </div>
         </ContainerBox>
-      )
+      );
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_Spacer':
       return (
-        <ContainerBox key={index} className={`c-section--spacer c-section--spacer-${index}`}>
+        <ContainerBox
+          key={index}
+          className={`c-section--spacer c-section--spacer-${index}`}
+        >
           <div className="c-spacer"></div>
           <style>
             {`
@@ -241,11 +343,11 @@ const renderSection = (section, index) => {
             `}
           </style>
         </ContainerBox>
-      )
+      );
     default:
-      return null
+      return null;
   }
-}
+};
 const ServiceProductDesignPage = ({ data }) => {
   const serviceContent = data.wpPage.template.pageBuilder.pageBuilder;
   const workContent = data.workContent.template.pageBuilder.pageBuilder;
@@ -268,12 +370,15 @@ const ServiceProductDesignPage = ({ data }) => {
         description={currentService.desc}
       />
       <ServiceSubItemList subList={currentService.subList} />
-      {workContent && (
-        workContent.slice(0, 4).map((section, index) => (
-          renderSection(section, index)
-        ))
-      )}
-      <section className="o-section c-section--spacer c-section--spacer-1"><div className="o-section__wrapper"><div className="c-spacer"></div></div></section>
+      {workContent &&
+        workContent
+          .slice(0, 4)
+          .map((section, index) => renderSection(section, index))}
+      <section className="o-section c-section--spacer c-section--spacer-1">
+        <div className="o-section__wrapper">
+          <div className="c-spacer"></div>
+        </div>
+      </section>
     </ServiceLayout>
   );
 };
@@ -352,7 +457,7 @@ export const pageQuery = graphql`
                     }
                   }
                 }
-                video{
+                video {
                   altText
                   filename
                   localFile {
@@ -388,7 +493,7 @@ export const pageQuery = graphql`
                       }
                     }
                   }
-                  video{
+                  video {
                     altText
                     filename
                     localFile {
