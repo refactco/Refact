@@ -8,6 +8,7 @@ import Layout from '../components/layout/layout';
 import RelatedPostsSection from '../components/related-post/related-post';
 import Seo from '../components/seo/seo';
 import ShareButton from '../components/share-btn/share-btn';
+import TableOfContents from '../components/table-of-content/table-of-content';
 
 const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
@@ -33,17 +34,17 @@ const BlogPostTemplate = ({ data }) => {
           <h1 className="c-article__title">{post.title}</h1>
           <div className="c-article__author-date">{post.date}</div>
           <div className="c-article__author">
-            <div className='c-article-author__wrapper'>
-            {authorPosts.map((author) => (
-                <div className='c-article-author__img' key={author.id}>
+            <div className="c-article-author__wrapper">
+              {authorPosts.map((author) => (
+                <div className="c-article-author__img" key={author.id}>
                   {author.userMeta.profileImage && (
-                  <img
-                    src={author.userMeta.profileImage.localFile.url}
-                    alt={author.name}
-                    width="32"
-                    height="32"
-                    loading='lazy'
-                  />
+                    <img
+                      src={author.userMeta.profileImage.localFile.url}
+                      alt={author.name}
+                      width="32"
+                      height="32"
+                      loading="lazy"
+                    />
                   )}
                 </div>
               ))}
@@ -52,7 +53,11 @@ const BlogPostTemplate = ({ data }) => {
               {post.coAuthors.nodes.map((author, index) => (
                 <span key={author.id}>
                   {author.displayName}
-                  {index < post.coAuthors.nodes.length - 2 ? ", " : index === post.coAuthors.nodes.length - 2 ? " & " : ""}
+                  {index < post.coAuthors.nodes.length - 2
+                    ? ', '
+                    : index === post.coAuthors.nodes.length - 2
+                    ? ' & '
+                    : ''}
                 </span>
               ))}
             </div>
@@ -60,10 +65,23 @@ const BlogPostTemplate = ({ data }) => {
         </div>
       </ContainerBox>
       <ContainerBox className="c-section--article">
-        <article className="c-article"> 
-          <div className="c-article__content">
-            <div className="c-article__share">
-              <ShareButton postUrl={currentUrl} postTitle={post.title} />
+        <article className="c-article">
+          <div className="c-article__content c-article__content--insight">
+            <div className="c-article__left-side">
+              <div className="c-article__toc-wrapper">
+                <TableOfContents
+                  selector=".c-article__content"
+                  footer={
+                    <div className="c-article__share">
+                      <p className="c-article__share-title">Share</p>
+                      <ShareButton
+                        postUrl={currentUrl}
+                        postTitle={post.title}
+                      />
+                    </div>
+                  }
+                />
+              </div>
             </div>
             <div
               className="c-article__content-wrapper s-content"
@@ -73,9 +91,11 @@ const BlogPostTemplate = ({ data }) => {
           <CtaPost />
         </article>
       </ContainerBox>
-      {post.categories?.nodes[0].slug === 'case-studies' ? '' : (
-          <EmailSubscriber />
-        )}
+      {post.categories?.nodes[0].slug === 'case-studies' ? (
+        ''
+      ) : (
+        <EmailSubscriber />
+      )}
       {post.categories?.nodes[0].slug === 'case-studies' ? (
         <CaseStudyPosts caseStudies={caseStudy} />
       ) : (
@@ -167,7 +187,9 @@ export const pageQuery = graphql`
         }
       }
     }
-    authorPosts: allWpUser(filter: {posts: {nodes: {elemMatch: {id: {eq: $id}}}}}) {
+    authorPosts: allWpUser(
+      filter: { posts: { nodes: { elemMatch: { id: { eq: $id } } } } }
+    ) {
       nodes {
         name
         id
