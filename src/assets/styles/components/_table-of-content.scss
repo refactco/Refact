@@ -3,8 +3,8 @@
   position: fixed;
   width: 100%;
   top: 0;
-
-  @include mq(md) {
+  transition: top 0.25s ease-in-out;
+  @include mq(lg) {
     position: static;
     background: none;
   }
@@ -12,7 +12,7 @@
   &.is-hide {
     display: none;
 
-    @include mq(md) {
+    @include mq(lg) {
       display: block;
     }
   }
@@ -20,7 +20,7 @@
   &.up-to-down {
     top: 0rem;
 
-    @include mq(md) {
+    @include mq(lg) {
       top: 1rem;
     }
   }
@@ -28,7 +28,7 @@
   &.down-to-up {
     top: calc(71.06px);
 
-    @include mq(md) {
+    @include mq(lg) {
       top: calc(72px + 1rem);
     }
   }
@@ -36,42 +36,39 @@
   &.is-sticky {
     position: fixed;
 
-    @include mq(md) {
+    @include mq(lg) {
       position: sticky;
       width: auto;
     }
   }
 
   .c-table-of-content__title {
-    background: var(--Neutral-Cultred, #f2f3f3);
+    background: var(--color-primary-h);
     height: 3rem;
-    color: var(--Text-Dark-Jungle-Green, #002729);
+    color: var(--color-text);
     font-family: $inter;
     font-size: 0.75rem;
-    font-style: normal;
     font-weight: 600;
-    line-height: 1.35; /* 1.0125rem */
-    letter-spacing: 0.0225rem;
+    line-height: 1.35;
+    letter-spacing: 0.36px;
     text-transform: uppercase;
-    color: var(--Text-Dark-Jungle-Green, #002729);
     margin: 0;
     display: flex;
     align-items: center;
-    padding-inline: 1.25rem;
+    padding: 0 1.5rem;
     justify-content: space-between;
     cursor: pointer;
     width: 100%;
     border: none;
     text-align: start;
 
-    @include mq(md) {
+    @include mq(lg) {
       background: none;
       color: #798686;
-      /* General Typography/xxSmall (12px) - Desktop/xxSmallText - SemiBold UC (12px) */
-      margin-block: 0 1rem;
+      margin: 0 0 1rem;
       height: auto;
       display: block;
-      padding-inline: 0;
+      padding: 0;
       cursor: default;
 
       svg {
@@ -85,7 +82,6 @@
     position: relative;
     margin-block: 0;
     overflow: hidden;
-
     &.collapsible:not(.is-opened) {
       max-height: 0;
       padding: 0;
@@ -93,7 +89,10 @@
 
     &:not(.collapsible) {
       // overflow: auto;
-      padding: 0;
+      padding: 1rem 1rem 0;
+      @include mq(lg) {
+        padding: 0;
+      }
     }
 
     // @include mq(md) {
@@ -112,28 +111,29 @@
 
   .c-table-of-content__item {
     // display: flex;
-    padding: 0.5rem 0;
-    color: #798686;
-    font-family: Inter;
-    font-size: 0.875rem;
-    font-style: normal;
+    padding: 0.5rem;
+    color: var(--color-grey);
+    font-family: $inter;
     font-weight: 600;
-    line-height: 1.35;
+    @include font-size(14px, 1.35);
     position: relative;
     cursor: pointer;
-    font-family: $inter;
-    font-size: 0.875rem;
-    font-style: normal;
-    font-weight: 600;
-    line-height: 1.35;
-    padding-right: 0.66rem;
-    background-color: unset;
+    background-color: transparent;
     width: 100%;
     border: none;
-    text-align: start;
+    text-align: left;
+    transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out;
+    &:hover {
+      background-color: var(--color-cultred);
+      color: var(--color-text);
 
-    @include mq(md) {
-      padding-right: 0;
+      span {
+        & > svg.dot-icon {
+          & > rect:not(.no-change-rect) {
+            fill: var(--color-text);
+          }
+        }
+      }
     }
 
     &.is-active {
@@ -149,28 +149,17 @@
       }
     }
 
-    &:hover {
-      background-color: var(--color-cultred);
-      color: var(--color-text);
-
-      span {
-        & > svg.dot-icon {
-          & > rect:not(.no-change-rect) {
-            fill: var(--color-text);
-          }
-        }
-      }
-    }
 
     span {
       position: relative;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 0.5rem;
 
       & > svg.chevron {
         display: block;
-        padding: 5px;
+        padding: 0;
         box-sizing: content-box;
 
         // @include mq(md) {
@@ -210,22 +199,22 @@
 .c-table-of-content__menu {
   height: calc(100vh - 3rem);
 
-  @include mq(md) {
+  @include mq(lg) {
     height: auto;
   }
 }
 
 .collapsible-on-mobile {
-  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+  transition: max-height 0.3s ease-out;
   overflow: hidden;
 
-  @include mq(md) {
+  @include mq(lg) {
     transition: none;
     overflow: unset;
     max-height: none;
   }
 
-  @include mq(0em, md) {
+  @include mq(0em, lg) {
     max-height: 0;
     padding: 0;
 
