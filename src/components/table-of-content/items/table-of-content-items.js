@@ -5,6 +5,7 @@ const TableOfContentItems = ({
   onClose,
   isSub,
   activeIndex,
+  openIndexes,
   onActiveIndexChange,
 }) => {
   function getScrollDirection(targetScrollTop) {
@@ -116,15 +117,15 @@ const TableOfContentItems = ({
   const toggleCollapseItem = (event) => {
     const nextCollapsible = findNextCollapsible(event.target);
 
-    if (
-      (!!nextCollapsible.style.maxHeight &&
-        nextCollapsible.style.maxHeight !== '0px') ||
-      nextCollapsible.classList.contains('is-opened')
-    ) {
-      nextCollapsible.style.maxHeight = 0;
-    } else {
-      nextCollapsible.style.maxHeight = nextCollapsible.scrollHeight + 'px';
-    }
+    // if (
+    //   (!!nextCollapsible.style.maxHeight &&
+    //     nextCollapsible.style.maxHeight !== '0px') ||
+    //   nextCollapsible.classList.contains('is-opened')
+    // ) {
+    //   nextCollapsible.style.maxHeight = 0;
+    // } else {
+    //   nextCollapsible.style.maxHeight = nextCollapsible.scrollHeight + 'px';
+    // }
 
     nextCollapsible.classList.toggle('is-opened');
     event.target.closest('svg').classList.toggle('chevron-down');
@@ -134,7 +135,11 @@ const TableOfContentItems = ({
     <ul
       id={headings[0]?.text}
       className={`c-table-of-content__list${
-        isSub ? ' collapsible is-opened' : ''
+        isSub
+          ? ` collapsible${
+              openIndexes === headings[0].index - 1 ? ' is-opened' : ''
+            }`
+          : ''
       }`}
     >
       {headings.map((heading, index) => {
@@ -148,14 +153,14 @@ const TableOfContentItems = ({
               }`}
               key={index}
               style={{
-                paddingLeft: `${(heading.level - 2) * 12 + 32}px`,
+                paddingLeft: `${(heading.level - 2) * 12 + 16}px`,
               }}
               onClick={(event) => {
                 handleClick(heading.element, heading.index, event);
               }}
             >
               <span>
-                {heading.level % 2 === 0 ? (
+                {/* {heading.level % 2 === 0 ? (
                   <svg
                     className="dot-icon"
                     width="6"
@@ -193,14 +198,16 @@ const TableOfContentItems = ({
                       fill="white"
                     />
                   </svg>
-                )}
+                )} */}
                 <span style={{ flex: 1 }}>{heading.text}</span>
                 {hasSubHeading ? (
                   <svg
                     onClick={(event) => {
                       toggleCollapseItem(event);
                     }}
-                    className="chevron exclude-click"
+                    className={`chevron exclude-click${
+                      openIndexes === heading.index ? '' : ' chevron-down'
+                    }`}
                     width="12"
                     height="7"
                     viewBox="0 0 12 7"
@@ -221,7 +228,9 @@ const TableOfContentItems = ({
                   headings={heading.subHeadings}
                   onClose={onClose}
                   activeIndex={activeIndex}
+                  openIndexes={openIndexes}
                   isSub
+                  onActiveIndexChange={onActiveIndexChange}
                 />
               </li>
             ) : null}

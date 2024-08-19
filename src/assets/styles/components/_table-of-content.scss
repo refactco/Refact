@@ -81,16 +81,16 @@
     list-style: none;
     position: relative;
     margin-block: 0;
+    overflow: hidden;
 
     &.collapsible:not(.is-opened) {
       max-height: 0;
       padding: 0;
-      overflow: hidden;
     }
 
     &:not(.collapsible) {
-      overflow: auto;
-      padding: 1.25rem 1rem;
+      // overflow: auto;
+      padding: 0;
     }
 
     // @include mq(md) {

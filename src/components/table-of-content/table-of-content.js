@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import TableOfContentItems from './items/table-of-content-items';
 
 const TableOfContents = ({
@@ -8,8 +8,15 @@ const TableOfContents = ({
 }) => {
   const [headings, setHeadings] = useState([]);
   const [activeIndex, setActiveIndex] = useState(null);
+  const [openIndexes, setOpenIndexes] = useState(null);
+  const headingsRef = useRef(headings);
+
   let lastScrollTop = 0;
   let counter = 1;
+
+  useEffect(() => {
+    headingsRef.current = headings;
+  }, [headings]);
 
   const getScrollDirectionOnScroll = () => {
     let scrollTop = window.scrollY || document.documentElement.scrollTop;
@@ -35,6 +42,22 @@ const TableOfContents = ({
     lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // For Mobile or negative scrolling
   };
 
+  function findHeading(headingData, index) {
+    for (let i = 0; i < headingData.length; i++) {
+      if (headingData[i].index === index) {
+        return headingData[i];
+      }
+
+      if (headingData[i].subHeadings.length > 0) {
+        const data = findHeading(headingData[i].subHeadings, index);
+
+        if (data) {
+          return data;
+        }
+      }
+    }
+  }
+
   const handleScroll = () => {
     const headingElements = Array.from(
       document.querySelectorAll(
@@ -47,15 +70,22 @@ const TableOfContents = ({
 
     for (let i = 0; i < headingElements.length; i++) {
       const rect = headingElements[i].getBoundingClientRect();
+
       if (rect.top < offset && rect.bottom > 0) {
         setActiveIndex(i + 1);
+
+        console.log({ headings: headingsRef.current });
+        const headingData = findHeading(headingsRef.current, i + 1);
+        console.log({ headingData, index: i + 1 });
+
+        setOpenIndexes(headingData.parentIndex);
       } else if (rect.top > offset) {
         break; // Stop the loop once we find a heading that hasn't reached the offset yet
       }
     }
   };
 
-  function buildTreeRecursive(elements, level = 1) {
+  function buildTreeRecursive(elements, level = 1, parentIndex = 0) {
     const result = [];
 
     while (elements.length > 0) {
@@ -65,12 +95,17 @@ const TableOfContents = ({
       if (currentLevel === level) {
         const newElement = {
           index: counter++,
+          parentIndex,
           element: current,
           level,
           text: current.textContent,
           subHeadings: [],
         };
-        newElement.subHeadings = buildTreeRecursive(elements, level + 1);
+        newElement.subHeadings = buildTreeRecursive(
+          elements,
+          level + 1,
+          newElement.index
+        );
         result.push(newElement);
       } else {
         elements.unshift(current);
@@ -148,6 +183,7 @@ const TableOfContents = ({
         <TableOfContentItems
           headings={headings}
           activeIndex={activeIndex}
+          openIndexes={openIndexes}
           onActiveIndexChange={(index) => {
             setActiveIndex(index);
           }}
