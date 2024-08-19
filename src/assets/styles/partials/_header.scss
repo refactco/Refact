@@ -219,8 +219,8 @@
         a {
             color: var(--color-text);
             text-decoration: none;
-            font-weight: 400;
-            font-family: $sentient;
+            font-weight: 600;
+            font-family: $inter;
             @include font-size(32px, 1.18);
             position: relative;
             transition: color 0.25s ease-in-out;
@@ -265,12 +265,12 @@
 }
 
 .s-nav--sub{
-    gap: 16px;
+    gap: 8px;
     li{
         a{
             font-family: $inter;
             @include font-size(18px, 1.5);
-            font-weight: 600;
+            font-weight: 400;
             @include mq(lg){
                 @include font-size(23px, 1.47);
             }

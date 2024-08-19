@@ -193,105 +193,105 @@ const renderSection = (section, index) => {
       )
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_Project':
       return (
-        <ContainerBox key={index} className={`c-section--project is-${section.displayMode}`}>
-          <div className="c-project">
-            {section.projectList && (
-              <div className="c-project__items">
+        <ContainerBox key={index} className={`c-section--project-home`}>
+          {section.title && (
+            <div className="c-project__header">
+              <div className="c-page-header__sub-title c-sf__headline">{section.subhead}</div>
+              <div className="c-sf__desc">
+                {section.title}
+              </div>
+            </div>
+          )}
+          {section.projectList && (
+              <div className="c-projects">
                 {section.projectList.map((project, index) => {
-                  let imgClasses = "c-project__imgs media media--hover-effect";
-                  if (section.displayMode === 'normal') {
-                    if (index === 0) {
-                      imgClasses += " media--square";
-                    } else {
-                      imgClasses += " media--box";
-                    }
-                  }
-                  else{
-                    if (index === 0) {
-                      imgClasses += " media--box";
-                    } else {
-                      imgClasses += " media--square";
-                    }
-                  }
+                  let imgClasses = "c-project__imgs media media--hover-effect media--landscape";
                   return(
-                    <div className={`c-project__item c-project__item-${section.displayMode === 'normal' ? index : index + 3} is-media-${project.mediaSettings}`} key={index}>
-                      {project.cta.target === '_blank' ?
-                        <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className={imgClasses}>
-                          {(project.mediaSettings === 'image' || project.mediaSettings === 'both') && (
-                            <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
-                          )}
-                          {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
-                            <video
-                              alt={project.video.altText}
-                              width={project.video.width}
-                              height={project.video.height}
-                              autoPlay
-                              muted
-                              loop
-                              playsInline
-                              >
-                              <source src={project.video.localFile.url} type={project.video.mimeType} />
-                              Your browser does not support the video tag.
-                            </video>
-                          )}
-                        </a>
-                        :
-                        <Link to={project.cta.url} className={imgClasses}>
-                          {(project.mediaSettings === 'image' || project.mediaSettings === 'both') && (
-                            <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
-                          )}
-                          {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
-                            <video
-                              alt={project.video.altText}
-                              width={project.video.width}
-                              height={project.video.height}
-                              autoPlay
-                              muted
-                              loop
-                              playsInline
-                              >
-                              <source src={project.video.localFile.url} type={project.video.mimeType} />
-                              Your browser does not support the video tag.
-                            </video>
-                          )}
-                        </Link>
-                      }
-                      <h5 className='c-project__title'>
-                      {project.cta.target === '_blank' ?
-                        <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-link c-link--blog'>
-                        {project.title}
-                        </a>
-                        :
-                        <Link to={project.cta.url} className='c-link c-link--blog'>
-                        {project.title}
-                        </Link>
-                      }
-                      </h5>
-                      <div className='c-project__text'>{project.description}</div>
-                      {project.cta.target === '_blank' ?
-                        <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-btn--secondary'>
-                          {project.cta.title}
-                          <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                            <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                          </svg>
-                        </a>
-                        :
-                        <Link to={project.cta.url} className='c-btn--secondary'>
-                          {project.cta.title}
-                          <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                            <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                          </svg>
-                        </Link>
-                      }
-                      
+                    <div className={`c-projects__item c-projects__item-${section.displayMode === 'normal' ? index : index + 3} is-media-${project.mediaSettings}`} key={index}>
+                      <div className='c-projects-item__col'>
+                        {project.cta.target === '_blank' ?
+                          <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className={imgClasses}>
+                            {(project.mediaSettings === 'image' || project.mediaSettings === 'both') && (
+                              <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
+                            )}
+                            {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
+                              <video
+                                alt={project.video.altText}
+                                width={project.video.width}
+                                height={project.video.height}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                >
+                                  <source src={project.video.localFile.url} type={project.video.mimeType} />
+                                  Your browser does not support the video tag.
+                              </video>
+                            )}
+                          </a>
+                          :
+                          <Link to={project.cta.url} className={imgClasses}>
+                            {(project.mediaSettings === 'image' || project.mediaSettings === 'both') && (
+                              <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
+                            )}
+                            {(project.mediaSettings === 'video' || project.mediaSettings === 'both') && (
+                              <video
+                                alt={project.video.altText}
+                                width={project.video.width}
+                                height={project.video.height}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                >
+                                <source src={project.video.localFile.url} type={project.video.mimeType} />
+                                Your browser does not support the video tag.
+                              </video>
+                            )}
+                          </Link>
+                        }
+                      </div>
+                      <div className='c-projects-item__col'>
+                        <div className='c-projects-item__info'>
+                          <h4 className='c-project__title'>
+                          {project.cta.target === '_blank' ?
+                            <a href={project.cta.url} target={project.cta.target} rel="nofollow, noopener" className='c-link c-link--blog'>
+                            {project.title}
+                            </a>
+                            :
+                            <Link to={project.cta.url} className='c-link c-link--blog'>
+                            {project.title}
+                            </Link>
+                          }
+                          </h4>
+                          <div className='c-project__text'>{project.description}</div>
+                        </div>
+                      </div>
                     </div>
                   )
                 })}
               </div>
             )}
-          </div>
+          {section.cta && (
+            <div className='c-sf__cta'>
+              <Link to={section.cta.url} className="c-services-items__link c-btn--secondary">
+                {section.cta.title}
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                >
+                  <circle cx="12" cy="12" r="12" fill="#31A329" />
+                  <path
+                    d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
+                    fill="white"
+                  />
+                </svg>
+              </Link>
+            </div>
+          )}
         </ContainerBox>
       )
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial':

@@ -99,7 +99,7 @@ const Header  = () => {
     <div className={mobileClassName}>
       <div className="c-header-wrap__col">
         <div className="c-header-wrap__inner">
-          <div className="c-header-wrap__text">Main menu</div>
+          {/* <div className="c-header-wrap__text">Main menu</div> */}
           {typeof window !== 'undefined' && (
             <ul className='s-nav' id='navigation'>
               {headerNav.menuItems.nodes.map((item, index) => {

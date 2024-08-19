@@ -12,7 +12,7 @@ const FloatButton = () => {
       const footerTop = footer ? footer.getBoundingClientRect().top + window.scrollY : 0;
       const windowHeight = window.innerHeight;
 
-      if (scrollTop > 250) {
+      if (scrollTop > 50) {
         setHideText(true);
       } else {
         setHideText(false);
