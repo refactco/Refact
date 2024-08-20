@@ -8,7 +8,7 @@ const CtaSection = () => {
       <div className="c-cta">
         <div className="c-cta__col">
           <h4 className="c-cta__title">
-            Sound Smarter in Meetings
+            Sound smarter in meetings.
           </h4>
           <div className="c-cta__text">
             Weekly media tech news in easy-to-read chunks. 
