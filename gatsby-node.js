@@ -7,6 +7,11 @@ exports.createPages = async ({ graphql, actions }) => {
     toPath: 'https://refact.wpengine.com/wp-admin',
     isPermanent: true,
   });
+  createRedirect({
+    fromPath: '/resources/',
+    toPath: 'https://refact.co',
+    statusCode: 301,
+  });
 
   const result = await graphql(`
     query {
