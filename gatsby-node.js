@@ -9,7 +9,7 @@ exports.createPages = async ({ graphql, actions }) => {
   });
   createRedirect({
     fromPath: '/resources/',
-    toPath: 'https://refact.co',
+    toPath: 'https://refact.co/toolkit',
     statusCode: 301,
   });
 
