@@ -14,6 +14,15 @@ const AboutPage = () => {
     query AboutPageQuery {
       aboutPage:  wpPage(slug: {eq: "about"}) {
         id
+        seo {
+          title
+          metaDesc
+          opengraphImage {
+            localFile {
+              url
+            }
+          }
+        }
         template {
           ... on WpTemplate_PageBuilder {
             templateName
@@ -650,11 +659,11 @@ const pageBuilder = data.aboutPage.template.pageBuilder.pageBuilder;
 
 export default AboutPage
 
-
-export function Head() {
+export function Head({ data }) {
+  const post = data.wpPage;
   return (
     <>
-      <Seo title="About | Refact" description="Refact: Empowering news and media with innovative design, development, and digital publishing solutions for sustainable success." />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
     </>
-  )
+  );
 }
