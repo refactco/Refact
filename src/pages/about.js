@@ -660,7 +660,7 @@ const pageBuilder = data.aboutPage.template.pageBuilder.pageBuilder;
 export default AboutPage
 
 export function Head({ data }) {
-  const post = data.wpPage;
+  const post = data.aboutPage;
   return (
     <>
       <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
