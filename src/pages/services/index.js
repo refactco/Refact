@@ -92,7 +92,7 @@ export function Head({ data }) {
   const post = data.wpPage;
   return (
     <>
-      <Seo title={post.seo.title} description={post.seo.metaDesc} />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
     </>
   );
 }
@@ -105,6 +105,11 @@ export const pageQuery = graphql`
       seo {
         title
         metaDesc
+        opengraphImage {
+          localFile {
+            url
+          }
+        }
       }
       template {
         ... on WpTemplate_PageBuilder {

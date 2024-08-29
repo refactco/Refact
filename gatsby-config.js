@@ -9,7 +9,7 @@ module.exports = {
     title: `Refact | Full Digital Agency for Audience-first Companies`,
     siteUrl: `https://refact.co`,
     description: `We work with content centric brands to create digital experiences that connect people with information, ideas, and products across the web.`,
-    image: `/ogrefact.jpg`,
+    image: `/refact-opengraph.jpg`,
   },
   plugins: [
     {

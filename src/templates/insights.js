@@ -191,19 +191,30 @@ const InsightPage = (props) => {
 
 export default InsightPage;
 
-export function Head() {
+export function Head({ data }) {
+  const post = data.wpPage;
   return (
     <>
-      <Seo
-        title="Insights | Refact"
-        description="Dive into Refact's Insights: product updates, case studies, and expert advice for news & media operators navigating the digital landscape."
-      />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
     </>
   );
 }
 
 export const pageQuery = graphql`
   query ($limit: Int!, $skip: Int!) {
+    wpPage(slug: { eq: "insights" }) {
+      id
+      content
+      seo {
+        title
+        metaDesc
+        opengraphImage {
+          localFile {
+            url
+          }
+        }
+      }
+  }
     firstPost: allWpPost(
       limit: 1
       sort: { date: DESC }
