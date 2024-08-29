@@ -403,6 +403,138 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      aboutPage: wpPage(slug: {eq: "about"}) {
+        id
+        seo {
+          title
+          metaDesc
+          opengraphImage {
+            localFile {
+              url
+            }
+          }
+        }
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  subtitle
+                  text
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
+                  description
+                  fieldGroupName
+                  items {
+                    fieldGroupName
+                    text
+                    title
+                  }
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Team {
+                  description
+                  fieldGroupName
+                  title
+                  team {
+                    fieldGroupName
+                    name
+                    photo {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    position
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Clients {
+                  description
+                  fieldGroupName
+                  showClientLogos
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers {
+                  fieldGroupName
+                  headline
+                  list {
+                    fieldGroupName
+                    text
+                    title
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
+                  fieldGroupName
+                  images {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  title
+                  subHeading
+                  moreFeatures
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Testimonials {
+                  fieldGroupName
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                  testimonialsList {
+                    coverPhoto {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    fieldGroupName
+                    name
+                    position
+                    text
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
+                  fieldGroupName
+                  name
+                  position
+                  text
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                  fieldGroupName
+                  list {
+                    question
+                    fieldGroupName
+                    answer
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Spacer {
+                  desktop
+                  fieldGroupName
+                  mobile
+                }
+              }
+            }
+          }
+        }
+      }
       workPost: allWpWork {
         edges {
           node {
@@ -1036,6 +1168,13 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/contact/`,
       component: path.resolve(`./src/templates/contact.js`),
+    });
+  });
+  const aboutPage = result.data.aboutPage.template.pageBuilder.pageBuilder;
+  aboutPage.forEach(({ node }) => {
+    createPage({
+      path: `/about/`,
+      component: path.resolve(`./src/templates/about.js`),
     });
   });
 };

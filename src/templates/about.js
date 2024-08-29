@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useStaticQuery, graphql, Link } from 'gatsby';
+import { graphql, Link } from 'gatsby';
 import Layout from "../components/layout/layout";
 import ContainerBox from '../components/container-box/container-box';
 import Seo from '../components/seo/seo';
@@ -9,145 +9,9 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 
 
-const AboutPage = () => {
-  const data = useStaticQuery(graphql`
-    query AboutPageQuery {
-      aboutPage:  wpPage(slug: {eq: "about"}) {
-        id
-        seo {
-          title
-          metaDesc
-          opengraphImage {
-            localFile {
-              url
-            }
-          }
-        }
-        template {
-          ... on WpTemplate_PageBuilder {
-            templateName
-            pageBuilder {
-              pageBuilder {
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
-                  fieldGroupName
-                  subtitle
-                  text
-                  title
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
-                  description
-                  fieldGroupName
-                  items {
-                    fieldGroupName
-                    text
-                    title
-                  }
-                  title
-                  cta {
-                    target
-                    title
-                    url
-                  }
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Team {
-                  description
-                  fieldGroupName
-                  title
-                  team {
-                    fieldGroupName
-                    name
-                    photo {
-                      altText
-                      localFile {
-                        childImageSharp {
-                          gatsbyImageData
-                        }
-                      }
-                    }
-                    position
-                  }
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Clients {
-                  description
-                  fieldGroupName
-                  showClientLogos
-                  title
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers {
-                  fieldGroupName
-                  headline
-                  list {
-                    fieldGroupName
-                    text
-                    title
-                  }
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
-                  description
-                  fieldGroupName
-                  images {
-                    altText
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
-                    }
-                  }
-                  title
-                  subHeading
-                  moreFeatures
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Testimonials {
-                  fieldGroupName
-                  title
-                  cta {
-                    target
-                    title
-                    url
-                  }
-                  testimonialsList {
-                    coverPhoto {
-                      altText
-                      localFile {
-                        childImageSharp {
-                          gatsbyImageData
-                        }
-                      }
-                    }
-                    fieldGroupName
-                    name
-                    position
-                    text
-                  }
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
-                  fieldGroupName
-                  name
-                  position
-                  text
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
-                  fieldGroupName
-                  list {
-                    question
-                    fieldGroupName
-                    answer
-                  }
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Spacer {
-                  desktop
-                  fieldGroupName
-                  mobile
-                }
-              }
-            }
-          }
-        }
-      }
-    }
-  `);
 
-const pageBuilder = data.aboutPage.template.pageBuilder.pageBuilder;
+const AboutPage = ({ data }) => {
+  const pageBuilder = data.wpPage.template.pageBuilder.pageBuilder;
   // State to track which FAQ items are active
   const [activeIndices, setActiveIndices] = useState([0]);
 
@@ -646,24 +510,162 @@ const pageBuilder = data.aboutPage.template.pageBuilder.pageBuilder;
         return null
     }
   }
+  const aboutContent = data.wpPage.template.pageBuilder.pageBuilder;
   return (
     <Layout>
-      {pageBuilder && (
-        pageBuilder.map((section, index) => (
+      {aboutContent && (
+        aboutContent.map((section, index) => (
           renderSection(section, index)
         ))
       )}
     </Layout>
-  )
-}
+  );
+};
 
-export default AboutPage
+export default AboutPage;
 
 export function Head({ data }) {
-  const post = data.aboutPage;
+  const post = data.wpPage;
   return (
     <>
       <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
     </>
   );
 }
+
+export const pageQuery = graphql`
+  query {
+    wpPage(slug: {eq: "about"}) {
+      id
+      seo {
+        title
+        metaDesc
+        opengraphImage {
+          localFile {
+            url
+          }
+        }
+      }
+      template {
+        ... on WpTemplate_PageBuilder {
+          templateName
+          pageBuilder {
+            pageBuilder {
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                fieldGroupName
+                subtitle
+                text
+                title
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
+                description
+                fieldGroupName
+                items {
+                  fieldGroupName
+                  text
+                  title
+                }
+                title
+                cta {
+                  target
+                  title
+                  url
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Team {
+                description
+                fieldGroupName
+                title
+                team {
+                  fieldGroupName
+                  name
+                  photo {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  position
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Clients {
+                description
+                fieldGroupName
+                showClientLogos
+                title
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers {
+                fieldGroupName
+                headline
+                list {
+                  fieldGroupName
+                  text
+                  title
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                description
+                fieldGroupName
+                images {
+                  altText
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                title
+                subHeading
+                moreFeatures
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Testimonials {
+                fieldGroupName
+                title
+                cta {
+                  target
+                  title
+                  url
+                }
+                testimonialsList {
+                  coverPhoto {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  fieldGroupName
+                  name
+                  position
+                  text
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
+                fieldGroupName
+                name
+                position
+                text
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                fieldGroupName
+                list {
+                  question
+                  fieldGroupName
+                  answer
+                }
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Spacer {
+                desktop
+                fieldGroupName
+                mobile
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+`;
