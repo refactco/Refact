@@ -297,7 +297,6 @@
 .gform_wrapper {
   .gform_button {
     @extend .c-btn;
-    @extend .c-btn--green;
     width: 100%;
     justify-content: center;
     @include font-size(16px, 1.5);

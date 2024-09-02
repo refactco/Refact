@@ -4,6 +4,9 @@ import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
 import { GatsbyImage } from 'gatsby-plugin-image';
+import Button, { BgMode, BtnType } from '../components/button/button';
+import PatternBg from '../components/patterns/pattern-bg';
+import MarqueeLogo from '../components/marquee/marquee';
 
 const Homepage = () => {
   const data = useStaticQuery(graphql`
@@ -23,28 +26,6 @@ const Homepage = () => {
                     target
                     title
                     url
-                  }
-                  video {
-                    altText
-                    filename
-                    localFile {
-                      url
-                      id
-                    }
-                    height
-                    width
-                    mimeType
-                  }
-                  videoMobile{
-                    altText
-                    filename
-                    localFile {
-                      url
-                      id
-                    }
-                    height
-                    width
-                    mimeType
                   }
                 }
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
@@ -155,60 +136,12 @@ const Homepage = () => {
     }
   `);
   const pageBuilder = data.homePage.template.pageBuilder.pageBuilder;
+  const heroAndCapabilities = pageBuilder.filter(
+    section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero' || 
+               section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites'
+  );
   const renderSection = (section, index) => {
     switch (section.fieldGroupName) {
-      case 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero':
-        return (
-          <React.Fragment key={index}>
-            <ContainerBox className='c-section--hero'>
-              <div className="c-hero__video">
-                <video
-                  className='c-hero__video--desktop'
-                  alt={section.video.altText}
-                  width={section.video.width}
-                  height={section.video.height}
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                  >
-                  <source src={section.video.localFile.url} type={section.video.mimeType} />
-                Your browser does not support the video tag.
-                </video>
-              </div>
-              <div className='c-hero-top__overlay'></div>
-              {/* <div className='c-hero-bottom__overlay'></div> */}
-              <div className="c-hero">
-                {section.title && (
-                  <h1 className="c-hero__title" style={{maxWidth: 710}}>{section.title}</h1>
-                )}
-                {section.text && (
-                  <div className="c-hero__text">{section.text}</div>
-                )}
-                {section.cta && (
-                  <Link to={section.cta.url} className='c-btn'>{section.cta.title}</Link>
-                )}
-              </div>
-            </ContainerBox>
-            <ContainerBox className='c-section--hero-mobile'>
-              <div className='c-hero-mobile__video'>
-                <video
-                    className='c-hero__video--mobile'
-                    alt={section.videoMobile.altText}
-                    width={section.videoMobile.width}
-                    height={section.videoMobile.height}
-                    autoPlay
-                    muted
-                    loop
-                    playsInline
-                  >
-                    <source src={section.videoMobile.localFile.url} type={section.videoMobile.mimeType} />
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-            </ContainerBox>
-          </React.Fragment>
-        )
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_LogoSection':
         return (
           <ContainerBox key={index} className='c-section--section-title'>
@@ -237,50 +170,6 @@ const Homepage = () => {
                 }
               `}
             </style>
-          </ContainerBox>
-        )
-      case 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites':
-        return (
-          <ContainerBox key={index} className='c-section--sf'>
-            <div className="c-sf">
-              {section.title && (
-                <div className="c-page-header__sub-title c-sf__headline">{section.title}</div>
-              )}
-              {section.description && (
-                <div className="c-sf__desc" dangerouslySetInnerHTML={{__html: section.description}} />
-              )}
-              {section.items && (
-                <div className="c-sf__list">
-                  {section.items.map((item, index) => (
-                    <div className="c-sf-list__items"  key={index}>
-                      <div className="c-sf__num">0{index+1}</div>
-                      <div className="c-sf__title">{item.title}</div>
-                      <div className="c-sf__text" dangerouslySetInnerHTML={{__html: item.text}} />
-                    </div>
-                  ))}
-                </div>
-              )}
-              {section.cta && (
-                <div className='c-sf__cta'>
-                  <Link to={section.cta.url} className="c-services-items__link c-btn--secondary">
-                    Discover More
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle cx="12" cy="12" r="12" fill="#31A329" />
-                      <path
-                        d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </Link>
-                </div>
-              )}
-            </div>
           </ContainerBox>
         )
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial':
@@ -389,9 +278,9 @@ const Homepage = () => {
           return (
             <ContainerBox key={index} className={`c-section--project-home`}>
               {section.title && (
-                <div className="c-project__header">
-                  <div className="c-page-header__sub-title c-sf__headline">{section.subhead}</div>
-                  <div className="c-sf__desc">
+                <div className="c-project__header c-section">
+                  <h2 className="c-section__title">{section.subhead}</h2>
+                  <div className="c-section__desc">
                     {section.title}
                   </div>
                 </div>
@@ -468,24 +357,18 @@ const Homepage = () => {
                 )}
               {section.cta && (
                 <div className='c-sf__cta'>
-                  <Link to={section.cta.url} className="c-services-items__link c-btn--secondary">
-                    {section.cta.title}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle cx="12" cy="12" r="12" fill="#31A329" />
-                      <path
-                        d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </Link>
+                  <Button 
+                    target={section.cta.target} 
+                    url={section.cta.url} 
+                    text={section.cta.title} 
+                    type={BtnType.SECONDARY} 
+                    bgMode={BgMode.DARK} 
+                  />
                 </div>
               )}
+              <PatternBg pattern="projectRightPattern" className='is-project-pattern-1 ' />
+              <PatternBg pattern="projectLeftPattern" className='is-project-pattern-2' />
+              <PatternBg pattern="projectRightPattern" className='is-project-pattern-3 ' />
             </ContainerBox>
           )
       default:
@@ -494,11 +377,79 @@ const Homepage = () => {
   }
   return (
     <Layout>
-      {pageBuilder && (
-        pageBuilder.map((section, index) => (
+      <ContainerBox className="c-section--home">
+        {heroAndCapabilities.map((section, index) => (
+          <React.Fragment key={index}>
+            {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero' && (
+              <>
+                <div className='c-hero__wrapper'>
+                  <div className="c-hero">
+                    {section.title && (
+                      <h1 className="c-hero__title" style={{maxWidth: 710}}>{section.title}</h1>
+                    )}
+                    {section.text && (
+                      <div className="c-hero__text">{section.text}</div>
+                    )}
+                    {section.cta && (
+                      <Button 
+                        target={section.cta.target} 
+                        url={section.cta.url} 
+                        text={section.cta.title} 
+                        type={BtnType.PRIMARY} 
+                        bgMode={BgMode.DARK} 
+                      />
+                    )}
+                  </div>
+                </div>
+                <MarqueeLogo />
+              </>
+            )}
+            {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites' && (
+              <div className='c-hero__wrapper'>
+                <div className="c-sf">
+                  {section.items && (
+                    <div className="c-sf__list">
+                      <div className="c-sf-list__items">
+                        {section.title && (
+                          <div className="c-section__title">{section.title}</div>
+                        )}
+                        {section.description && (
+                          <div className="c-section__desc" dangerouslySetInnerHTML={{__html: section.description}} />
+                        )}
+                        {section.cta && (
+                        <div className='c-section__cta'>
+                          <Button 
+                            target={section.cta.target} 
+                            url={section.cta.url} 
+                            text={section.cta.title} 
+                            type={BtnType.SECONDARY} 
+                            bgMode={BgMode.DARK}
+                          />
+                        </div>
+                        )}
+                      </div>
+                      {section.items.map((item, index) => (
+                        <div className="c-sf-list__items" key={index}>
+                          <div className="c-sf__num">0{index+1}</div>
+                          <div className="c-sf__title">{item.title}</div>
+                          <div className="c-sf__text" dangerouslySetInnerHTML={{__html: item.text}} />
+                        </div>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+        <PatternBg pattern="heroHighlight" className='is-hero-highlight' />
+        <PatternBg pattern="heroPattern" className='is-hero-pattern' />
+      </ContainerBox>
+      {/* Render other sections normally */}
+      {pageBuilder.filter(section => section.fieldGroupName !== 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero' && 
+        section.fieldGroupName !== 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites').map((section, index) => (
           renderSection(section, index)
-        ))
-      )}
+      ))}
     </Layout>
   )
 }

@@ -73,15 +73,6 @@
 }
 
 /// New styles for the capabilities section
-.c-section--sf{
-    padding: 4rem 0 6rem;
-    @include mq(lg){
-        padding: 8rem 0;
-    }
-    .o-section__wrapper{
-        max-width: calc(1204px - 2em);
-    }
-}
 .c-page-header__sub-title{
     &.c-sf__headline{
         color: var(--color-primary-sh);
@@ -116,33 +107,21 @@
 .c-sf__list{
     display: grid;
     grid-template-columns: 1fr;
-    border: 1px solid var(--color-gains);
-    margin: 0 0 3rem;
+    margin: 0;
+    gap: 1.5rem;
     @include mq(md){
-        margin: 0 0 4rem;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
     }
 }
 .c-sf-list__items{
-    padding: 1rem;
-    &:not(:last-child){
-        border-bottom: 1px solid var(--color-gains);
-    }
-    @include mq(md){
-        padding: 2rem;
-        &:not(:last-child){
-            border-right: 1px solid var(--color-gains);
-            border-bottom: none;
-        }
-    }
-    @include mq(lg){
-        padding: 3rem;
-    }
+    padding: 2rem;
+    background: linear-gradient(135deg, #00292A -0.01%, rgba(0, 41, 42, 0.00) 100.04%);
 }
 .c-sf__num{
     font-family: $inter;
     font-weight: 400;
-    @include font-size(17px, 1.64);
+    @include font-size(18px, 1.55);
     color: var(--color-grey);
     display: flex;
     align-items: center;
@@ -161,23 +140,20 @@
 }
 .c-sf__title{
     font-family: $inter;
-    font-weight: 600;
-    color: var(--color-text);
-    @include font-size(21px, 1.14);
-    margin: 0 0 1.5rem;
+    font-weight: bold;
+    color: var(--color-white);
+    @include font-size(29px, 1.28);
+    margin: 0 0 1.25rem;
     @include mq(md){
         @include font-size(24px, 1.16);
-        margin: 0 0 2.5rem;
+        margin: 0 0 2rem;
     }
 }
 .c-sf__text{
     font-family: $inter;
-    font-weight: 400;
-    color: var(--color-text);
-    @include font-size(14px, 1.35);
-    @include mq(md){
-        @include font-size(16px, 1.35);
-    }
+    font-weight: bold;
+    color: var(--color-white);
+    @include font-size(16px, 1.35);
     ul{
         display: grid;
         gap: 0.5rem;

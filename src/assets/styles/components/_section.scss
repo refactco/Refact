@@ -1,34 +1,28 @@
 .c-section{
     display: flex;
     flex-direction: column;
+    gap: 0.5rem;
 }
 
 .c-section__title {
     font-family: $inter;
-    font-weight: 600;
-    font-style: normal;
-    @include font-size(32px, 1.18);
+    font-weight: bold;
+    text-align: left;
+    @include font-size(32px, 1.12);
     color: var(--color-text);
     margin: 0;
-
     @include mq(md) {
-        @include font-size(40px, 1.45);
-    }
-
-    .home & {
-        text-align: center;
+        @include font-size(40px, 1.2);
     }
 }
 .c-section__desc{
     font-family: $inter;
     font-weight: 400;
-    font-style: normal;
-    @include font-size(20px, 1.35);
+    @include font-size(20px, 1.4);
     color: var(--color-text);
     margin: 0;
-
     @include mq(md) {
-        @include font-size(24px, 1.35);
+        @include font-size(22px, 1.27);
     }
     p{
         margin: 0;
@@ -36,5 +30,10 @@
             margin-bottom: 0.5rem;
         }
     }
+}
 
+.c-section__cta{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 }

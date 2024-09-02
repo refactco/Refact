@@ -9,9 +9,9 @@
 .o-section__wrapper {
   max-width: 100%;
   margin: 0 auto;
-  padding: 0 1.5rem;
+  padding: 0 1.25rem;
 
   @include mq(lg) { 
-    max-width: calc(1200px - 2em);
+    max-width: calc(1192px - 2em);
   }
 }
