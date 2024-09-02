@@ -366,7 +366,7 @@ const Homepage = () => {
                   />
                 </div>
               )}
-              <PatternBg pattern="projectRightPattern" className='is-project-pattern-1 ' />
+              <PatternBg pattern="projectRightPattern" className='is-project-pattern-1' />
               <PatternBg pattern="projectLeftPattern" className='is-project-pattern-2' />
               <PatternBg pattern="projectRightPattern" className='is-project-pattern-3 ' />
             </ContainerBox>

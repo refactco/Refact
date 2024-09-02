@@ -340,6 +340,7 @@
     background-color: var(--color-primary-r);
     position: relative;
     z-index: 1;
+    overflow: hidden;
     @include mq(lg){
         padding: 8rem 0;
     }

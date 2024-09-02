@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useStaticQuery, graphql, Link } from 'gatsby';
 import { PopupModal } from 'react-calendly';
+import Button, { BgMode, BtnType } from '../button/button';
 
 const Footer = () => {
   const data = useStaticQuery(graphql`
@@ -100,12 +101,17 @@ const Footer = () => {
               <div className="c-footer__col">
                 <div className="c-footer-cta">
                   <h4 className="c-footer-cta__title">
-                    Got Big Goals?
+                    Got big goals?
                   </h4>
                   <div className="c-footer-cta__text">
                     Whatever stage your project is at, we want to help you make it a huge success.
                   </div>
-                  <Link to="/contact" className='c-btn'>Work with us</Link>
+                  <Button 
+                    url='/contact'
+                    text='Work with us'
+                    type={BtnType.SECONDARY} 
+                    bgMode={BgMode.DARK} 
+                  />
                 </div>
               </div>
             </div>
@@ -120,6 +126,9 @@ const Footer = () => {
                 <span>
                   Copyright &copy; {new Date().getFullYear()} Refact, LLC.
                 </span>
+                <Link to="/privacy-policy" title="Privacy Policy" className='c-link'>
+                  Privacy Policy
+                </Link>
               </div>
               <div className="c-copyright__col has-badges">
                 <div className="c-footer__badges">
