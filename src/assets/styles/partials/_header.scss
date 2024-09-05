@@ -41,7 +41,7 @@
     }
     
     &.is-active{
-        background-color: var(--color-white);
+        background-color: var(--color-white) !important;
         &::before, &::after{
             opacity: 1;
         }

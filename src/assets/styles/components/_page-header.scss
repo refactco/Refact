@@ -19,17 +19,6 @@
             }
         }
     }
-    &.is-about-hero{
-        .c-page-header{
-            max-width: 1038px;
-        }
-        .c-page-header__title{
-            @include font-size(32px, 1.2);
-            @include mq(md){
-                @include font-size(64px, 1.12);
-            }
-        }
-    }
     &.is-services{
         padding: 3rem 0 1.5rem;
         @include mq(md){
@@ -141,8 +130,8 @@
 .c-page-header__title {
     margin: 0 0 0.75rem;
     font-family: $inter;
-    font-weight: 500;
-    @include font-size(36px, 1.18);
+    font-weight: bold;
+    @include font-size(36px, 1.2);
     color: var(--color-white);
     
     .t-light & {
@@ -152,6 +141,12 @@
     @include mq(md) {
         margin: 0 0 0.5rem;
         @include font-size(48px, 1.2);
+    }
+    .c-section--about &{
+        @include font-size(32px, 1.18);
+        @include mq(md){
+            @include font-size(48px, 1.16);
+        }
     }
 }
 

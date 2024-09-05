@@ -1,9 +1,6 @@
 .c-section--cta {
     padding: 4rem 0;
     background-color: var(--color-primary-r);
-    position: relative;
-    z-index: 1;
-    overflow: hidden;
     @include mq(lg){
         padding: 5rem 0;
     }
@@ -47,37 +44,6 @@
     text-align: center;
     @include mq(md){
         @include font-size(22px, 1.27);
-    }
-}
-.c-hero-pattern{
-    &.is-cta-pattern-1{
-        left: auto;
-        right: 0;
-        top: 0;
-        @media (max-width: 767px){
-            svg{
-                width: 400px;
-            }
-        }
-    }
-    &.is-cta-pattern-2{
-        left: 0;
-        top: auto;
-        bottom: 0;
-        @media (max-width: 767px){
-            svg{
-                width: 400px;
-            }
-        }
-    }
-    &.is-cta-pattern-3{
-        left: 50%;
-        transform: translateX(-50%);
-        bottom: -5rem;
-        top: auto;
-        @include mq(md){
-            bottom: -1rem;
-        }
     }
 }
 

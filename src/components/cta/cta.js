@@ -21,7 +21,7 @@ const CtaSection = () => {
       </div>
       <PatternBg pattern="ctaRightPattern" className='is-cta-pattern-1' />
       <PatternBg pattern="ctaLeftPattern" className='is-cta-pattern-2' />
-      <PatternBg pattern="ctaCircle" className='is-cta-pattern-3' />
+      <PatternBg pattern="hightlightBottom" className='is-cta-pattern-3' />
     </ContainerBox>
   );
 };

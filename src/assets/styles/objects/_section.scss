@@ -1,5 +1,8 @@
 .o-section {
   padding: 3.125em 0;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 
   @include mq(desktop) {
     padding: 4.375em 0;

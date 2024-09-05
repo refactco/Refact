@@ -1,12 +1,6 @@
 .c-section--home {
     padding: 10.5625rem 0 4rem;
     background: var(--color-primary-r);
-    overflow-x: hidden;
-    position: relative;
-    z-index: 1;
-    // @include mq(md) {
-    //     padding: 5.25rem 0 17rem;
-    // }
     @include mq(lg){
         padding: 11.5rem 0 8rem;
     }
@@ -22,54 +16,6 @@
 
     @include mq(lg) { 
         max-width: calc(1192px - 2em);
-    }
-}
-.c-hero-pattern{
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    &.is-hero-highlight{
-        @media (max-width: 767px){
-            top: 86px;
-            svg{
-                width: 336px;
-            }
-        }
-    }
-    &.is-hero-pattern{
-        top: 8rem;
-        left: auto;
-        right: 0;
-        @media (max-width: 767px){
-            top: 0;
-            svg{
-                width: 623px;
-            }
-        }
-    }
-    &.is-project-pattern-1{
-        top: 70px;
-        right: 5%;
-        left: auto;
-        @media (max-width: 991px){
-            display: none;
-        }
-    }
-    &.is-project-pattern-2{
-        top: 704px;
-        left: 5%;
-        @media (max-width: 991px){
-            display: none;
-        }
-    }
-    &.is-project-pattern-3{
-        top: 1350px;
-        right: 5%;
-        left: auto;
-        @media (max-width: 991px){
-            display: none;
-        }
     }
 }
 

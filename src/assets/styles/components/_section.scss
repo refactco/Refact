@@ -37,3 +37,109 @@
     align-items: center;
     justify-content: flex-start;
 }
+
+// Patterns
+.c-pattern{
+    position: absolute;
+    z-index: -1;
+    &.is-hero-highlight{
+        top: -121px;
+        left: 0;
+        @media (max-width: 767px){
+            top: 126px;
+            svg{
+                width: 232px;
+                height: auto;
+            }
+        }
+    }
+    &.is-hero-pattern{
+        top: 8rem;
+        right: 0;
+        @media (max-width: 767px){
+            top: 0;
+            svg{
+                width: 390px;
+                height: 554px;
+            }
+        }
+    }
+    &.is-project-pattern-1{
+        top: 70px;
+        right: 5%;
+        @media (max-width: 991px){
+            display: none;
+        }
+    }
+    &.is-project-pattern-2{
+        top: 704px;
+        left: 5%;
+        @media (max-width: 991px){
+            display: none;
+        }
+    }
+    &.is-project-pattern-3{
+        top: 1350px;
+        right: 5%;
+        @media (max-width: 991px){
+            display: none;
+        }
+    }
+    &.is-project-pattern-4{
+        top: -176px;
+        left: -117px;
+        @media (max-width: 767px){
+            top: -100px;
+            left: -20px;
+            svg{
+                width: 212px;
+                height: auto;
+            }
+        }
+    }
+    &.is-project-pattern-5{
+        bottom: -85px;
+        right: 0;
+        @media (max-width: 767px){
+            bottom: -155px;
+            right: -16px;
+            svg{
+                width: 212px;
+                height: auto;
+            }
+        }
+    }
+    &.is-cta-pattern-1{
+        right: 0;
+        top: 0;
+        @media (max-width: 767px){
+            top: 50%;
+            transform: translateY(-50%);
+            svg{
+                width: 364px;
+            }
+        }
+    }
+    &.is-cta-pattern-2{
+        left: 0;
+        bottom: 0;
+        @media (max-width: 767px){
+            bottom: 50%;
+            transform: translateY(50%);
+            svg{
+                width: 364px;
+            }
+        }
+    }
+    &.is-cta-pattern-3{
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -1rem;
+        @media (max-width: 767px){
+            svg{
+                width: 500px;
+                height: auto;
+            }
+        }
+    }
+}

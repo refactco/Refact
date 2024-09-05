@@ -1,3 +1,17 @@
+.c-section--about{
+  padding: 8.5625rem 0 3.4375rem;
+  background-color: var(--color-primary-r);
+  @include mq(md){
+    padding: 13.1875rem 0 2.5rem;
+  }
+  .c-page-header{
+    max-width: 753px;
+    margin-bottom: 5.125rem;
+    @include mq(md){
+      margin-bottom: 7.1875rem;
+    }
+  }
+}
 .c-section--refact-number{
   background-color: var(--color-primary-h);
   padding: 3rem 0;
@@ -28,6 +42,7 @@
       width: 100%;
       height: 1px;
       background-color: #2E9E62;
+      opacity: 0.2;
       position: absolute;
       left: 0;
       right: 0;
@@ -48,7 +63,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 0.5rem;
+  gap: 19px;
   width: 100%;
   @include mq(lg){
     justify-content: flex-start;
@@ -80,40 +95,28 @@
 }
 .c-refact-number__num{
   font-family: $inter;
-  font-weight: 600;
-  @include font-size(28px, 1);
-  letter-spacing: -0.84px;
-  color: var(--color-text);
-  @include mq(md){
-    @include font-size(36px, 1);
-    letter-spacing: -1.08px;
-  }
+  font-weight: bold;
+  @include font-size(32px, 1);
+  color: var(--color-white);
   @include mq(lg){
-    @include font-size(56px, 1);
-    letter-spacing: -2.8px;
+    @include font-size(48px, 1);
   }
 }
 .c-refact-number__title{
   font-family: $inter;
-  font-weight: 600;
+  font-weight: bold;
   text-align: right;
-  @include font-size(12px, 1.35);
-  color: var(--color-text);
-  letter-spacing: 0.36px;
-  text-transform: uppercase;
-  @include mq(md){
-    @include font-size(14px, 1.35);
-    letter-spacing: 0.42px;
-  }
+  @include font-size(18px, 1.2);
+  color: var(--color-white);
+  text-transform: initial;
   @include mq(lg){
-    @include font-size(16px, 1.35);
-    letter-spacing: normal;
+    @include font-size(20px, 1.2);
     text-align: left;
   }
 }
 
 .c-section--workstyle{
-  background-color: var(--color-primary-h);
+  background-color: var(--color-white);
   padding: 2rem 0;
   position: relative;
 

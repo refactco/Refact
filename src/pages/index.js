@@ -293,7 +293,7 @@ const Homepage = () => {
                         <div className={`c-projects__item c-projects__item-${section.displayMode === 'normal' ? index : index + 3} is-media-${project.mediaSettings}`} key={index}>
                           <div className='c-projects-item__col'>
                             {project.cta.target === '_blank' ?
-                              <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className={imgClasses}>
+                              <a href={project.cta.url} target={project.cta.target} rel="noopener noreferrer" className={imgClasses} title={project.title}>
                                 {(project.mediaSettings === 'image' || project.mediaSettings === 'both') && (
                                   <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
                                 )}
@@ -313,7 +313,7 @@ const Homepage = () => {
                                 )}
                               </a>
                               :
-                              <Link to={project.cta.url} className={imgClasses}>
+                              <Link to={project.cta.url} className={imgClasses} title={project.title}>
                                 {(project.mediaSettings === 'image' || project.mediaSettings === 'both') && (
                                   <GatsbyImage image={project.cover.localFile.childImageSharp.gatsbyImageData} alt={project.cover.altText} />
                                 )}
@@ -369,6 +369,8 @@ const Homepage = () => {
               <PatternBg pattern="projectRightPattern" className='is-project-pattern-1' />
               <PatternBg pattern="projectLeftPattern" className='is-project-pattern-2' />
               <PatternBg pattern="projectRightPattern" className='is-project-pattern-3 ' />
+              <PatternBg pattern="highlightLeft" className='is-project-pattern-4' />
+              <PatternBg pattern="highlightRight" className='is-project-pattern-5' />
             </ContainerBox>
           )
       default:
@@ -442,7 +444,7 @@ const Homepage = () => {
             )}
           </React.Fragment>
         ))}
-        <PatternBg pattern="heroHighlight" className='is-hero-highlight' />
+        <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
         <PatternBg pattern="heroPattern" className='is-hero-pattern' />
       </ContainerBox>
       {/* Render other sections normally */}

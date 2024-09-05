@@ -7,6 +7,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import ClientsLogo from '../components/clients-logo/clients-logo';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
+import PatternBg from '../components/patterns/pattern-bg';
 
 
 
@@ -511,13 +512,47 @@ const AboutPage = ({ data }) => {
     }
   }
   const aboutContent = data.wpPage.template.pageBuilder.pageBuilder;
+  const heroAndNumbers = pageBuilder.filter(
+    section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader' || 
+               section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers'
+  );
   return (
     <Layout>
-      {aboutContent && (
-        aboutContent.map((section, index) => (
+      <ContainerBox className="c-section--about">
+        {heroAndNumbers.map((section, index) => (
+          <React.Fragment key={index}>
+            {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader' && (
+              <div className="c-page-header">
+                {section.title && (
+                  <h1 className="c-page-header__title">
+                    {section.title}
+                  </h1>
+                )}
+              </div>
+            )}
+            {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers' && (
+              <div className='c-refact-number'>
+                {section.list && (
+                  <div className="c-refact-number__list">
+                    {section.list.map((item, index) => (
+                      <div className="c-refact-number__items"  key={index}>
+                        <div className="c-refact-number__num">{item.title}</div>
+                        <div className="c-refact-number__title">{item.text}</div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+        <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+        <PatternBg pattern="heroPattern" className='is-hero-pattern' />
+      </ContainerBox>
+      {aboutContent.filter(section => section.fieldGroupName !== 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader' && 
+        section.fieldGroupName !== 'Template_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers').map((section, index) => (
           renderSection(section, index)
-        ))
-      )}
+      ))}
     </Layout>
   );
 };
