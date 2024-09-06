@@ -92,14 +92,19 @@
         }
     }
     &.is-project-pattern-4{
-        top: -176px;
-        left: -117px;
+        top: -260px;
+        left: 0;
         @media (max-width: 767px){
             top: -100px;
-            left: -20px;
             svg{
-                width: 212px;
+                width: 232px;
                 height: auto;
+            }
+        }
+        &.is-our-value{
+            top: -393px;
+            @media (max-width: 767px){
+                top: -26px;
             }
         }
     }
@@ -107,7 +112,7 @@
         bottom: -85px;
         right: 0;
         @media (max-width: 767px){
-            bottom: -155px;
+            bottom: -80px;
             right: -16px;
             svg{
                 width: 212px;
@@ -155,6 +160,42 @@
         @media (max-width: 767px){
             svg{
                 width: 600px;
+                height: auto;
+            }
+        }
+    }
+    &.is-workstyle-pattern{
+        top: -514px;
+        left: -22px;
+        @media (max-width: 767px){
+            top: -152px;
+            left: 0;
+            svg{
+                width: 154px;
+                height: auto;
+            }
+        }
+    }
+    &.is-pattern-testimonial{
+        top: -192px;
+        left: 0;
+        z-index: 2;
+        @media (max-width: 767px){
+            top: -69px;
+            left: -1px;
+            svg{
+                width: 154px;
+                height: auto;
+            }
+        }
+    }
+    &.is-pattern-client{
+        top: -192px;
+        left: 0;
+        @media (max-width: 767px){
+            top: -99px;
+            svg{
+                width: 154px;
                 height: auto;
             }
         }

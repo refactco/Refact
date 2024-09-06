@@ -92,6 +92,22 @@
         }
     }
 }
+.c-section--sf{
+    padding: 4rem 0;
+    background-color: var(--color-primary-r);
+    @include mq(lg){
+        padding: 8rem 0;
+    }
+    .c-sf__title{
+        margin: 0 0 0.5rem;
+        @media (max-width: 767px){
+            @include font-size(28px, 1.28);
+        }
+    }
+    .c-sf__text{
+        font-weight: 400;
+    }
+}
 
 .c-sf__desc{
     font-family: $inter;

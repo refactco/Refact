@@ -1,8 +1,14 @@
 .c-section--team {
-    padding: 4rem 0 2rem;
-
+    padding: 4rem 0;
+    background-color: var(--color-primary-r);
     @include mq(md) {
-        padding: 8rem 0 4rem;
+        padding: 8rem 0;
+    }
+    .c-section__title{
+        color: var(--color-white);
+    }
+    .c-section__desc {
+        color: var(--color-white-80);
     }
 }
 
@@ -11,7 +17,7 @@
         margin-bottom: 2rem;
 
         @include mq(md) {
-            margin-bottom: 2.5rem;
+            margin-bottom: 4rem;
         }
     }
 }

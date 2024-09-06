@@ -1,6 +1,5 @@
 .c-section--client {
     padding: 3em 0;
-    overflow: hidden;
 
     @include mq(md) {
         padding: 9.75em 0 108px;
@@ -20,12 +19,15 @@
         }
     }
     &.is-about-page{
-        padding: 3rem 0 4rem;
+        padding: 4rem 0;
         @include mq(md){
             padding: 8rem 0;
         }
         .c-section__title{
             margin-bottom: 0;
+            @media (max-width: 767px){
+                @include font-size(28px, 1.28);
+            }
         }
         .c-section{
             margin-bottom: 2rem;
