@@ -7,6 +7,7 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import Button, { BgMode, BtnType } from '../components/button/button';
 import PatternBg from '../components/patterns/pattern-bg';
 import MarqueeLogo from '../components/marquee/marquee';
+import ClutchWidget from '../components/clutch-widget/clutch-widget';
 
 const Homepage = () => {
   const data = useStaticQuery(graphql`
@@ -42,36 +43,6 @@ const Homepage = () => {
                     url
                     title
                   }
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost {
-                  description
-                  fieldGroupName
-                  title
-                  cta {
-                    target
-                    title
-                    url
-                  }
-                  cover {
-                    altText
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
-                    }
-                  }
-                  video{
-                    altText
-                    filename
-                    localFile {
-                      url
-                      id
-                    }
-                    height
-                    width
-                    mimeType
-                  }
-                  mediaSettings
                 }
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Project {
                   fieldGroupName
@@ -114,12 +85,6 @@ const Homepage = () => {
                   }
                   displayMode
                 }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
-                  fieldGroupName
-                  name
-                  position
-                  text
-                }
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_LogoSection {
                   fieldGroupName
                 }
@@ -127,6 +92,16 @@ const Homepage = () => {
                   desktop
                   fieldGroupName
                   mobile
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
+                  description
+                  fieldGroupName
+                  title
+                  cta {
+                    title
+                    target
+                    url
+                  }
                 }
               }
             }
@@ -144,14 +119,8 @@ const Homepage = () => {
     switch (section.fieldGroupName) {
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_LogoSection':
         return (
-          <ContainerBox key={index} className='c-section--section-title'>
-            <div className='c-case-studies__headline'>
-              <div className="c-page-header__sub-title c-sf__headline">Case Studies</div>
-              <div className="c-sf__desc">
-                Every project is unique, but all clients get clear communication and winning results.
-              </div>
-            </div>
-
+          <ContainerBox key={index} className='c-section--clutch'>
+            <ClutchWidget />
           </ContainerBox>
         )
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Spacer':
@@ -172,108 +141,34 @@ const Homepage = () => {
             </style>
           </ContainerBox>
         )
-      case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial':
+      case 'Template_PageBuilder_Pagebuilder_PageBuilder_TextButton':
         return (
-          <ContainerBox key={index} className={`c-section--featured-testimonial is-testimonial-${index}`}>
-            <div className="c-work__testimonial">
-              <div className="c-work-testimonial__text">
-                <div className="c-work-testimonial__quote">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="64" fill="none" viewBox="0 0 64 48"><path fill="#D9EED6" d="m20 8 4-8h-8C7.16 0 0 11.16 0 20v28h28V20H12c0-12 8-12 8-12Zm28 12c0-12 8-12 8-12l4-8h-8c-8.84 0-16 11.16-16 20v28h28V20H48Z" /></svg>
-                </div>
-                <span dangerouslySetInnerHTML={{__html: section.text}} />
-              </div>
-              <div className="c-work-testimonial__info">
-                {section.name && (
-                  <div className="c-work-testimonial__name">{section.name}</div>
+          <ContainerBox key={index} className={`c-section--our-partners`}>
+            <div className="c-our-partners">
+              <div className='c-section is-center'>
+                {section.title && (
+                <h2 className='c-section__title'>{section.title}</h2>
                 )}
-                {section.position && (
-                  <div className="c-work-testimonial__position">{section.position}</div>
+                {section.description && (
+                <div className='c-section__desc'>{section.description}</div>
+                )}
+                {section.cta && (
+                  <div className='c-section__cta'>
+                    <Button 
+                      target={section.cta.target} 
+                      url={section.cta.url} 
+                      text={section.cta.title} 
+                      type={BtnType.PRIMARY} 
+                      bgMode={BgMode.LIGHT} 
+                    />
+                  </div>
                 )}
               </div>
+              <MarqueeLogo type="partners" speed={30} disableDesktop={true} />
             </div>
+            <PatternBg pattern="lightTop" className='is-our-partners' />
           </ContainerBox>
         )
-        case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost':
-          return (
-            <ContainerBox key={index} className='c-section--project is-featured'>
-              <div className="c-project">
-                <div className="c-project__items">
-                  <div className={`c-project__item c-project__item-2 is-media-${section.mediaSettings}`}>
-                    {section.cta.target === '_blank' ?
-                      <a href={section.cta.url} target={section.cta.target} rel="noopener noreferrer" className="c-project__imgs media media--hover-effect media--landscape">
-                        {(section.mediaSettings === 'image' || section.mediaSettings === 'both') && (
-                          <GatsbyImage image={section.cover.localFile.childImageSharp.gatsbyImageData} alt={section.cover.altText} />
-                        )}
-                        {(section.mediaSettings === 'video' || section.mediaSettings === 'both') && (
-                          <video
-                            alt={section.video.altText}
-                            width={section.video.width}
-                            height={section.video.height}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                          >
-                            <source src={section.video.localFile.url} type={section.video.mimeType} />
-                            Your browser does not support the video tag.
-                          </video>
-                        )}
-                      </a>
-                      :
-                      <Link to={section.cta.url} className="c-project__imgs media media--hover-effect media--landscape">
-                       {(section.mediaSettings === 'image' || section.mediaSettings === 'both') && (
-                          <GatsbyImage image={section.cover.localFile.childImageSharp.gatsbyImageData} alt={section.cover.altText} />
-                        )}
-                        {(section.mediaSettings === 'video' || section.mediaSettings === 'both') && (
-                          <video
-                            alt={section.video.altText}
-                            width={section.video.width}
-                            height={section.video.height}
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            >
-                            <source src={section.video.localFile.url} type={section.video.mimeType} />
-                            Your browser does not support the video tag.
-                          </video>
-                        )}
-                      </Link>
-                    }
-                    <h5 className='c-project__title'>
-                    {section.cta.target === '_blank' ?
-                      <a href={section.cta.url} target={section.cta.target} rel="nofollow, noopener" className='c-link c-link--blog'>
-                      {section.title}
-                      </a>
-                      :
-                      <Link to={section.cta.url} className='c-link c-link--blog'>
-                      {section.title}
-                      </Link>
-                    }
-                    </h5>
-                    <div className='c-project__text'>{section.description}</div>
-                    {section.cta.target === '_blank' ?
-                      <a href={section.cta.url} target={section.cta.target} rel="nofollow, noopener" className='c-btn--secondary'>
-                        {section.cta.title}
-                        <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                          <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                        </svg>
-                      </a>
-                      :
-                      <Link to={section.cta.url} className='c-btn--secondary'>
-                        {section.cta.title}
-                        <svg width="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <circle cx="12" cy="12" r="12" fill="#59CC51"/>
-                          <path d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z" fill="white"/>
-                        </svg>
-                      </Link>
-                    }
-                  </div>
-                </div>
-              </div>
-            </ContainerBox>
-          )
         case 'Template_PageBuilder_Pagebuilder_PageBuilder_Project':
           return (
             <ContainerBox key={index} className={`c-section--project-home`}>
@@ -403,7 +298,7 @@ const Homepage = () => {
                     )}
                   </div>
                 </div>
-                <MarqueeLogo />
+                <MarqueeLogo type="clients" speed={40} />
               </>
             )}
             {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites' && (

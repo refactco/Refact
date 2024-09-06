@@ -3,7 +3,13 @@
     flex-direction: column;
     gap: 0.5rem;
 }
-
+.is-center{
+    align-items: center;
+    .c-section__desc,
+    .c-section__title{
+        text-align: center;
+    }
+}
 .c-section__title {
     font-family: $inter;
     font-weight: bold;
@@ -142,4 +148,18 @@
             }
         }
     }
+    &.is-our-partners{
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        @media (max-width: 767px){
+            svg{
+                width: 600px;
+                height: auto;
+            }
+        }
+    }
+}
+.c-section--clutch{
+    background-color: #fafafa;
 }

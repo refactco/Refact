@@ -528,3 +528,54 @@
   font-weight: 400;
   color: var(--color-text);
 }
+
+// partners section
+.c-section--our-partners{
+  padding: 4rem 0;
+  @include mq(lg){
+    padding: 8rem 0;
+  }
+  @media (max-width: 991px){
+   .o-section__wrapper{
+    padding: 0;
+    max-width: 100%;
+   }
+   .c-section{
+    padding: 0 1.25rem;
+   }
+  }
+  .c-section{
+    max-width: 672px;
+    margin: 0 auto 2.5rem;
+    @include mq(lg){
+      margin-bottom: 4rem;
+    }
+  }
+  .c-section__desc{
+    margin-bottom: 2rem;
+    @include mq(md){
+      margin-bottom: 2.5rem;
+    }
+  }
+  .c-marquee-logo{
+    max-width: 856px;
+    margin: 0 auto;
+    gap: 3rem;
+    .rfm-initial-child-container,
+    .rfm-marquee{
+      gap: 3rem;
+    }
+  }
+  .c-marquee-logo__item{
+    padding: 0;
+    height: 32px;
+    @include mq(md){
+      height: 46px;
+    }
+    @media (max-width: 767px){
+      svg{
+        height: 100%;
+      }
+    }
+  }
+}
