@@ -473,10 +473,8 @@
     }
   }
   .c-section__title{
-    @include font-size(24px, 1.16);
-    margin-bottom: 0;
-    @include mq(md){
-      @include font-size(36px, 1.22);
+    @media (max-width: 767px){
+      @include font-size(28px, 1.16);
     }
   }
 }

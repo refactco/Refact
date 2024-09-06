@@ -70,6 +70,15 @@
             }
         }
     }
+    &.is-page-pattern{
+        top: 0;
+        right: 0;
+        @media (max-width: 767px){
+            svg{
+                height: 484px;
+            }
+        }
+    }
     &.is-project-pattern-1{
         top: 70px;
         right: 5%;
