@@ -593,4 +593,10 @@
       }
     }
   }
+  &.is-toolkit{
+    background-color: var(--color-primary-h);
+    @include mq(lg){
+      padding: 5rem 0;
+    }
+  }
 }

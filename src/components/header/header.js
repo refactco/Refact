@@ -197,7 +197,7 @@ const Header  = () => {
           <div className="c-header-wrap__text">latest Updates</div>
           {latestProject && (
             <div className='c-header__project'>
-              <Link to={latestProject.cta.url} className="c-project__img">
+              <Link to={latestProject.cta.url} className="c-project__img" title={latestProject.title}>
                 <GatsbyImage image={latestProject.cover.localFile.childImageSharp.gatsbyImageData} alt={latestProject.cover.altText} />
               </Link>
               <h5 className='c-project__title'>{latestProject.title}</h5>

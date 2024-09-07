@@ -5,7 +5,7 @@ import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
 import PatternBg from '../components/patterns/pattern-bg';
-import Button, {BgMode, BtnType}  from '../components/button/button';
+import Button, {BgMode, BtnType} from '../components/button/button';
 
 const handleSmoothScroll = (event) => {
   event.preventDefault();

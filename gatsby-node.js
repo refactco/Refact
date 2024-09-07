@@ -265,46 +265,6 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      surveyPage: wpPage(slug: { eq: "survey" }) {
-        id
-        content
-        template {
-          ... on WpTemplate_PageBuilder {
-            templateName
-            pageBuilder {
-              fieldGroupName
-              pageBuilder {
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
-                  fieldGroupName
-                  fullWidth
-                  subtitle
-                  text
-                  title
-                  cta {
-                    target
-                    title
-                    url
-                  }
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
-                  description
-                  fieldGroupName
-                  title
-                }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
-                  fieldGroupName
-                  title
-                  cta {
-                    target
-                    title
-                    url
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
       beehiivPage: wpPage(slug: { eq: "integration-toolkit-for-beehiiv" }) {
         id
         content
@@ -690,35 +650,6 @@ exports.createPages = async ({ graphql, actions }) => {
                   }
                   description
                 }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedPost {
-                  description
-                  fieldGroupName
-                  cover {
-                    altText
-                    localFile {
-                      childImageSharp {
-                        gatsbyImageData
-                      }
-                    }
-                  }
-                  video {
-                    altText
-                    filename
-                    localFile {
-                      url
-                      id
-                    }
-                    height
-                    width
-                  }
-                  cta {
-                    target
-                    title
-                    url
-                  }
-                  title
-                  mediaSettings
-                }
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
                   fieldGroupName
                   logo
@@ -899,7 +830,48 @@ exports.createPages = async ({ graphql, actions }) => {
                       }
                     }
                     title
+                    comingSoonMode
+                    wordpress
                   }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  fullWidth
+                  subtitle
+                  text
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
+                  description
+                  fieldGroupName
+                  cta {
+                    title
+                    target
+                    url
+                  }
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_CtaSection {
+                  fieldGroupName
+                  title
+                  button {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_LogoSection {
+                  fieldGroupName
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Spacer {
+                  desktop
+                  fieldGroupName
+                  mobile
                 }
               }
             }
@@ -1117,13 +1089,6 @@ exports.createPages = async ({ graphql, actions }) => {
   //   });
   // });
 
-  const survey = result.data.surveyPage.template.pageBuilder.pageBuilder;
-  survey.forEach(({ node }) => {
-    createPage({
-      path: `/survey/`,
-      component: path.resolve(`./src/templates/survey.js`),
-    });
-  });
   const beehiiv = result.data.beehiivPage.template.pageBuilder.pageBuilder;
   beehiiv.forEach(({ node }) => {
     createPage({
