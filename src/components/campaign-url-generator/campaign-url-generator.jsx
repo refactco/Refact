@@ -36,7 +36,7 @@ const CampaignURLGenerator = () => {
 
     navigator.clipboard.writeText(inputField.value)
       .then(() => {
-        console.log('Text copied to clipboard');
+        // console.log('Text copied to clipboard');
         setCopyStatus('Copied!');
         // Reset copy status after a short delay
         setTimeout(() => {

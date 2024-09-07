@@ -128,7 +128,7 @@ export default ServiceProductManagementPage;
 
 export function Head({ data }) {
   const post = data.wpPage;
-  console.log({ post });
+  // console.log({ post });
   return (
     <>
       <Seo title={post.seo.title} description={post.seo.metaDesc} />

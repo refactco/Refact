@@ -7,10 +7,6 @@
         background: var(--color-white);
     }
     &.is-page-contact{
-        // padding: 3rem 0 1.875rem;
-        // @include mq(md){
-        //     padding: 6rem 0 8rem;
-        // }
         .c-page-header{
             &.is-full{
                 .c-page-header__text{
@@ -33,20 +29,6 @@
             }
         }
     }
-    // &.is-partners-hero{
-    //     .c-page-header__cta{
-    //         display: flex;
-    //         align-items: center;
-    //         justify-content: center;
-    //         margin-top: 3rem;
-    //         @include mq(sm){
-    //             justify-content: flex-start;
-    //         }
-    //         @include mq(md){
-    //             margin-top: 2.5rem;
-    //         }
-    //     }
-    // }
     &.is-url-builder{
         padding: 48px 0;
         @include mq(md){
@@ -143,7 +125,7 @@
 }
 
 .c-page-header__title {
-    margin: 0 0 0.75rem;
+    margin: 0 0 0.5rem;
     font-family: $inter;
     font-weight: bold;
     @include font-size(36px, 1.2);
@@ -154,7 +136,6 @@
     }
 
     @include mq(md) {
-        margin: 0 0 0.5rem;
         @include font-size(48px, 1.2);
     }
     .c-section--about &{

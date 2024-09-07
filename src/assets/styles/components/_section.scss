@@ -209,6 +209,26 @@
             }
         }
     }
+    &.is-testimonial-left{
+        top: 0;
+        left: 0;
+        @media (max-width: 767px){
+            svg{
+                width: 390px;
+                height: auto;
+            }
+        }
+    }
+    &.is-testimonial-right{
+        bottom: 0;
+        right: 0;
+        @media (max-width: 767px){
+            svg{
+                width: 390px;
+                height: auto;
+            }
+        }
+    }
 }
 .c-section--clutch{
     background-color: #fafafa;
