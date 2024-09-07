@@ -1,10 +1,13 @@
 import { ApolloClient, InMemoryCache, gql, useMutation } from '@apollo/client';
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import React, { useState, useEffect } from 'react';
 import { PopupModal } from 'react-calendly';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
+import PatternBg from '../components/patterns/pattern-bg';
+import Button , { BgMode, BtnType } from '../components/button/button';
+import SpinnerIcon from '../components/spinner/spinner';
 
 // Add these functions to manage UTM cookies
 function getUTMCookies() {
@@ -112,39 +115,17 @@ const ContactPage = ({ data }) => {
   return (
     <Layout>
       {heroSection ? (
-        <ContainerBox className="o-section c-section--page-header is-page-contact">
+        <ContainerBox className="c-section--work is-page-contact">
           <div className="c-page-header is-full">
-            {heroSection.subtitle ? (
-              <div className="c-page-header__sub-title">
-                {heroSection.subtitle}
-              </div>
-            ) : null}
-            <h1 className="c-page-header__title" style={{ maxWidth: 745 }}>
+            <h1 className="c-page-header__title">
               {heroSection.title}
             </h1>
             <div
-              className="c-page-header__text" style={{ maxWidth: 745 }}
-              dangerouslySetInnerHTML={{ __html: heroSection.text }}
-            ></div>
-            {heroSection.cta ? (
-              <div className="c-page-header__cta">
-                {heroSection.cta.target === '_blank' ? (
-                  <a
-                    href={heroSection.cta.url}
-                    target="_blank"
-                    rel="nofollow, noreferrer"
-                    className="c-btn"
-                  >
-                    {heroSection.cta.title}
-                  </a>
-                ) : (
-                  <Link to={heroSection.cta.url} className="c-btn">
-                    {heroSection.cta.title}
-                  </Link>
-                )}
-              </div>
-            ) : null}
+              className="c-page-header__text" style={{ maxWidth: 800 }}
+              dangerouslySetInnerHTML={{ __html: heroSection.text }} />
           </div>
+          <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+          <PatternBg pattern="pagePattern" className='is-page-pattern' />
         </ContainerBox>
       ) : null}
       <ContainerBox className="c-section--contact">
@@ -379,9 +360,22 @@ const ContactPage = ({ data }) => {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="gform_button button"
+                  className="c-btn c-btn--primary is-btn-light gform_button button"
                 >
-                  {loading ? 'Loading...' : submitButton.text}
+                  {loading ? <SpinnerIcon /> : 
+                    ( 
+                    <>
+                      <span>{submitButton.text}</span>
+                      <div className="c-btn__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                          <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                            <path d="M6 18 18 6M8.25 6H18v9.75"/>
+                          </g>
+                        </svg>
+                      </div>
+                    </>
+                    )
+                  }
                 </button>
               </div>
             </form>
@@ -405,39 +399,74 @@ const ContactPage = ({ data }) => {
               </div>
             ) : null}
           </div>
-          <div className="c-contact-footer__info s-content">
-            <h4 className="c-contact-info__title">Want to learn more?</h4>
-            <p className="c-contact-info__text">
-              Browse our <Link to='/work'>previous projects here</Link>.  Follow us <a href='https://www.linkedin.com/company/refactco/' target='_blank' rel='noreferrer'>on LinkedIn</a>, subscribe to <a href='https://www.linkedin.com/newsletters/media-tech-report-7150380343559118848/' target='_blank' rel='noreferrer'>our newsletter</a>, and check out <Link to='/insights'>our blog</Link> to keep up with all the exciting developments in digital media.
-            </p>
-            <p style={{marginBottom: 8}}><strong>See what our clients have to say on Clutch:</strong></p>
-            <div className="c-contact-info__social">
-              <div className="c-contact-info__social-item">
+        </div>
+      </ContainerBox>
+      <ContainerBox className="c-section--learnmore">
+        <div className="c-learnmore">
+          <div className='c-learnmore__box'>
+            <div className='c-section'>
+              <h3 className='c-section__title'>Want to learn more?</h3>
+              <div className='c-section__desc'>Explore our projects, follow us on LinkedIn, subscribe to our newsletter, and check out our blog for the latest in digital media.</div>
+            </div>
+            <div className='c-learnmore__links'>
+              <Button
+                target='_blank'
+                text='subscribe to newsletter'
+                type={BtnType.SECONDARY}
+                bgMode={BgMode.LIGHT}
+                url='https://www.mediatech.report/'
+              />
+              <Button
+                text='view our work'
+                type={BtnType.SECONDARY}
+                bgMode={BgMode.LIGHT}
+                url='/work'
+              />
+              <Button
+                text='read our blog'
+                type={BtnType.SECONDARY}
+                bgMode={BgMode.LIGHT}
+                url='/insights'
+              />
+              <Button
+                target='_blank'
+                text='Follow us on linkedin'
+                type={BtnType.SECONDARY}
+                bgMode={BgMode.LIGHT}
+                url='https://www.linkedin.com/company/refactco/'
+              />
+            </div>
+          </div>
+          <div className='c-learnmore__box'>
+            <img className='c-learnmore__image' width="1040" height="850" loading='lazy' src='/clutch-bg.png' alt='clutch' />
+            <div className='c-learnmore__wrao'>
+              <div className='c-learnmore__clutch'>
+                <div className='c-learnmore-clutch__logo'>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="113" height="32" fill="none" viewBox="0 0 113 32"><path fill="#17313B" d="M29.295 0h5.183v32h-5.183V0ZM52.508 21.86c0 4.957-4.057 5.408-5.409 5.408-3.155 0-3.605-2.93-3.605-4.507V10.366H38.31v12.17c0 2.929.902 5.633 2.705 7.21C42.592 31.325 44.62 32 47.099 32c1.803 0 4.057-.45 5.409-1.803V32h5.183V10.366h-5.183V21.86ZM67.83 2.479h-5.183v7.887h-3.83v4.958h3.83V32h5.184V15.324h3.83v-4.958h-3.83V2.48ZM110.423 12.169c-1.577-1.578-3.155-2.254-5.634-2.254-1.803 0-3.605.451-4.957 1.803V0h-5.184v32h5.184V20.056c0-4.958 3.38-5.408 4.732-5.408 3.155 0 2.929 2.93 2.929 4.507v12.62h5.184V19.38c0-2.93-.677-5.634-2.254-7.211ZM87.888 25.465c-1.126.901-2.704 1.577-4.281 1.577-3.606 0-6.085-2.704-6.085-6.31 0-3.605 2.479-6.084 6.085-6.084 1.577 0 3.155.45 4.281 1.577l.676.676 3.606-3.38-.901-.676a11.555 11.555 0 0 0-7.662-2.93c-6.31 0-11.043 4.733-11.043 11.043S77.297 32 83.607 32c2.93 0 5.633-1.127 7.662-2.93l.901-.676-3.606-3.605-.676.676Z"/><path fill="#EF4335" d="M83.381 24.563a3.606 3.606 0 1 0 0-7.21 3.606 3.606 0 0 0 0 7.21Z"/><path fill="#17313B" d="M22.084 24.113c-1.802 1.802-4.507 2.93-7.436 2.93-5.634 0-9.69-4.508-9.69-10.592 0-6.085 4.056-10.592 9.915-10.592 2.704 0 5.409 1.127 7.437 3.155l.676.676 3.38-3.38-.676-.676c-2.93-2.93-6.76-4.507-10.817-4.507C6.31.9 0 7.662 0 16.45 0 25.239 6.31 32 14.648 32c4.056 0 8.113-1.578 10.817-4.507l.676-.676-3.38-3.38-.677.675Z"/></svg>
+                </div>
+                <div className='c-learnmore-clutch__text'>
+                  See what our clients have to say on Clutch.
+                </div>
+              </div>
+              <div className='c-learnmore__clutch-link'>
                 <a
-                  href="https://clutch.co/profile/refact"
-                  className="c-link"
-                  target="_blank"
-                  aria-label="Refact Client Reviews"
-                  rel="noreferrer"
+                  href='https://clutch.co/profile/refact'
+                  target='_blank'
+                  rel='noreferrer'
+                  className='c-btn c-btn--primary is-btn-light'
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="75"
-                    viewBox="0 0 87.861 25"
-                  >
-                    <path
-                      fill="#000"
-                      d="M22.861 0h4v25h-4zM40.861 17.025c0 3.826-3.217 4.131-4.174 4.131-2.391 0-2.826-2.238-2.826-3.588V8h-4v9.548c0 2.37.744 4.326 2.048 5.63 1.152 1.153 2.878 1.783 4.748 1.783 1.326 0 3.204-.413 4.204-1.326V25h4V8h-4v9.025zM52.861 2h-4v6h-3v4h3v13h4V12h3V8h-3zM68.458 19.917c-.871.783-2.021 1.217-3.283 1.217-2.782 0-4.825-2.043-4.825-4.848s1.978-4.762 4.825-4.762c1.24 0 2.412.413 3.305 1.196l.607.522 2.697-2.696-.675-.609C69.522 8.504 67.415 7.7 65.174 7.7c-5 0-8.631 3.608-8.631 8.565 0 4.936 3.718 8.673 8.631 8.673 2.283 0 4.412-.804 5.979-2.26l.652-.609-2.739-2.694-.608.542zM86.061 9.482C84.909 8.33 83.559 7.7 81.689 7.7c-1.326 0-2.828.413-3.828 1.325V0h-4v25h4v-9.365c0-3.826 2.718-4.13 3.675-4.13 2.391 0 2.325 2.239 2.325 3.587V25h4v-9.887c0-2.37-.495-4.326-1.8-5.631"
-                    />
-                    <path
-                      fill="#E62415"
-                      d="M65.043 13.438a2.891 2.891 0 1 1 0 5.784 2.891 2.891 0 0 1 0-5.784"
-                    />
-                    <path
-                      fill="#000"
-                      d="M17.261 18.721c-1.521 1.565-3.587 2.413-5.761 2.413-4.456 0-7.696-3.5-7.696-8.304 0-4.826 3.24-8.326 7.696-8.326 2.153 0 4.196.847 5.74 2.391l.608.609 2.674-2.674-.587-.609C17.718 1.938 14.718.7 11.5.7 4.935.7 0 5.917 0 12.851 0 19.764 4.957 24.96 11.5 24.96c3.24 0 6.24-1.26 8.457-3.543l.587-.609-2.652-2.717-.631.63z"
-                    />
-                  </svg>
+                  <span className='c-btn-text'>
+                    <span className='c-icon-review'>
+                      <svg xmlns="http://www.w3.org/2000/svg" width="120" height="22" fill="none" viewBox="0 0 120 22"><path fill="#fff" d="M5.08 17.16c-.758 0-1.436-.143-2.035-.427a3.627 3.627 0 0 1-1.426-1.182 3.128 3.128 0 0 1-.556-1.716h2.045c.038.477.244.868.62 1.17.374.3.825.45 1.352.45.412 0 .78-.095 1.102-.284.322-.19.576-.453.761-.79.186-.337.277-.722.273-1.154.004-.44-.09-.83-.279-1.17a2.082 2.082 0 0 0-.778-.801 2.172 2.172 0 0 0-1.136-.296 2.706 2.706 0 0 0-1.029.193 2.105 2.105 0 0 0-.8.523l-1.904-.312.608-6h6.75v1.761H3.642l-.335 3.085h.068c.216-.254.52-.464.915-.63.394-.17.826-.256 1.295-.256.705 0 1.334.167 1.887.5.553.33.988.784 1.306 1.364.319.579.478 1.242.478 1.988 0 .77-.178 1.455-.534 2.057a3.779 3.779 0 0 1-1.472 1.415c-.625.34-1.348.511-2.17.511Zm6.978-.035c-.345 0-.64-.121-.886-.364a1.178 1.178 0 0 1-.364-.886c-.003-.34.118-.633.364-.875s.541-.364.886-.364c.334 0 .623.122.87.364a1.194 1.194 0 0 1 .198 1.506c-.113.19-.265.34-.454.454-.186.11-.39.165-.614.165Zm7.2.097c-.936 0-1.74-.237-2.41-.71-.667-.478-1.18-1.165-1.54-2.063-.356-.902-.534-1.987-.534-3.256.004-1.269.184-2.348.54-3.238.36-.894.873-1.576 1.54-2.046.67-.47 1.471-.704 2.403-.704.932 0 1.733.234 2.403.704.671.47 1.184 1.152 1.54 2.046.36.893.54 1.973.54 3.238 0 1.273-.18 2.36-.54 3.261-.356.898-.869 1.584-1.54 2.057-.666.474-1.467.71-2.403.71Zm0-1.779c.726 0 1.3-.358 1.72-1.074.425-.72.637-1.778.637-3.176 0-.924-.096-1.7-.29-2.33-.193-.628-.466-1.102-.818-1.42a1.791 1.791 0 0 0-1.25-.483c-.723 0-1.295.36-1.716 1.08-.42.716-.632 1.767-.636 3.153-.004.928.089 1.709.278 2.341.193.633.466 1.11.818 1.432.353.318.771.477 1.256.477Z"/><path fill="#FF260A" d="m38.235 5.154 1.712 3.639 3.828.583c.049.008.094.03.132.063a.288.288 0 0 1 .014.408l-2.77 2.831.654 4a.287.287 0 0 1-.015.15.273.273 0 0 1-.089.119.256.256 0 0 1-.277.02L38 15.08l-3.423 1.888a.253.253 0 0 1-.277-.02.273.273 0 0 1-.09-.12.286.286 0 0 1-.014-.15l.653-4-2.77-2.832a.288.288 0 0 1 .014-.408.259.259 0 0 1 .132-.062l3.828-.583 1.713-3.64a.269.269 0 0 1 .096-.111.253.253 0 0 1 .277 0 .269.269 0 0 1 .096.112ZM57.235 5.154l1.712 3.639 3.828.583c.049.008.094.03.132.063a.288.288 0 0 1 .014.408l-2.77 2.831.654 4a.287.287 0 0 1-.015.15.273.273 0 0 1-.089.119.256.256 0 0 1-.277.02L57 15.08l-3.423 1.888a.253.253 0 0 1-.277-.02.273.273 0 0 1-.09-.12.286.286 0 0 1-.014-.15l.653-4-2.77-2.832a.288.288 0 0 1 .014-.408.259.259 0 0 1 .132-.062l3.828-.583 1.713-3.64a.269.269 0 0 1 .096-.111.253.253 0 0 1 .277 0 .269.269 0 0 1 .096.112ZM76.235 5.154l1.712 3.639 3.828.583c.049.008.094.03.132.063a.288.288 0 0 1 .014.408l-2.77 2.831.654 4a.287.287 0 0 1-.015.15.273.273 0 0 1-.089.119.256.256 0 0 1-.277.02L76 15.08l-3.423 1.888a.253.253 0 0 1-.277-.02.273.273 0 0 1-.09-.12.286.286 0 0 1-.014-.15l.653-4-2.77-2.832a.288.288 0 0 1 .014-.408.259.259 0 0 1 .132-.062l3.828-.583 1.713-3.64a.269.269 0 0 1 .096-.111.253.253 0 0 1 .277 0 .269.269 0 0 1 .096.112ZM95.235 5.154l1.712 3.639 3.828.583a.26.26 0 0 1 .132.063.287.287 0 0 1 .014.408l-2.77 2.831.654 4a.287.287 0 0 1-.015.15.273.273 0 0 1-.089.119.256.256 0 0 1-.277.02L95 15.08l-3.423 1.888a.253.253 0 0 1-.277-.02.273.273 0 0 1-.09-.12.286.286 0 0 1-.014-.15l.653-4-2.77-2.832a.288.288 0 0 1 .014-.408.259.259 0 0 1 .132-.062l3.828-.583 1.713-3.64a.269.269 0 0 1 .096-.111.253.253 0 0 1 .277 0 .269.269 0 0 1 .096.112ZM114.235 5.154l1.712 3.639 3.828.583a.26.26 0 0 1 .132.063.287.287 0 0 1 .014.408l-2.77 2.831.654 4a.284.284 0 0 1-.104.269.254.254 0 0 1-.277.021L114 15.08l-3.423 1.888a.256.256 0 0 1-.366-.14.275.275 0 0 1-.015-.15l.653-4-2.77-2.832a.287.287 0 0 1 .014-.408.26.26 0 0 1 .132-.062l3.828-.583 1.713-3.64A.263.263 0 0 1 114 5c.049 0 .097.014.139.042a.27.27 0 0 1 .096.112Z"/></svg>
+                    </span>
+                    visit our clutch profle</span>
+                  <div className="c-btn__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                        <path d="M6 18 18 6M8.25 6H18v9.75"/>
+                      </g>
+                    </svg>
+                  </div>
                 </a>
               </div>
             </div>

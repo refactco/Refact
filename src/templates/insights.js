@@ -6,6 +6,7 @@ import ResponsivePagination from 'react-responsive-pagination';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
+import Button, {BgMode, BtnType} from '../components/button/button';
 
 const InsightPage = (props) => {
   const { data, pageContext } = props;
@@ -81,21 +82,12 @@ const InsightPage = (props) => {
                   ></div>
                 )}
                 <div className="c-blog-featured__cta">
-                  <Link to={firstPost.node.uri} className="c-btn--secondary">
-                    Read More
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle cx="12" cy="12" r="12" fill="#59CC51" />
-                      <path
-                        fill="#fff"
-                        d="M17.53 12.53a.75.75 0 0 0 0-1.06l-4.773-4.773a.75.75 0 0 0-1.06 1.06L15.939 12l-4.242 4.243a.75.75 0 0 0 1.06 1.06l4.773-4.773ZM6 12.75h11v-1.5H6v1.5Z"
-                      />
-                    </svg>
-                  </Link>
+                  <Button 
+                    url={firstPost.node.uri}
+                    text="Read More"
+                    type={BtnType.SECONDARY} 
+                    bgMode={BgMode.LIGHT}
+                  />
                 </div>
               </div>
             </div>
@@ -148,21 +140,12 @@ const InsightPage = (props) => {
                       ></div>
                     )}
                     <div className="c-blog-post__cta">
-                      <Link to={node.uri} className="c-btn--secondary">
-                        Read More
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          width="24"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                        >
-                          <circle cx="12" cy="12" r="12" fill="#59CC51" />
-                          <path
-                            fill="#fff"
-                            d="M17.53 12.53a.75.75 0 0 0 0-1.06l-4.773-4.773a.75.75 0 0 0-1.06 1.06L15.939 12l-4.242 4.243a.75.75 0 0 0 1.06 1.06l4.773-4.773ZM6 12.75h11v-1.5H6v1.5Z"
-                          />
-                        </svg>
-                      </Link>
+                      <Button 
+                        url={node.uri}
+                        text="Read More"
+                        type={BtnType.SECONDARY} 
+                        bgMode={BgMode.LIGHT}
+                      />
                     </div>
                   </div>
                 ))}
@@ -196,6 +179,7 @@ export function Head({ data }) {
   return (
     <>
       <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
+      <body className="is-insight-page" />
     </>
   );
 }

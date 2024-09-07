@@ -9,6 +9,12 @@
   }
 
 }
+.c-section--single-work{
+  padding: 8.5625rem 0 4rem;
+  @include mq(md) {
+    padding: 10rem 0 5rem;
+  }
+}
 .c-works__title{
   font-family: $inter;
   @include font-size(36px, 1.22);
@@ -250,6 +256,11 @@
     }
   }
 }
+.c-related-work__info{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
 .c-section--talk{
   padding-bottom: 4rem;
   padding-top: 0.875rem;
@@ -291,4 +302,7 @@
   text-align: center;
   font-weight: 400;
   margin: 0 0 2rem;
+}
+.c-blog-post__cta{
+  display: flex;
 }

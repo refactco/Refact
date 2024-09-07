@@ -55,7 +55,7 @@ const UrlBuilder = ({data}) => {
   return (
     <Layout>
       {heroSection && (
-        <ContainerBox className="o-section c-section--page-header is-url-builder">
+        <ContainerBox className="c-section--page-header is-url-builder">
         <div className="c-page-header">
           <div className="c-page-header__sub-title">
             {heroSection.subtitle}

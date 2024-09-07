@@ -3,40 +3,46 @@ import { graphql } from "gatsby"
 import Seo from "../components/seo/seo"
 import Layout from "../components/layout/layout"
 import ContainerBox from "../components/container-box/container-box"
+import PatternBg from "../components/patterns/pattern-bg"
+import Button, {BgMode, BtnType} from "../components/button/button"
 
 const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
   return (
     <Layout>
-       <ContainerBox className="o-section c-section--page-careers">
-        <header className="c-career__header">
-            <div className="c-career__header-wrapper">
-              <div className="c-page-header">
-                <div className="c-page-header__sub-title">Careers</div>
-                <h1 className="c-page-header__title">{post.title}</h1>
-                <div className="c-career__meta">
-                  {post.careers.experience && (
-                    <div className="c-career__meta-item">
-                      <span className="c-career__meta-label">Experience</span>
-                      <span className="c-career__meta-value">{post.careers.experience[1]}</span>
-                    </div>
-                  )}
-                  {post.careers.location && (
-                  <div className="c-career__meta-item">
-                    <span className="c-career__meta-label">Location</span>
-                    <span className="c-career__meta-value">{post.careers.location}</span>
-                  </div>
-                  )}
-                  {post.careers.type && (
-                  <div className="c-career__meta-item">
-                    <span className="c-career__meta-label">Type</span>
-                    <span className="c-career__meta-value">{post.careers.type[1]}</span>
-                  </div>
-                  )}
-                </div>
+       <ContainerBox className="c-section--work c-section--page-careers">
+        <div className="c-career__header">
+          <Button 
+            url="/careers"
+            text="Back to Careers"
+            type={BtnType.SECONDARY} 
+            bgMode={BgMode.DARK}
+            icon="arrowleft"
+          />
+          <h1 className="c-page-header__title">{post.title}</h1>
+          <div className="c-career__meta">
+            {post.careers.experience && (
+              <div className="c-career__meta-item">
+                <span className="c-career__meta-label">Experience</span>
+                <span className="c-career__meta-value">{post.careers.experience[1]}</span>
               </div>
+            )}
+            {post.careers.location && (
+            <div className="c-career__meta-item">
+              <span className="c-career__meta-label">Location</span>
+              <span className="c-career__meta-value">{post.careers.location}</span>
             </div>
-          </header>
+            )}
+            {post.careers.type && (
+            <div className="c-career__meta-item">
+              <span className="c-career__meta-label">Type</span>
+              <span className="c-career__meta-value">{post.careers.type[1]}</span>
+            </div>
+            )}
+          </div>
+        </div>
+        <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+        <PatternBg pattern="pagePattern" className='is-page-pattern' />
       </ContainerBox>
       <ContainerBox className="c-section--career-single">
         <article className="c-career">
@@ -45,23 +51,21 @@ const BlogPostTemplate = ({ data }) => {
             <div className="c-career__sidebar js-career-sidebar">
               <div className="c-career__sidebar-wrapper">
               {post.careers.url ? (
-                <a 
-                  href={post.careers.url.url} 
+                <Button 
+                  url={post.careers.url.url} 
                   target={post.careers.url.target === '_blank' ? '_blank' : '_self'} 
-                  rel={post.careers.url.target === '_blank' ? 'noreferrer' : ''}
-                  className="js-career-change c-btn c-btn--primary c-btn--green"
-                >
-                  Apply Now
-                </a>
+                  text="Apply Now"
+                  type={BtnType.PRIMARY} 
+                  bgMode={BgMode.LIGHT}
+                />
               ) : (
-                <a 
-                  href={`mailto:hr@refact.co?subject=${post.title}`} 
-                  target="_blank" 
-                  rel="noreferrer" 
-                  className="js-career-change c-btn c-btn--primary c-btn--green"
-                >
-                  Apply Now
-                </a>
+                <Button 
+                  target="_blank"
+                  url={`mailto:hr@refact.co?subject=${post.title}`}
+                  text="Apply Now"
+                  type={BtnType.PRIMARY} 
+                  bgMode={BgMode.LIGHT}
+                />
               )}
               </div>
             </div>

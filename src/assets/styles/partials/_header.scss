@@ -39,6 +39,10 @@
     @include mq(md) {
         padding: 2em 0;
     }
+    .is-work-single-page &,
+    .is-insight-page &{
+       background-color: var(--color-primary-r);
+    }
     
     &.is-active{
         background-color: var(--color-white) !important;

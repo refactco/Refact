@@ -8,6 +8,9 @@ const Icons = {
   wordpress: (
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="none" viewBox="0 0 32 32"><path fill="#fff" d="M4.43 16c0 4.584 2.667 8.533 6.523 10.41L5.435 11.293A11.528 11.528 0 0 0 4.43 16ZM16 27.57c1.31-.002 2.61-.224 3.846-.657l-.083-.154-3.56-9.743-3.466 10.081c1.026.307 2.124.472 3.262.472Zm1.589-16.997 4.185 12.44 1.159-3.856c.493-1.6.872-2.748.872-3.742 0-1.436-.514-2.422-.944-3.18-.595-.964-1.139-1.774-1.139-2.719 0-1.067.8-2.05 1.95-2.05h.142a11.528 11.528 0 0 0-7.815-3.035 11.56 11.56 0 0 0-9.661 5.21l.739.02c1.209 0 3.076-.153 3.076-.153.636-.03.708.881.082.953 0 0-.626.083-1.333.114l4.227 12.533 2.533-7.59-1.807-4.943a20.647 20.647 0 0 1-1.209-.103c-.627-.04-.555-.995.07-.964 0 0 1.909.153 3.047.153 1.211 0 3.078-.153 3.078-.153.625-.03.706.881.081.953 0 0-.625.072-1.333.114v-.002ZM21.815 26a11.568 11.568 0 0 0 4.338-15.55 10.923 10.923 0 0 1-.8 5.334L21.814 26l.001-.001ZM16 29.333a13.333 13.333 0 1 1 0-26.666 13.333 13.333 0 0 1 0 26.666Z"/></svg>
   ),
+  arrowleft: (
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24"><g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2"><path d="M18 18 6 6M15.75 6H6v9.75"/></g></svg>
+  ),
 };
 interface ButtonProps {
   className?: string;
@@ -20,7 +23,7 @@ interface ButtonProps {
   disabled?: boolean;
   onClick?: () => void;
   children?: React.ReactNode;
-  icon?: "github" | "wordpress";
+  icon?: "github" | "wordpress" | "arrowleft";
 }
 
 export const BtnType = {

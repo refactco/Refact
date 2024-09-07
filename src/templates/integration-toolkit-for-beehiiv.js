@@ -83,7 +83,7 @@ const BeehiivPage = ({data}) => {
   return (
     <Layout>
       {heroSection && (
-        <ContainerBox className="o-section c-section--landing-hero">
+        <ContainerBox className="c-section--landing-hero">
           <div className="row c-landing-hero">
             <div className="col-lg-7 c-landing-hero__col">
               <div className="c-landing-hero__wrap">
@@ -172,7 +172,7 @@ const BeehiivPage = ({data}) => {
             </div>
         </ContainerBox>
         {index === 0 && featureSlides && (
-          <ContainerBox className="o-section c-section--feature-slides">
+          <ContainerBox className="c-section--feature-slides">
             <Slider {...settings} className="c-feature-slides">
               {featureSlides.list.map((slide, index) => (
                 <div className="c-feature-slide-slick" key={index}>
@@ -229,7 +229,7 @@ const BeehiivPage = ({data}) => {
             </ContainerBox>
           )}
       {textButton && (
-        <ContainerBox className="o-section c-section--btnbox">
+        <ContainerBox className="c-section--btnbox">
           <div className="c-btnbox">
             {textButton.title && (
               <h2 className="c-btnbox__title">{textButton.title}</h2>

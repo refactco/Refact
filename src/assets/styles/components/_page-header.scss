@@ -6,15 +6,6 @@
         padding-bottom: 2.5em;
         background: var(--color-white);
     }
-    &.is-page-contact{
-        .c-page-header{
-            &.is-full{
-                .c-page-header__text{
-                    max-width: 870px;
-                }
-            }
-        }
-    }
     &.is-services{
         padding: 3rem 0 1.5rem;
         @include mq(md){

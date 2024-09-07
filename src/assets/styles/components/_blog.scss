@@ -1,7 +1,7 @@
 .c-section--blog {
-  padding: 3rem 0;
+  padding: 6.5625rem 0 3rem;
   @include mq(lg) {
-    padding: 6rem 0 9.75rem;
+    padding: 10rem 0 9.75rem;
   }
   &.is-tag-archive {
     padding-top: 0;
@@ -448,9 +448,9 @@
 }
 
 .c-section--headline {
-  padding: 48px 0 0;
+  padding: 6.5625rem 0 0;
   @include mq(lg) {
-    padding: 80px 0 0;
+    padding: 10rem 0 0;
   }
 }
 

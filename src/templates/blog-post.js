@@ -9,6 +9,7 @@ import RelatedPostsSection from '../components/related-post/related-post';
 import Seo from '../components/seo/seo';
 import ShareButton from '../components/share-btn/share-btn';
 import TableOfContents from '../components/table-of-content/table-of-content';
+import PatternBg from '../components/patterns/pattern-bg';
 
 const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
@@ -18,7 +19,7 @@ const BlogPostTemplate = ({ data }) => {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <Layout>
-      <ContainerBox className="c-section--article-header">
+      <ContainerBox className="c-section--work c-section--article-header">
         <div className="c-article__header">
           <div className="c-article__category">
             {post.tags.nodes.map((tag) => (
@@ -63,6 +64,8 @@ const BlogPostTemplate = ({ data }) => {
             </div>
           </div>
         </div>
+        <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+        <PatternBg pattern="pagePattern" className='is-page-pattern' />
       </ContainerBox>
       <ContainerBox className="c-section--article">
         <article className="c-article">
