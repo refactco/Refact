@@ -8,6 +8,13 @@
         max-width: 100%;
         padding: 0;
     }
+    &.is-service-hero{
+        padding-bottom: 2.5rem;
+        .c-btn{
+            margin-bottom: 1.5rem;
+            gap: 0.5rem;
+        }
+    }
 }
 .c-hero__wrapper{
     max-width: 100%;

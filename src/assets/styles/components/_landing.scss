@@ -1,8 +1,7 @@
 .c-section--landing-hero{
-    padding: 1.5rem 0 0;
-    background-color: var(--color-primary-r);
+    padding-bottom: 0 !important;
     @include mq(md) {
-        padding: 5rem 0 1rem;
+        padding-bottom: 1rem !important;
     }
 }
 .c-landing-hero__col{

@@ -70,10 +70,10 @@ const renderSection = (section, index) => {
           <div className="c-capabilites">
             <div className='c-section'>
               {section.title && (
-                <div className="c-section__title">{section.title}</div>
+                <h2 className="c-section__title">{section.title}</h2>
               )}
               {section.description && (
-                <h2 className="c-section__desc" dangerouslySetInnerHTML={{__html:section.description}} />
+                <div className="c-section__desc" dangerouslySetInnerHTML={{__html:section.description}} />
               )}
             </div>
             {section.items && (

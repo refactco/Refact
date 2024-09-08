@@ -4,6 +4,7 @@ import Seo from "../components/seo/seo"
 import ContainerBox from "../components/container-box/container-box"
 import Layout from "../components/layout/layout"
 import CampaignURLGenerator from "../components/campaign-url-generator/campaign-url-generator"
+import PatternBg from "../components/patterns/pattern-bg"
 
 const UrlBuilder = ({data}) => {
   const urlBuilder = data.wpPage.template.pageBuilder.pageBuilder;
@@ -55,16 +56,15 @@ const UrlBuilder = ({data}) => {
   return (
     <Layout>
       {heroSection && (
-        <ContainerBox className="c-section--page-header is-url-builder">
+        <ContainerBox className="c-section--work is-url-builder">
         <div className="c-page-header">
-          <div className="c-page-header__sub-title">
-            {heroSection.subtitle}
-          </div>
           <h1 className="c-page-header__title">
             {heroSection.title}
           </h1>
           <div className="c-page-header__text" dangerouslySetInnerHTML={{__html:heroSection.text}}></div>
         </div>
+        <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+        <PatternBg pattern="pagePattern" className='is-page-pattern' />
       </ContainerBox>
       )}
       <CampaignURLGenerator />

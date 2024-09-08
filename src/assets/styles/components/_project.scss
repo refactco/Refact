@@ -58,7 +58,11 @@
 //         }
 //     }
 // }
-
+.c-project__content{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
 .c-project__items {
     display: flex;
     flex-direction: column;

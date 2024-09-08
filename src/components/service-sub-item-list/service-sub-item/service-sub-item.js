@@ -2,17 +2,17 @@ import React from 'react';
 
 const ServiceSubItem = ({ index, title, description }) => {
   return (
-    <div className="c-service-sub-item">
-      <span className="c-service-sub-item__index">
+    <div className="c-capabilites-list__items" key={index}>
+      <div className="c-sf__num">
         {index < 10 ? `0${index}` : index}
-      </span>
-      <h2 className="c-service-sub-item__title">{title}</h2>
-      <p
-        className="c-service-sub-item__description"
+      </div>
+      <div className="c-sf__title">{title}</div>
+      <div
+        className="c-sf__text"
         dangerouslySetInnerHTML={{
           __html: description,
         }}
-      ></p>
+      ></div>
     </div>
   );
 };

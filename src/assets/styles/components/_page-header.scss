@@ -20,27 +20,27 @@
             }
         }
     }
-    &.is-url-builder{
-        padding: 48px 0;
-        @include mq(md){
-            padding: 64px 0;
-        }
-        .c-page-header{
-            max-width: 932px;
-        }
-        .c-page-header__title{
-            max-width: 871px;
-            @include font-size(32px, 1.18);
-            @include mq(md){
-                @include font-size(48px, 1.2);
-            }
-        }
-        .c-page-header__text{
-            p{
-                margin: 0;
-            }
-        }
-    }
+    // &.is-url-builder{
+    //     padding: 48px 0;
+    //     @include mq(md){
+    //         padding: 64px 0;
+    //     }
+    //     .c-page-header{
+    //         max-width: 932px;
+    //     }
+    //     .c-page-header__title{
+    //         max-width: 871px;
+    //         @include font-size(32px, 1.18);
+    //         @include mq(md){
+    //             @include font-size(48px, 1.2);
+    //         }
+    //     }
+    //     .c-page-header__text{
+    //         p{
+    //             margin: 0;
+    //         }
+    //     }
+    // }
     @include mq(md) {
         padding: 6rem 0;
 
@@ -162,13 +162,13 @@
         }
     }
 }
-.c-section-services-logo{
-    background-color: var(--color-primary-r);
-    padding: 0 0 1.5rem;
-    @include mq(md){
-        padding: 2.5rem 0;
-    }
-    .c-hero-logo__wrapper{
-        margin-top: 0;
-    }
-}
+// .c-section-services-logo{
+//     background-color: var(--color-primary-r);
+//     padding: 0 0 1.5rem;
+//     @include mq(md){
+//         padding: 2.5rem 0;
+//     }
+//     .c-hero-logo__wrapper{
+//         margin-top: 0;
+//     }
+// }
