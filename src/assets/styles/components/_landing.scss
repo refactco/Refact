@@ -51,11 +51,8 @@
 }
 
 .c-section--textbox{
-  padding: 1.5rem 0;
+  padding: 2.5rem 0;
   background-color: var(--color-primary-r);
-  @include mq(md){
-    padding: 2.5rem 0;
-  }
   @include mq(lg){
     padding: 5rem 0;
   }
