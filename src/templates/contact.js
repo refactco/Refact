@@ -8,6 +8,7 @@ import Seo from '../components/seo/seo';
 import PatternBg from '../components/patterns/pattern-bg';
 import Button , { BgMode, BtnType } from '../components/button/button';
 import SpinnerIcon from '../components/spinner/spinner';
+import ClutchWidget from '../components/clutch-widget/clutch-widget';
 
 // Add these functions to manage UTM cookies
 function getUTMCookies() {
@@ -400,6 +401,9 @@ const ContactPage = ({ data }) => {
             ) : null}
           </div>
         </div>
+      </ContainerBox>
+      <ContainerBox className='c-section--clutch'>
+        <ClutchWidget />
       </ContainerBox>
       <ContainerBox className="c-section--learnmore">
         <div className="c-learnmore">
