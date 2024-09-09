@@ -122,7 +122,7 @@ const EmailSubscriber = () => {
                 }}
               />
               <button
-                className="c-btn c-btn--subscriber c-btn--green"
+                className="c-btn c-btn--primary is-btn-dark has-btn-icon c-btn--subscriber c-btn--green"
                 disabled={submitInProgress}
                 onClick={() => {
                   subscribe();
