@@ -29,7 +29,9 @@ const ServiceHero = ({ title, description }) => {
             ></div>
           </div>
         </div>
-        <MarqueeLogo type="clients" speed={40} />
+        <div className='c-marquee__hero'>
+          <MarqueeLogo type="clients" speed={40} />
+        </div>
         <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
         <PatternBg pattern="heroPattern" className='is-hero-pattern' />
       </ContainerBox>

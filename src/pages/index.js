@@ -298,7 +298,9 @@ const Homepage = () => {
                     )}
                   </div>
                 </div>
-                <MarqueeLogo type="clients" speed={40} />
+                <div className='c-marquee__hero'>
+                  <MarqueeLogo type="clients" speed={40} />
+                </div>
               </>
             )}
             {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites' && (
