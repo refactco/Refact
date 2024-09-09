@@ -70,7 +70,12 @@
     }
 }
 
-
+.c-marquee{
+    height: 84px;
+    @include mq(lg){
+        height: 100px;
+    }
+}
 .c-marquee-logo {
     .rfm-initial-child-container{
         gap: 0.75rem;
