@@ -164,7 +164,7 @@ const Homepage = () => {
                   </div>
                 )}
               </div>
-              <MarqueeLogo type="partners" speed={30} disableDesktop={true} />
+              <MarqueeLogo type="partners" speed={50} disableDesktop={true} />
             </div>
             <PatternBg pattern="lightTop" className='is-our-partners' />
           </ContainerBox>
@@ -299,7 +299,7 @@ const Homepage = () => {
                   </div>
                 </div>
                 <div className='c-marquee__hero'>
-                  <MarqueeLogo type="clients" speed={40} />
+                  <MarqueeLogo type="clients" speed={50} />
                 </div>
               </>
             )}

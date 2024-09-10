@@ -138,9 +138,8 @@ const renderSection = (section, index) => {
                                 target={item.cta.target} 
                                 url={item.cta.url} 
                                 text={item.cta.title} 
-                                type={BtnType.PRIMARY} 
+                                type={BtnType.SECONDARY} 
                                 bgMode={BgMode.LIGHT} 
-                                className="no-icon"
                               />
                             )}
                           </>
@@ -176,7 +175,7 @@ const renderSection = (section, index) => {
                 </div>
               )}
             </div>
-            <MarqueeLogo type="partners" speed={30} disableDesktop={true} />
+            <MarqueeLogo type="partners" speed={50} disableDesktop={true} />
           </div>
         </ContainerBox>
       )

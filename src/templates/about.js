@@ -311,7 +311,7 @@ const AboutPage = ({ data }) => {
             )
           case 'Template_PageBuilder_Pagebuilder_PageBuilder_Faqs':
             return (
-              <ContainerBox key={index} className={`c-section--faq`}>
+              <ContainerBox key={index} className={`c-section--faq is-about-page`}>
                 <div className="c-faq">
                   <div className='c-faq__col'>
                     <div className='c-section'>

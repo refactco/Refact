@@ -55,6 +55,11 @@
     @include mq(md) {
         @include font-size(64px, 1.15);
     }
+    .home &{
+        @media (max-width: 500px){
+            max-width: 277px !important;
+        }
+    }
 }
 
 .c-hero__text {

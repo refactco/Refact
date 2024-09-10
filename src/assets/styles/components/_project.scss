@@ -394,6 +394,8 @@
     }
 }
 .c-projects-item__info{
+    position: relative;
+    z-index: 2;
     margin: 0;
     @include mq(md){
         margin-bottom: 1.25rem;

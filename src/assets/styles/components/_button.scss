@@ -21,7 +21,7 @@
     overflow: hidden;
     height: 43px;
     white-space: nowrap;
-    transition: color .25s linear;
+    transition: color .35s ease-in-out;
     &:before{
         content: '';
         position: absolute;
@@ -31,7 +31,7 @@
         height: 100%;
         background: var(--color-primary-t);
         z-index: -1;
-        transition: width .25s linear;
+        transition: width .35s ease-in-out;
     }
     &:hover{
         color: var(--color-text);
@@ -93,7 +93,7 @@
             bottom: 0;
             left: 0;
             background-color: var(--color-white);
-            transition: width .25s linear;
+            transition: width .35s ease-in-out;
         }
         &:hover{
             color: var(--color-white);
@@ -167,7 +167,7 @@
     background-color: var(--color-text);
     border-radius: 9999px;
     color: var(--color-white);
-    transition: color .25s linear;
+    transition: color .35s ease-in-out;
     svg{
         width: 1.34375rem;
         // height: 1.34375rem;

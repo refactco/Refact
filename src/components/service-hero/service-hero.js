@@ -30,7 +30,7 @@ const ServiceHero = ({ title, description }) => {
           </div>
         </div>
         <div className='c-marquee__hero'>
-          <MarqueeLogo type="clients" speed={40} />
+          <MarqueeLogo type="clients" speed={50} />
         </div>
         <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
         <PatternBg pattern="heroPattern" className='is-hero-pattern' />

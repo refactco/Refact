@@ -242,7 +242,9 @@ const ContactPage = ({ data }) => {
                       className={[
                         'gfield',
                         `gfield--type-${type.toLowerCase()}`,
-                        'gfield--width-full',
+                        ['textarea', 'checkbox'].includes(type.toLowerCase()) || (cssClass && cssClass.includes('has-full-width')) 
+                          ? 'gfield--width-full' 
+                          : 'gfield--width-half',
                         error ? 'gfield_error' : '',
                         cssClass ? cssClass : '',
                         visibility === 'HIDDEN' ? 'gfield_visibility_hidden' : 'gfield_visibility_visible',
