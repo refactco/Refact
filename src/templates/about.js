@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { graphql, Link } from 'gatsby';
+import { graphql } from 'gatsby';
 import Layout from "../components/layout/layout";
 import ContainerBox from '../components/container-box/container-box';
 import Seo from '../components/seo/seo';
@@ -7,6 +7,9 @@ import { GatsbyImage } from 'gatsby-plugin-image';
 import ClientsLogo from '../components/clients-logo/clients-logo';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
+import PatternBg from '../components/patterns/pattern-bg';
+import Button, {BgMode, BtnType} from '../components/button/button';
+import ClutchWidget from '../components/clutch-widget/clutch-widget';
 
 
 
@@ -117,33 +120,16 @@ const AboutPage = ({ data }) => {
   };
   const renderSection = (section, index) => {
     switch (section.fieldGroupName) {
-      case 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader':
-        return (
-          <ContainerBox key={index} className="c-section--page-header is-about-hero">
-            <div className="c-page-header">
-                {section.subtitle && (
-                  <div className="c-page-header__sub-title">
-                    {section.subtitle}
-                  </div>
-                )}
-                {section.title && (
-                  <h1 className="c-page-header__title">
-                    {section.title}
-                  </h1>
-                )}
-              </div>
-          </ContainerBox>
-        )
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Team':
         return (
           <ContainerBox key={index} className="c-section--team">
             <div className="c-team">
               <div className='c-section'>
                 {section.title && (
-                  <div className="c-page-header__sub-title c-sf__headline">{section.title}</div>
+                  <div className="c-section__title">{section.title}</div>
                 )}
                 {section.description && (
-                  <h2 className="c-section__title" dangerouslySetInnerHTML={{__html:section.description}} />
+                  <h2 className="c-section__desc" dangerouslySetInnerHTML={{__html:section.description}} />
                 )}
               </div>
               {section.team && (
@@ -162,6 +148,11 @@ const AboutPage = ({ data }) => {
                 </div>
               )}
             </div>
+            <PatternBg pattern="projectRightPattern" className='is-project-pattern-1' />
+            <PatternBg pattern="projectLeftPattern" className='is-project-pattern-2' />
+            <PatternBg pattern="projectRightPattern" className='is-project-pattern-3 ' />
+            <PatternBg pattern="highlightLeft" className='is-project-pattern-4' />
+            <PatternBg pattern="highlightRight" className='is-project-pattern-5' />
           </ContainerBox>
         )
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Spacer':
@@ -184,93 +175,44 @@ const AboutPage = ({ data }) => {
         )
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites':
         return (
-          <ContainerBox key={index} className="c-section--capabilites">
-            <div className="c-capabilites">
-              <div className='c-section'>
-                {section.title && (
-                  <div className="c-page-header__sub-title c-sf__headline">{section.title}</div>
-                )}
-                {section.description && (
-                  <h2 className="c-section__title" dangerouslySetInnerHTML={{__html:section.description}} />
-                )}
-              </div>
-              {section.items && (
-                <div className="c-capabilites__list">
-                  {section.items.map((item, index) => (
-                    <div className="c-capabilites-list__items"  key={index}>
-                      <div className="c-sf__num">0{index+1}</div>
-                      <div className="c-sf__title">{item.title}</div>
-                      <div className="c-sf__text" dangerouslySetInnerHTML={{__html: item.text}} />
-                    </div>
-                  ))}
-                </div>
-              )}
-              {section.cta && (
-                <div className='c-sf__cta'>
-                  {section.cta.target === '_blank' ? (
-                    <a 
-                      href={section.cta.url} 
-                      className="c-services-items__link c-btn--secondary"
-                      target="_blank" 
-                      rel="noopener noreferrer"
-                    >
-                      {section.cta.title}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle cx="12" cy="12" r="12" fill="#31A329" />
-                        <path
-                          d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </a>
-                  ) : (
-                    <Link to={section.cta.url} className="c-services-items__link c-btn--secondary">
-                      {section.cta.title}
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle cx="12" cy="12" r="12" fill="#31A329" />
-                        <path
-                          d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </Link>
+          <ContainerBox key={index} className="c-section--sf">
+            {section.items && (
+              <div className="c-sf__list">
+                <div className="c-sf-list__items">
+                  {section.title && (
+                    <div className="c-section__title">{section.title}</div>
+                  )}
+                  {section.description && (
+                    <div className="c-section__desc" dangerouslySetInnerHTML={{__html: section.description}} />
+                  )}
+                  {section.cta && (
+                  <div className='c-section__cta'>
+                    <Button 
+                      target={section.cta.target} 
+                      url={section.cta.url} 
+                      text={section.cta.title} 
+                      type={BtnType.SECONDARY} 
+                      bgMode={BgMode.DARK}
+                    />
+                  </div>
                   )}
                 </div>
-              )}
-            </div>
+                {section.items.map((item, index) => (
+                  <div className="c-sf-list__items" key={index}>
+                    <div className="c-sf__num">0{index+1}</div>
+                    <div className="c-sf__title">{item.title}</div>
+                    <div className="c-sf__text" dangerouslySetInnerHTML={{__html: item.text}} />
+                  </div>
+                ))}
+              </div>
+            )}
+            <PatternBg pattern="highlightLeft" className='is-project-pattern-4 is-our-value' />
           </ContainerBox>
         )
-      case 'Template_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial':
+      case 'Template_PageBuilder_Pagebuilder_PageBuilder_LogoSection':
         return (
-          <ContainerBox key={index} className={`c-section--featured-testimonial is-testimonial-${index}`}>
-            <div className="c-work__testimonial">
-              <div className="c-work-testimonial__text">
-                <div className="c-work-testimonial__quote">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="64" fill="none" viewBox="0 0 64 48"><path fill="#D9EED6" d="m20 8 4-8h-8C7.16 0 0 11.16 0 20v28h28V20H12c0-12 8-12 8-12Zm28 12c0-12 8-12 8-12l4-8h-8c-8.84 0-16 11.16-16 20v28h28V20H48Z" /></svg>
-                </div>
-                <span dangerouslySetInnerHTML={{__html: section.text}} />
-              </div>
-              <div className="c-work-testimonial__info">
-                {section.name && (
-                  <div className="c-work-testimonial__name">{section.name}</div>
-                )}
-                {section.position && (
-                  <div className="c-work-testimonial__position">{section.position}</div>
-                )}
-              </div>
-            </div>
+          <ContainerBox key={index} className='c-section--clutch'>
+            <ClutchWidget />
           </ContainerBox>
         )
         case 'Template_PageBuilder_Pagebuilder_PageBuilder_Clients':
@@ -279,54 +221,25 @@ const AboutPage = ({ data }) => {
               <div className="c-client">
                 <div className='c-section'>
                   {section.title && (
-                    <div className="c-page-header__sub-title c-sf__headline">{section.title}</div>
+                    <div className="c-section__title">{section.title}</div>
                   )}
                   {section.description && (
-                    <h2 className="c-section__title" dangerouslySetInnerHTML={{__html:section.description}} />
+                    <h2 className="c-section__desc" dangerouslySetInnerHTML={{__html:section.description}} />
                   )}
                 </div>
                 {section.showClientLogos && (
                   <ClientsLogo />
                 )}
                 <div className='c-sf__cta'>
-                  <Link to="/work" className="c-services-items__link c-btn--secondary">
-                      read more success stories
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                      >
-                        <circle cx="12" cy="12" r="12" fill="#31A329" />
-                        <path
-                          d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                          fill="white"
-                        />
-                      </svg>
-                    </Link>
+                  <Button 
+                    url="/work"
+                    text="read more success stories"
+                    type={BtnType.SECONDARY} 
+                    bgMode={BgMode.LIGHT} 
+                  />
                 </div>
               </div>
-            </ContainerBox>
-          )
-        case 'Template_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers':
-          return (
-            <ContainerBox key={index} className={`c-section--refact-number`}>
-              <div className='c-refact-number'>
-                {section.headline && (
-                  <div className="c-page-header__sub-title c-sf__headline">{section.headline}</div>
-                )}
-                {section.list && (
-                  <div className="c-refact-number__list">
-                    {section.list.map((item, index) => (
-                      <div className="c-refact-number__items"  key={index}>
-                        <div className="c-refact-number__num">{item.title}</div>
-                        <div className="c-refact-number__title">{item.text}</div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
+              <PatternBg pattern="lightLeft" className='is-pattern-client' />
             </ContainerBox>
           )
           case 'Template_PageBuilder_Pagebuilder_PageBuilder_TextSection':
@@ -334,9 +247,6 @@ const AboutPage = ({ data }) => {
               <ContainerBox key={index} className={`c-section--workstyle`}>
                 <div className='c-workstyle'>
                   <div className='c-workstyle__content'>
-                    {section.subHeading && (
-                      <div className="c-page-header__sub-title c-sf__headline">{section.subHeading}</div>
-                    )}
                     {section.title && (
                       <h2 className="c-section__title">{section.title}</h2>
                     )}
@@ -354,6 +264,7 @@ const AboutPage = ({ data }) => {
                     </div>
                   )}
                 </div>
+                <PatternBg pattern="lightLeft" className='is-workstyle-pattern' />
               </ContainerBox>
             )
           case 'Template_PageBuilder_Pagebuilder_PageBuilder_Testimonials':
@@ -385,75 +296,33 @@ const AboutPage = ({ data }) => {
                   )}
                   {section.cta && (
                     <div className='c-sf__cta'>
-                      {section.cta.target === '_blank' ? (
-                        <a 
-                          href={section.cta.url} 
-                          className="c-services-items__link c-btn--secondary"
-                          target="_blank" 
-                          rel="noopener noreferrer"
-                        >
-                          {section.cta.title}
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                          >
-                            <circle cx="12" cy="12" r="12" fill="#31A329" />
-                            <path
-                              d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                              fill="white"
-                            />
-                          </svg>
-                        </a>
-                      ) : (
-                        <Link to={section.cta.url} className="c-services-items__link c-btn--secondary">
-                          {section.cta.title}
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                          >
-                            <circle cx="12" cy="12" r="12" fill="#31A329" />
-                            <path
-                              d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                              fill="white"
-                            />
-                          </svg>
-                        </Link>
-                      )}
+                      <Button 
+                        target={section.cta.target} 
+                        url={section.cta.url} 
+                        text={section.cta.title} 
+                        type={BtnType.SECONDARY} 
+                        bgMode={BgMode.LIGHT} 
+                      />
                     </div>
                   )}
                 </div>
+                <PatternBg pattern="lightLeft" className='is-pattern-testimonial' />
               </ContainerBox>
             )
           case 'Template_PageBuilder_Pagebuilder_PageBuilder_Faqs':
             return (
-              <ContainerBox key={index} className={`c-section--faq`}>
+              <ContainerBox key={index} className={`c-section--faq is-about-page`}>
                 <div className="c-faq">
                   <div className='c-faq__col'>
                     <div className='c-section'>
                       <h2 className="c-section__title">FAQs</h2>
                       <div className='c-sf__cta'>
-                        <Link to="/toolkit" className="c-services-items__link c-btn--secondary">
-                            Learn More About Our Tech
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="24"
-                              height="24"
-                              viewBox="0 0 24 24"
-                              fill="none"
-                            >
-                              <circle cx="12" cy="12" r="12" fill="#31A329" />
-                              <path
-                                d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                                fill="white"
-                              />
-                            </svg>
-                          </Link>
+                        <Button 
+                          url="/toolkit"
+                          text="Learn More About Our Tech"
+                          type={BtnType.SECONDARY} 
+                          bgMode={BgMode.LIGHT} 
+                        />
                       </div>
                     </div>
                   </div>
@@ -485,25 +354,16 @@ const AboutPage = ({ data }) => {
                     ))}
                     </div>
                     <div className='c-sf__cta'>
-                      <Link to="/toolkit" className="c-services-items__link c-btn--secondary">
-                          Learn More About Our Tech
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            width="24"
-                            height="24"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                          >
-                            <circle cx="12" cy="12" r="12" fill="#31A329" />
-                            <path
-                              d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                              fill="white"
-                            />
-                          </svg>
-                        </Link>
+                      <Button 
+                        url="/toolkit"
+                        text="Learn More About Our Tech"
+                        type={BtnType.SECONDARY} 
+                        bgMode={BgMode.LIGHT} 
+                      />
                     </div>
                   </div>
                 </div>
+                <PatternBg pattern="lightLeft" className='is-pattern-client' />
               </ContainerBox>
             )
       default:
@@ -511,13 +371,47 @@ const AboutPage = ({ data }) => {
     }
   }
   const aboutContent = data.wpPage.template.pageBuilder.pageBuilder;
+  const heroAndNumbers = pageBuilder.filter(
+    section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader' || 
+               section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers'
+  );
   return (
     <Layout>
-      {aboutContent && (
-        aboutContent.map((section, index) => (
+      <ContainerBox className="c-section--about">
+        {heroAndNumbers.map((section, index) => (
+          <React.Fragment key={index}>
+            {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader' && (
+              <div className="c-page-header">
+                {section.title && (
+                  <h1 className="c-page-header__title">
+                    {section.title}
+                  </h1>
+                )}
+              </div>
+            )}
+            {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers' && (
+              <div className='c-refact-number'>
+                {section.list && (
+                  <div className="c-refact-number__list">
+                    {section.list.map((item, index) => (
+                      <div className="c-refact-number__items"  key={index}>
+                        <div className="c-refact-number__num">{item.title}</div>
+                        <div className="c-refact-number__title" dangerouslySetInnerHTML={{__html:item.text}} />
+                      </div>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
+          </React.Fragment>
+        ))}
+        <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+        <PatternBg pattern="heroPattern" className='is-hero-pattern' />
+      </ContainerBox>
+      {aboutContent.filter(section => section.fieldGroupName !== 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader' && 
+        section.fieldGroupName !== 'Template_PageBuilder_Pagebuilder_PageBuilder_RefactInNumbers').map((section, index) => (
           renderSection(section, index)
-        ))
-      )}
+      ))}
     </Layout>
   );
 };
@@ -643,12 +537,6 @@ export const pageQuery = graphql`
                   text
                 }
               }
-              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_FeaturedTestimonial {
-                fieldGroupName
-                name
-                position
-                text
-              }
               ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
                 fieldGroupName
                 list {
@@ -661,6 +549,9 @@ export const pageQuery = graphql`
                 desktop
                 fieldGroupName
                 mobile
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_LogoSection {
+                fieldGroupName
               }
             }
           }

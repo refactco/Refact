@@ -1,5 +1,5 @@
 .c-section--header {
-    background-color: var(--color-primary-r);
+    background-color: transparent;
     padding: 1em 0;
     position: relative;
     margin: 0 0 -1px;
@@ -39,12 +39,13 @@
     @include mq(md) {
         padding: 2em 0;
     }
-    
-    .o-section__wrapper {
-        max-width: 1328px;
+    .is-work-single-page &,
+    .is-insight-page &{
+       background-color: var(--color-primary-r);
     }
+    
     &.is-active{
-        background-color: var(--color-white);
+        background-color: var(--color-white) !important;
         &::before, &::after{
             opacity: 1;
         }
@@ -346,11 +347,12 @@
     z-index: 9999;
 }
 .refact-section-header-sticky {
-	position: sticky;
+	position: fixed;
+    width: 100%;
 	top: 0;
 }
 .refact-section-header-hidden {
-	transform: translateY(-100%);
+	transform: translateY(-120%);
 }
 .site-header.animate {
 	transition: transform 0.15s ease-out;
@@ -358,6 +360,7 @@
 .site-header.is-reset {
 	.c-section--header {
 		padding: 1.5em 0;
+        background-color: var(--color-primary-r);
 	}
 }
 

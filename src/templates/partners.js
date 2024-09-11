@@ -1,9 +1,11 @@
-import { Link, graphql } from 'gatsby';
+import { graphql } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React from 'react';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
+import PatternBg from '../components/patterns/pattern-bg';
+import Button, {BgMode, BtnType} from '../components/button/button';
 
 const handleSmoothScroll = (event) => {
   event.preventDefault();
@@ -22,20 +24,15 @@ const renderSection = (section, index) => {
   switch (section.fieldGroupName) {
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader':
       return (
-        <ContainerBox key={index} className="o-section c-section--page-header is-partners-hero">
+        <ContainerBox key={index} className="c-section-partners">
           <div className="c-page-header is-full">
-            {section.subtitle && (
-              <div className="c-page-header__sub-title">
-                {section.subtitle}
-              </div>
-            )}
-            <h1 className="c-page-header__title" style={{ maxWidth: 760 }}>
+            <h1 className="c-page-header__title" style={{ maxWidth: 724 }}>
               {section.title}
             </h1>
             <div
               className="c-page-header__text"
               dangerouslySetInnerHTML={{ __html: section.text }}
-              style={{ maxWidth: 880 }}
+              style={{ maxWidth: 800 }}
             ></div>
             {section.cta && (
               <div className="c-page-header__cta">
@@ -49,13 +46,22 @@ const renderSection = (section, index) => {
                     {section.cta.title}
                   </a>
                 ) : (
-                  <a href={section.cta.url} className="c-btn" onClick={handleSmoothScroll}>
-                    {section.cta.title}
+                  <a href={section.cta.url} className="c-btn c-btn--primary is-btn-dark" onClick={handleSmoothScroll}>
+                    <span>{section.cta.title}</span>
+                    <div className="c-btn__icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                        <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                          <path d="M6 18 18 6M8.25 6H18v9.75"/>
+                        </g>
+                      </svg>
+                    </div>
                   </a>
                 )}
               </div>
             )}
           </div>
+          <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+          <PatternBg pattern="pagePattern" className='is-page-pattern' />
         </ContainerBox>
       )
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites':
@@ -64,14 +70,14 @@ const renderSection = (section, index) => {
           <div className="c-capabilites">
             <div className='c-section'>
               {section.title && (
-                <div className="c-page-header__sub-title c-sf__headline">{section.title}</div>
+                <h2 className="c-section__title">{section.title}</h2>
               )}
               {section.description && (
-                <h2 className="c-section__title" dangerouslySetInnerHTML={{__html:section.description}} />
+                <div className="c-section__desc" dangerouslySetInnerHTML={{__html:section.description}} />
               )}
             </div>
             {section.items && (
-              <div className="c-capabilites__list">
+              <div className="c-sf__list">
                 {section.items.map((item, index) => (
                   <div className="c-capabilites-list__items"  key={index}>
                     <div className="c-sf__num">0{index+1}</div>
@@ -83,46 +89,13 @@ const renderSection = (section, index) => {
             )}
             {section.cta && (
               <div className='c-sf__cta'>
-                {section.cta.target === '_blank' ? (
-                  <a 
-                    href={section.cta.url} 
-                    className="c-services-items__link c-btn--secondary"
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    {section.cta.title}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle cx="12" cy="12" r="12" fill="#31A329" />
-                      <path
-                        d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </a>
-                ) : (
-                  <Link to={section.cta.url} className="c-services-items__link c-btn--secondary">
-                    {section.cta.title}
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="24"
-                      height="24"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                    >
-                      <circle cx="12" cy="12" r="12" fill="#31A329" />
-                      <path
-                        d="M17.5303 12.5303C17.8232 12.2374 17.8232 11.7626 17.5303 11.4697L12.7574 6.6967C12.4645 6.40381 11.9896 6.40381 11.6967 6.6967C11.4038 6.98959 11.4038 7.46447 11.6967 7.75736L15.9393 12L11.6967 16.2426C11.4038 16.5355 11.4038 17.0104 11.6967 17.3033C11.9896 17.5962 12.4645 17.5962 12.7574 17.3033L17.5303 12.5303ZM6 12.75L17 12.75V11.25L6 11.25V12.75Z"
-                        fill="white"
-                      />
-                    </svg>
-                  </Link>
-                )}
+                <Button 
+                  target={section.cta.target} 
+                  url={section.cta.url} 
+                  text={section.cta.title} 
+                  type={BtnType.SECONDARY} 
+                  bgMode={BgMode.LIGHT}
+                />
               </div>
             )}
           </div>
@@ -166,6 +139,7 @@ const renderSection = (section, index) => {
                 </div>
               )}
           </div>
+          <PatternBg pattern="lightTop" className='is-our-partners' />
         </ContainerBox>
       )
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_Spacer':

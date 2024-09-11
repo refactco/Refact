@@ -179,7 +179,15 @@
 .c-section--faq{
   padding: 4rem 0;
   @include mq(md){
-    padding: 6rem 0;
+    padding: 8rem 0;
+  }
+  &.is-about-page{
+    .c-section{
+      gap: 0;
+    }
+    .c-faq__items.is-active{
+      background-color: transparent;
+    }
   }
 }
 .c-faq{

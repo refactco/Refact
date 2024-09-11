@@ -6,111 +6,24 @@
   }
   &.c-service-sub-item-list--white-background {
     background-color: var(--color-white);
+    .c-capabilites-list__items{
+      background: linear-gradient(135deg, #e5f7e4 -.01%, rgba(0, 41, 42, 0) 100.04%);
+    }
   }
 
   .c-service-sub-item-list__wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 2.5rem;
+    gap: 1.5rem;
 
     @include mq(md) {
-      gap: 7.5rem;
+      gap: 2.5rem;
       grid-template-columns: 1fr 1fr;
 
       &.c-service-sub-item-list__wrapper--three-column {
-        gap: 3rem;
         grid-template-columns: 1fr 1fr 1fr;
       }
     }
   }
 
-  .c-service-sub-item-list__title {
-    color: var(--color-primary-sh);
-    letter-spacing: 0.02625rem;
-    margin-bottom: 1rem;
-  }
-
-  .c-service-sub-item-list__description {
-    color: var(--color-primary-r);
-    font-family: Sentient;
-    font-weight: 400;
-    margin-block: 0 1.5rem;
-    @include font-size(22px, 1.5);
-
-    @include mq(md) {
-      margin-block: 0 4rem;
-      @include font-size(40px, 1.2);
-    }
-  }
-}
-
-.c-service-sub-item {
-  // border: 1px solid var(--color-primary-sh);
-  background-color: transparent;
-  // display: flex;
-  // flex-direction: column;
-  // justify-content: space-between;
-  // align-items: flex-start;
-  // flex-shrink: 0;
-  text-decoration: none;
-
-  .c-service-sub-item__index {
-    display: inline-block;
-    color: var(--color-grey);
-    font-family: $inter;
-    font-weight: 400;
-    @include font-size(14px, 1.35);
-    margin-bottom: 0.5rem;
-
-    @include mq(md) {
-      @include font-size(19px, 1.5);
-      margin-bottom: 0;
-    }
-
-    &::after {
-      content: '';
-      display: inline-block;
-      vertical-align: middle;
-      margin-inline-start: 0.25rem;
-      width: 2rem;
-      height: 0.0625rem;
-      background: var(--color-grey);
-    }
-  }
-
-  .c-service-sub-item__title {
-    color: var(--color-primary-r);
-    font-family: $inter;
-    font-weight: 600;
-    margin: 0 0 0.5rem;
-    @include font-size(18px, 1.5);
-
-    @include mq(md) {
-      @include font-size(24px, 1.2);
-    }
-  }
-
-  .c-service-sub-item__description {
-    color: var(--color-primary-r);
-    font-family: $inter;
-    font-weight: 400;
-    margin: 0;
-    @include font-size(14px, 1.5);
-
-    @include mq(md) {
-      @include font-size(16px, 1.35);
-    }
-  }
-
-  .c-service-sub-item__link {
-    color: var(--color-white);
-    font-family: $inter;
-    @include font-size(16px, 1.5);
-    font-weight: 600;
-
-    & > svg {
-      margin-inline-start: 1.5rem;
-      vertical-align: middle;
-    }
-  }
 }

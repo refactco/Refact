@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import Layout from "../components/layout/layout";
 import ContainerBox from '../components/container-box/container-box';
 import Seo from '../components/seo/seo';
+import PatternBg from '../components/patterns/pattern-bg';
 
 const PrivacyPage = () => {
   const data = useStaticQuery(graphql`
@@ -31,19 +32,16 @@ const privacyItem = data.privacyPage.template.defaultPages;
 const privacyContent = data.privacyPage.content;
   return (
     <Layout>
-      <ContainerBox className="c-section--pagehead">
+      <ContainerBox className="c-section--work c-section--pagehead">
         <div className="c-pagehead">
-          {privacyItem.headline && (
-            <div className="c-page-header__sub-title">
-              {privacyItem.headline}
-            </div>
-          )}
           {privacyItem.title && (
             <h1 className="c-page-header__title">
               {privacyItem.title}
             </h1>
           )}
         </div>
+        <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+        <PatternBg pattern="pagePattern" className='is-page-pattern' />
       </ContainerBox>
       <ContainerBox className="c-section--page">
         <div className="row c-page">

@@ -1,8 +1,7 @@
 .c-section--landing-hero{
-    padding: 1.5rem 0 0;
-    background-color: var(--color-primary-r);
+    padding-bottom: 0 !important;
     @include mq(md) {
-        padding: 5rem 0 1rem;
+        padding-bottom: 1rem !important;
     }
 }
 .c-landing-hero__col{
@@ -30,13 +29,13 @@
   }
 }
 .c-landing-hero__title{
-  @include font-size(32px, 1.1);
+  @include font-size(32px, 1.35);
   font-weight: 700;
   font-family: $inter;
   color: var(--color-white);
   margin: 0 0 1.5rem;
   @include mq(md){
-    @include font-size(48px, 1.2);
+    @include font-size(48px, 1.4);
   }
 }
 .c-landing-hero__text{
@@ -52,11 +51,8 @@
 }
 
 .c-section--textbox{
-  padding: 1.5rem 0;
+  padding: 2.5rem 0;
   background-color: var(--color-primary-r);
-  @include mq(md){
-    padding: 2.5rem 0;
-  }
   @include mq(lg){
     padding: 5rem 0;
   }
@@ -295,14 +291,6 @@
   }
   @include mq(lg){
     padding: 5rem 0;
-  }
-  .c-btn{
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-    @include mq(sm){
-      width: auto;
-    }
   }
 }
 .c-btnbox{

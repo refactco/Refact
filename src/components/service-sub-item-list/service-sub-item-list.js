@@ -19,14 +19,15 @@ const ServiceSubItemList = ({
 
   return (
     <ContainerBox className={`c-service-sub-item-list ${backColorClassName}`}>
-      {title ? (
-        <div className="c-page-header__sub-title c-service-sub-item-list__title">
-          {title}
-        </div>
-      ) : null}
-      {description ? (
-        <p className="c-service-sub-item-list__description" style={{ maxWidth: 924 }}>{description}</p>
-      ) : null}
+      <div className='c-capabilites'>
+      {title && (
+      <div className='c-section'>
+        <h2 className="c-section__title">{title}</h2>
+        {description && (
+          <div className="c-section__desc" dangerouslySetInnerHTML={{__html:description}} />
+        )}
+      </div>
+      )}
       <div className={`c-service-sub-item-list__wrapper ${columnClassName}`}>
         {subList.map((subItem, index) => {
           const { title, description } = subItem;
@@ -40,6 +41,7 @@ const ServiceSubItemList = ({
             />
           );
         })}
+      </div>
       </div>
     </ContainerBox>
   );

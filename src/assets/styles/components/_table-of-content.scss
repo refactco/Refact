@@ -3,21 +3,26 @@
   position: fixed;
   width: 100%;
   top: 0;
+  left: 0;
   transition: top 0.25s ease-in-out;
   @include mq(lg) {
     position: static;
     background: none;
   }
-
+  display: none;
+  @include mq(lg) {
+    display: block;
+  }
   &.is-hide {
-    display: none;
+    display: none !important;
 
     @include mq(lg) {
-      display: block;
+      display: block !important;
     }
   }
 
   &.up-to-down {
+    display: block;
     top: 0rem;
 
     @include mq(lg) {
@@ -26,6 +31,7 @@
   }
 
   &.down-to-up {
+    display: block;
     top: calc(71.06px);
 
     @include mq(lg) {

@@ -296,22 +296,28 @@
 
 .gform_wrapper {
   .gform_button {
-    @extend .c-btn;
-    @extend .c-btn--green;
-    width: 100%;
-    justify-content: center;
-    @include font-size(16px, 1.5);
-    padding: 0.75em 2.5em;
-
-    &:focus {
-      color: var(--color-text);
-      background: var(--color-primary-l);
+    width: 177.04px;
+    @include mq(md){
+      width: 199.93px;
     }
-
-    @include mq(md) {
-      width: auto;
-      padding: 1.25em 2.5em;
+    &:disabled{
+      padding: 0.25rem;
     }
+    // @extend .c-btn;
+    // width: 100%;
+    // justify-content: center;
+    // @include font-size(16px, 1.5);
+    // padding: 0.75em 2.5em;
+
+    // &:focus {
+    //   color: var(--color-text);
+    //   background: var(--color-primary-l);
+    // }
+
+    // @include mq(md) {
+    //   width: auto;
+    //   padding: 1.25em 2.5em;
+    // }
   }
 
   .gform_button_cancel {
@@ -565,9 +571,9 @@
 
 /* Checked State */
 .ginput_container_checkbox input[type="checkbox"]:checked + label {
-  background-color: var(--color-primary-s);
+  background-color: var(--color-text);
   color: var(--color-white);
-  border-color: var(--color-primary-s);
+  border-color: var(--color-text);
 }
 
 .c-form-select{
@@ -586,6 +592,7 @@
   background-image: url('data:image/svg+xml;utf8,<svg fill="none" height="24" stroke="black" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><polyline points="6 9 12 15 18 9"></polyline></svg>');
   background-repeat: no-repeat;
   background-position: right 10px center;
+  color: var(--color-text);
   @include mq(md){
     padding: 11px 12px;
   }

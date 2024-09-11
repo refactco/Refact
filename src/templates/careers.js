@@ -4,6 +4,7 @@ import Layout from "../components/layout/layout"
 import Seo from "../components/seo/seo"
 import ContainerBox from "../components/container-box/container-box"
 import CareerCategory from "../components/careers-item/careers-item"
+import PatternBg from "../components/patterns/pattern-bg"
 
 const CareerPage = ({data}) => {
   const careerContent = data.wpPage.template.pageBuilder.pageBuilder;
@@ -13,20 +14,23 @@ const CareerPage = ({data}) => {
   return (
     <Layout>
       {heroSection && (
-        <ContainerBox className="o-section c-section--page-header">
-        <div className="c-page-header">
-          <div className="c-page-header__sub-title">
-            {heroSection.subtitle}
+        <ContainerBox className="c-section--work">
+          <div className="c-page-header is-full">
+            <h1 className="c-page-header__title">
+              {heroSection.title}
+            </h1>
+            <div
+              className="c-page-header__text"
+              dangerouslySetInnerHTML={{ __html: heroSection.text }}
+              style={{ maxWidth: 796 }}
+            ></div>
           </div>
-          <h1 className="c-page-header__title">
-            {heroSection.title}
-          </h1>
-          <div className="c-page-header__text" dangerouslySetInnerHTML={{__html:heroSection.text}}></div>
-        </div>
-      </ContainerBox>
+          <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
+          <PatternBg pattern="pagePattern" className='is-page-pattern' />
+        </ContainerBox>
       )}
       {careersPost && (
-        <ContainerBox className="o-section c-section--careers">
+        <ContainerBox className="c-section--careers">
           <div className="c-careers">
             <CareerCategory categorySlug="product" categoryName="Product" careersPost={careersPost} />
             <CareerCategory categorySlug="design" categoryName="Design" careersPost={careersPost} />

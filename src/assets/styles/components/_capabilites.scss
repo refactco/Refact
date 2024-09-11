@@ -1,5 +1,5 @@
 .c-section--capabilites {
-    padding: 4rem 0 3rem;
+    padding: 4rem 0;
     background: var(--color-primary-h);
 
     @include mq(md) {
@@ -23,7 +23,10 @@
     display: flex;
     flex-direction: column;
     .c-section__title{
-        margin-bottom: 0;
+        @media (max-width: 767px){
+            @include font-size(28px, 1.28);
+            margin: 0;
+        }
     }
     .c-section{
         margin: 0 0 3rem;
@@ -35,53 +38,13 @@
         justify-content: center;
         margin: 3rem 0 0;
         @include mq(md){
-            justify-content: flex-start;
             margin: 4rem 0 0;
         }
     }
-    .c-btn--secondary{
-        display: inline;
-        svg{
-            position: relative;
-            top: 4px;
-        }
-    }
 }
 
-.c-capabilites__list{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 2.375rem;
-    @include mq(md){
-        grid-template-columns: 1fr 1fr;
-        row-gap: 4rem;
-        column-gap: 7.25rem;
-    }
-    .c-sf__num{
-        margin: 0 0 0.25rem;
-    }
-    .c-sf__title{
-        margin: 0 0 0.5rem;
-        @include font-size(22px, 1.27);
-        @include mq(md){
-            @include font-size(24px, 1.35);
-        }
-    }
-    .c-sf__text{
-        @include font-size(16px, 1.5);
-    }
-}
 
 /// New styles for the capabilities section
-.c-section--sf{
-    padding: 4rem 0 6rem;
-    @include mq(lg){
-        padding: 8rem 0;
-    }
-    .o-section__wrapper{
-        max-width: calc(1204px - 2em);
-    }
-}
 .c-page-header__sub-title{
     &.c-sf__headline{
         color: var(--color-primary-sh);
@@ -101,6 +64,25 @@
         }
     }
 }
+.c-section--sf{
+    padding: 4rem 0;
+    background-color: var(--color-primary-r);
+    @include mq(lg){
+        padding: 8rem 0;
+    }
+    .c-section__title{
+        @media (max-width: 767px){
+            @include font-size(28px, 1.28);
+            margin: 0 0 0.5rem;
+        }
+    }
+    .c-sf__title{
+        margin: 0 0 0.5rem;
+    }
+    .c-sf__text{
+        font-weight: 400;
+    }
+}
 
 .c-sf__desc{
     font-family: $inter;
@@ -116,33 +98,36 @@
 .c-sf__list{
     display: grid;
     grid-template-columns: 1fr;
-    border: 1px solid var(--color-gains);
-    margin: 0 0 3rem;
+    margin: 0;
+    gap: 1.5rem;
     @include mq(md){
-        margin: 0 0 4rem;
-        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-columns: 1fr 1fr;
+        gap: 2.5rem;
+    }
+}
+.c-capabilites-list__items{
+    padding: 1.25rem;
+    background: linear-gradient(135deg, #FFF 31.53%, rgba(255, 255, 255, 0.00) 100.04%);
+    @include mq(md){
+        padding: 2rem;
+    }
+    .c-sf__title {
+        margin: 0 0 0.5rem;
+        color: var(--color-text);
+    }
+    .c-sf__text{
+        color: var(--color-text);
+        font-weight: 400;
     }
 }
 .c-sf-list__items{
-    padding: 1rem;
-    &:not(:last-child){
-        border-bottom: 1px solid var(--color-gains);
-    }
-    @include mq(md){
-        padding: 2rem;
-        &:not(:last-child){
-            border-right: 1px solid var(--color-gains);
-            border-bottom: none;
-        }
-    }
-    @include mq(lg){
-        padding: 3rem;
-    }
+    padding: 2rem;
+    background: linear-gradient(135deg, #00292A -0.01%, rgba(0, 41, 42, 0.00) 100.04%);
 }
 .c-sf__num{
     font-family: $inter;
     font-weight: 400;
-    @include font-size(17px, 1.64);
+    @include font-size(18px, 1.55);
     color: var(--color-grey);
     display: flex;
     align-items: center;
@@ -161,23 +146,20 @@
 }
 .c-sf__title{
     font-family: $inter;
-    font-weight: 600;
-    color: var(--color-text);
-    @include font-size(21px, 1.14);
-    margin: 0 0 1.5rem;
+    font-weight: bold;
+    color: var(--color-white);
+    @include font-size(20px, 1.2);
+    margin: 0 0 1.25rem;
     @include mq(md){
         @include font-size(24px, 1.16);
-        margin: 0 0 2.5rem;
+        margin: 0 0 2rem;
     }
 }
 .c-sf__text{
     font-family: $inter;
-    font-weight: 400;
-    color: var(--color-text);
-    @include font-size(14px, 1.35);
-    @include mq(md){
-        @include font-size(16px, 1.35);
-    }
+    font-weight: bold;
+    color: var(--color-white);
+    @include font-size(16px, 1.35);
     ul{
         display: grid;
         gap: 0.5rem;

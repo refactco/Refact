@@ -2,6 +2,7 @@ import axios from 'axios';
 import Cookie from 'js-cookie';
 import React, { useState } from 'react';
 import SpinnerIcon from '../spinner/spinner';
+import Button , { BgMode, BtnType } from '../button/button';
 
 const NewsletterForm = () => {
   const [email, setEmail] = useState('');
@@ -63,24 +64,41 @@ const NewsletterForm = () => {
             <div className="c-newsletter-form__box">
               <input
                 value={email}
-                placeholder="Enter email address"
+                placeholder="Your Email ...."
                 required
                 onChange={(event) => {
                   setEmail(event.target.value);
                 }}
               />
-              <button
-                className="c-btn c-btn--newsletter"
+              <Button
+                className="c-btn--newsletter"
                 disabled={submitInProgress}
                 onClick={() => {
                   subscribe();
                 }}
+                bgMode={BgMode.DARK}
+                type={BtnType.PRIMARY}
+                htmlType='button'
               >
-                {submitInProgress ? <SpinnerIcon /> : 'Subscribe'}
-              </button>
+                {submitInProgress ? <SpinnerIcon /> : 
+                ( 
+                <>
+                  <span>Subscribe</span>
+                  <div className="c-btn__icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                      <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                        <path d="M6 18 18 6M8.25 6H18v9.75"/>
+                      </g>
+                    </svg>
+                  </div>
+                </>
+                )
+              }
+              </Button>
             </div>
+            <p>No Spam. Unsubscribe any time.</p>
             {errorSubmit ? (
-              <p>
+              <p className='is-error'>
                 Oops! We encountered an error while processing your
                 subscription.
               </p>

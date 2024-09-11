@@ -1,31 +1,13 @@
 .c-section--client {
-    padding: 3em 0;
-    overflow: hidden;
-
+    padding: 4rem 0;
     @include mq(md) {
-        padding: 9.75em 0 108px;
+        padding: 6rem 0;
     }
-    &.is-work{
-        background-color: var(--color-primary-h);
-        .c-client__text{
-            font-family: $sentient;
-            font-weight: 400;
-            @include font-size(26px, 1.5);
-            margin: 0 0 24px;
-            @include mq(md) {
-                margin: 0 0 64px;
-                max-width: 830px;
-                @include font-size(40px, 1.2);
-            }
-        }
-    }
-    &.is-about-page{
-        padding: 3rem 0 4rem;
-        @include mq(md){
-            padding: 8rem 0;
-        }
-        .c-section__title{
+    .c-section__title{
             margin-bottom: 0;
+            @media (max-width: 767px){
+                @include font-size(28px, 1.28);
+            }
         }
         .c-section{
             margin-bottom: 2rem;
@@ -39,59 +21,13 @@
                 margin-top: 4rem;
             }
         }
-    }
-}
-
-.c-client {
-    .c-section__title {
-        margin-bottom: 0.571428571428571em;
-
-        @include mq(md) {
-            margin-bottom: 0.8em;
-        }
-    }
-    .c-hero__logos{
-        padding-top: 0;
-        justify-content: flex-start;
-    }
-    .c-hero-logo__items{
-        a{
-            svg{
-                path{
-                    fill: #003233;
-                }
-            }
-            &:hover{
-                svg{
-                    path{
-                        fill: #268250;
-                        &.is-stay{
-                            fill: #ffffff;
-                        }
-                    }
-                }
-            }
-        }
+    &.is-about-page{
+        padding: 4rem 0;
         @include mq(md){
-            margin: 0 90px 60px 0;
+            padding: 8rem 0;
         }
     }
 }
-
-.c-client__text {
-    font-family: $inter;
-    font-weight: 400;
-    @include font-size(18px, 1.56);
-    color: var(--color-primary-r);
-    margin-bottom: 2.222222222222222em;
-
-    @include mq(md) {
-        @include font-size(23px, 1.48);
-        margin-bottom: 3.478260869565217em;
-        max-width: 27.956521739130435em;
-    }
-}
-
 
 .c-clients-logo{
     display: grid;

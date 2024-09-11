@@ -2,6 +2,7 @@
   --color-primary-r: #003233;
   --color-primary-sh: #2e9e62;
   --color-primary-s: #31a329;
+  --color-primary-n: #228751;
   --color-primary-l: #59cc51;
   --color-primary-t: #c6f0c2;
   --color-primary-h: #e5f7e3;
@@ -15,4 +16,9 @@
   --color-white: #ffffff;
   --color-black: #000000;
   --color-white-80: rgba(255, 255, 255, 0.8);
+  --size: clamp(10rem, 1rem + 40vmin, 30rem);
+  --gap: calc(var(--size) / 14);
+  --duration: 60s;
+  --scroll-start: 0;
+  --scroll-end: calc(-100% - var(--gap));
 }

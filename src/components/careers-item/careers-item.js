@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from "gatsby"
+import Button, {BgMode, BtnType} from '../button/button';
 
 const hasPostsForCategory = (careersPost, categorySlug) => {
   return careersPost.some(career => career.careerCategories.nodes.some(category => category.slug === categorySlug));
@@ -11,7 +12,7 @@ const CareerCategory = ({ categorySlug, categoryName, careersPost }) => {
   return (
     <div className={`c-careers__category ${isHidden ? 'is-hidden' : ''}`}>
       <div className="c-careers__category-headline">
-        <h3>{categoryName}</h3>
+        <h3 className='c-section__title'>{categoryName}</h3>
       </div>
       <div className="c-careers__list">
         {careersPost.map((career) => (
@@ -22,7 +23,6 @@ const CareerCategory = ({ categorySlug, categoryName, careersPost }) => {
                   <div className="c-careers__item-name">
                     <Link to={career.uri} className="c-link c-link--career">
                       {career.title}
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#59CC51"></circle><path fill="#fff" d="M17.53 12.53a.75.75 0 0 0 0-1.06l-4.773-4.773a.75.75 0 0 0-1.06 1.06L15.939 12l-4.242 4.243a.75.75 0 0 0 1.06 1.06l4.773-4.773ZM6 12.75h11v-1.5H6v1.5Z"></path></svg>
                     </Link>
                   </div>
                   <div className="c-careers__item-meta">
@@ -41,10 +41,12 @@ const CareerCategory = ({ categorySlug, categoryName, careersPost }) => {
                   </div>
                 </div>
                 <div className="c-careers__item-cta">
-                  <Link to={career.uri} className="c-btn--secondary">
-                    View Detail
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="12" fill="#59CC51"></circle><path fill="#fff" d="M17.53 12.53a.75.75 0 0 0 0-1.06l-4.773-4.773a.75.75 0 0 0-1.06 1.06L15.939 12l-4.242 4.243a.75.75 0 0 0 1.06 1.06l4.773-4.773ZM6 12.75h11v-1.5H6v1.5Z"></path></svg>
-                  </Link>
+                  <Button 
+                    url={career.uri} 
+                    text="View Detail"
+                    type={BtnType.SECONDARY} 
+                    bgMode={BgMode.LIGHT} 
+                  />
                 </div>
               </div>
             )}

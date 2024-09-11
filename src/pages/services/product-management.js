@@ -107,7 +107,7 @@ const ServiceProductManagementPage = () => {
         title={currentService.title}
         description={currentService.desc}
       />
-      {currentService.subList.map((subService) => {
+      {currentService.subList.map((subService, index) => {
         const { title, description, subItems, numberOfColumns, whiteColor } =
           subService;
         return (
@@ -117,6 +117,7 @@ const ServiceProductManagementPage = () => {
             subList={subItems}
             numberOfColumns={numberOfColumns}
             whiteColor={whiteColor}
+            key={index}
           />
         );
       })}
@@ -128,7 +129,7 @@ export default ServiceProductManagementPage;
 
 export function Head({ data }) {
   const post = data.wpPage;
-  console.log({ post });
+  // console.log({ post });
   return (
     <>
       <Seo title={post.seo.title} description={post.seo.metaDesc} />

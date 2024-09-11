@@ -123,7 +123,7 @@ const renderSection = (section, index) => {
       )
     case 'Template_PageBuilder_Pagebuilder_PageBuilder_Project':
       return (
-        <ContainerBox key={index} className={`c-section--project-home`}>
+        <ContainerBox key={index} className={`c-section--project-home is-work-page`}>
           {section.title && (
             <div className="c-project__header">
               <div className="c-page-header__sub-title c-sf__headline">{section.subhead}</div>
@@ -261,7 +261,7 @@ const ServiceStrategyPage = ({ data }) => {
       service.title === 'Strategy and Branding'
   );
 
-  console.log({ currentService });
+  // console.log({ currentService });
 
   return (
     <ServiceLayout>

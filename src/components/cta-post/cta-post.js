@@ -1,5 +1,5 @@
-import { Link } from "gatsby";
 import React from "react";
+import Button, {BgMode, BtnType} from "../button/button";
 
 const CtaPost = () => {
   return (
@@ -9,7 +9,12 @@ const CtaPost = () => {
           <h5 className="c-git__title">Looking to grow your media business?</h5>
           <p className="c-git__text">Get in touch and tell us about your project!</p>
         </div>
-        <Link to="/contact" className='c-btn c-btn--green'>Get in Touch</Link>
+        <Button 
+          url="/contact"
+          text="Get in Touch"
+          type={BtnType.PRIMARY} 
+          bgMode={BgMode.LIGHT}
+        />
       </div>
     </footer>
   );

@@ -158,11 +158,15 @@
 }
 .c-btn--utm{
   align-items: center;
-  gap: 10px;
   border-radius: 4px;
   height: 48px;
+  gap: 0;
   @include mq(lg){
     height: 64px;
+    padding: 0 32px;
+  }
+  .c-btn-icon svg{
+    width: 1.5rem !important;
   }
 }
 .c-utm-builder__row{
@@ -251,9 +255,7 @@
     }
   }
 }
-.c-btn__icon{
-  display: flex;
-}
+
 .c-utm-validate__err{
   display: none;
   font-family: $inter;
@@ -435,6 +437,7 @@
 }
 .c-section--utm-builder{
   padding: 48px 0;
+  overflow: initial;
   @include mq(lg){
     padding: 80px 0;
   }
@@ -628,7 +631,6 @@
 }
 .c-faq__items{
   padding: 8px 16px;
-  border-radius: 8px;
   transition: background-color 0.25s ease-in-out, padding 0.25s ease-in-out;
   @include mq(md){
     padding: 16px 24px;

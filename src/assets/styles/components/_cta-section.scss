@@ -1,17 +1,17 @@
 .c-section--cta {
     padding: 4rem 0;
-    background-color: var(--color-text);
+    background-color: var(--color-primary-r);
+    @include mq(lg){
+        padding: 5rem 0;
+    }
 }
 
 .c-cta {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
     gap: 2rem;
-    @include mq(md) {
-        flex-direction: row;
-        align-items: center;
-    }
     &.c-cta--beehiiv{
         justify-content: center;
         align-items: center;
@@ -24,28 +24,35 @@
 
 .c-cta__title {
     font-family: $inter;
-    font-weight: 600;
-    @include font-size(24px, 1.2);
+    font-weight: bold;
+    @include font-size(26px, 1.2);
     color: var(--color-white);
     text-transform: inherit;
     margin: 0 0 0.375rem;
-    text-align: left;
+    text-align: center;
+    @include mq(md){
+        @include font-size(40px, 1.2);
+    }
 }
 
 .c-cta__text {
     font-family: $inter;
     font-weight: 400;
     @include font-size(16px, 1.35);
-    color: var(--color-primary-h);
+    color: var(--color-white-80);
     margin: 0;
-    text-align: left;
+    text-align: center;
+    @include mq(md){
+        @include font-size(22px, 1.27);
+    }
 }
+
 .c-cta__col{
     &:last-child{
         width: 100%;
         @media (min-width: 768px){
             width: 100%;
-            max-width: 463px;
+            max-width: 630px;
         }
     }
 }
@@ -57,13 +64,21 @@
     width: 100%;
     p {
         color: var(--color-white-80);
-        font-size: 0.875rem;
-        margin: 0.5rem 0 0;
+        @include font-size(12px, 1.66);
+        font-weight: 400;
+        margin: 0.25rem 0 0;
+        padding-left: 1rem;
+        &.is-error{
+            color: #fab0b0;
+        }
     }
 }
 .c-newsletter-form__box{
     width: 100%;
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 0.5rem;
     position: relative;
     input{
         width: 100%;
@@ -76,24 +91,27 @@
             outline: 1px solid var(--color-primary-s);
         }
     }
-    .c-btn{
-        position: absolute;
-    }
 }
 .c-btn--newsletter{
-    @include font-size(14px, 1);
-    padding: 0.5rem 1.5rem;
-    height: 2.5rem;
-    width: 7.9375rem;
-    display: flex;
-    align-items: center;
-    right: 0.25rem;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: var(--color-primary-r);
-    color: var(--color-white);
-    &:hover{
-        background-color: var(--color-primary-sh);
+    width: 4rem;
+    height: 3rem;
+    @media (max-width: 767px){
+        padding: 0.25rem;
+        gap: 0;
+        span{
+            display: none;
+        }
+        .c-btn__icon{
+            width: 100%;
+            height: 2.5rem;
+        }
+    }
+    @include mq(md){
+        width: 10.9375rem;
+    }
+    &:disabled{
+        padding: 0.25rem;
+        color: var(--color-text);
     }
 }
 .c-newsletter-form__success-message{
