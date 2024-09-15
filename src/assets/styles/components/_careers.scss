@@ -86,7 +86,11 @@
   display: flex;
   flex-wrap: wrap;
   align-items: center;
+  justify-content: space-between;
   gap: 1rem;
+  @include mq(sm){
+    justify-content: flex-start;
+  }
 }
 
 .c-careers__meta {
@@ -159,13 +163,13 @@
 
 
 .c-career__meta {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  gap: 2rem;
   color: var(--color-white);
 
   @include mq(sm) {
-    gap: 2rem;
+    gap: 3rem;
   }
 
   @include mq(lg) {
