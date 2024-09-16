@@ -50,6 +50,7 @@
 .c-cta__col{
     &:last-child{
         width: 100%;
+        min-height: 71.91px;
         @media (min-width: 768px){
             width: 100%;
             max-width: 630px;
@@ -59,6 +60,35 @@
 .c-newsletter-form{
     width: 100%;
     margin: 0;
+    .gform_wrapper {
+        .gfield_label{
+            display: none;
+        }
+        input{
+            width: 100%;
+            height: 3rem;
+            background-color: var(--color-white);
+            border-radius: 50px;
+            padding: 0 1rem;
+            border: none;
+            &:focus {
+                outline: 1px solid var(--color-primary-s);
+            }
+        }
+        .validation_message{
+            color: #fab0b0;
+            font-size: 12px;
+            font-size: 0.75rem;
+            line-height: 1.66;
+            font-weight: 400;
+            margin: 0.25rem 0 0;
+            padding-left: 1rem;
+        }
+        .gfield_error input {
+            border-color: #fab0b0;
+            outline: 1px solid #fab0b0;
+        }
+    }
 }
 .c-newsletter-form__wrap{
     width: 100%;
@@ -72,24 +102,19 @@
             color: #fab0b0;
         }
     }
+    &.is-hidden{
+        display: none;
+    }
 }
 .c-newsletter-form__box{
     width: 100%;
     display: grid;
     grid-template-columns: 1fr auto;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
     position: relative;
-    input{
-        width: 100%;
-        height: 3rem;
-        background-color: var(--color-white);
-        border-radius: 50px;
-        padding: 0 1rem;
-        border: none;
-        &:focus {
-            outline: 1px solid var(--color-primary-s);
-        }
+    .gform_footer{
+        margin-top: 0;
     }
 }
 .c-btn--newsletter{
@@ -115,14 +140,17 @@
     }
 }
 .c-newsletter-form__success-message{
-    color: var(--color-text);
-    font-size: 0.875rem;
-    line-height: 1.2;
-    background: var(--color-primary-h);
-    height: 3rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 50px;
-    font-weight: 500;
+    .gform_confirmation_message{
+        color: var(--color-text);
+        font-size: 0.875rem;
+        line-height: 1.2;
+        background: var(--color-primary-h);
+        // height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50px;
+        font-weight: 500;
+        padding: 0.9rem;
+    }
 }
