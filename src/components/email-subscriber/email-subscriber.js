@@ -1,55 +1,97 @@
-import axios from 'axios';
+import { ApolloClient, InMemoryCache, gql, useMutation } from '@apollo/client';
+import { useStaticQuery, graphql } from 'gatsby';
+import React, { useState, useEffect } from 'react';
 import Cookie from 'js-cookie';
-import React, { useEffect, useState } from 'react';
 import SpinnerIcon from '../spinner/spinner';
 
 const EmailSubscriber = () => {
-  const [email, setEmail] = useState('');
+  const data = useStaticQuery(graphql`
+    query SubscribeInsightQuery {
+      subscribeInsight: wpGfForm(databaseId: {eq: 12}) {
+        submitButton {
+          text
+          type
+          location
+        }
+        formFields {
+          nodes {
+            type
+            layoutGridColumnSpan
+            pageNumber
+            databaseId
+            ... on WpEmailField {
+              inputName
+              isRequired
+              label
+              placeholder
+            }
+          }
+        }
+      }
+    }
+  `);
+
   const [showBox, setShowBox] = useState(false);
   const [position, setPosition] = useState('sticky');
-  const [submitInProgress, setSubmitInProgress] = useState(false);
   const [successfulSubmit, setSuccessfulSubmit] = useState(false);
-  const [errorSubmit, setErrorSubmit] = useState(false);
 
-  const subscribe = () => {
-    setSubmitInProgress(true);
 
-    const formId = '5682967';
-    const apiKey = 'qRD0l7FwkaZtCWkgmvuxig';
 
-    axios
-      .post(
-        `https://api.convertkit.com/v3/forms/${formId}/subscribe`,
-        {
-          api_key: apiKey,
-          email,
-        },
-        {
-          headers: {
-            'Content-Type': 'application/json',
-            charset: 'utf-8',
-          },
-        }
-      )
-      .then(() => {
-        setSuccessfulSubmit(true);
+  const initialFieldValues = data.subscribeInsight.formFields.nodes.reduce((acc, field) => {
+    if (field.type === 'SELECT' && field.choices.length > 0) {
+      acc[field.databaseId] = field.placeholder;
+    } else {
+      acc[field.databaseId] = field.defaultValue ?? '';
+    }
+    return acc;
+  }, {});
 
-        Cookie.set('already-subscribed', 'Yes', {
-          expires: 7,
-        });
+  const [fieldValues, setFieldValues] = useState(initialFieldValues);
+  const formId = 12;
 
-        setTimeout(() => {
-          setShowBox(false);
-        }, 5000);
-      })
-      .catch(() => {
-        setErrorSubmit(true);
-      })
-      .finally(() => {
-        setSubmitInProgress(false);
-      });
+  const { submitButton, formFields } = data.subscribeInsight;
+
+  const client = new ApolloClient({
+    uri: process.env.WPGRAPHQL_URL,
+    cache: new InMemoryCache(),
+  });
+  const convertInputType = (type) => {
+    if (type === 'WEBSITE') {
+      return 'url';
+    }
+
+    return type.toLowerCase();
   };
 
+  const [submitForm, { data: mutationData, loading }] = useMutation(
+    gql`
+      mutation WelcomeOnBoardingMutation(
+        $fieldValues: [FormFieldValuesInput]!
+      ) {
+        submitGfForm(
+          input: {
+            id: 12
+            fieldValues: $fieldValues
+            saveAsDraft: false
+            sourcePage: 1
+            targetPage: 0
+          }
+        ) {
+          confirmation {
+            type
+            message
+            url
+          }
+          errors {
+            id
+            message
+          }
+        }
+      }
+    `,
+    { client }
+  );
+  
   useEffect(() => {
     const alreadySubscribed = Cookie.get('already-subscribed');
 
@@ -92,7 +134,7 @@ const EmailSubscriber = () => {
 
   // CSS class to add a fade-in transition
   const emailSubscriberClass = [
-    'c-email-subscriber',
+    'c-email-subscriber c-newsletter-form',
     showBox ? 'c-email-subscriber--show' : '',
     `c-email-subscriber--${position}`,
   ].join(' ');
@@ -100,9 +142,11 @@ const EmailSubscriber = () => {
   return (
     <div className={emailSubscriberClass}>
       {successfulSubmit ? (
-        <p className="c-email-subscriber__success-message">
-          Thank you for subscribing! An email is on its way to you.
-        </p>
+         <>
+         {mutationData?.submitGfForm?.confirmation ? (
+          <p className="c-email-subscriber__success-message" dangerouslySetInnerHTML={{ __html: mutationData.submitGfForm.confirmation.message }} />
+        ) : null}
+         </>
       ) : (
         <>
           <div className="c-email-subscriber__info">
@@ -112,31 +156,158 @@ const EmailSubscriber = () => {
             </p>
           </div>
           <div className="c-email-subscriber-form__wrap">
-            <div className="c-email-subscriber__form">
-              <input
-                value={email}
-                placeholder="Enter email address"
-                required
-                onChange={(event) => {
-                  setEmail(event.target.value);
-                }}
-              />
-              <button
-                className="c-btn c-btn--primary is-btn-dark has-btn-icon c-btn--subscriber c-btn--green"
-                disabled={submitInProgress}
-                onClick={() => {
-                  subscribe();
+            <div className="gform_wrapper gravity-theme">
+              <form
+                noValidate
+                className={`c-form c-newsletter-form__box ${
+                  mutationData?.submitGfForm?.confirmation ? 'is-hidden' : ''
+                }`}
+                onSubmit={(event) => {
+                  event.stopPropagation();
+                  event.preventDefault();
+
+                  // Prepare field values for the Gravity Forms mutation
+                  const values = Object.entries(fieldValues).map(([key, value]) => {
+                    let inputObject = { id: Number(key), value };
+
+                    // Special handling for email field with key '1'
+                    if (key === '1') {
+                      inputObject = {
+                        ...inputObject,
+                        emailValues: {
+                          confirmationValue: '', // If you require email confirmation
+                          value,
+                        },
+                      };
+                    }
+
+                    return inputObject;
+                  });
+
+                  // Trigger the Gravity Forms mutation using Apollo's useMutation hook
+                  submitForm({
+                    variables: {
+                      fieldValues: values, // Pass the prepared field values
+                    },
+                  })
+                    .then((response) => {
+                      const confirmation = response?.data?.submitGfForm?.confirmation;
+                  
+                      if (confirmation) {
+                        // On successful submission
+                        setSuccessfulSubmit(true);
+                  
+                        // Set a cookie to remember the subscription status
+                        Cookie.set('already-subscribed', 'Yes', {
+                          expires: 7, // The cookie will expire in 7 days
+                        });
+                  
+                        // Optionally hide the subscription box after a few seconds
+                        setTimeout(() => {
+                          setShowBox(false);
+                        }, 10000);
+                      }
+                    })
                 }}
               >
-                {submitInProgress ? <SpinnerIcon /> : 'Subscribe'}
-              </button>
+
+                <div className="gform-body gform_body">
+                  <div className="gform_fields top_label form_sublabel_below description_below">
+                  {formFields.nodes.map((field, index) => {
+                    const {
+                      type,
+                      inputName,
+                      isRequired,
+                      label,
+                      placeholder,
+                      databaseId,
+                      visibility,
+                      cssClass,
+                    } = field;
+                    const error = mutationData?.submitGfForm?.errors?.find(
+                      (e) => e.id === databaseId
+                    );
+
+                    return (
+                      <div
+                        className={[
+                          'gfield',
+                          `gfield--type-${type.toLowerCase()}`,
+                          'gfield--width-full',
+                          error ? 'gfield_error' : '',
+                          cssClass ? cssClass : '',
+                          visibility === 'HIDDEN' ? 'gfield_visibility_hidden' : 'gfield_visibility_visible',
+                        ].join(' ')}
+                        key={index}
+                      >
+                        <label
+                          className="gfield_label gform-field-label"
+                          htmlFor={`input_${formId}_${databaseId}`}
+                        >
+                          {label}{' '}
+                          {isRequired ? (
+                            <span className="gfield_required gfield_required_asterisk">*</span>
+                          ) : (
+                            ''
+                          )}
+                        </label>
+                        <div className={`ginput_container ginput_container_${type.toLowerCase()}`}>
+                          <input
+                            placeholder={placeholder}
+                            name={inputName}
+                            type={convertInputType(type)}
+                            value={fieldValues[databaseId]}
+                            id={`input_${formId}_${databaseId}`}
+                            aria-required={isRequired}
+                            onChange={(event) => {
+                              setFieldValues({
+                                ...fieldValues,
+                                [databaseId]: event.target.value,
+                              });
+                            }}
+                          />
+                        </div>
+                        {error ? (
+                          <div
+                            id={`validation_message_${formId}_${databaseId}`}
+                            className="gfield_description validation_message gfield_validation_message"
+                          >
+                            {error.message}
+                          </div>
+                        ) : null}
+                      </div>
+                    );
+                  })}
+
+                  </div>
+                </div>
+                <div className="gform_footer top_label">
+                  <button
+                    type="submit"
+                    disabled={loading}
+                    className="c-btn c-btn--primary is-btn-dark c-btn--newsletter"
+                  >
+                    {loading ? <SpinnerIcon /> : 
+                      ( 
+                      <>
+                        <span>{submitButton.text}</span>
+                        <div className="c-btn__icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                            <g stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2">
+                              <path d="M6 18 18 6M8.25 6H18v9.75"/>
+                            </g>
+                          </svg>
+                        </div>
+                      </>
+                      )
+                    }
+                  </button>
+                </div>
+              </form>
+              {mutationData?.submitGfForm?.confirmation ? (
+                <div className="c-newsletter-form__success-message" dangerouslySetInnerHTML={{ __html: mutationData.submitGfForm.confirmation.message }} />
+              ) : null}
             </div>
-            {errorSubmit ? (
-              <p>
-                Oops! We encountered an error while processing your
-                subscription.
-              </p>
-            ) : null}
           </div>
         </>
       )}
