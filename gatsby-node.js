@@ -944,14 +944,14 @@ exports.createPages = async ({ graphql, actions }) => {
     // },
   });
 
-  for (let i = 1; i <= totalPages; i++) {
+  for (let i = 2; i <= totalPages; i++) {
     createPage({
       path: `/insights/page/${i}`,
       component: path.resolve(`./src/templates/insights.js`),
       context: {
         page: i,
         limit: postsPerPage,
-        skip: (i - 1) * postsPerPage + 1,
+        skip: (i - 1) * postsPerPage,
         totalPages: totalPages,
       },
     });
@@ -1143,3 +1143,4 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 };
+
