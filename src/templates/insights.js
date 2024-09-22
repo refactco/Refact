@@ -156,11 +156,19 @@ const InsightPage = (props) => {
                   total={totalPages}
                   maxWidth={200}
                   onPageChange={(changedPage) => {
-                    navigate(`/insights/page/${changedPage}`, {
-                      state: {
-                        pageChange: true,
-                      },
-                    });
+                    if (changedPage === 1) {
+                      navigate(`/insights/`, {
+                        state: {
+                          pageChange: true,
+                        },
+                      });
+                    } else {
+                      navigate(`/insights/page/${changedPage}`, {
+                        state: {
+                          pageChange: true,
+                        },
+                      });
+                    }
                   }}
                 />
               </div>
