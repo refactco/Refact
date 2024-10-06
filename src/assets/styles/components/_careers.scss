@@ -151,6 +151,11 @@
   align-items: flex-start;
   gap: 1.5rem;
   max-width: 800px;
+  .c-btn-icon{
+    svg{
+      width: 1.5rem;
+    }
+  }
 }
 .c-section--career-single{
   padding: 3rem 0;

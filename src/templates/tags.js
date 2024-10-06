@@ -24,6 +24,15 @@ const TagPage = (props) => {
         >
           <ContainerBox className="c-section--headline">
             <div className="c-headline">
+              <div className='c-headline__btn'>
+              <Button 
+                url="/insights" 
+                text="Back to Insights" 
+                type={BtnType.SECONDARY} 
+                bgMode={BgMode.LIGHT} 
+                icon="arrowleft"  
+              />
+              </div>
               <h1 className="c-headline__title">{name}</h1>
               <div className="c-blog-nav">
                 <div className="c-blog-nav__title">Topics</div>
