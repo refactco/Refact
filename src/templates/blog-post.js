@@ -10,6 +10,7 @@ import Seo from '../components/seo/seo';
 import ShareButton from '../components/share-btn/share-btn';
 import TableOfContents from '../components/table-of-content/table-of-content';
 import PatternBg from '../components/patterns/pattern-bg';
+import Button, {BgMode, BtnType} from '../components/button/button';
 
 const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
@@ -21,19 +22,29 @@ const BlogPostTemplate = ({ data }) => {
     <Layout>
       <ContainerBox className="c-section--work c-section--article-header">
         <div className="c-article__header">
-          <div className="c-article__category">
-            {post.tags.nodes.map((tag) => (
-              <Link
-                to={tag.link}
-                className="c-link c-link--category"
-                key={tag.id}
-              >
-                {tag.name}
-              </Link>
-            ))}
+          <div className='c-article-header__links'>
+            <div className='c-article-header__btn'>
+              <Button
+                url="/insights"
+                text="all insights"
+                type={BtnType.SECONDARY} 
+                bgMode={BgMode.DARK}
+                icon='arrowleft'
+              />
+            </div>
+            <div className="c-article__category">
+              {post.tags.nodes.map((tag) => (
+                <Link
+                  to={tag.link}
+                  className="c-link c-link--category"
+                  key={tag.id}
+                >
+                  {tag.name}
+                </Link>
+              ))}
+            </div>
           </div>
           <h1 className="c-article__title">{post.title}</h1>
-          <div className="c-article__author-date">{post.date}</div>
           <div className="c-article__author">
             <div className="c-article-author__wrapper">
               {authorPosts.map((author) => (
@@ -42,25 +53,28 @@ const BlogPostTemplate = ({ data }) => {
                     <img
                       src={author.userMeta.profileImage.localFile.url}
                       alt={author.name}
-                      width="32"
-                      height="32"
+                      width="48"
+                      height="48"
                       loading="lazy"
                     />
                   )}
                 </div>
               ))}
             </div>
-            <div className="c-article-author__name">
-              {post.coAuthors.nodes.map((author, index) => (
-                <span key={author.id}>
-                  {author.displayName}
-                  {index < post.coAuthors.nodes.length - 2
-                    ? ', '
-                    : index === post.coAuthors.nodes.length - 2
-                    ? ' & '
-                    : ''}
-                </span>
-              ))}
+            <div className='c-article-author__wrap'>
+              <span className='c-article-author__date'>{post.date}</span>
+              <div className="c-article-author__name">
+                {post.coAuthors.nodes.map((author, index) => (
+                  <span key={author.id}>
+                    {author.displayName}
+                    {index < post.coAuthors.nodes.length - 2
+                      ? ', '
+                      : index === post.coAuthors.nodes.length - 2
+                      ? ' & '
+                      : ''}
+                  </span>
+                ))}
+              </div>
             </div>
           </div>
         </div>

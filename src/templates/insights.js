@@ -101,6 +101,11 @@ const InsightPage = (props) => {
                   navigation={false}
                   allow-touch-move={true}
                 >
+                  <swiper-slide key='insightkey'>
+                    <div className="item is-active">
+                      <Link to='/insights'>all insights</Link>
+                    </div>
+                  </swiper-slide>
                   {topicItems.map((topic) => (
                     <swiper-slide key={topic.id}>
                       <div className="item">

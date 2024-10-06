@@ -17,8 +17,7 @@
 
 .c-article__header {
   width: 100%;
-  // max-width: 752px;
-  // margin: 0 auto;
+  max-width: 935px;
   margin: 0;
 }
 
@@ -39,34 +38,49 @@
     margin: 0;
   }
 }
-
+.c-article-header__links{
+  margin: 0 0 1.5rem;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 1.5rem;
+  @include mq(md){
+    grid-template-columns: auto 1fr;
+  }
+}
+.c-article-header__btn{
+  display: flex;
+}
 .c-article__category {
-  margin-bottom: 12px;
+  // margin-bottom: 12px;
   display: flex;
   align-items: center;
   gap: 8px;
+  margin: 0;
   .c-link--category {
-    color: var(--color-text);
-    background-color: var(--color-white);
-
-    &:hover {
-      background-color: var(--color-primary-l);
+    color: var(--color-white);
+    background-color: transparent;
+    border-color: var(--color-white);
+    &::before{
+      background-color: var(--color-white);
+    }
+    &:hover{
+      color: var(--color-text);
     }
   }
-  @include mq(lg) {
-    margin: 0 0 16px;
-  }
+  // @include mq(lg) {
+  //   margin: 0 0 16px;
+  // }
 }
 
 .c-article__title {
-  margin: 0 0 12px;
+  margin: 0 0 1.5rem;
   font-weight: 600;
   @include font-size(28px, 1.14);
   color: var(--color-white);
   font-family: $inter;
   @include mq(lg) {
     @include font-size(48px, 1.2083);
-    margin: 0 0 16px;
+    margin: 0 0 2rem;
   }
 }
 
@@ -96,8 +110,12 @@
   .c-article-author__img {
     display: flex;
     align-items: center;
-    width: 2rem;
-    height: 2rem;
+    width: 2.5rem;
+    height: 2.5rem;
+    @include mq(sm){
+      width: 3rem;
+      height: 3rem;
+    }
     img {
       border: 2px solid #003233;
       width: 100%;
@@ -109,6 +127,11 @@
       margin-left: -0.875rem;
     }
   }
+}
+.c-article-author__wrap{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2px;
 }
 .c-article-author__name {
   font-family: $inter;
@@ -136,13 +159,13 @@
 //   }
 // }
 
-.c-article__author-date {
+.c-article-author__date {
+  font-family: $inter;
   @include font-size(12px, 1.35);
-  color: var(--color-primary-t);
-  margin-bottom: 2rem;
+  color: var(--color-white);
+  font-weight: 400;
   @include mq(md) {
     @include font-size(14px, 1.35);
-    margin-bottom: 2.5rem;
   }
 }
 
