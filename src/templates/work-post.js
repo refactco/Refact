@@ -5,6 +5,8 @@ import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import RelatedWorks from '../components/related-work/related-work';
+import Button, {BgMode, BtnType} from '../components/button/button';
+import PatternBg from '../components/patterns/pattern-bg';
 
 const renderSection = (section, index) => {
   // console.log('Section:', section)
@@ -114,16 +116,24 @@ const renderSection = (section, index) => {
           </div>
         </div>
       )
-    // case 'Work_Casestudies_CaseStudyFields_CtaSection':
-    //   return (
-    //     <div className='o-section-work' key={index}>
-    //       <h2>{section.title}</h2>
-    //       <p>{section.description}</p>
-    //       <a href={section.button.url} target={section.button.target}>
-    //         {section.button.title}
-    //       </a>
-    //     </div>
-    //   )
+    case 'Work_Casestudies_CaseStudyFields_CtaSection':
+      return (
+        <div key={index} className="o-section-work c-section--calltoaction">
+          <div className="c-calltoaction">
+            <h2 className="c-section__title">{section.title}</h2>
+            {section.button && (
+              <Button 
+                target={section.button.target} 
+                url={section.button.url} 
+                text={section.button.title} 
+                type={BtnType.PRIMARY} 
+                bgMode={BgMode.LIGHT} 
+              />
+            )}
+            <PatternBg pattern="testimonialRight" className='is-testimonial-right' />
+          </div>
+        </div>
+      )
     default:
       return null
   }

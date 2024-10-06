@@ -7,7 +7,13 @@
   &:last-child{
     margin-bottom: 0;
   }
-
+  &.c-section--calltoaction{
+    padding-bottom: 0;
+    padding-top: 0.5rem;
+    @include mq(sm){
+      padding-top: 2rem;
+    }
+  }
 }
 .c-section--single-work{
   padding: 8.5625rem 0 4rem;
