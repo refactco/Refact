@@ -1,0 +1,221 @@
+.c-section--herobasic{
+  padding: 7.441875rem 0 0;
+  background-color: var(--color-primary-r);
+  overflow: initial;
+  z-index: 2;
+  @include mq(md){
+    padding: 10.625rem 0 0;
+  }
+  .c-pattern{
+    &.is-hero-pattern{
+      top: -40px;
+      @include mq(md){
+        top: -90px;
+      }
+    }
+    &.is-hero-highlight{
+      top: -289px;
+    }
+  }
+}
+
+.c-herobasic{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+  @include mq(md){
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+}
+.c-herobasic__title{
+  color: var(--color-white);
+  font-family: $inter;
+  font-weight: bold;
+  margin: 0 0 1rem;
+  @include font-size(36px, 1.1);
+  @include mq(md){
+    @include font-size(50px, 1.1);
+    margin: 0 0 1.5rem;
+  }
+  div{
+    @include font-size(24px, 1.35);
+    font-weight: 400;
+    @include mq(md){
+      @include font-size(26px, 1.35);
+    }
+  }
+}
+.c-section__desc{
+  &.has-herobasic{
+    color: var(--color-white);
+    @include font-size(20px, 1.35);
+    font-weight: 400;
+    strong{
+      font-weight: 600;
+    }
+    @include mq(md){
+      @include font-size(18px, 1.5);
+      padding-bottom: 1rem;
+    }
+  }
+}
+.c-basic-form{
+  padding: 1.875rem 1.25rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  background: linear-gradient(145deg, rgba(46, 158, 98, 0.95) 7.05%, rgba(14, 66, 67, 0.95) 65.14%);
+  z-index: 2;
+  position: relative;
+  margin-bottom: -101px;
+  @include mq(md){
+    padding: 2.1875rem 2rem;
+    margin-bottom: -76px;
+    min-height: 651px;
+  }
+  .gform_wrapper{
+    .gfield_label{
+      color: var(--color-white);
+    }
+    .gform_fields{
+      grid-row-gap: 1.3125rem;
+      grid-column-gap: 0.75rem;
+    }
+    input{
+      border-color: transparent;
+    }
+    .gform_button{
+      background-color: var(--color-primary-h);
+      width: 284px;
+    }
+    .validation_message{
+      color: #fab0b0;
+      font-size: 12px;
+      font-size: 0.75rem;
+      line-height: 1.66;
+      font-weight: 400;
+      margin: 0.25rem 0 0;
+    }
+    .gfield_error{
+      input{
+        outline: 1px solid #fab0b0;
+      }
+    }
+  }
+  .gform_page_footer, .gform_footer{
+    margin-top: 1.75rem;
+    justify-content: center;
+    @include mq(lg){
+      margin-top: 2.8125rem;
+    }
+  }
+  .gform_confirmation_message{
+    padding: 0.75rem 1rem;
+    background-color: var(--color-primary-h);
+    border: 1px solid var(--color-primary-t);
+  }
+  .c-confirmation__text{
+    @include font-size(16px, 1.5);
+    font-weight: 400;
+    color: var(--color-primary-r);
+    a{
+      font-weight: bold;
+      color: var(--color-primary-r);
+    }
+  }
+}
+.c-basic-form__title{
+  color: var(--color-white);
+  font-family: $inter;
+  font-weight: bold;
+  margin: 0 0 5px;
+  @include font-size(24px, 1.16);
+}
+.c-basic-form__desc{
+  color: var(--color-white);
+  font-family: $inter;
+  margin: 0 0 1rem;
+  @include font-size(16px, 1.35);
+}
+.c-herobasic__content{
+  @include mq(md){
+    margin-top: 52px;
+  }
+}
+
+.c-section--basictext{
+  padding: 9.25rem 0 4rem;
+  @include mq(md){
+    padding: 10rem 0 8.75rem;
+  }
+}
+.c-basictext{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 3rem;
+  @include mq(md){
+    grid-template-columns: auto 350px;
+    gap: 2rem;
+  }
+}
+.c-basictext__images{
+  order: -1;
+  @include mq(md){
+    order: 1;
+  }
+}
+.c-basictext__image{
+  &::after{
+    content: '';
+    width: 100%;
+    height: 12px;
+    display: block;
+    position: relative;
+    bottom: 6px;
+    background: radial-gradient(50% 50% at 50% 50%, #000 0%, rgba(102, 102, 102, 0.00) 100%);
+    filter: blur(5.905516147613525px);
+  }
+}
+.c-basictext__content{
+  .c-section__title{
+    margin: 0 0 0.75rem;
+    @include font-size(20px, 1.2);
+    font-weight: bold;
+    @include mq(md){
+      @include font-size(40px, 1.2);
+      margin: 0 0 1.5rem;
+    }
+  }
+  .c-section__desc{
+    @include font-size(20px, 1.5);
+    @include mq(md){
+      @include font-size(18px, 1.5);
+    }
+    p{
+      margin: 0 0 3rem;
+    }
+    h3{
+      font-family: $inter;
+      margin: 0 0 0.75rem;
+      @include font-size(24px, 1.5);
+      font-weight: bold;
+      @include mq(md){
+        margin: 0;
+        line-height: 2;
+      }
+    }
+    h2{
+      font-family: $inter;
+      margin: 0 0 0.75rem;
+      @include font-size(20px, 1.2);
+      font-weight: bold;
+      @include mq(md){
+        @include font-size(40px, 1.2);
+        margin: 0 0 1rem;
+      }
+    }
+    ul{
+      padding-left: 1rem;
+    }
+  }
+}
