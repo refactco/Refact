@@ -798,6 +798,63 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      backToBasics: wpPage(slug: { eq: "back-to-basics" }) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  subtitle
+                  text
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
+                  fieldGroupName
+                  images {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  title
+                  subHeading
+                  moreFeatures
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Spacer {
+                  desktop
+                  fieldGroupName
+                  mobile
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Hero {
+                  fieldGroupName
+                  text
+                  title
+                  image {
+                    altText
+                    localFile {
+                      childrenImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
+                  description
+                  fieldGroupName
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
       toolsPage: wpPage(slug: { eq: "toolkit" }) {
         id
         content
@@ -1140,6 +1197,13 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/about/`,
       component: path.resolve(`./src/templates/about.js`),
+    });
+  });
+  const backToBasics = result.data.backToBasics.template.pageBuilder.pageBuilder;
+  backToBasics.forEach(({ node }) => {
+    createPage({
+      path: `/back-to-basics/`,
+      component: path.resolve(`./src/templates/backtobasics.js`),
     });
   });
 };
