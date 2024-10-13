@@ -17,9 +17,9 @@ const CalendarPage = ({ data }) => {
 
   const filterEvents = (events) => {
     return events.filter((event) =>
-      event.title.toLowerCase().includes(searchQuery) ||
-      event.description.toLowerCase().includes(searchQuery) ||
-      event.location.toLowerCase().includes(searchQuery)
+      (event.title?.toLowerCase() || '').includes(searchQuery) ||
+      (event.description?.toLowerCase() || '').includes(searchQuery) ||
+      (event.location?.toLowerCase() || '').includes(searchQuery)
     );
   };
 
