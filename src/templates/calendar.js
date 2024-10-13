@@ -34,7 +34,7 @@ const CalendarPage = ({ data }) => {
               <div className="c-page-header__text" dangerouslySetInnerHTML={{ __html: section.text }} style={{ maxWidth: 796 }}></div>
             </div>
             <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
-            <PatternBg pattern="heroPattern" className='is-hero-pattern' />
+            <PatternBg pattern="pagePattern" className='is-page-pattern' />
           </ContainerBox>
         );
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Calendar':
