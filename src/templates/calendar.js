@@ -19,7 +19,8 @@ const CalendarPage = ({ data }) => {
     return events.filter((event) =>
       (event.title?.toLowerCase() || '').includes(searchQuery) ||
       (event.description?.toLowerCase() || '').includes(searchQuery) ||
-      (event.location?.toLowerCase() || '').includes(searchQuery)
+      (event.location?.toLowerCase() || '').includes(searchQuery) ||
+      (event.type?.toLowerCase() || '').includes(searchQuery)
     );
   };
 
@@ -37,21 +38,30 @@ const CalendarPage = ({ data }) => {
           </ContainerBox>
         );
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Calendar':
-        // Group events by month and year, checking validity of startDate
-        const eventsByMonth = section.eventList.reduce((acc, event) => {
+          // First, filter all events based on the search query
+        const filteredEvents = section.eventList.filter((event) => 
+          (event.title?.toLowerCase() || '').includes(searchQuery) ||
+          (event.description?.toLowerCase() || '').includes(searchQuery) ||
+          (event.location?.toLowerCase() || '').includes(searchQuery) ||
+          (event.type?.toLowerCase() || '').includes(searchQuery)
+        );
+
+        // Group the filtered events by month and year
+        const eventsByMonth = filteredEvents.reduce((acc, event) => {
           const parsedDate = new Date(event.startDate);
-        
+          
           if (!isValid(parsedDate)) {
             console.warn(`Invalid date encountered for event titled "${event.title}":`, event.startDate);
-            return acc; // Skip this event if date is invalid
+            return acc;
           }
-        
+
           const monthYear = format(parsedDate, 'MMMM yyyy');
           if (!acc[monthYear]) acc[monthYear] = [];
-          acc[monthYear].push({ ...event, parsedDate }); // Store parsedDate for easier sorting later
+          acc[monthYear].push({ ...event, parsedDate });
           return acc;
         }, {});
-        
+
+        // Sort the months
         const sortedMonthYears = Object.keys(eventsByMonth).sort((a, b) => {
           const dateA = parse(a, 'MMMM yyyy', new Date());
           const dateB = parse(b, 'MMMM yyyy', new Date());
@@ -70,7 +80,10 @@ const CalendarPage = ({ data }) => {
               />
             </div>
             <div className="c-calendar">
-              {sortedMonthYears.map((monthYear) => {
+            {filteredEvents.length === 0 ? (
+              <p>No events found for "{searchQuery}".</p>
+            ) : (
+              sortedMonthYears.map((monthYear) => {
               const filteredEvents = filterEvents(eventsByMonth[monthYear]);
               if (filteredEvents.length === 0) return null; // Skip months with no results
               return (
@@ -131,7 +144,7 @@ const CalendarPage = ({ data }) => {
                                   <span className='c-icon c-icon--location'>
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" fill="none" viewBox="0 0 24 24"><g><path fill="currentColor" d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7Zm0 9.5a2.5 2.5 0 0 1 0-5 2.5 2.5 0 0 1 0 5Z"/></g></svg>
                                   </span>
-                                  <span className='c-calendar-info__value'>{event.location ? event.location : 'Online Event'}</span>
+                                  <span className='c-calendar-info__value'>{event.location}</span>
                                 </div>
                               </div>
                               <div className='c-section__desc c-calendar-event__desc' dangerouslySetInnerHTML={{ __html: event.description }}></div>
@@ -151,7 +164,8 @@ const CalendarPage = ({ data }) => {
                       })}
                   </div>
               );
-            })}
+            })
+            )}
             </div>
           </ContainerBox>
         );
