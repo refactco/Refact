@@ -933,6 +933,30 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      newsletterPage: allWpNewsletter(
+        sort: { date: DESC }
+      ) {
+        edges {
+          node {
+            id
+            title
+            slug
+            uri
+            excerpt
+            date(formatString: "MMMM DD, YYYY")
+            featuredImage {
+              node {
+                localFile {
+                  childImageSharp {
+                    gatsbyImageData
+                  }
+                }
+                altText
+              }
+            }
+          }
+        }
+      }
       urlBuilderPage: wpPage(slug: { eq: "campaign-url-builder" }) {
         id
         content
@@ -1012,12 +1036,44 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   }
 
+  const newsletters = result.data.newsletterPage.edges;
+  const newsletterPerPage = 10;
+  const totalNewsletterPages = Math.ceil(newsletters.length / newsletterPerPage);
+
+  for (let i = 1; i <= totalNewsletterPages; i++) {
+    createPage({
+      path: i === 1 ? `/newsletters/` : `/newsletters/page/${i}`,
+      component: path.resolve(`./src/templates/newsletters.js`),
+      context: {
+        page: i,
+        limit: newsletterPerPage,
+        skip: (i - 1) * newsletterPerPage,
+        totalNewsletterPages: totalNewsletterPages,
+      },
+    });
+  }
+  
+
   const posts = result.data.allWpPost.edges;
 
   posts.forEach(({ node }) => {
     createPage({
       path: `/${node.slug}/`,
       component: path.resolve('./src/templates/blog-post.js'),
+      context: {
+        id: node.id,
+        title: node.title,
+        content: node.content,
+      },
+    });
+  });
+
+  const newsletterPosts = result.data.newsletterPage.edges;
+
+  newsletterPosts.forEach(({ node }) => {
+    createPage({
+      path: `/newsletters/${node.slug}/`,
+      component: path.resolve('./src/templates/newsletter-post.js'),
       context: {
         id: node.id,
         title: node.title,

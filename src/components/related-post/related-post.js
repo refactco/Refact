@@ -9,11 +9,13 @@ const RelatedPostsSection = ({ relatedPosts }) => (
       <div className="c-blog__list">
         {relatedPosts.map(({ node }) => (
           <div className="c-blog__item" key={node.id}>
+            {node.tags && (
             <div className="c-blog-post__category">
               {node.tags.nodes.map((tag) => (
                 <Link to={tag.link} className="c-link c-link--category" key={tag.id}>{tag.name}</Link>
               ))}
             </div>
+            )}
             <h3 className="c-blog-post__title">
               <Link to={node.uri} className="c-link c-link--blog">{node.title}</Link>
             </h3>

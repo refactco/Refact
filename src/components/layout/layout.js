@@ -24,7 +24,7 @@ const Layout = ({ children }) => {
       <Header />
       {children}
       {location.pathname !== '/contact' && location.pathname !== '/contact/' && <FloatButton />}
-      <CtaSection />
+      {location.pathname !== '/newsletters' && location.pathname !== '/newsletters/' && <CtaSection />}
       <Footer />
     </>
   );

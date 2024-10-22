@@ -254,6 +254,12 @@
       padding: 8.4375rem 0 4rem;
     }
   }
+  &.is-newsletter-archive{
+    .c-newsletter-form{
+      max-width: 500px;
+      margin-top: 2rem;
+    }
+  }
 }
 // .c-work__featured {
 //   align-items: center;
