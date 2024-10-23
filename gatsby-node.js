@@ -935,6 +935,61 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
+      calendarEvents: wpPage(slug: { eq: "calendar" }) {
+        id
+        content
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              fieldGroupName
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  fullWidth
+                  subtitle
+                  text
+                  title
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Calendar {
+                  fieldGroupName
+                  eventList {
+                    ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Calendar_EventList_Event {
+                      location
+                      description
+                      endDate
+                      fieldGroupName
+                      fullDay
+                      image {
+                        altText
+                        localFile {
+                          childrenImageSharp {
+                            gatsbyImageData
+                          }
+                        }
+                      }
+                      link {
+                        target
+                        title
+                        url
+                      }
+                      startDate
+                      timeZone
+                      title
+                      type
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
       urlBuilderPage: wpPage(slug: { eq: "campaign-url-builder" }) {
         id
         content
@@ -1204,6 +1259,11 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/back-to-basics/`,
       component: path.resolve(`./src/templates/backtobasics.js`),
+  const calendarPage = result.data.calendarEvents.template.pageBuilder.pageBuilder;
+  calendarPage.forEach(({ node }) => {
+    createPage({
+      path: `/calendar/`,
+      component: path.resolve(`./src/templates/calendar.js`),
     });
   });
 };

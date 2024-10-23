@@ -123,6 +123,9 @@ const TableOfContents = ({
         `${selector} h1, ${selector} h2, ${selector} h3, ${selector} h4, ${selector} h5, ${selector} h6`
       )
     );
+    if (headingElements.length === 0) {
+      return; // Exit early if no headings are found
+    }
 
     const firstItemLevel = parseInt(headingElements[0].tagName[1], 10);
     const headingData = buildTreeRecursive(headingElements, firstItemLevel);
@@ -155,6 +158,7 @@ const TableOfContents = ({
       className={`c-table-of-content${isSticky ? ' is-sticky' : ''}`}
       aria-label="Table of Contents"
     >
+    {headings.length > 0 && (
       <button
         className="c-table-of-content__title"
         onClick={() => {
@@ -164,6 +168,8 @@ const TableOfContents = ({
         Table of Content
         <svg xmlns="http://www.w3.org/2000/svg" width="16" id="chevron-icon" className="chevron chevron-down" fill="none" viewBox="0 0 16 16"><path fill="#798686" d="M13.354 10.354a.502.502 0 0 1-.707 0L8 5.707l-4.646 4.647a.5.5 0 0 1-.707-.708l5-5a.5.5 0 0 1 .707 0l5 5a.5.5 0 0 1 0 .708Z"/></svg>
       </button>
+      )}
+      {headings.length > 0 && (
       <div
         id="toc-collapsible-list"
         className="collapsible-on-mobile is-collapsed c-table-of-content__menu"
@@ -180,7 +186,12 @@ const TableOfContents = ({
           }}
         />
       </div>
-      {footer ? <hr className="c-table-of-content__separator" /> : null}
+      )}
+      {headings.length > 0 && (
+        <>
+        {footer ? <hr className="c-table-of-content__separator" /> : null}
+        </>
+      )}
       {footer}
     </nav>
   );
