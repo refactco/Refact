@@ -1259,6 +1259,8 @@ exports.createPages = async ({ graphql, actions }) => {
     createPage({
       path: `/back-to-basics/`,
       component: path.resolve(`./src/templates/backtobasics.js`),
+    });
+  });
   const calendarPage = result.data.calendarEvents.template.pageBuilder.pageBuilder;
   calendarPage.forEach(({ node }) => {
     createPage({
