@@ -28,7 +28,7 @@ const CalendarPage = ({ data }) => {
     switch (section.fieldGroupName) {
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_PageHeader':
         return (
-          <ContainerBox key={index} className="c-section--work">
+          <ContainerBox key={index} className="c-section--work is-calendar-page">
             <div className="c-page-header">
               {section.title && <h1 className="c-page-header__title">{section.title}</h1>}
               <div className="c-page-header__text" dangerouslySetInnerHTML={{ __html: section.text }} style={{ maxWidth: 796 }}></div>
