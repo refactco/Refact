@@ -356,6 +356,7 @@ const BackToBasics = ({ data }) => {
       //       </div>
       //     </ContainerBox>
       //   )
+      
       case 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero':
         return (
           <ContainerBox key={index} className={`c-section--basichero`}>
