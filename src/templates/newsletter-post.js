@@ -1,5 +1,5 @@
 import { graphql } from 'gatsby';
-import React from 'react';
+import React, { useEffect } from "react";
 import ContainerBox from '../components/container-box/container-box';
 import CtaPost from '../components/cta-post/cta-post';
 import EmailSubscriber from '../components/email-subscriber/email-subscriber';
@@ -15,6 +15,24 @@ const NewsletterTemplate = ({ data }) => {
   const post = data.singlePost;
   const recentPosts = data.recentPosts.edges;
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
+
+  useEffect(() => {
+    // Ensure the Twitter widgets script is loaded
+    if (typeof window !== "undefined" && window.twttr && window.twttr.widgets) {
+      window.twttr.widgets.load();
+    } else {
+      // Fallback: load the Twitter script manually if it's not loaded
+      const script = document.createElement("script");
+      script.src = "https://platform.twitter.com/widgets.js";
+      script.async = true;
+      script.onload = () => {
+        if (window.twttr && window.twttr.widgets) {
+          window.twttr.widgets.load();
+        }
+      };
+      document.body.appendChild(script);
+    }
+  }, []);
   return (
     <Layout>
       <ContainerBox className="c-section--work c-section--article-header">
