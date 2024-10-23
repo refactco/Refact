@@ -320,7 +320,7 @@ const BackToBasics = ({ data }) => {
                       Thanks! Your download will start in a few seconds
                       </p>
                       <p className='c-confirmation__text has-dl-link'>
-                        Download not starting? Try this <a id="download-link" href="https://refact.wpengine.com/wp-content/uploads/2024/10/Lorem_ipsum-pdf.pdf" target="_blank" rel="noreferrer">direct download Link</a>
+                        Download not starting? Try this <a id="download-link" href="https://refact.wpengine.com/wp-content/uploads/2024/10/20241023.pdf" target="_blank" rel="noreferrer">direct download Link</a>
                       </p>
                     </div>
                   ) : null}
@@ -567,7 +567,7 @@ const BackToBasics = ({ data }) => {
       //                 Thanks! Your download will start in a few seconds
       //                 </p>
       //                 <p className='c-confirmation__text has-dl-link'>
-      //                   Download not starting? Try this <a id="download-link" href="https://refact.wpengine.com/wp-content/uploads/2024/10/Lorem_ipsum-pdf.pdf" target="_blank" rel="noreferrer">direct download Link</a>
+      //                   Download not starting? Try this <a id="download-link" href="https://refact.wpengine.com/wp-content/uploads/2024/10/20241023.pdf" target="_blank" rel="noreferrer">direct download Link</a>
       //                 </p>
       //               </div>
       //             ) : null}
