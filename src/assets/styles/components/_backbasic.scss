@@ -161,8 +161,11 @@
     .c-basictext{
       gap: 3rem;
       @include mq(md){
-        gap: 5rem;
+        gap: 57px;
         grid-template-columns: 1fr 350px;
+      }
+      @include mq(lg){
+        grid-template-columns: 1fr 410px;
       }
     }
     .c-section__title{
@@ -286,7 +289,7 @@
   overflow: initial;
   z-index: 2;
   @media (min-width:1100px){
-    padding: 6.5625rem 0 8.6875rem;
+    padding: 6.5625rem 0 5.6875rem;
   }
   .c-pattern{
     &.is-hero-pattern{
@@ -342,7 +345,7 @@
   position: relative;
   margin-bottom: -101px;
   @include mq(sm){
-    max-width: 410px;
+    max-width: 391px;
     margin: 0 auto -101px;
   }
   @media (min-width:1100px){
@@ -375,12 +378,15 @@
         background-color: var(--color-text);
         width: 284px;
         @include mq(md){
-          width: 350px;
+          width: 100%;
+          span{
+            text-align: left;
+          }
         }
       }
     }
     .gform_footer{
-      margin-top: 1.5rem;
+      margin-top: 1rem;
     }
     .validation_message{
       color: #9e1414;
