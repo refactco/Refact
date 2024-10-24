@@ -798,7 +798,7 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      backToBasics: wpPage(slug: { eq: "website-maintenance-guide-for-publishers" }) {
+      backToBasics: wpPage(slug: { eq: "publisher-website-solutions" }) {
         id
         content
         template {
@@ -1257,7 +1257,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const backToBasics = result.data.backToBasics.template.pageBuilder.pageBuilder;
   backToBasics.forEach(({ node }) => {
     createPage({
-      path: `/website-maintenance-guide-for-publishers/`,
+      path: `/publisher-website-solutions/`,
       component: path.resolve(`./src/templates/backtobasics.js`),
     });
   });
