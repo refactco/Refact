@@ -604,7 +604,7 @@ export function Head({ data }) {
 
 export const pageQuery = graphql`
   query {
-    wpPage(slug: {eq: "website-maintenance-guide-for-publishers"}) {
+    wpPage(slug: {eq: "publisher-website-solutions"}) {
       id
       seo {
         title
