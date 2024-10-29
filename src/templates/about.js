@@ -17,11 +17,6 @@ const AboutPage = ({ data }) => {
   const pageBuilder = data.wpPage.template.pageBuilder.pageBuilder;
   // State to track which FAQ items are active
   const [activeIndices, setActiveIndices] = useState([0]);
-  console.log("BRANCH_NAME", process.env.BRANCH_NAME);
-
-  console.log("Branch", process.env.BRANCH);
-
-  console.log("CONTEXT", process.env.CONTEXT);
 
   // Function to handle FAQ click events
   const handleFaqClick = (index) => {
