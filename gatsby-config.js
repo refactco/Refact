@@ -23,7 +23,7 @@ module.exports = {
       options: {
         id: 'GTM-T2WVS9L',
         includeInDevelopment: false,
-        defaultDataLayer: { type: "object", value: { foo: "bar" } }, // initial data layer value
+        defaultDataLayer: { type: "object", value: { variant: "download-back-to-basic" } },
       },
     },
     {
