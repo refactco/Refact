@@ -703,12 +703,12 @@
     @include font-size(19px, 1.47);
   }
   a {
-    color: var(--color-primary-sh);
+    color: var(--color-text);
     transition: all 0.25s ease-in-out;
     text-decoration: underline;
 
     &:hover {
-      color: var(--color-primary-l);
+      color: var(--color-primary-n);
     }
   }
 }
