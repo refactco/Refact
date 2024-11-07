@@ -52,7 +52,7 @@
 
 .c-section--textbox{
   padding: 2.5rem 0;
-  background-color: var(--color-primary-r);
+  background-color: var(--color-text);
   @include mq(lg){
     padding: 5rem 0;
   }
@@ -147,7 +147,7 @@
 }
 .c-section--feature-slides{
   padding: 1.5rem 0;
-  background-color: var(--color-primary-r);
+  background-color: var(--color-text);
   @include mq(md){
     padding: 2.5rem 0;
   }
@@ -300,7 +300,7 @@
   justify-content: center;
   text-align: center;
   gap: 1.5rem;
-  background-color: var(--color-primary-r);
+  background-color: var(--color-text);
   padding: 1.5rem 1rem;
   border-radius: 1.5rem;
   @include mq(md){

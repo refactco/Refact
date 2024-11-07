@@ -70,6 +70,13 @@
             }
         }
     }
+    &.is-hero-pattern-big{
+        top: -40px;
+        right: 0;
+        @include mq(md){
+            top: -90px;
+        }
+    }
     &.is-page-pattern{
         top: 0;
         right: 0;
