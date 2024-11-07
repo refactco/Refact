@@ -13,12 +13,15 @@ type GoodTechData = {
 
 type GoodTechProps = {
   data: GoodTechData;
+  theme?: 'Light' | 'Dark';
+  icon?: boolean;
 };
 
-const GoodTech: React.FC<GoodTechProps> = ({ data }) => {
+const GoodTech: React.FC<GoodTechProps> = ({ data, theme = 'Light', icon = false }) => {
   const [activeTab, setActiveTab] = useState<number>(0); // Type the state as `number`
-
   const [activeIndices, setActiveIndices] = useState([0]);
+  const isDarkTheme = theme === 'Dark';
+
   const uniqueId = useId(); 
   // Function to handle FAQ click events
   const handleFaqClick = (index) => {
@@ -56,7 +59,7 @@ const GoodTech: React.FC<GoodTechProps> = ({ data }) => {
   }, [activeIndices]);
 
   return (
-    <div className="c-goodteach-content">
+    <div className={`c-goodteach-content ${isDarkTheme ? 'is-dark' : 'is-light'}`}>
 
       <div className="c-goodteach-tabs">
         {/* Sidebar for Tabs */}
@@ -85,7 +88,9 @@ const GoodTech: React.FC<GoodTechProps> = ({ data }) => {
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.3 }}
         >
-          <div className='c-icon' dangerouslySetInnerHTML={{ __html: data.list[activeTab].svg }} />
+          { icon ? <div className='c-icon' dangerouslySetInnerHTML={{ __html: data.list[activeTab].svg }} /> : 
+          <div className="c-sf__num">0{activeTab+1}</div>
+          }
           <div className='c-goodtech-tabs-text c-goodtech-tabs__title' dangerouslySetInnerHTML={{ __html: data.list[activeTab].title }} />
           <div className='c-goodtech-tabs-text c-goodtech-tabs__text' dangerouslySetInnerHTML={{ __html: data.list[activeTab].description }} />
         </motion.div>

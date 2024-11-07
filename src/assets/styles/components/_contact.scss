@@ -4,6 +4,34 @@
     @include mq(md) {
         padding: 5rem 0;
     }
+    &.has-contact-part{
+        padding: 4rem 0;
+        @include mq(md) {
+            padding: 8rem 0;
+        } 
+        .gform_footer{
+            align-items: flex-start;
+        }
+        .gform_confirmation_message{
+            padding: 0.75rem 1rem;
+            background-color: var(--color-primary-h);
+            border: 1px solid var(--color-primary-t);
+            svg{
+                max-width: 24px;
+                margin-bottom: 8px;
+            }
+            h4{
+                @include font-size(16px, 1.5);
+                font-weight: 600;
+                color: var(--color-primary-r);
+                text-align: center;
+                a{
+                font-weight: bold;
+                color: var(--color-primary-r);
+                }
+            }
+          }
+    }
 }
 
 .c-contact__title {

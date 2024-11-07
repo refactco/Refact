@@ -360,6 +360,9 @@
         background-color: var(--color-white);
         @include mq(lg){
             padding: 6rem 0;
+            &.is-services{
+                padding: 8rem 0;
+            }
         }
         .c-projects{
             @include mq(lg){

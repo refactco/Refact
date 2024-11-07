@@ -775,6 +775,29 @@
   .c-section__title{
     color: var(--color-white);
   }
+  &.is-branding-page{
+    background-color: var(--color-primary-h);
+    padding: 4rem 0;
+    &.has-section-1{
+      padding-bottom: 2rem;
+    }
+    &.has-section-2{
+      padding-top: 2rem;
+    }
+    @include mq(md){
+      padding: 8rem 0;
+      &.has-section-1{
+        padding-bottom: 4rem;
+      }
+      &.has-section-2{
+        padding-top: 4rem;
+      }
+    }
+    .c-section__title,
+    .c-section__desc{
+      color: var(--color-text);
+    }
+  }
 }
 .c-goodteach-content{
   background: linear-gradient(93deg, rgba(32, 169, 130, 0.15) 0%, rgba(255, 255, 255, 0.00) 91.4%);
@@ -784,6 +807,21 @@
   }
   @include mq(lg){
     padding: 3rem;
+  }
+  &.is-light{
+    background: linear-gradient(135deg, #FFF 31.53%, rgba(255, 255, 255, 0.00) 100.04%);
+    .c-goodteach-tabs-item{
+      color: var(--color-text);
+      border-color: var(--color-gains);
+      &.is-active{
+        background-color: var(--color-primary-r);
+        color: var(--color-white);
+        border-color: var(--color-primary-r);
+      }
+    }
+    .c-goodtech-tabs-text{
+      color: var(--color-text);
+    }
   }
 }
 .c-goodteach-tabs{
@@ -825,7 +863,7 @@
     height: 4px;
     background-color: transparent;
     background-color: var(--color-primary-sh);
-    transition: width 0.25s ease-in-out;
+    transition: width 0.35s ease-in-out;
     @media (max-width: 767px){
       display: none;
     }
@@ -852,7 +890,7 @@
       opacity: 1;
     }
     &::after{
-      width: 143px;
+      width: 100%;
     }
   }
 }
@@ -867,6 +905,28 @@
   color: var(--color-white);
   font-family: $inter;
   margin: 0;
+  p{
+    margin: 0;
+    &:not(:last-child){
+      margin-bottom: 0.5rem;
+    }
+  }
+  ul{
+    display: grid;
+    gap: 0.5rem;
+    margin: 1rem 0 0;
+    font-weight: bold;
+    padding: 0 0 0 1rem;
+    @include mq(md){
+      margin: 2rem 0 0;
+      @include font-size(18px, 1.35);
+    }
+    li{
+        &::marker{
+            color: var(--color-primary-sh);
+        }
+    }
+}
 }
 
 .c-goodtech-tabs__title{
@@ -1063,11 +1123,22 @@
 }
 .c-section--capabilites{
   &.is-text-section{
-    .c-section__title{
-      margin-bottom: 1rem;
-      @include mq(md){
-        margin-bottom: 2rem;
+    &.has-text-5{
+      padding-bottom: 1.25rem;
+    }
+    &.has-text-6{
+      padding-top: 1.25rem;
+    }
+    @include mq(md){
+      &.has-text-5{
+        padding-bottom: 2.5rem;
       }
+      &.has-text-6{
+        padding-top: 2.5rem;
+      }
+    }
+    .c-section__title{
+      margin-bottom: 0.5rem;
     }
     .c-section__desc{
       p{
@@ -1080,4 +1151,7 @@
       }
     }
   }
+}
+.has-green-bg{
+  background-color: var(--color-primary-h);
 }

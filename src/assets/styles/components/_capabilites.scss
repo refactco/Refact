@@ -143,6 +143,13 @@
     @include mq(md){
         padding: 2rem;
     }
+    &.has-no-bg{
+        background: transparent;
+        padding: 0;
+        .c-section__title{
+            margin-bottom: 0.5rem;
+        }
+    }
     .c-sf__title {
         margin: 0 0 0.5rem;
         color: var(--color-text);

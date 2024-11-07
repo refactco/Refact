@@ -126,7 +126,7 @@ const ServicesPage = ({ data }) => {
         return (
           <ContainerBox key={index} className="c-section--capabilites is-text-section">
             <div className="c-capabilites">
-              <div className='c-section mb-0' style={{maxWidth: 837}}>
+              <div className='c-section mb-0' style={{maxWidth: 768}}>
                 {section.title && (
                   <h2 className="c-section__title">{section.title}</h2>
                 )}
@@ -175,7 +175,7 @@ const ServicesPage = ({ data }) => {
               <div className='c-section is-white'>
                 <h2 className="c-section__title" dangerouslySetInnerHTML={{__html:section.title}} />
               </div>
-              <GoodTech data={section} />
+              <GoodTech data={section} icon={true} theme='Dark' />
             </div>
           </ContainerBox>
         )
@@ -337,7 +337,7 @@ export function Head({ data }) {
 
 export const pageQuery = graphql`
   query {
-    wpPage(slug: {eq: "services-v2"}) {
+    wpPage(slug: {eq: "services"}) {
       id
       seo {
         title
