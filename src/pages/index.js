@@ -93,6 +93,19 @@ const Homepage = () => {
                   fieldGroupName
                   mobile
                 }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_CapabilitiesList {
+                  fieldGroupName
+                  list {
+                    title
+                    text
+                    fieldGroupName
+                    cta {
+                      url
+                      title
+                      target
+                    }
+                  }
+                }
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
                   description
                   fieldGroupName
@@ -113,7 +126,8 @@ const Homepage = () => {
   const pageBuilder = data.homePage.template.pageBuilder.pageBuilder;
   const heroAndCapabilities = pageBuilder.filter(
     section => section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero' || 
-               section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites'
+               section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites' ||
+               section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_CapabilitiesList'
   );
   const renderSection = (section, index) => {
     switch (section.fieldGroupName) {
@@ -303,42 +317,49 @@ const Homepage = () => {
                 </div>
               </>
             )}
-            {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites' && (
-              <div className='c-hero__wrapper'>
-                <div className="c-sf">
-                  {section.items && (
-                    <div className="c-sf__list">
-                      <div className="c-sf-list__items">
+
+                  {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_Capabilites' && (
+                    <div className='c-hero__wrapper'>
+                      <div className='c-section has-home-hero'>
                         {section.title && (
                           <div className="c-section__title">{section.title}</div>
                         )}
                         {section.description && (
                           <div className="c-section__desc" dangerouslySetInnerHTML={{__html: section.description}} />
                         )}
-                        {section.cta && (
-                        <div className='c-section__cta'>
-                          <Button 
-                            target={section.cta.target} 
-                            url={section.cta.url} 
-                            text={section.cta.title} 
-                            type={BtnType.SECONDARY} 
-                            bgMode={BgMode.DARK}
-                          />
-                        </div>
-                        )}
                       </div>
-                      {section.items.map((item, index) => (
-                        <div className="c-sf-list__items" key={index}>
-                          <div className="c-sf__num">0{index+1}</div>
-                          <div className="c-sf__title">{item.title}</div>
-                          <div className="c-sf__text" dangerouslySetInnerHTML={{__html: item.text}} />
-                        </div>
-                      ))}
                     </div>
                   )}
-                </div>
-              </div>
-            )}
+                  {section.fieldGroupName === 'Template_PageBuilder_Pagebuilder_PageBuilder_CapabilitiesList' && (
+                    <div className='c-hero__wrapper'>
+                      <div className="c-sf">
+                        {section.list && (
+                          <div className="c-sf__list">
+                            {section.list.map((item, index) => (
+                              <div className="c-sf-list__items"  key={index}>
+                                <div className='c-capabilites-list__info'>
+                                  <div className="c-sf__num">0{index+1}</div>
+                                  <div className="c-sf__title">{item.title}</div>
+                                  <div className="c-sf__text" dangerouslySetInnerHTML={{__html: item.text}} />
+                                </div>
+                                {item.cta && (
+                                  <Button
+                                  url={item.cta.url}
+                                  text={item.cta.title}
+                                  title={item.title}
+                                  type={BtnType.SECONDARY}
+                                  bgMode={BgMode.DARK}
+                                />
+                                )}
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                
+
           </React.Fragment>
         ))}
         <PatternBg pattern="highlightLeft" className='is-hero-highlight' />

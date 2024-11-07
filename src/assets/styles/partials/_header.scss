@@ -41,7 +41,7 @@
     }
     .is-work-single-page &,
     .is-insight-page &{
-       background-color: var(--color-primary-r);
+       background-color: var(--color-text);
     }
     
     &.is-active{
@@ -55,12 +55,12 @@
         .c-header__logo{
             svg{
                 g{
-                    fill: var(--color-primary-r);
+                    fill: var(--color-text);
                 }
             }
         }
         .c-hamburger__icon{
-            background: var(--color-primary-r);
+            background: var(--color-text);
         }
     }
 }
@@ -360,7 +360,7 @@
 .site-header.is-reset {
 	.c-section--header {
 		padding: 1.5em 0;
-        background-color: var(--color-primary-r);
+        background-color: var(--color-text);
 	}
 }
 

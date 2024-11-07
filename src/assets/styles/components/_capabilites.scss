@@ -18,6 +18,38 @@
             }
         }
     }
+    &.has-services{
+        .c-sf__list{
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            @include mq(lg){
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 2.5rem;
+            }
+        }
+        .c-capabilites-list__items{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 1.5rem;
+            padding: 2rem;
+            @include mq(md){
+                padding: 2.5rem;
+            }
+        }
+        .c-section{
+            margin: 0 0 2rem;
+            @include mq(md){
+                margin: 0 0 3rem;
+            }
+        }
+    }
+}
+.c-capabilites-list__info{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
 }
 .c-capabilites {
     display: flex;
@@ -66,7 +98,7 @@
 }
 .c-section--sf{
     padding: 4rem 0;
-    background-color: var(--color-primary-r);
+    background-color: var(--color-text);
     @include mq(lg){
         padding: 8rem 0;
     }
@@ -111,6 +143,13 @@
     @include mq(md){
         padding: 2rem;
     }
+    &.has-no-bg{
+        background: transparent;
+        padding: 0;
+        .c-section__title{
+            margin-bottom: 0.5rem;
+        }
+    }
     .c-sf__title {
         margin: 0 0 0.5rem;
         color: var(--color-text);
@@ -122,13 +161,13 @@
 }
 .c-sf-list__items{
     padding: 2rem;
-    background: linear-gradient(135deg, #00292A -0.01%, rgba(0, 41, 42, 0.00) 100.04%);
+    background: linear-gradient(109deg, rgba(32, 169, 130, 0.15) 1.24%, rgba(255, 255, 255, 0.00) 71.2%);
 }
 .c-sf__num{
     font-family: $inter;
     font-weight: 400;
     @include font-size(18px, 1.55);
-    color: var(--color-grey);
+    color: var(--color-primary-sh);
     display: flex;
     align-items: center;
     margin-bottom: 4px;
@@ -137,7 +176,7 @@
     }
     &::after {
         content: '';
-        background: var(--color-grey);
+        background: var(--color-primary-sh);
         height: 1px;
         width: 32px;
         display: inline-flex;

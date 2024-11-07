@@ -224,40 +224,429 @@ exports.createPages = async ({ graphql, actions }) => {
           }
         }
       }
-      servicesPage: wpPage(slug: { eq: "services" }) {
+      servicesPage: wpPage(slug: {eq: "services"}) {
         id
-        content
+        seo {
+          title
+          metaDesc
+          opengraphImage {
+            localFile {
+              url
+            }
+          }
+        }
         template {
           ... on WpTemplate_PageBuilder {
             templateName
             pageBuilder {
-              fieldGroupName
               pageBuilder {
                 ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
                   fieldGroupName
-                  fullWidth
                   subtitle
                   text
                   title
                 }
-                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Services {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
                   fieldGroupName
-                  services {
-                    desc
-                    fieldGroupName
-                    title
-                    subList {
-                      ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Services_services_SubList_Item {
-                        activateSubitem
-                        fieldGroupName
-                        subItem {
-                          fieldGroupName
-                          title
-                        }
-                        title
-                        description
+                  images {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
                       }
                     }
+                  }
+                  title
+                  subHeading
+                  moreFeatures
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Spacer {
+                  desktop
+                  fieldGroupName
+                  mobile
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextButton {
+                  description
+                  fieldGroupName
+                  title
+                  cta {
+                    url
+                    title
+                    target
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Testimonials {
+                  fieldGroupName
+                  title
+                  testimonialsList {
+                    text
+                    name
+                    position
+                    logo
+                    fieldGroupName
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_CapabilitiesList {
+                  fieldGroupName
+                  list {
+                    title
+                    text
+                    fieldGroupName
+                    cta {
+                      url
+                      title
+                      target
+                    }
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_ToolsResources {
+                  description
+                  fieldGroupName
+                  title
+                  list {
+                    title
+                    description
+                    svg
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                  fieldGroupName
+                  list {
+                    answer
+                    question
+                    fieldGroupName
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_CtaSection {
+                  fieldGroupName
+                  title
+                  button {
+                    target
+                    title
+                    url
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
+                  description
+                  fieldGroupName
+                  items {
+                    fieldGroupName
+                    title
+                    text
+                  }
+                  title
+                }
+              }
+            }
+          }
+        }
+      }
+      brandingDesign:  wpPage(slug: {eq: "branding-and-design"}) {
+        id
+        seo {
+          title
+          metaDesc
+          opengraphImage {
+            localFile {
+              url
+            }
+          }
+        }
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  subtitle
+                  text
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
+                  fieldGroupName
+                  images {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  title
+                  subHeading
+                  moreFeatures
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_ToolsResources {
+                  description
+                  fieldGroupName
+                  title
+                  list {
+                    title
+                    description
+                    svg
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Contact {
+                  title
+                  text
+                  fieldGroupName
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Project {
+                  fieldGroupName
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                  displayMode
+                  projectList {
+                    cover {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    video{
+                      altText
+                      filename
+                      localFile {
+                        url
+                        id
+                      }
+                      height
+                      width
+                      mimeType
+                    }
+                    cta {
+                      target
+                      title
+                      url
+                    }
+                    mediaSettings
+                    description
+                    fieldGroupName
+                    title
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                  fieldGroupName
+                  list {
+                    answer
+                    question
+                    fieldGroupName
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      websiteDevelopmentPage: wpPage(slug: {eq: "website-development"}) {
+        id
+        seo {
+          title
+          metaDesc
+          opengraphImage {
+            localFile {
+              url
+            }
+          }
+        }
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  subtitle
+                  text
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
+                  fieldGroupName
+                  images {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  title
+                  subHeading
+                  moreFeatures
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Contact {
+                  title
+                  text
+                  fieldGroupName
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Project {
+                  fieldGroupName
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                  displayMode
+                  projectList {
+                    cover {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    video{
+                      altText
+                      filename
+                      localFile {
+                        url
+                        id
+                      }
+                      height
+                      width
+                      mimeType
+                    }
+                    cta {
+                      target
+                      title
+                      url
+                    }
+                    mediaSettings
+                    description
+                    fieldGroupName
+                    title
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
+                  description
+                  fieldGroupName
+                  items {
+                    fieldGroupName
+                    title
+                    text
+                  }
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                  fieldGroupName
+                  list {
+                    answer
+                    question
+                    fieldGroupName
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+      optimizationPage: wpPage(slug: {eq: "optimization"}) {
+        id
+        seo {
+          title
+          metaDesc
+          opengraphImage {
+            localFile {
+              url
+            }
+          }
+        }
+        template {
+          ... on WpTemplate_PageBuilder {
+            templateName
+            pageBuilder {
+              pageBuilder {
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_PageHeader {
+                  fieldGroupName
+                  subtitle
+                  text
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_TextSection {
+                  description
+                  fieldGroupName
+                  images {
+                    altText
+                    localFile {
+                      childImageSharp {
+                        gatsbyImageData
+                      }
+                    }
+                  }
+                  title
+                  subHeading
+                  moreFeatures
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Contact {
+                  title
+                  text
+                  fieldGroupName
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Project {
+                  fieldGroupName
+                  cta {
+                    target
+                    title
+                    url
+                  }
+                  displayMode
+                  projectList {
+                    cover {
+                      altText
+                      localFile {
+                        childImageSharp {
+                          gatsbyImageData
+                        }
+                      }
+                    }
+                    video{
+                      altText
+                      filename
+                      localFile {
+                        url
+                        id
+                      }
+                      height
+                      width
+                      mimeType
+                    }
+                    cta {
+                      target
+                      title
+                      url
+                    }
+                    mediaSettings
+                    description
+                    fieldGroupName
+                    title
+                  }
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Capabilites {
+                  description
+                  fieldGroupName
+                  items {
+                    fieldGroupName
+                    title
+                    text
+                  }
+                  title
+                }
+                ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Faqs {
+                  fieldGroupName
+                  list {
+                    answer
+                    question
+                    fieldGroupName
                   }
                 }
               }
@@ -1193,13 +1582,37 @@ exports.createPages = async ({ graphql, actions }) => {
     });
   });
 
-  // const services = result.data.servicesPage.template.pageBuilder.pageBuilder;
-  // services.forEach(({ node }) => {
-  //   createPage({
-  //     path: `/services/`,
-  //     component: path.resolve(`./src/templates/services.js`),
-  //   });
-  // });
+  const services = result.data.servicesPage.template.pageBuilder.pageBuilder;
+  services.forEach(({ node }) => {
+    createPage({
+      path: `/services/`,
+      component: path.resolve(`./src/templates/services.js`),
+    });
+  });
+
+  const brandingDeisgn = result.data.brandingDesign.template.pageBuilder.pageBuilder;
+  brandingDeisgn.forEach(({ node }) => {
+    createPage({
+      path: `/services/branding-and-design/`,
+      component: path.resolve(`./src/templates/branding-design.js`),
+    });
+  });
+
+  const websiteDevelopment = result.data.websiteDevelopmentPage.template.pageBuilder.pageBuilder;
+  websiteDevelopment.forEach(({ node }) => {
+    createPage({
+      path: `/services/website-development/`,
+      component: path.resolve(`./src/templates/website-development.js`),
+    });
+  });
+
+  const optimizationPages = result.data.optimizationPage.template.pageBuilder.pageBuilder;
+  optimizationPages.forEach(({ node }) => {
+    createPage({
+      path: `/services/optimization/`,
+      component: path.resolve(`./src/templates/optimization.js`),
+    });
+  });
 
   const beehiiv = result.data.beehiivPage.template.pageBuilder.pageBuilder;
   beehiiv.forEach(({ node }) => {
