@@ -739,9 +739,7 @@ export function Head({ data }) {
   const post = data.wpPage;
   return (
     <>
-      <Seo title={post.seo.title} description={post.seo.metaDesc} 
-      // featuredImage={post.seo.opengraphImage.localFile.url} 
-      />
+      <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
     </>
   );
 }
