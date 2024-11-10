@@ -1000,6 +1000,7 @@
   flex-flow: row wrap;
   align-items: center;
   justify-content: center;
+  text-align: center;
   gap: 0.5rem;
   @include mq(md){
     gap: 1rem;
