@@ -444,8 +444,8 @@ const BackToBasics = ({ data }) => {
                       }).then((response) => {
                         // Trigger download event on successful form submission
                         if (response.data.submitGfForm.confirmation) {
-                          window.dataLayer = window.dataLayer || [];
-                          window.dataLayer.push({'event': 'download_ebook'});
+                          // eslint-disable-next-line no-undef
+                          dataLayer.push({'event': 'download_ebook'});
                           // Check if a successful confirmation was received
                           const downloadUrl = "https://refact.co/downloads/website-maintenance-guide.pdf";
                           const link = document.createElement("a");
