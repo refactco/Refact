@@ -53,3 +53,9 @@
 .c-hamburger__checkbox:checked ~ .c-hamburger__icon:nth-last-child(1) {
     transform: rotate(-45deg) translate(3.5px, -2px);
 }
+
+.is-hide-content {
+  opacity: 0;
+  pointer-events: none; /* Ensures the content isn’t interactable when hidden */
+  transition: opacity 0.3s ease; /* Smooth fade-out */
+}

@@ -74,17 +74,28 @@ const Header  = () => {
   const latestProject = data.latestProject.themeOptions.siteOptions.latestProject;
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
+  const [isContentVisible, setIsContentVisible] = useState(true);
 
   const handleLinkClick = () => {
     setIsOpen(true);    
   };
 
   const onHamburgerClick = () => {
-    setIsMobileNavOpen(!isMobileNavOpen);
     const htmlElement = document.documentElement;
-    htmlElement.classList.remove('is-fixed');
-    if (!isMobileNavOpen) {
+    if (isMobileNavOpen) {
+      // If the menu is currently open, start by hiding the content
+      setIsContentVisible(false);
+      // Then wait for the fade-out to complete before closing the menu
+      setTimeout(() => {
+        setIsMobileNavOpen(false);
+        htmlElement.classList.remove('is-fixed');
+      }, 300); // Match with CSS fade-out transition
+    } else {
+      // If the menu is currently closed, reset visibility and open the menu
+      setIsContentVisible(true);
+      setIsMobileNavOpen(true);
       htmlElement.classList.add('is-fixed');
+
     }
   };
 
@@ -99,7 +110,7 @@ const Header  = () => {
     <>
     <div className={mobileClassName}>
       <div className="c-header-wrap__col">
-        <div className="c-header-wrap__inner">
+        <div className={`c-header-wrap__inner ${isContentVisible ? '' : 'is-hide-content'}`}>
           {/* <div className="c-header-wrap__text">Main menu</div> */}
           {typeof window !== 'undefined' && (
             <ul className='s-nav' id='navigation'>
@@ -193,10 +204,10 @@ const Header  = () => {
         </div>
       </div>
       <div className="c-header-wrap__col">
-        <div className="c-header-wrap__post">
+        <div className={`c-header-wrap__post ${isContentVisible ? '' : 'is-hide-content'}`}>
           <div className="c-header-wrap__text">latest Updates</div>
           {latestProject && (
-            <div className='c-header__project'>
+            <div className="c-header__project">
               <Link to={latestProject.cta.url} className="c-project__img" title={latestProject.title}>
                 <GatsbyImage image={latestProject.cover.localFile.childImageSharp.gatsbyImageData} alt={latestProject.cover.altText} />
               </Link>
