@@ -101,10 +101,11 @@ const BackToBasics = ({ data }) => {
       12: utmCookies.utm_term,
     }));
     if (mutationData?.submitGfForm?.confirmation) {
-      const downloadLink = document.getElementById('download-link');
-      if (downloadLink) {
-        downloadLink.click(); // Automatically trigger the download
-      }
+      // const downloadLink = document.getElementById('download-link');
+      // if (downloadLink) {
+      //   downloadLink.click(); // Automatically trigger the download
+      // }
+      window.open("https://refact.co/downloads/website-maintenance-guide.pdf", "_blank");
     }
   }, [mutationData?.submitGfForm?.confirmation], []);
 
