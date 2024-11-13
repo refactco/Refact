@@ -447,6 +447,9 @@ const BackToBasics = ({ data }) => {
                         variables: {
                           fieldValues: values,
                         },
+                      }).then(() => {
+                        // Trigger download event on successful form submission
+                        dataLayer.push({'event': 'download_ebook'});
                       });
                     }}
                   >
