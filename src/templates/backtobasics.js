@@ -100,14 +100,7 @@ const BackToBasics = ({ data }) => {
       11: utmCookies.utm_source,
       12: utmCookies.utm_term,
     }));
-    if (mutationData?.submitGfForm?.confirmation) {
-      // const downloadLink = document.getElementById('download-link');
-      // if (downloadLink) {
-      //   downloadLink.click(); // Automatically trigger the download
-      // }
-      window.open("https://refact.co/downloads/website-maintenance-guide.pdf", "_blank");
-    }
-  }, [mutationData?.submitGfForm?.confirmation], []);
+  }, []);
 
   const renderSection = (section, index) => {
     switch (section.fieldGroupName) {
@@ -448,9 +441,18 @@ const BackToBasics = ({ data }) => {
                         variables: {
                           fieldValues: values,
                         },
-                      }).then(() => {
+                      }).then((response) => {
                         // Trigger download event on successful form submission
-                        dataLayer.push({'event': 'download_ebook'});
+                        if (response.data.submitGfForm.confirmation) {
+                          dataLayer.push({'event': 'download_ebook'});
+                          // Check if a successful confirmation was received
+                          const downloadUrl = "https://refact.co/downloads/website-maintenance-guide.pdf";
+                          const link = document.createElement("a");
+                          link.href = downloadUrl;
+                          link.target = "_blank";
+                          link.rel = "noopener noreferrer";
+                          link.click();
+                        }
                       });
                     }}
                   >
