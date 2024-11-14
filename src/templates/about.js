@@ -10,6 +10,7 @@ import "slick-carousel/slick/slick.css";
 import PatternBg from '../components/patterns/pattern-bg';
 import Button, {BgMode, BtnType} from '../components/button/button';
 import ClutchWidget from '../components/clutch-widget/clutch-widget';
+import Counter from '../components/counter/counter';
 
 
 
@@ -395,7 +396,9 @@ const AboutPage = ({ data }) => {
                   <div className="c-refact-number__list">
                     {section.list.map((item, index) => (
                       <div className="c-refact-number__items"  key={index}>
-                        <div className="c-refact-number__num">{item.title}</div>
+                        {/* <div className="c-refact-number__num">{item.title}</div> */}
+                        <Counter number={item.title} />
+
                         <div className="c-refact-number__title" dangerouslySetInnerHTML={{__html:item.text}} />
                       </div>
                     ))}
