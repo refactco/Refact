@@ -591,3 +591,47 @@ h6 {
 code[class*=language-], pre[class*=language-]{
   white-space: pre-wrap !important;
 }
+
+
+.wp-block-table{
+  &.has-table{
+    border: 1px solid var(--color-text);
+    table{
+      tbody tr:nth-child(2n+1) td{
+        width: 250px;
+      }      
+      tbody{
+        a{
+          color: var(--color-text);
+          font-weight: 500;
+          &:hover{
+            color: var(--color-primary-n);
+          }
+        }
+        tr{
+          &:nth-child(2n){
+            background-color: transparent;
+          }
+          &:not(:last-child){
+            border-bottom: 1px solid var(--color-text);
+          }
+          td{
+            &:first-child{
+              background-color: var(--color-primary-h);
+              color: var(--color-text);
+              width: 150px;
+              text-align: center;
+              position: sticky;
+              left: 0;
+              z-index: 2;
+              border-right: 1px solid var(--color-text);
+            }
+            &:nth-child(2n){
+              background-color: var(--color-cultred);
+            }
+          }
+        }
+      }
+    }
+  }
+}
