@@ -4,6 +4,24 @@
     @include mq(md) {
         padding: 5rem 0;
     }
+    &.is-contact{
+        overflow: initial;
+        @media (max-width: 991px){
+            padding-bottom: 0;
+            .c-contact__col{
+                &:first-child{
+                    padding: 0 1.25rem;
+                }
+            }
+        }
+        .o-section__wrapper{
+            @media (max-width: 991px){
+                max-width: 100%;
+                padding: 0;
+            }
+        }
+    }
+
     &.has-contact-part{
         padding: 4rem 0;
         @include mq(md) {
@@ -49,7 +67,14 @@
     }
 }
 .c-contact{
-    max-width: 731px;
+    // max-width: 731px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    @include mq(lg){
+        grid-template-columns: 1.5fr 1fr;
+        gap: 7.3125rem;
+    }
 }
 .c-contact-form__title{
     font-family: $inter;
@@ -141,24 +166,27 @@
         overflow: hidden !important;
     }
 }
-
-
-.c-section--learnmore{
-    background-color: var(--color-primary-h);
-    @include mq(lg){
-        padding: 5rem 0;
+.c-sticky-box{
+    position: sticky;
+    top: 5em;
+    left: 0;
+    transition: top 0.15s ease-out;
+    .has-sticky-header & {
+      top: 1em;
     }
 }
+
 .c-learnmore{
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 3rem;
+    background-color: var(--color-primary-h);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1.25rem;
+
     @include mq(md){
-        grid-template-columns: 1fr 1fr;
-        gap: 4rem;
-    }
-    @include mq(lg){
-        gap: 5rem;
+        padding: 1.5rem;
+
     }
 }
 .c-learnmore__box{
@@ -191,53 +219,56 @@
     display: flex;
     flex-direction: column;
     gap: 0.75rem;
-}
-.c-learnmore__image{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    left: 0;
-    top: 0;
-    object-fit: contain;
-}
-.c-learnmore__wrao{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    gap: 3rem;
-    height: 100%;
-}
-.c-learnmore__clutch{
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-.c-learnmore-clutch__logo{
-    display: flex;
-}
-.c-learnmore-clutch__text{
-    font-family: $inter;
-    @include font-size(20px, 1,2);
-    font-weight: bold;
-    color: var(--color-text);
     @include mq(lg){
-        @include font-size(24px, 1.16);
+        align-items: flex-start;
     }
 }
-.c-icon-review{
-    display: flex;
-}
-.c-btn-text{
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.c-learnmore__clutch-link{
-    .c-btn{
-        padding: 0 0.75rem 0 2rem;
-        height: 4rem;
-        @media (max-width: 380px){
-            font-size: 10px;
-        }
-    }
-}
+// .c-learnmore__image{
+//     position: absolute;
+//     width: 100%;
+//     height: 100%;
+//     left: 0;
+//     top: 0;
+//     object-fit: contain;
+// }
+// .c-learnmore__wrao{
+//     display: flex;
+//     flex-direction: column;
+//     justify-content: space-between;
+//     gap: 3rem;
+//     height: 100%;
+// }
+// .c-learnmore__clutch{
+//     display: flex;
+//     flex-direction: column;
+//     gap: 1rem;
+// }
+// .c-learnmore-clutch__logo{
+//     display: flex;
+// }
+// .c-learnmore-clutch__text{
+//     font-family: $inter;
+//     @include font-size(20px, 1,2);
+//     font-weight: bold;
+//     color: var(--color-text);
+//     @include mq(lg){
+//         @include font-size(24px, 1.16);
+//     }
+// }
+// .c-icon-review{
+//     display: flex;
+// }
+// .c-btn-text{
+//     display: flex;
+//     flex-direction: column;
+//     align-items: flex-start;
+// }
+// .c-learnmore__clutch-link{
+//     .c-btn{
+//         padding: 0 0.75rem 0 2rem;
+//         height: 4rem;
+//         @media (max-width: 380px){
+//             font-size: 10px;
+//         }
+//     }
+// }
