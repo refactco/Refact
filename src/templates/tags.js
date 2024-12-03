@@ -5,14 +5,13 @@ import ResponsivePagination from 'react-responsive-pagination';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
-import Button, {BgMode, BtnType} from '../components/button/button';
+import ArticleCard from '../components/article-card/article-card';
 
 const TagPage = (props) => {
   const { data, pageContext } = props;
   const { name, link } = data.wpTag;
   const { page, totalPages } = pageContext;
   const posts = data.posts.nodes;
-  const topicItems = data.topicList.nodes;
 
   return (
     <Layout>
@@ -24,77 +23,32 @@ const TagPage = (props) => {
         >
           <ContainerBox className="c-section--headline">
             <div className="c-headline">
-              <div className='c-headline__btn'>
-              <Button 
-                url="/insights" 
-                text="Back to Insights" 
-                type={BtnType.SECONDARY} 
-                bgMode={BgMode.LIGHT} 
-                icon="arrowleft"  
-              />
-              </div>
-              <h1 className="c-headline__title">{name}</h1>
-              <div className="c-blog-nav">
-                <div className="c-blog-nav__title">Topics</div>
-                <div className="c-blog-nav__wrap">
-                  <swiper-container
-                    space-between={8}
-                    slides-per-view={'auto'}
-                    css-mode={false}
-                    navigation={false}
-                    allow-touch-move={true}
+              <div className='c-article-header__links'>
+                <div className='c-article-header__btn'>
+                  <Link
+                    to="/insights"
+                    className="c-link c-link--category"
                   >
-                    {topicItems.map((topic) => (
-                      <swiper-slide key={topic.id}>
-                        <div className={`item ${topic.name === name ? 'is-active' : ''}`}>
-                          <Link to={topic.link}>{topic.name}</Link>
-                        </div>
-                      </swiper-slide>
-                    ))}
-                  </swiper-container>
+                    all insights
+                  </Link>
+                  <span>/</span>
                 </div>
               </div>
+              <h1 className="c-headline__title">{name}</h1>
             </div>
           </ContainerBox>
           <ContainerBox className="c-section--blog is-tag-archive">
             <div className="c-blog-posts">
               <div className="c-blog__list">
                 {posts.map((node) => (
-                  <div className="c-blog__item" key={node.id}>
-                    <div className="c-blog-post__category">
-                      {node.tags.nodes.map((tag) => (
-                        <Link
-                          to={tag.link}
-                          className="c-link c-link--category"
-                          key={tag.id}
-                        >
-                          {tag.name}
-                        </Link>
-                      ))}
-                    </div>
-
-                    <h3 className="c-blog-post__title">
-                      <Link to={node.uri} className="c-link c-link--blog">
-                        {node.title}
-                      </Link>
-                    </h3>
-                    {node.excerpt && (
-                      <div
-                        className="c-blog-featured__excerpt"
-                        dangerouslySetInnerHTML={{
-                          __html: node.excerpt,
-                        }}
-                      ></div>
-                    )}
-                    <div className="c-blog-post__cta">
-                      <Button
-                        url={node.uri}
-                        text="Read More"
-                        type={BtnType.SECONDARY} 
-                        bgMode={BgMode.LIGHT}
-                      />
-                    </div>
-                  </div>
+                  <ArticleCard
+                    key={node.id}
+                    id={node.id}
+                    uri={node.uri}
+                    title={node.title}
+                    excerpt={node.excerpt}
+                    featuredImage={node.featuredImage.node}
+                  />
                 ))}
               </div>
               <div className={totalPages <= 1 ? 'c-blog-posts__pagination is-hidden' : 'c-blog-posts__pagination'}>
@@ -111,9 +65,6 @@ const TagPage = (props) => {
                   }}
                 />
               </div>
-              {/* <div className="c-blog__cta">
-            <LoadMoreButton onClick={handleLoadMore} disabled={!hasMorePosts} />
-          </div> */}
             </div>
           </ContainerBox>
         </motion.div>
@@ -143,7 +94,10 @@ export const pageQuery = graphql`
       limit: $limit
       skip: $skip
       sort: { date: DESC }
-      filter: { tags: { nodes: { elemMatch: { id: { eq: $tagId } } } } }
+      filter: {
+        tags: {nodes: {elemMatch: {id: {eq: $tagId}}}}
+        categories: { nodes: { elemMatch: { slug: { ne: "case-studies" } } } }
+      }
     ) {
       nodes {
         id
@@ -162,6 +116,10 @@ export const pageQuery = graphql`
             altText
           }
         }
+        primaryTag {
+          selectPrimaryTag
+          fieldGroupName
+        }
         tags {
           nodes {
             name
@@ -179,13 +137,6 @@ export const pageQuery = graphql`
       seo {
         title
         metaDesc
-      }
-    }
-    topicList: allWpTag(filter: { count: { gt: 0 } }) {
-      nodes {
-        name
-        link
-        id
       }
     }
   }

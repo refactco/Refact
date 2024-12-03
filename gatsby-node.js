@@ -57,6 +57,10 @@ exports.createPages = async ({ graphql, actions }) => {
                 slug
               }
             }
+            primaryTag {
+              selectPrimaryTag
+              fieldGroupName
+            }
             caseStudyPosts {
               fieldGroupName
               project {
@@ -1427,7 +1431,7 @@ exports.createPages = async ({ graphql, actions }) => {
   `);
 
   const insights = result.data.allInsights.edges;
-  const postsPerPage = 9;
+  const postsPerPage = 35;
   const totalPages = Math.ceil(insights.length / postsPerPage);
 
   createPage({
@@ -1476,7 +1480,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   catItems.forEach((cat) => {
     const categoryPosts = cat.posts.nodes;
-    const categoryPostsPerPage = 8;
+    const categoryPostsPerPage = 9;
     const totalCategoryPages = Math.ceil(
       categoryPosts.length / categoryPostsPerPage
     );
@@ -1514,7 +1518,7 @@ exports.createPages = async ({ graphql, actions }) => {
 
   tagItems.forEach((tag) => {
     const tagPosts = tag.posts.nodes;
-    const tagPostsPerPage = 8;
+    const tagPostsPerPage = 9;
     const totalTagPages = Math.ceil(tagPosts.length / tagPostsPerPage);
 
     createPage({
@@ -1538,7 +1542,7 @@ exports.createPages = async ({ graphql, actions }) => {
             tagId: tag.id,
             page: i,
             limit: tagPostsPerPage,
-            skip: (i - 1) * tagPostsPerPage + 1,
+            skip: (i - 1) * tagPostsPerPage,
             totalPages: totalTagPages,
           },
         });
