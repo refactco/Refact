@@ -20,45 +20,23 @@
 .c-link--category {
   font-family: $inter;
   font-weight: bold;
-  @include font-size(11px, 1);
-  color: var(--color-text);
+  @include font-size(12px, 2);
+  color: var( --color-primary-sh);
   text-transform: uppercase;
+  letter-spacing: 0.36px;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 6px 12px;
-  border: 1px solid var(--color-text);
-  border-radius: 48px;
-  overflow: hidden;
-  letter-spacing: 0.33px;
-  height: 28px;
-  background-color: var(--color-white);
   position: relative;
   z-index: 1;
   transition: color .35s ease-in-out;
-  &:before{
-      content: '';
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 0;
-      height: 100%;
-      background: var(--color-text);
-      z-index: -1;
-      transition: width .35s ease-in-out;
-  }
-  &:hover{
-      color: var(--color-white);
-      cursor: pointer;
-      &::before{
-          width: 100%;
-      }
-  }
+  // &:hover{
+  //     color: var(--color-text);
+  //     cursor: pointer;
+  // }
   @include mq(md) {
-    @include font-size(12px, 1);
-    letter-spacing: 0.36px;
-    padding: 8px 16px;
-    height: 35px;
+    @include font-size(14px, 1.71);
+    letter-spacing: 0.42px;
   }
 }
 

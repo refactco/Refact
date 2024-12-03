@@ -97,7 +97,40 @@
 
 .c-link--logo{
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+}
+.is-insight-flag{
+    display: none;
+    @include font-size(13px, 1);
+    letter-spacing: 0.65px;
+    font-weight: bold;
+    color: var(--color-text);
+    text-transform: uppercase;
+}
+.single,
+.is-insight-page{
+    .c-section--header{
+        background-color: var(--color-white);
+    }
+    .c-link--logo{
+        svg{
+            g{
+                fill: var(--color-text);
+            }
+        }
+    }
+    .c-hamburger__icon{
+        background: var(--color-text);
+    }
+    .is-insight-flag{
+        display: block;
+    }
+    .site-header.is-reset .c-section--header{
+        background-color: var(--color-white);
+        padding: 1rem 0;
+    }
 }
 
 .c-header__wrap {

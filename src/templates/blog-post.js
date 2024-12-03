@@ -11,6 +11,7 @@ import ShareButton from '../components/share-btn/share-btn';
 import TableOfContents from '../components/table-of-content/table-of-content';
 import PatternBg from '../components/patterns/pattern-bg';
 import Button, {BgMode, BtnType} from '../components/button/button';
+import { GatsbyImage } from 'gatsby-plugin-image';
 
 const BlogPostTemplate = ({ data }) => {
   const post = data.singlePost;
@@ -20,7 +21,7 @@ const BlogPostTemplate = ({ data }) => {
   const currentUrl = typeof window !== 'undefined' ? window.location.href : '';
   return (
     <Layout>
-      <ContainerBox className="c-section--work c-section--article-header">
+      {/* <ContainerBox className="c-section--work c-section--article-header">
         <div className="c-article__header">
           <div className='c-article-header__links'>
             <div className='c-article-header__btn'>
@@ -80,11 +81,11 @@ const BlogPostTemplate = ({ data }) => {
         </div>
         <PatternBg pattern="highlightLeft" className='is-hero-highlight' />
         <PatternBg pattern="pagePattern" className='is-page-pattern' />
-      </ContainerBox>
+      </ContainerBox> */}
       <ContainerBox className="c-section--article">
         <article className="c-article">
           <div className="c-article__content c-article__content--insight">
-            <div className="c-article__left-side">
+            {/* <div className="c-article__left-side">
               <div className="c-article__toc-wrapper">
                 <TableOfContents
                   selector=".c-article__content"
@@ -99,12 +100,107 @@ const BlogPostTemplate = ({ data }) => {
                   }
                 />
               </div>
+            </div> */}
+            <div className='c-article__header'>
+              <div className='c-article-header__links'>
+                <div className='c-article-header__btn'>
+                  <Link
+                    to="/insights"
+                    className="c-link c-link--category"
+                  >
+                    all insights
+                  </Link>
+                  <span>/</span>
+                </div>
+                {post.primaryTag.selectPrimaryTag && (
+                    <div className="c-article__category">
+                      <span
+                        className="c-link--category"
+                      >
+                        {post.primaryTag.selectPrimaryTag[1]}
+                      </span>
+                    </div>
+                )}
+                <div className="c-article__category">
+                {post.tags.nodes.map((tag) => (
+                  <span
+                    className="c-link--category"
+                    key={tag.id}
+                  >
+                    {tag.name}
+                  </span>
+                ))}
+                </div>
+              </div>
+              <h1 className="c-article__title">{post.title}</h1>
+              <div className="c-article__author">
+                <div className="c-article-author__wrapper">
+                  {authorPosts.map((author) => (
+                    <div className="c-article-author__img" key={author.id}>
+                      {author.userMeta.profileImage && (
+                        <img
+                          src={author.userMeta.profileImage.localFile.url}
+                          alt={author.name}
+                          width="48"
+                          height="48"
+                          loading="lazy"
+                        />
+                      )}
+                    </div>
+                  ))}
+                </div>
+                <div className='c-article-author__wrap'>
+                  <div className="c-article-author__name">
+                    {post.coAuthors.nodes.map((author, index) => (
+                      <span key={author.id}>
+                        {author.displayName}
+                        {index < post.coAuthors.nodes.length - 2
+                          ? ', '
+                          : index === post.coAuthors.nodes.length - 2
+                          ? ' & '
+                          : ''}
+                      </span>
+                    ))}
+                  </div>
+                  <span className='c-article-author__date'>{post.date}</span>
+                </div>
+              </div>
+              <div className='c-article__featured-image'>
+                <GatsbyImage image={post.featuredImage.node.localFile.childImageSharp.gatsbyImageData} alt={post.featuredImage.node.altText} />
+              </div>
             </div>
             <div
               className="c-article__content-wrapper s-content"
               dangerouslySetInnerHTML={{ __html: post.content }}
             ></div>
           </div>
+          <div className='c-article__tags'>
+            {post.tags.nodes.map((tag) => (
+              <Button
+                url={tag.link}
+                text={tag.name}
+                type={BtnType.PRIMARY}
+                bgMode={BgMode.LIGHT}
+                className='is-btn-tag'
+                key={tag.id}
+              />
+            ))}
+          </div>
+          <div className='c-article__tags'>
+  {post.tags.nodes
+    .sort((a, b) => a.name.localeCompare(b.name)) // Sorting tags alphabetically by name
+    .map((tag) => (
+      <Button
+        url={tag.link}
+        text={tag.name}
+        type={BtnType.PRIMARY}
+        bgMode={BgMode.LIGHT}
+        className='is-btn-tag'
+        key={tag.id}
+      />
+    ))}
+</div>
+
           <CtaPost />
         </article>
       </ContainerBox>
@@ -181,6 +277,10 @@ export const pageQuery = graphql`
         nodes {
           slug
         }
+      }
+      primaryTag {
+        selectPrimaryTag
+        fieldGroupName
       }
       caseStudyPosts {
         fieldGroupName

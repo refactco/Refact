@@ -71,6 +71,27 @@
             }
         }
     }
+    &.is-btn-tag{
+        .c-btn__icon{
+            display: none;
+        }
+        background-color: var(--color-white);
+        color: var(--color-grey);
+        border: 1px solid var(--color-grey);
+        padding: 0.5rem 1rem;
+        height: 2rem;
+        @include font-size(12px, 1);
+        letter-spacing: 0.36px;
+        text-align: center;
+        display: flex;
+        transition: color .35s ease-in-out, border-color .35s ease-in-out;
+        &::before{
+            background-color: var(--color-grey);
+        }
+        &:hover{
+            color: var(--color-white);
+        }
+    }
     &.c-btn--secondary{
         background-color: transparent;
         color: var(--color-primary-t);
