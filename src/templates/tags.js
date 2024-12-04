@@ -10,9 +10,15 @@ import ArticleCard from '../components/article-card/article-card';
 const TagPage = (props) => {
   const { data, pageContext } = props;
   const { name, link } = data.wpTag;
-  const { page, totalPages } = pageContext;
-  const posts = data.posts.nodes;
+  const { page, limit, filteredPosts } = pageContext;
 
+  console.log('Filtered Posts from Context:', filteredPosts);
+
+  const totalPosts = filteredPosts.length;
+  const totalPages = Math.ceil(totalPosts / limit);
+  const paginatedPosts = filteredPosts.slice((page - 1) * limit, page * limit);
+
+  console.log('Paginated Posts:', paginatedPosts);
   return (
     <Layout>
       <AnimatePresence>
@@ -40,7 +46,7 @@ const TagPage = (props) => {
           <ContainerBox className="c-section--blog is-tag-archive">
             <div className="c-blog-posts">
               <div className="c-blog__list">
-                {posts.map((node) => (
+                {paginatedPosts.map((node) => (
                   <ArticleCard
                     key={node.id}
                     id={node.id}
@@ -95,8 +101,7 @@ export const pageQuery = graphql`
       skip: $skip
       sort: { date: DESC }
       filter: {
-        tags: {nodes: {elemMatch: {id: {eq: $tagId}}}}
-        categories: { nodes: { elemMatch: { slug: { ne: "case-studies" } } } }
+        tags: { nodes: { elemMatch: { id: { eq: $tagId } } } }
       }
     ) {
       nodes {
@@ -127,6 +132,12 @@ export const pageQuery = graphql`
             id
           }
         }
+        categories {
+          nodes {
+            name
+            slug
+          }
+        }
       }
     }
     wpTag(id: { eq: $tagId }) {
@@ -141,3 +152,4 @@ export const pageQuery = graphql`
     }
   }
 `;
+

@@ -179,6 +179,38 @@ exports.createPages = async ({ graphql, actions }) => {
           posts {
             nodes {
               id
+              title
+              slug
+              uri
+              excerpt
+              date(formatString: "MMMM DD, YYYY")
+              featuredImage {
+                node {
+                  localFile {
+                    childImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                  altText
+                }
+              }
+              primaryTag {
+                selectPrimaryTag
+                fieldGroupName
+              }
+              tags {
+                nodes {
+                  name
+                  link
+                  id
+                }
+              }
+              categories {
+                nodes {
+                  name
+                  slug
+                }
+              }
             }
           }
         }
@@ -1517,38 +1549,60 @@ exports.createPages = async ({ graphql, actions }) => {
   const tagItems = result.data.topicList.nodes;
 
   tagItems.forEach((tag) => {
-    const tagPosts = tag.posts.nodes;
-    const tagPostsPerPage = 9;
-    const totalTagPages = Math.ceil(tagPosts.length / tagPostsPerPage);
-
-    createPage({
-      path: `${tag.link}`,
-      component: path.resolve('./src/templates/tags.js'),
-      context: {
-        tagId: tag.id,
-        page: 1,
-        limit: tagPostsPerPage,
-        skip: 0,
-        totalPages: totalTagPages,
-      },
+    // Filter posts for the current tag
+    const filteredTagPosts = tag.posts.nodes.filter((post) => {
+      const primaryTags = post.primaryTag?.selectPrimaryTag || [];
+      const normalizedPrimaryTags = primaryTags.map((tag) => tag.toLowerCase());
+      const isCaseStudy = post.categories.nodes.some(
+        (category) => category.slug === 'case-studies'
+      );
+  
+      return normalizedPrimaryTags.includes(tag.name.toLowerCase()) && !isCaseStudy;
     });
-
-    if (tagPosts.length > 0) {
-      for (let i = 1; i <= totalTagPages; i++) {
+  
+    console.log(`Filtered posts for tag ${tag.name}:`, filteredTagPosts.length);
+  
+    const tagPostsPerPage = 9; // Number of posts per page
+    const totalPages = Math.ceil(filteredTagPosts.length / tagPostsPerPage);
+  
+    // Create the first page
+    if (filteredTagPosts.length > 0) {
+      createPage({
+        path: `${tag.link}`,
+        component: path.resolve('./src/templates/tags.js'),
+        context: {
+          tagId: tag.id,
+          tagName: tag.name,
+          tagSlug: tag.slug,
+          page: 1,
+          limit: tagPostsPerPage,
+          skip: 0,
+          totalPages,
+          filteredPosts: filteredTagPosts, // Pass the filtered posts to context
+        },
+      });
+  
+      // Create paginated pages
+      for (let i = 2; i <= totalPages; i++) {
         createPage({
           path: `${tag.link}page/${i}`,
           component: path.resolve('./src/templates/tags.js'),
           context: {
             tagId: tag.id,
+            tagName: tag.name,
+            tagSlug: tag.slug,
             page: i,
             limit: tagPostsPerPage,
             skip: (i - 1) * tagPostsPerPage,
-            totalPages: totalTagPages,
+            totalPages,
+            filteredPosts: filteredTagPosts, // Pass the filtered posts to context
           },
         });
       }
     }
   });
+  
+  
 
   const careers =
     result.data.careersPage.template.pageBuilder.pageBuilder ||
