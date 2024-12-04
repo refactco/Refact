@@ -17,6 +17,12 @@
       }
     }
   }
+  .c-insights-topic__headline{
+    padding-right: 1.25rem;
+    @include mq(md){
+      padding-right: 0;
+    }
+  }
 }
 
 .c-blog-post__category {
