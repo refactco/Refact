@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby';
 import React, { useState, useEffect } from 'react';
 import Cookie from 'js-cookie';
 import SpinnerIcon from '../spinner/spinner';
+import PatternBg from '../patterns/pattern-bg';
 
 const EmailSubscriber = () => {
   const data = useStaticQuery(graphql`
@@ -311,6 +312,8 @@ const EmailSubscriber = () => {
           </div>
         </>
       )}
+      <PatternBg pattern="pagePattern" className='is-page-pattern' />
+      <PatternBg pattern='hightlightBottom' className='is-highlight-top' />
     </div>
   );
 };

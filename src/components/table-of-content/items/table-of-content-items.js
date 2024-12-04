@@ -150,9 +150,9 @@ const TableOfContentItems = ({
                 className={`c-table-of-content__item ${
                   activeIndex === heading.index ? 'is-active' : ''
                 }`}
-                style={{
-                  paddingLeft: `${(heading.level - 2) * 12 + 8}px`,
-                }}
+                // style={{
+                //   paddingLeft: `${(heading.level - 2) * 12 + 8}px`,
+                // }}
                 onClick={(event) => {
                   handleClick(heading.element, heading.index, event);
                 }}
@@ -167,13 +167,12 @@ const TableOfContentItems = ({
                       className={`chevron exclude-click${
                         openIndexes === heading.index ? '' : ' chevron-down'
                       }`} 
-                      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path fill="#798686" d="M13.354 10.354a.502.502 0 0 1-.707 0L8 5.707l-4.646 4.647a.5.5 0 0 1-.707-.708l5-5a.5.5 0 0 1 .707 0l5 5a.5.5 0 0 1 0 .708Z"/></svg>
-                  ) : null}
+                      xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="none" viewBox="0 0 16 16"><path fill="#002729" d="M13.354 10.354a.502.502 0 0 1-.707 0L8 5.707l-4.646 4.647a.5.5 0 0 1-.707-.708l5-5a.5.5 0 0 1 .707 0l5 5a.5.5 0 0 1 0 .708Z"/></svg>
+                      ) : null}
                 </span>
               </button>
-            </li>
-            {hasSubHeading ? (
-              <li>
+              {hasSubHeading ? (
+              <ul>
                 <TableOfContentItems
                   headings={heading.subHeadings}
                   onClose={onClose}
@@ -182,8 +181,9 @@ const TableOfContentItems = ({
                   isSub
                   onActiveIndexChange={onActiveIndexChange}
                 />
-              </li>
+              </ul>
             ) : null}
+            </li>
           </React.Fragment>
         );
       })}

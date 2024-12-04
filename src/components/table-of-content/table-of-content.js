@@ -148,6 +148,7 @@ const TableOfContents = ({
       document.documentElement.classList.toggle('no-scroll');
       chevron.classList.toggle('chevron-down');
       doc.classList.toggle('is-opened');
+      doc.style.maxHeight = doc.style.maxHeight ? null : `${doc.scrollHeight + 16}px`;
     } else {
       document.documentElement.classList.remove('no-scroll');
     }
@@ -189,11 +190,6 @@ const TableOfContents = ({
         </div>
         )}
       </div>
-      )}
-      {headings.length > 0 && (
-        <>
-        {footer ? <hr className="c-table-of-content__separator" /> : null}
-        </>
       )}
       {footer}
     </div>

@@ -132,6 +132,11 @@
         padding: 1rem 0;
     }
 }
+.single{
+    .c-float-btn{
+        display: none;
+    }
+}
 
 .c-header__wrap {
     position: fixed;

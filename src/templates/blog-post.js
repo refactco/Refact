@@ -97,6 +97,13 @@ const BlogPostTemplate = ({ data }) => {
                 <div className='c-article__featured-image'>
                   <GatsbyImage image={post.featuredImage.node.localFile.childImageSharp.gatsbyImageData} alt={post.featuredImage.node.altText} />
                 </div>
+                <div className="c-article__share">
+                  <p className="c-article__share-title">Share</p>
+                  <ShareButton
+                    postUrl={currentUrl}
+                    postTitle={post.title}
+                  />
+                </div>
               </div>
               <div
                 className="c-article__content-wrapper s-content"
@@ -118,11 +125,11 @@ const BlogPostTemplate = ({ data }) => {
             <CtaPost />
           </div>
         </article>
-        {/* {post.categories?.nodes[0].slug === 'case-studies' ? (
-        ''
-      ) : (
-        <EmailSubscriber />
-      )} */}
+        {post.categories?.nodes[0].slug === 'case-studies' ? (
+          ''
+        ) : (
+          <EmailSubscriber />
+        )}
       </ContainerBox>
       {post.categories?.nodes[0].slug === 'case-studies' ? (
         <CaseStudyPosts caseStudies={caseStudy} />
