@@ -6,6 +6,7 @@ import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
 import ArticleCard from '../components/article-card/article-card';
+import PatternBg from '../components/patterns/pattern-bg';
 
 const TagPage = (props) => {
   const { data, pageContext } = props;
@@ -43,6 +44,7 @@ const TagPage = (props) => {
               <h1 className="c-headline__title">{name}</h1>
             </div>
           </ContainerBox>
+          <PatternBg pattern="insightHighlight" className='is-insight-highlight' />
           <ContainerBox className="c-section--blog is-tag-archive">
             <div className="c-blog-posts">
               <div className="c-blog__list">
@@ -63,7 +65,8 @@ const TagPage = (props) => {
                   total={totalPages}
                   maxWidth={200}
                   onPageChange={(changedPage) => {
-                    navigate(`${link}page/${changedPage}`, {
+                    const navigatePath = changedPage === 1 ? link : `${link}page/${changedPage}`;
+                    navigate(navigatePath, {
                       state: {
                         pageChange: true,
                       },

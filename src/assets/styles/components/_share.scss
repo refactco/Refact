@@ -4,15 +4,19 @@
   list-style: none;
   display: flex;
   align-items: center;
-  gap: 1em;
+  gap: 0.75rem;
 
-  a {
+  a, button {
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--color-text);
     text-decoration: none;
     cursor: pointer;
+    transition: color 0.35s ease-in-out;
+    &:hover{
+      color: var(--color-primary-sh);
+    }
   }
 }
 .c-share-text{
@@ -27,4 +31,22 @@
   outline: none;
   cursor: pointer;
   padding: 0;
+  display: flex;
+}
+.c-copy-link-container{
+  position: relative;
+}
+.c-link-tooltip{
+  position: absolute;
+  background: var(--color-primary-h);
+  color: var(--color-text);
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  z-index: 1;
+  white-space: nowrap;
+  left: -1rem;
+  bottom: -2.5rem;
+  text-transform: capitalize;
 }

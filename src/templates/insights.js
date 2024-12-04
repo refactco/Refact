@@ -6,6 +6,7 @@ import Seo from '../components/seo/seo';
 import Button, {BgMode, BtnType} from '../components/button/button';
 import ArticleCard from '../components/article-card/article-card';
 import PatternBg from '../components/patterns/pattern-bg';
+import Slider from 'react-slick';
 
 const InsightPage = (props) => {
   const { data } = props;
@@ -29,6 +30,27 @@ const InsightPage = (props) => {
     }
     return acc;
   }, {});
+
+
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 768, // Mobile breakpoint
+        settings: {
+          slidesToShow: 1.1, // Show 1 slide on mobile
+          slidesToScroll: 1,
+          infinite: true,
+        }
+      }
+    ]
+  };
 
   return (
     <Layout>
@@ -86,6 +108,7 @@ const InsightPage = (props) => {
                   />
                 </div>
                 <div className="c-insights-topic__list">
+                  <Slider {...settings}  className="c-insights-topic__slider">
                   {lastThreePosts.map((post) => (
                     <ArticleCard
                       key={post.id}
@@ -96,6 +119,7 @@ const InsightPage = (props) => {
                       featuredImage={post.featuredImage.node}
                     />
                   ))}
+                  </Slider>
                 </div>
               </section>
             );
@@ -115,7 +139,7 @@ export function Head({ data }) {
   return (
     <>
       <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
-      <body className="is-insight-page" />
+      <body className="is-insight-page is-main-insight" />
     </>
   );
 }

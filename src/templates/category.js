@@ -5,7 +5,8 @@ import ResponsivePagination from 'react-responsive-pagination';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
-import Button, {BgMode, BtnType} from '../components/button/button';
+import ArticleCard from '../components/article-card/article-card';
+import PatternBg from '../components/patterns/pattern-bg';
 
 const CategoryPage = (props) => {
   const { data, pageContext } = props;
@@ -23,50 +24,34 @@ const CategoryPage = (props) => {
         >
           <ContainerBox className="c-section--headline">
             <div className="c-headline">
-              <div className='c-headline__btn'>
-                <Button 
-                  url="/insights" 
-                  text="Back to Insights" 
-                  type={BtnType.SECONDARY} 
-                  bgMode={BgMode.LIGHT} 
-                  icon="arrowleft"  
-                />
+              <div className='c-article-header__links'>
+                <div className='c-article-header__btn'>
+                  <Link
+                    to="/insights"
+                    className="c-link c-link--category"
+                  >
+                    all insights
+                  </Link>
+                  <span>/</span>
+                </div>
               </div>
               <h1 className="c-headline__title">{name}</h1>
             </div>
           </ContainerBox>
+          <PatternBg pattern="insightHighlight" className='is-insight-highlight' />
           <ContainerBox className="c-section--blog is-tag-archive">
             <div className="c-blog-posts">
               <div className="c-blog__list">
                 {posts.map((node) => (
-                  <div className="c-blog__item" key={node.id}>
-                    <div className="c-blog-post__category">
-                      {node.tags.nodes.map((tag) => (
-                        <Link
-                          to={tag.link}
-                          className="c-link c-link--category"
-                          key={tag.id}
-                        >
-                          {tag.name}
-                        </Link>
-                      ))}
-                    </div>
-
-                    <h3 className="c-blog-post__title">
-                      <Link to={node.uri} className="c-link c-link--blog">
-                        {node.title}
-                      </Link>
-                    </h3>
-
-                    <div className="c-blog-post__cta">
-                      <Button
-                        url={node.uri}
-                        text="Read More"
-                        type={BtnType.SECONDARY} 
-                        bgMode={BgMode.LIGHT}
-                      />
-                    </div>
-                  </div>
+                  <ArticleCard
+                    key={node.id}
+                    id={node.id}
+                    uri={node.uri}
+                    title={node.title}
+                    excerpt={node.excerpt}
+                    featuredImage={node.featuredImage.node}
+                    tags={node.tags.nodes}
+                  />
                 ))}
               </div>
               <div className={totalPages <= 1 ? 'c-blog-posts__pagination is-hidden' : 'c-blog-posts__pagination'}>
@@ -75,7 +60,8 @@ const CategoryPage = (props) => {
                   total={totalPages}
                   maxWidth={200}
                   onPageChange={(changedPage) => {
-                    navigate(`${link}page/${changedPage}`, {
+                    const navigatePath = changedPage === 1 ? link : `${link}page/${changedPage}`;
+                    navigate(navigatePath, {
                       state: {
                         pageChange: true,
                       },
