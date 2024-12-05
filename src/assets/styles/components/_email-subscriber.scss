@@ -11,17 +11,16 @@
   align-items: flex-start;
   justify-content: space-between;
   gap: 12px;
-  border-radius: 0;
+  border-radius: 0.5rem;
   opacity: 0;
   z-index: 1001;
   transform: translateY(300px);
+  overflow: hidden;
+  margin-top: -6.9375rem;
   transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
   &.c-email-subscriber--show {
     opacity: 1;
-    transform: translateY(0);
-    @include mq(md) {
-      transform: translateY(-30px);
-    }
+    transform: translateY(-30px);
   }
   &.c-email-subscriber--sticky {
     position: sticky;
@@ -29,13 +28,12 @@
   &.c-email-subscriber--static {
     position: static;
   }
-  @include mq(md) {
-    flex-direction: row;
-    align-items: center;
-    max-width: 752px;
-    border-radius: 4px;
-    gap: 40px;
+  @include mq(lg) {
+    max-width: 280px;
+    margin: 0;
+    gap: 1.25rem;
     padding: 24px;
+    margin-top: -11.4175rem;
   }
   &__success-message {
     font-family: $inter;
@@ -78,6 +76,10 @@
       }
     }
   }
+  .is-highlight-sub{
+    bottom: -5px;
+    right: 0;
+  }
 }
 .c-email-subscriber__success-message{
   .gform_confirmation_message{
@@ -90,9 +92,8 @@
 .c-email-subscriber__info {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  @include mq(md) {
-    max-width: 274px;
+  @include mq(lg) {
+    gap: 0.25rem;
   }
 }
 .c-email-subscriber__title {
@@ -102,7 +103,7 @@
   color: var(--color-white);
   margin: 0;
   display: none;
-  @include mq(md) {
+  @include mq(lg) {
     display: block;
   }
 }
@@ -112,9 +113,24 @@
   margin: 0;
   font-weight: 600;
   color: var(--color-white);
-  @include mq(md) {
+  @include mq(lg) {
     @include font-size(14px, 1.42);
     font-weight: 400;
+    color: var(--color-white-80);
+  }
+}
+.c-email-subscriber__close{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  color: var(--color-white);
+  transition: color 0.3s ease-in-out;
+  &:hover{
     color: var(--color-primary-t);
   }
 }
@@ -155,11 +171,26 @@
 
 .c-email-subscriber-form__wrap {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
   width: 100%;
-  @include mq(md) {
-    width: calc(100% - 274px);
+  .gform_wrapper{
+    width: 100%;
+  }
+  .gform_body{
+    width: 100%;
+  }
+  .c-newsletter-form__box{
+    display: flex;
+    gap: 0;
+    .gform_footer{
+      position: absolute;
+      right: 0;
+      .c-btn--newsletter{
+        width: 42px;
+      }
+      span{
+        display: none;
+      }
+    }
   }
   p {
     color: var(--color-white-80);

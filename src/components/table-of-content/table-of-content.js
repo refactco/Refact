@@ -61,7 +61,7 @@ const TableOfContents = ({
   const handleScroll = useCallback(() => {
     const headingElements = Array.from(
       document.querySelectorAll(
-        `${selector} h1, ${selector} h2, ${selector} h3, ${selector} h4, ${selector} h5, ${selector} h6`
+        `${selector} h2, ${selector} h3, ${selector} h4, ${selector} h5, ${selector} h6`
       )
     );
     const offset = 0;
@@ -120,7 +120,7 @@ const TableOfContents = ({
   useEffect(() => {
     const headingElements = Array.from(
       document.querySelectorAll(
-        `${selector} h1, ${selector} h2, ${selector} h3, ${selector} h4, ${selector} h5, ${selector} h6`
+        `${selector} h2, ${selector} h3, ${selector} h4, ${selector} h5, ${selector} h6`
       )
     );
     if (headingElements.length === 0) {
@@ -148,52 +148,51 @@ const TableOfContents = ({
       document.documentElement.classList.toggle('no-scroll');
       chevron.classList.toggle('chevron-down');
       doc.classList.toggle('is-opened');
+      doc.style.maxHeight = doc.style.maxHeight ? null : `${doc.scrollHeight + 16}px`;
     } else {
       document.documentElement.classList.remove('no-scroll');
     }
   };
 
   return (
-    <nav
+    <div
       className={`c-table-of-content${isSticky ? ' is-sticky' : ''}`}
       aria-label="Table of Contents"
     >
-    {headings.length > 0 && (
-      <button
-        className="c-table-of-content__title"
-        onClick={() => {
-          openCloseToc();
-        }}
-      >
-        Table of Content
-        <svg xmlns="http://www.w3.org/2000/svg" width="16" id="chevron-icon" className="chevron chevron-down" fill="none" viewBox="0 0 16 16"><path fill="#798686" d="M13.354 10.354a.502.502 0 0 1-.707 0L8 5.707l-4.646 4.647a.5.5 0 0 1-.707-.708l5-5a.5.5 0 0 1 .707 0l5 5a.5.5 0 0 1 0 .708Z"/></svg>
-      </button>
-      )}
       {headings.length > 0 && (
-      <div
-        id="toc-collapsible-list"
-        className="collapsible-on-mobile is-collapsed c-table-of-content__menu"
-      >
-        <TableOfContentItems
-          headings={headings}
-          activeIndex={activeIndex}
-          openIndexes={openIndexes}
-          onActiveIndexChange={(index) => {
-            setActiveIndex(index);
-          }}
-          onClose={() => {
+      <div className='c-toc__wrapper'>
+      
+        <button
+          className="c-table-of-content__title"
+          onClick={() => {
             openCloseToc();
           }}
-        />
+        >
+          Table of Content
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" id="chevron-icon" className="chevron chevron-down" fill="none" viewBox="0 0 16 16"><path fill="#798686" d="M13.354 10.354a.502.502 0 0 1-.707 0L8 5.707l-4.646 4.647a.5.5 0 0 1-.707-.708l5-5a.5.5 0 0 1 .707 0l5 5a.5.5 0 0 1 0 .708Z"/></svg>
+        </button>
+        {headings.length > 0 && (
+        <div
+          id="toc-collapsible-list"
+          className="collapsible-on-mobile is-collapsed c-table-of-content__menu"
+        >
+          <TableOfContentItems
+            headings={headings}
+            activeIndex={activeIndex}
+            openIndexes={openIndexes}
+            onActiveIndexChange={(index) => {
+              setActiveIndex(index);
+            }}
+            onClose={() => {
+              openCloseToc();
+            }}
+          />
+        </div>
+        )}
       </div>
       )}
-      {headings.length > 0 && (
-        <>
-        {footer ? <hr className="c-table-of-content__separator" /> : null}
-        </>
-      )}
       {footer}
-    </nav>
+    </div>
   );
 };
 

@@ -1156,3 +1156,116 @@
 .has-green-bg{
   background-color: var(--color-primary-h);
 }
+
+
+// Popup Section
+.c-popup-guide{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+.c-popup-guide__content{
+  background-color: white;
+  padding: 1.5rem 1rem;
+  position: relative;
+  border-radius: 0.25rem;
+  text-align: center;
+  max-width: 517px;
+  width: 90%;
+  z-index: 1;
+  &::before{
+    content: '';
+    width: 100%;
+    height: 50%;
+    display: block;
+    background: linear-gradient(180deg, #DDF3DE 40.82%, #FFF 97.59%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+  }
+  @include mq(md){
+    padding: 2.5rem 3.75rem;
+    width: 100%;
+  }
+}
+.c-popup-guide__close{
+  background: transparent;
+  outline: none;
+  display: flex;
+  border: none;
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  padding: 0;
+  cursor: pointer;
+  color: #fff;
+  transition: color 0.25s ease-in-out;
+  svg{
+    path{
+      transition: stroke 0.25s ease-in-out;
+    }
+  }
+  &:hover{
+    color: var(--color-text);
+    svg{
+      path{
+        stroke: var(--color-white);
+      }
+    }
+  }
+}
+
+.c-popup-guide__image{
+  max-width: 120px;
+  margin: 0 auto 1.75rem;
+  &::after{
+    content: '';
+    width: 100%;
+    height: 12px;
+    display: block;
+    position: relative;
+    bottom: 6px;
+    background: radial-gradient(50% 50% at 50% 50%, #000 0%, rgba(102, 102, 102, 0.00) 100%);
+    filter: blur(5.905516147613525px);
+  }
+  @include mq(md){
+    max-width: 210px;
+  }
+}
+
+.c-popup-guide__title{
+  font-family: $inter;
+  @include font-size(28px, 1);
+  font-weight: bold;
+  margin: 0 0 0.75rem;
+  @include mq(md){
+    @include font-size(40px, 1);
+  }
+}
+.c-popup-guide__text{
+  font-family: $inter;
+  @include font-size(16px, 1.4);
+  font-weight: 400;
+  margin: 0 0 1.25rem;
+}
+.c-popup-guide__cta{
+  max-width: 232px;
+  margin: 0 auto;
+  .c-btn{
+    @include font-size(14px, 1.5);
+    height: 43px;
+    gap: 8px;
+    .c-btn__icon{
+      width: 35px;
+      height: 35px;
+    }
+  }
+}

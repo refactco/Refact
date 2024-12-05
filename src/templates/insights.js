@@ -1,186 +1,133 @@
-import { useLocation } from '@reach/router';
-import { AnimatePresence, motion } from 'framer-motion';
-import { Link, graphql, navigate } from 'gatsby';
-import React, { useEffect } from 'react';
-import ResponsivePagination from 'react-responsive-pagination';
+import {  graphql } from 'gatsby';
+import React from 'react';
 import ContainerBox from '../components/container-box/container-box';
 import Layout from '../components/layout/layout';
 import Seo from '../components/seo/seo';
 import Button, {BgMode, BtnType} from '../components/button/button';
+import ArticleCard from '../components/article-card/article-card';
+import PatternBg from '../components/patterns/pattern-bg';
+import Slider from 'react-slick';
 
 const InsightPage = (props) => {
-  const { data, pageContext } = props;
-  const { page, totalPages } = pageContext;
-  const posts = data.allWpPost.edges.slice(1); // Exclude the first post by slicing the array
+  const { data } = props;
+  // Extract the latest 3 posts for the featured section
+  const featuredPosts = data.firstPost.edges.slice(0, 3).map((edge) => edge.node);
 
-  const [firstPost] = data.firstPost.edges;
-  const topicItems = data.topicList.nodes;
-  const { state } = useLocation();
+  // Exclude featured posts from primary tag grouping
+  const posts = data.allWpPost.edges.filter(
+    ({ node }) => !featuredPosts.some((featured) => featured.id === node.id)
+  );
 
-  function smoothScrollToElement(elementId, offset = 0) {
-    const element = document.getElementById(elementId);
-    const elementPosition =
-      element.getBoundingClientRect().top + window.pageYOffset;
-    const offsetPosition = elementPosition - offset;
-
-    window.scrollTo({
-      top: offsetPosition,
-      behavior: 'smooth',
-    });
-
-    setTimeout(() => {
-      const htmlElement = document.querySelector('html');
-
-      if (!htmlElement.className.includes('has-sticky-header')) {
-        window.scrollTo({
-          top: offsetPosition - 0,
-          behavior: 'smooth',
-        });
+  const groupedByPrimaryTag = posts.reduce((acc, { node }) => {
+    const primaryTag = node.primaryTag?.selectPrimaryTag;
+    if (primaryTag && primaryTag.length === 2) {
+      let [slug, name] = primaryTag;
+      slug = slug.toLowerCase();
+      if (!acc[slug]) {
+        acc[slug] = { name, posts: [] };
       }
-    }, 200);
-  }
-
-  useEffect(() => {
-    if (state?.pageChange) {
-      smoothScrollToElement('blog-nav-id', 0);
+      acc[slug].posts.push(node);
     }
-  }, [state]);
+    return acc;
+  }, {});
+
+
+  var settings = {
+    dots: false,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 1,
+    arrows: false,
+    variableWidth: true,
+    responsive: [
+      {
+        breakpoint: 768, // Mobile breakpoint
+        settings: {
+          slidesToShow: 1.1, // Show 1 slide on mobile
+          slidesToScroll: 1,
+          infinite: true,
+        }
+      }
+    ]
+  };
 
   return (
     <Layout>
-      <AnimatePresence>
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          <ContainerBox className="c-section--blog">
-            <div className="c-blog-featured">
-              <div className="c-blog-featured__wrap">
-                <div className="c-blog-post__category">
-                  {firstPost.node.tags.nodes.map((tag) => (
-                    <Link
-                      to={tag.link}
-                      className="c-link c-link--category"
-                      key={tag.id}
-                    >
-                      {tag.name}
-                    </Link>
-                  ))}
-                </div>
-                <h2 className="c-blog-featured__title">
-                  <Link to={firstPost.node.uri} className="c-link c-link--blog">
-                    {firstPost.node.title}
-                  </Link>
-                </h2>
-                {firstPost.node.excerpt && (
-                  <div
-                    className="c-blog-featured__excerpt"
-                    dangerouslySetInnerHTML={{
-                      __html: data.allWpPost.edges[0].node.excerpt,
-                    }}
-                  ></div>
-                )}
-                <div className="c-blog-featured__cta">
-                  <Button 
-                    url={firstPost.node.uri}
-                    text="Read More"
-                    type={BtnType.SECONDARY} 
+      <ContainerBox className="c-section--blog">
+        <div className='c-insights'>
+          <div className='c-insights__featured'>
+            <div className="c-insights-topic__headline">
+              <div className="c-insights-topic__title">Featured Insights</div>
+            </div>
+            <div className='c-insights__featured-list'>
+            {featuredPosts.length > 0 && (
+              <div className="c-insights-featured-list__col">
+                <ArticleCard
+                  key={featuredPosts[0].id}
+                  id={featuredPosts[0].id}
+                  uri={featuredPosts[0].uri}
+                  title={featuredPosts[0].title}
+                  excerpt={featuredPosts[0].excerpt}
+                  tags={featuredPosts[0].tags.nodes}
+                  featuredImage={featuredPosts[0].featuredImage.node}
+                />
+              </div>
+            )}
+            {featuredPosts.length > 1 && (
+              <div className="c-insights-featured-list__col">
+                {featuredPosts.slice(1).map((post) => (
+                  <ArticleCard
+                    key={post.id}
+                    id={post.id}
+                    uri={post.uri}
+                    title={post.title}
+                    excerpt={post.excerpt}
+                    tags={post.tags.nodes}
+                    featuredImage={post.featuredImage.node}
+                  />
+                ))}
+              </div>
+            )}
+            </div>
+          </div>
+          <div className='c-insights__list'>
+          {Object.entries(groupedByPrimaryTag).map(([slug, { name, posts }]) => {
+            const sortedPosts = posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+            const lastThreePosts = sortedPosts.slice(0, 3);
+
+            return (
+              <section key={slug} className="c-insights__section">
+                <div className="c-insights-topic__headline">
+                  <div className="c-insights-topic__title">{name}</div>
+                  <Button
+                    url={`/tag/${slug}`}
+                    text="View All"
+                    type={BtnType.SECONDARY}
                     bgMode={BgMode.LIGHT}
                   />
                 </div>
-              </div>
-            </div>
-            <div className="c-blog-nav" id="blog-nav-id">
-              <div className="c-blog-nav__title">Topics</div>
-              <div className="c-blog-nav__wrap is-insight">
-                <swiper-container
-                  space-between={8}
-                  slides-per-view={'auto'}
-                  css-mode={false}
-                  navigation={false}
-                  allow-touch-move={true}
-                >
-                  <swiper-slide key='insightkey'>
-                    <div className="item is-active">
-                      <Link to='/insights'>all insights</Link>
-                    </div>
-                  </swiper-slide>
-                  {topicItems.map((topic) => (
-                    <swiper-slide key={topic.id}>
-                      <div className="item">
-                        <Link to={topic.link}>{topic.name}</Link>
-                      </div>
-                    </swiper-slide>
+                <div className="c-insights-topic__list">
+                  <Slider {...settings}  className="c-insights-topic__slider">
+                  {lastThreePosts.map((post) => (
+                    <ArticleCard
+                      key={post.id}
+                      id={post.id}
+                      uri={post.uri}
+                      title={post.title}
+                      excerpt={post.excerpt}
+                      featuredImage={post.featuredImage.node}
+                    />
                   ))}
-                </swiper-container>
-              </div>
-            </div>
-            <div className="c-blog-posts">
-              <div className="c-blog__list">
-                {posts.map(({ node }) => (
-                  <div className="c-blog__item" key={node.id}>
-                    <div className="c-blog-post__category">
-                      {node.tags.nodes.map((tag) => (
-                        <Link
-                          to={tag.link}
-                          className="c-link c-link--category"
-                          key={tag.id}
-                        >
-                          {tag.name}
-                        </Link>
-                      ))}
-                    </div>
-                    <h3 className="c-blog-post__title">
-                      <Link to={node.uri} className="c-link c-link--blog">
-                        {node.title}
-                      </Link>
-                    </h3>
-                    {node.excerpt && (
-                      <div
-                        className="c-blog-featured__excerpt"
-                        dangerouslySetInnerHTML={{
-                          __html: node.excerpt,
-                        }}
-                      ></div>
-                    )}
-                    <div className="c-blog-post__cta">
-                      <Button 
-                        url={node.uri}
-                        text="Read More"
-                        type={BtnType.SECONDARY} 
-                        bgMode={BgMode.LIGHT}
-                      />
-                    </div>
-                  </div>
-                ))}
-              </div>
-              <div className="c-blog-posts__pagination">
-                <ResponsivePagination
-                  current={page}
-                  total={totalPages}
-                  maxWidth={200}
-                  onPageChange={(changedPage) => {
-                    if (changedPage === 1) {
-                      navigate(`/insights/`, {
-                        state: {
-                          pageChange: true,
-                        },
-                      });
-                    } else {
-                      navigate(`/insights/page/${changedPage}`, {
-                        state: {
-                          pageChange: true,
-                        },
-                      });
-                    }
-                  }}
-                />
-              </div>
-            </div>
-          </ContainerBox>
-        </motion.div>
-      </AnimatePresence>
+                  </Slider>
+                </div>
+              </section>
+            );
+          })}
+          </div>
+        </div>
+        <PatternBg pattern="insightHighlight" className='is-insight-highlight' />
+      </ContainerBox>
     </Layout>
   );
 };
@@ -192,13 +139,13 @@ export function Head({ data }) {
   return (
     <>
       <Seo title={post.seo.title} description={post.seo.metaDesc} featuredImage={post.seo.opengraphImage.localFile.url} />
-      <body className="is-insight-page" />
+      <body className="is-insight-page is-main-insight" />
     </>
   );
 }
 
 export const pageQuery = graphql`
-  query ($limit: Int!, $skip: Int!) {
+  query {
     wpPage(slug: { eq: "insights" }) {
       id
       content
@@ -213,7 +160,6 @@ export const pageQuery = graphql`
       }
   }
     firstPost: allWpPost(
-      limit: 1
       sort: { date: DESC }
       filter: {
         categories: { nodes: { elemMatch: { slug: { ne: "case-studies" } } } }
@@ -236,6 +182,10 @@ export const pageQuery = graphql`
               }
               altText
             }
+          }
+          primaryTag {
+            selectPrimaryTag
+            fieldGroupName
           }
           tags {
             nodes {
@@ -248,8 +198,6 @@ export const pageQuery = graphql`
       }
     }
     allWpPost(
-      limit: $limit
-      skip: $skip
       sort: { date: DESC }
       filter: {
         categories: { nodes: { elemMatch: { slug: { ne: "case-studies" } } } }
@@ -272,6 +220,10 @@ export const pageQuery = graphql`
               }
               altText
             }
+          }
+          primaryTag {
+            selectPrimaryTag
+            fieldGroupName
           }
           tags {
             nodes {

@@ -48,6 +48,13 @@
 .c-pattern{
     position: absolute;
     z-index: -1;
+    &.is-insight-highlight{
+        top: -341px;
+        left: 0;
+        @media (max-width: 767px){
+            display: none;
+        }
+    }
     &.is-hero-highlight{
         top: -121px;
         left: 0;
