@@ -8,6 +8,7 @@ import "slick-carousel/slick/slick.css";
 import PatternBg from '../components/patterns/pattern-bg';
 import Button, {BgMode, BtnType} from '../components/button/button';
 import GoodTech from '../components/good-tech/goodtech';
+import Popup from '../components/popup/popup';
 
 
 const ServicesPage = ({ data }) => {
@@ -308,6 +309,15 @@ const ServicesPage = ({ data }) => {
               </div>
             </ContainerBox>
           )
+          case 'Template_PageBuilder_Pagebuilder_PageBuilder_Hero':
+            return (
+              <Popup key={index}
+                title={section.title}
+                text={section.text}
+                image={section.image}
+                cta={section.cta}
+              />
+            )
       default:
         return null
     }
@@ -447,6 +457,24 @@ export const pageQuery = graphql`
                   text
                 }
                 title
+              }
+              ... on WpTemplate_PageBuilder_Pagebuilder_PageBuilder_Hero {
+                fieldGroupName
+                cta {
+                  target
+                  title
+                  url
+                }
+                image {
+                  altText
+                  localFile {
+                    childrenImageSharp {
+                      gatsbyImageData
+                    }
+                  }
+                }
+                title
+                text
               }
             }
           }

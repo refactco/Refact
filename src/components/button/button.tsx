@@ -90,7 +90,7 @@ const Button: React.FC<ButtonProps> = ({
         {content}
       </a>
     ) : (
-      <Link to={url ?? ""} className={buttonClass} {...props}>
+      <Link to={url ?? ""} className={buttonClass} onClick={onClick} {...props}>
         {content}
       </Link>
     );
