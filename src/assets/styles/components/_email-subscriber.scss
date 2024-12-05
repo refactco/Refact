@@ -76,13 +76,9 @@
       }
     }
   }
-  .is-highlight-top{
-    right: -7rem;
-    bottom: -3px;
-    svg{
-      width: 350px;
-      height: auto;
-    }
+  .is-highlight-sub{
+    bottom: -5px;
+    right: 0;
   }
 }
 .c-email-subscriber__success-message{
@@ -121,6 +117,21 @@
     @include font-size(14px, 1.42);
     font-weight: 400;
     color: var(--color-white-80);
+  }
+}
+.c-email-subscriber__close{
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  cursor: pointer;
+  position: absolute;
+  right: 0.5rem;
+  top: 0.5rem;
+  color: var(--color-white);
+  transition: color 0.3s ease-in-out;
+  &:hover{
+    color: var(--color-primary-t);
   }
 }
 
