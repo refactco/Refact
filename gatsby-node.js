@@ -12,6 +12,62 @@ exports.createPages = async ({ graphql, actions }) => {
     toPath: 'https://refact.co/toolkit',
     statusCode: 301,
   });
+  createRedirect({
+    fromPath: '/tools-resources/',
+    toPath: 'https://refact.co/toolkit',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/career/sales-marketing/',
+    toPath: 'https://refact.co/careers',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/career/design/',
+    toPath: 'https://refact.co/careers',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/career/experienced-technology/',
+    toPath: 'https://refact.co/careers',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/career/technology/',
+    toPath: 'https://refact.co/careers',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/re-beehiiv/',
+    toPath: 'https://refact.co/integration-toolkit-for-beehiiv/',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/empowering-workweek-creators-with-scalable-microsites-2/',
+    toPath: 'https://refact.co/empowering-workweek-creators-scalable-microsites/',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/insight/',
+    toPath: 'https://refact.co/insights/',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/boosting-cre-dailys-digital-presence/',
+    toPath: 'https://refact.co/work/cre-daily/',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/elevating-stacked-marketers-digital-presence-and-efficiency-2/',
+    toPath: 'https://refact.co/work/stacked-marketer/',
+    statusCode: 301,
+  });
+  createRedirect({
+    fromPath: '/state-affairs-struggling-startup-to-success-in-4-months/',
+    toPath: 'https://refact.co/work/state-affairs/',
+    statusCode: 301,
+  });
+
 
   const result = await graphql(`
     query {
